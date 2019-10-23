@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "react/jsx-key": "error",
+    "react/jsx-one-expression-per-line": "off"
+  }
+}
