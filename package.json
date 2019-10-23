@@ -1,7 +1,10 @@
 {
   "name": "dev-blog",
+  "title": "Blog",
   "description": "Web Developer Blog",
   "version": "0.1.0",
+  "author": "Alexander Zaytsev <zaytsev126@gmail.com>",
+  "homepage": "https://shoonia.netlify.com",
   "dependencies": {
     "gatsby": "^2.16.1",
     "gatsby-plugin-manifest": "^2.2.23",
@@ -41,6 +44,5 @@
     "url": "https://github.com/shoonia/dev-blog/issues"
   },
   "private": true,
-  "author": "Alexander Zaytsev <zaytsev126@gmail.com>",
   "license": "MIT"
 }

@@ -1,8 +1,13 @@
+const pkg = require('./package.json');
+
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 module.exports = {
   siteMetadata: {
-    title: '',
-    description: '',
-    author: '',
+    title: pkg.title,
+    description: pkg.description,
+    author: pkg.author,
+    siteUrl: IS_DEV ? 'http://localhost:8000' : pkg.homepage,
   },
   plugins: [
     'gatsby-plugin-mini-css-class-name',
@@ -19,11 +24,11 @@ module.exports = {
     // {
     //   resolve: 'gatsby-plugin-manifest',
     //   options: {
-    //     name: '',
-    //     short_name: 'starer',
+    //     name: pkg.description,
+    //     short_name: pkg.title,
     //     start_url: '/',
-    //     background_color: '#663399',
-    //     theme_color: '#663399',
+    //     background_color: '',
+    //     theme_color: '',
     //     display: 'minimal-ui',
     //     icon: '',
     //   },
