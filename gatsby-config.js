@@ -12,13 +12,21 @@ module.exports = {
   plugins: [
     'gatsby-plugin-mini-css-class-name',
     'gatsby-plugin-react-helmet',
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'images',
-    //     path: `${__dirname}/src/images`,
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/posts`,
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          'gatsby-remark-prismjs',
+        ],
+      },
+    },
     // {
     //   resolve: 'gatsby-plugin-manifest',
     //   options: {
