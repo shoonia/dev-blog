@@ -3,12 +3,12 @@ import PropsType from 'prop-types';
 
 import Post from '../layouts/Post';
 
-function PagePage({ pageContext }) {
-  const {
+function PagePage({
+  pageContext: {
     meta,
     html,
-  } = pageContext;
-
+  },
+}) {
   return (
     <Post
       meta={meta}

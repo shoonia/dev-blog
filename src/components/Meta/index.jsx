@@ -11,6 +11,7 @@ function Meta({ data }) {
     // date,
     lang,
     image,
+    url,
   } = data;
 
   const metaData = [
@@ -30,10 +31,10 @@ function Meta({ data }) {
       property: 'og:type',
       content: 'website',
     },
-    // {
-    //   property: 'og:url', // TODO
-    //   content: url
-    // },
+    {
+      property: 'og:url',
+      content: url,
+    },
     {
       property: 'og:image',
       content: image,
@@ -80,6 +81,7 @@ Meta.propTypes = {
     // date: PropTypes.string.isRequired,
     lang: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
   }).isRequired,
 };
 

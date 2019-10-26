@@ -25,7 +25,14 @@ module.exports = async ({ actions, graphql }) => {
 
   const {
     data: {
-      allMarkdownRemark: { nodes },
+      allMarkdownRemark: {
+        nodes,
+      },
+      site: {
+        siteMetadata: {
+          siteUrl,
+        },
+      },
     },
     errors,
   } = await graphql(`
@@ -49,18 +56,28 @@ module.exports = async ({ actions, graphql }) => {
           html
         }
       }
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
     }`);
 
   if (errors) {
     throw new Error(JSON.stringify(errors));
   }
 
+  const createUrl = (pth) => new URL(pth, siteUrl).toString();
+
   nodes.forEach((node) => {
     actions.createPage({
       path: node.frontmatter.path,
       component: Page,
       context: {
-        meta: node.frontmatter,
+        meta: {
+          ...node.frontmatter,
+          url: createUrl(node.frontmatter.path),
+        },
         html: xss(node.html, options),
       },
     });
