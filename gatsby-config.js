@@ -10,8 +10,9 @@ module.exports = {
     siteUrl: IS_DEV ? 'http://localhost:8000' : pkg.homepage,
   },
   plugins: [
-    'gatsby-plugin-mini-css-class-name',
+    'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-mini-css-class-name',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

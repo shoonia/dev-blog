@@ -11,9 +11,7 @@ function Document({ meta, children }) {
     <>
       <Meta data={meta} />
       <Header />
-      <main>
-        {children}
-      </main>
+      {children}
       <Footer />
     </>
   );

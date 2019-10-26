@@ -1,0 +1,96 @@
+.md {
+  --light: rgb(112, 128, 144);
+  --light-op: rgb(112, 128, 144, .4);
+  --link: rgb(26, 114, 232);
+  --gray: rgba(0, 0, 0, .54);
+}
+
+.md h1,
+.md h2,
+.md h3,
+.md h4,
+.md h5,
+.md h6 {
+  font-weight: normal;
+}
+
+.md h1 {
+  font-size: 40px;
+  line-height: 48px;
+  margin-top: 1.94em;
+}
+
+.md h2 {
+  font-size: 26px;
+  margin: 22px 0;
+}
+
+.md p {
+  font-size: 18px;
+  margin: 18px 0;
+}
+
+.md a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.md a:hover {
+  text-decoration: underline;
+}
+
+.md em {
+  color: var(--gray);
+  font-style: italic;
+}
+
+.md pre {
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.md pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.md pre::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.md pre::-webkit-scrollbar-thumb {
+  background-color: var(--light-op);
+  border-radius: 10px;
+}
+
+.md pre::-webkit-scrollbar-thumb:hover {
+  background-color: var(--light);
+}
+
+.md hr {
+  border: none;
+  color: var(--light);
+  background-color: var(--light);
+  height: 2px;
+}
+
+.md table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.md table th,
+.md table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+  
+}
+
+.md table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}

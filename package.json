@@ -5,9 +5,12 @@
   "version": "0.1.0",
   "homepage": "https://shoonia.netlify.com",
   "dependencies": {
+    "autoprefixer": "^9.7.0",
+    "cssnano": "^4.1.10",
     "gatsby": "^2.17.4",
     "gatsby-plugin-manifest": "^2.2.23",
     "gatsby-plugin-mini-css-class-name": "^1.1.0",
+    "gatsby-plugin-postcss": "^2.1.13",
     "gatsby-plugin-react-helmet": "^3.1.13",
     "gatsby-remark-prismjs": "^3.3.20",
     "gatsby-source-filesystem": "^2.1.33",

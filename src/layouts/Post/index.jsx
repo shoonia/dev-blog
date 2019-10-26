@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
+import st from './posts.module.css';
 
 function Post({ meta, html }) {
   return (
     <Document
       meta={meta}
     >
-      <Markdown html={html} />
+      <main className={st.content}>
+        <Markdown html={html} />
+      </main>
     </Document>
   );
 }

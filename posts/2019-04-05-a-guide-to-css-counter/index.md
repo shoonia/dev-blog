@@ -414,4 +414,4 @@ Vue — это прогрессивный фреймворк для создан
 ---
 
 Публикация оригинальной статьи [www.samanthaming.com](https://www.samanthaming.com/tidbits/53-css-counter)  
-Перевод на [GitHub](https://github.com/shoonia/blog/blob/master/src/posts/2019-04-05-a-guide-to-css-counter/index.md)
+Перевод на [GitHub](https://github.com/shoonia/dev-blog/blob/master/posts/2019-04-05-a-guide-to-css-counter/index.md)
