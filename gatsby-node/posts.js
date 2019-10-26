@@ -39,6 +39,12 @@ module.exports = async ({ actions, graphql }) => {
         nodes {
           frontmatter {
             path
+            title
+            description
+            author
+            date
+            lang
+            image
           }
           html
         }
@@ -54,6 +60,7 @@ module.exports = async ({ actions, graphql }) => {
       path: node.frontmatter.path,
       component: Page,
       context: {
+        meta: node.frontmatter,
         html: xss(node.html, options),
       },
     });

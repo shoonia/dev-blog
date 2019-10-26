@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: pkg.title,
     description: pkg.description,
-    author: pkg.author,
+    author: pkg.author.name,
     siteUrl: IS_DEV ? 'http://localhost:8000' : pkg.homepage,
   },
   plugins: [
