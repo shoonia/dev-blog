@@ -1,4 +1,4 @@
-const pages = require('./pages.js');
+const pages = require('./posts');
 
 exports.createPages = async (gatsby) => {
   await pages(gatsby);

@@ -1,7 +1,9 @@
 import React from 'react';
 
-const IndexPage = () => (
-  <h1>Hello</h1>
-);
+function IndexPage() {
+  return (
+    <h1>Hello</h1>
+  );
+}
 
 export default IndexPage;
