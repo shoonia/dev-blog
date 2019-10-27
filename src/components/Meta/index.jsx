@@ -68,6 +68,7 @@ function Meta({ data }) {
       meta={metaData}
     >
       <html lang={lang} />
+      <link rel="preconnect" href="https://static.wixstatic.com" />
     </Helmet>
   );
 }
