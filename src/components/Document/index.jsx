@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import T from 'prop-types';
 
 import Meta from '../Meta';
 import Header from '../Header';
@@ -18,8 +18,8 @@ function Document({ meta, children }) {
 }
 
 Document.propTypes = {
-  meta: PropTypes.shape().isRequired,
-  children: PropTypes.node.isRequired,
+  meta: T.shape().isRequired,
+  children: T.node.isRequired,
 };
 
 export default Document;

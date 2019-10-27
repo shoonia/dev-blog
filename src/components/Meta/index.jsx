@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import PropTypes from 'prop-types';
+import T from 'prop-types';
 
 function Meta({ data }) {
   const {
@@ -73,15 +73,15 @@ function Meta({ data }) {
 }
 
 Meta.propTypes = {
-  data: PropTypes.shape({
-    // path: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    // author: PropTypes.string.isRequired,
-    // date: PropTypes.string.isRequired,
-    lang: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+  data: T.shape({
+    // path: T.string.isRequired,
+    title: T.string.isRequired,
+    description: T.string.isRequired,
+    // author: T.string.isRequired,
+    // date: T.string.isRequired,
+    lang: T.string.isRequired,
+    image: T.string.isRequired,
+    url: T.string.isRequired,
   }).isRequired,
 };
 

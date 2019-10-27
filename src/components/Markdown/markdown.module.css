@@ -2,7 +2,7 @@
   --light: rgb(112, 128, 144);
   --light-op: rgb(112, 128, 144, .4);
   --link: rgb(26, 114, 232);
-  --gray: rgba(0, 0, 0, .54);
+  --gray: rgba(0, 0, 0, .64);
 }
 
 .md h1,
@@ -93,4 +93,9 @@
 .md table tr {
   background-color: #fff;
   border-top: 1px solid #c6cbd1;
+}
+
+.md img {
+  width: 100%;
+  object-fit: cover;
 }

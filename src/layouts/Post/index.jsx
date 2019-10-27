@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import T from 'prop-types';
 
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
@@ -18,8 +18,8 @@ function Post({ meta, html }) {
 }
 
 Post.propTypes = {
-  meta: PropTypes.shape().isRequired,
-  html: PropTypes.string.isRequired,
+  meta: T.shape().isRequired,
+  html: T.string.isRequired,
 };
 
 export default Post;

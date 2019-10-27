@@ -1,9 +1,59 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import T from 'prop-types';
 
-function IndexPage() {
+import Main from '../layouts/Main';
+
+export const query = graphql`
+{
+  allMarkdownRemark(
+    sort: {
+      fields: [frontmatter___date]
+      order: DESC
+    }
+    limit: 10
+  ) {
+    nodes {
+      id
+      frontmatter {
+        title
+        path
+        date
+        author
+        lang
+      }
+    }
+  }
+  site {
+    siteMetadata {
+      title
+      description
+      author
+      url: siteUrl
+    }
+  }
+}`;
+
+function IndexPage({
+  data: {
+    allMarkdownRemark: {
+      nodes,
+    },
+    site: {
+      siteMetadata,
+    },
+  },
+}) {
   return (
-    <h1>Hello</h1>
+    <Main
+      nodes={nodes}
+      meta={siteMetadata}
+    />
   );
 }
+
+IndexPage.propTypes = {
+  data: T.shape().isRequired,
+};
 
 export default IndexPage;

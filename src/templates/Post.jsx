@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsType from 'prop-types';
+import T from 'prop-types';
 
 import Post from '../layouts/Post';
 
@@ -18,9 +18,9 @@ function PagePage({
 }
 
 PagePage.propTypes = {
-  pageContext: PropsType.shape({
-    meta: PropsType.shape().isRequired,
-    html: PropsType.string.isRequired,
+  pageContext: T.shape({
+    meta: T.shape().isRequired,
+    html: T.string.isRequired,
   }).isRequired,
 };
 
