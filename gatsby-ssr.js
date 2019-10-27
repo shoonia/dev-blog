@@ -1,7 +1,22 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+const { renderToString } = require('react-dom/server');
+const { minify } = require('html-minifier');
 
-// You can delete this file if you're not using it
+const minifyOptions = {
+  removeComments: true,
+  collapseWhitespace: true,
+  removeRedundantAttributes: true,
+  useShortDoctype: true,
+  removeEmptyAttributes: true,
+  removeStyleLinkTypeAttributes: true,
+  keepClosingSlash: true,
+  minifyJS: true,
+  minifyCSS: true,
+  minifyURLs: true,
+};
+
+exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
+  const bodyHTML = renderToString(bodyComponent);
+  const miniHTML = minify(bodyHTML, minifyOptions);
+
+  replaceBodyHTMLString(miniHTML);
+};
