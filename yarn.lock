@@ -4636,10 +4636,10 @@ gatsby-plugin-manifest@^2.2.23:
     semver "^5.7.1"
     sharp "^0.23.1"
 
-gatsby-plugin-mini-css-class-name@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-mini-css-class-name/-/gatsby-plugin-mini-css-class-name-1.2.0.tgz#fdc2b69859de25b24c5cfca0948abf3b4b19ffb8"
-  integrity sha512-78btHeZeNGLSAV1Y+1tKv6VfkYfdEfFuqMXDdgdmYifZbQJJ2hYzkd8hOorOiEXJEqdbzsSnX1dl7Rkgu6pjkA==
+gatsby-plugin-mini-css-class-name@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-mini-css-class-name/-/gatsby-plugin-mini-css-class-name-2.0.0.tgz#f55adc3d645be415e583281f03d639f714afd7fe"
+  integrity sha512-6Kg2cMDI1mjIcOGbeqPuX8ZTtsJ5Yzvy3RZADw9LQ7C1ygUk9BUp3fA0gyYRCoC1kqbiVDWdQKUj7jNBKMYHAQ==
   dependencies:
     mini-css-class-name "^0.7.0"
 

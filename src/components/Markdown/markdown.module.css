@@ -28,6 +28,7 @@
 .md p {
   font-size: 18px;
   margin: 18px 0;
+  line-height: 1.58;
 }
 
 .md a {
@@ -51,8 +52,8 @@
 }
 
 .md pre::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 .md pre::-webkit-scrollbar-track {
@@ -98,4 +99,22 @@
 .md img {
   width: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .md h1 {
+    font-size: 32px;
+    line-height: 38px;
+    margin-top: 1.9em;
+  }
+
+  .md h2 {
+    font-size: 22px;
+    margin: 20px 0;
+  }
+
+  .md p {
+    font-size: 16px;
+    margin: 16px 0;
+  }
 }
