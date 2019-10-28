@@ -7,11 +7,18 @@ import Main from '../layouts/Main';
 export const query = graphql`
 {
   allMarkdownRemark(
+    limit: 10
     sort: {
       fields: [frontmatter___date]
       order: DESC
     }
-    limit: 10
+    filter: {
+      frontmatter: {
+        publish: {
+          eq: true
+        }
+      }
+    }
   ) {
     nodes {
       id

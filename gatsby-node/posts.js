@@ -42,6 +42,13 @@ module.exports = async ({ actions, graphql }) => {
           fields: [frontmatter___date]
           order: DESC
         }
+        filter: {
+          frontmatter: {
+            publish: {
+              eq: true
+            }
+          }
+        }
       ) {
         nodes {
           frontmatter {

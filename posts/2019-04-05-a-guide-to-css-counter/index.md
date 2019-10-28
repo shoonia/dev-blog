@@ -1,4 +1,5 @@
 ---
+publish: true
 path: '/a-guide-to-css-counter'
 template: 'default'
 date: '2019-04-05T12:00:00.000Z'

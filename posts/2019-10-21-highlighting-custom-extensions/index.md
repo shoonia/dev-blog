@@ -1,4 +1,5 @@
 ---
+publish: true
 path: '/highlighting-custom-extensions'
 template: 'default'
 date: '2019-10-21T12:00:00.000Z'

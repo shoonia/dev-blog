@@ -1,0 +1,142 @@
+---
+publish: false
+path: '/corvid-imitate-hover-event'
+template: 'default'
+date: '2019-10-29T12:00:00.000Z'
+lang: 'en'
+title: 'Corvid by Wix: Imitating hover event on repeater container'
+description: ''
+author: 'Alexander Zaytsev'
+image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311ed~mv2.png'
+---
+
+# Corvid by Wix: Imitating hover event on repeater container
+*Corvid API does't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
+
+![](https://static.wixstatic.com/media/e3b156_c3daeef27647492bb9267b4320695859~mv2.jpg)
+
+## Motivation
+We have a `$w.Repeater` component with items of users' cards. When we point with the mouse cursor over some item we want to change background color this item to light blue color `#CCE4F7` and when the cursor moves off of item we want to return the initial white color.
+
+For this, we're going to use two other events that provide repeater API:
+
+- [`onMouseIn()`](https://www.wix.com/corvid/reference/$w.Element.html#onMouseIn) runs when the mouse pointer is moved onto the element.
+- [`onMouseOut()`](https://www.wix.com/corvid/reference/$w.Element.html#onMouseOut) runs when the mouse pointer is moved off of the element
+
+Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/corvid/reference/$w.Style.html#backgroundColor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/corvid/reference/$w.Background.html#background) property for changing the background image. So in this way, we're going to use a one-pixel image.
+
+[here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
+
+## Event handlers
+To start with, set handlers to `onMouse{In/Out}` events. We will use one function for two events by repeaters containers. We declare the handler function above and pass the function's name as an argument to container methods.
+
+```js
+const items = [ /* here are our users */ ];
+
+function imitateHover(event) {
+  // our handler for containers
+}
+
+$w.onReady(function () {
+  $w("#repeater1").data = items;
+  $w("#container1").onMouseIn(imitateHover); // set handler
+  $w("#container1").onMouseOut(imitateHover);
+});
+```
+
+Please pay attention, we don't nest any containers item into the repeater for adding handlers. Like here:
+
+```js
+// In this way, each time when onItemReady starts 
+// would be set a new handler for containers.
+$w("#repeater1").onItemReady( ($item, itemData, index) => {
+  $item("#container1").onMouseIn(imitateHover);
+  $item("#container1").onMouseOut(imitateHover);
+});
+```
+
+We set globally our handler on all `#container1` with `$w()` selector. And it works well!
+
+## Imitate hover
+We use one function for two events, therefore we need to listen to which type of event is going.  We're expecting two event types:
+
+- `event.type === "mouseenter"` when `onMouseIn()` is running.
+- `event.type === "mouseleave"` when `onMouseOut()` is running.
+
+Let's see the code:
+```js
+function imitateHover(event) {
+  if (event.type === "mouseenter") {
+    console.log("we have mouseenter if onMouseIn() is running");
+  }
+
+  if (event.type === "mouseleave") {
+    console.log("we have mouseleave if onMouseOut() is running");
+  }
+}
+
+$w.onReady(function () {
+  $w("#repeater1").data = items;
+  $w("#container1").onMouseIn(imitateHover);
+  $w("#container1").onMouseOut(imitateHover);
+});
+```
+
+The object `event` always will be consistent with the current container item, which we point mouse cursor. And we can change the `background.src` property of the container by `event.target`.
+
+```js
+// link to one pixel image
+const HOVER_PNG = "https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png";
+
+function imitateHover(event) {
+  // when the cursor over container then set image.
+  if (event.type === "mouseenter") {
+    event.target.background.src = HOVER_PNG;
+  }
+  if (event.type === "mouseleave") {
+    // when the cursor is gone then remove the pixel image.
+    event.target.background.src = "";
+  }
+}
+
+$w.onReady(function () {
+  $w("#repeater1").data = items;
+  $w("#container1").onMouseIn(imitateHover);
+  $w("#container1").onMouseOut(imitateHover);
+});
+```
+Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
+
+## One pixel image
+We used the direct link to the one-pixel image. This image very tiny only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
+
+### data:URL
+[Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), it's a protocol that allows embedded small files inline in documents as a string. It means we can convert a one-pixel PNG image to string and pass it to `background.src`.
+
+We can create needed images by [1x1 PNG generator](https://shoonia.github.io/1x1/).
+
+```js
+// one-pixel image encoded to base64
+const HOVER_PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM88+R7PQAIUwMo5M6pSAAAAABJRU5ErkJggg==';
+
+function imitateHover(event) {
+  if (event.type === "mouseenter") {
+    event.target.background.src = HOVER_PNG;
+  }
+  if (event.type === "mouseleave") {
+    event.target.background.src = "";
+  }
+}
+
+$w.onReady(function () {
+  $w("#repeater1").data = items;
+  $w("#container1").onMouseIn(imitateHover);
+  $w("#container1").onMouseOut(imitateHover);
+});
+```
+The `data:URL` image is a little longer than the direct link for this image. And other reason to use `data:URL` with the small image we don't send HTTP request for fetching this image.
+
+## Resources
+- [Corvid APIs](https://www.wix.com/corvid/reference)
+- [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- [1x1 PNG generator](https://shoonia.github.io/1x1/)
