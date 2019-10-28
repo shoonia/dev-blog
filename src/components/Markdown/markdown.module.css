@@ -69,6 +69,14 @@
   background-color: var(--light);
 }
 
+.md code {
+  font-size: 95%;
+}
+
+.md a code {
+  color: var(--link);
+}
+
 .md hr {
   border: none;
   color: var(--light);

@@ -1,11 +1,11 @@
 ---
-publish: false
+publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Imitating hover event on repeater container'
-description: ''
+description: "Corvid API does't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311ed~mv2.png'
 ---
@@ -25,7 +25,7 @@ For this, we're going to use two other events that provide repeater API:
 
 Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/corvid/reference/$w.Style.html#backgroundColor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/corvid/reference/$w.Background.html#background) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
-[here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
+[Here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
 
 ## Event handlers
 To start with, set handlers to `onMouse{In/Out}` events. We will use one function for two events by repeaters containers. We declare the handler function above and pass the function's name as an argument to container methods.
