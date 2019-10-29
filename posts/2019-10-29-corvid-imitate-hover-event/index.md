@@ -16,7 +16,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 ![](https://static.wixstatic.com/media/e3b156_c3daeef27647492bb9267b4320695859~mv2.jpg)
 
 ## Motivation
-We have a `$w.Repeater` component with items of users' cards. When we point with the mouse cursor over some item we want to change background color this item to light blue color `#CCE4F7` and when the cursor moves off of item we want to return the initial white color.
+We have a `$w.Repeater` component with items of users' cards. When we point with the mouse cursor over some item we want to change background color of this item to light blue color `#CCE4F7` and when the cursor moves off of item we want to return the initial white color.
 
 For this, we're going to use two other events that provide repeater API:
 
@@ -108,7 +108,7 @@ $w.onReady(function () {
 Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
 
 ## One pixel image
-We used the direct link to the one-pixel image. This image very tiny only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
+We used the direct link to the one-pixel image. Size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
 
 ### data:URL
 [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), it's a protocol that allows embedded small files inline in documents as a string. It means we can convert a one-pixel PNG image to string and pass it to `background.src`.
@@ -140,3 +140,4 @@ The `data:URL` image is a little longer than the direct link for this image. And
 - [Corvid APIs](https://www.wix.com/corvid/reference)
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)
+- [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-imitating-hover-event-on-repeater-container-a65f4b6e0301)
