@@ -1,24 +1,5 @@
 const path = require('path');
-const xss = require('xss');
-
-const options = {
-  onIgnoreTagAttr(tag, name, value) {
-    if (name !== 'class') {
-      return '';
-    }
-
-    return `${name}="${xss.escapeAttrValue(value)}"`;
-  },
-
-  onTag(tag, html) {
-    if (tag === 'a') {
-      const a = html.slice(0, -1);
-      return `${a} target="_blank" rel="noopener noreferrer">`;
-    }
-
-    return html;
-  },
-};
+const { xss, minify } = require('../util/html.js');
 
 module.exports = async ({ actions, graphql }) => {
   const Page = path.resolve('./src/templates/Post.jsx');
@@ -85,7 +66,7 @@ module.exports = async ({ actions, graphql }) => {
           ...node.frontmatter,
           url: createUrl(node.frontmatter.path),
         },
-        html: xss(node.html, options),
+        html: minify(xss(node.html)),
       },
     });
   });

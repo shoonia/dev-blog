@@ -1,21 +1,9 @@
 const { renderToString } = require('react-dom/server');
-const { minify } = require('html-minifier');
-
-const minifyOptions = {
-  removeComments: true,
-  collapseWhitespace: true,
-  removeRedundantAttributes: true,
-  useShortDoctype: true,
-  removeEmptyAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  keepClosingSlash: true,
-  minifyJS: true,
-  minifyURLs: true,
-};
+const { minify } = require('./util/html.js');
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   const bodyHTML = renderToString(bodyComponent);
-  const miniHTML = minify(bodyHTML, minifyOptions);
+  const miniHTML = minify(bodyHTML);
 
   replaceBodyHTMLString(miniHTML);
 };

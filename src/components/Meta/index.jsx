@@ -31,18 +31,18 @@ function Meta({ data }) {
       property: 'og:type',
       content: 'article',
     },
-    {
+    date && ({
       property: 'article:published_time',
       content: date,
-    },
+    }),
     {
       property: 'og:url',
       content: url,
     },
-    {
+    image && ({
       property: 'og:image',
       content: image,
-    },
+    }),
     {
       name: 'twitter:card',
       content: 'summary',
@@ -63,7 +63,8 @@ function Meta({ data }) {
       name: 'google-site-verification',
       content: 'r9IQYersVVRdg00VhqCTt8yTNmuCdgC-fLFsTiCrk4M',
     },
-  ];
+  ]
+    .filter(Boolean);
 
   return (
     <Helmet
@@ -84,9 +85,9 @@ Meta.propTypes = {
     title: T.string.isRequired,
     description: T.string.isRequired,
     // author: T.string.isRequired,
-    date: T.string.isRequired,
+    date: T.string,
     lang: T.string.isRequired,
-    image: T.string.isRequired,
+    image: T.string,
     url: T.string.isRequired,
   }).isRequired,
 };

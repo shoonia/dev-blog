@@ -3,26 +3,31 @@ import { Link } from 'gatsby';
 import T from 'prop-types';
 
 import Document from '../../components/Document';
+import st from './main.module.css';
 
 function Main({ nodes, meta }) {
+  const list = nodes.map((node) => (
+    <li key={node.id}>
+      <Link to={node.frontmatter.path}>
+        {node.frontmatter.title}
+      </Link>
+    </li>
+  ));
+
   return (
     <Document meta={{
       // TODO:
       ...meta,
-      lang: 'ru',
-      image: '#',
+      lang: 'en',
+      // image: '',
     }}
     >
-      <h1>Blog</h1>
-      <ul>
-        {nodes.map((node) => (
-          <li key={node.id}>
-            <Link to={node.frontmatter.path}>
-              {node.frontmatter.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <main className={st.content}>
+        <h1>Posts</h1>
+        <ul>
+          {list}
+        </ul>
+      </main>
     </Document>
   );
 }

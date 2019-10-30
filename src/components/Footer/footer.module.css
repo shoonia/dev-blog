@@ -1,0 +1,16 @@
+.footer {
+  margin-top: 80px;
+  height: 100px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.me {
+  line-height: 100px;
+}
+
+.link {
+  font-size: 90%;
+  display: inline-block;
+  margin: 0 10px;
+}

@@ -1,7 +1,6 @@
 .md {
   --light: rgb(112, 128, 144);
   --light-op: rgb(112, 128, 144, .4);
-  --link: rgb(26, 114, 232);
   --gray: rgba(0, 0, 0, .64);
 }
 
@@ -29,16 +28,6 @@
   font-size: 18px;
   margin: 18px 0;
   line-height: 1.58;
-}
-
-.md a {
-  color: var(--link);
-  text-decoration: none;
-  transition: color .2s ease;
-}
-
-.md a:hover {
-  text-decoration: underline;
 }
 
 .md em {
@@ -74,7 +63,7 @@
 }
 
 .md a code {
-  color: var(--link);
+  color: var(--cr-link);
 }
 
 .md hr {

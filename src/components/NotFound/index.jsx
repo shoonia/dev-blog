@@ -10,14 +10,14 @@ const metaData = [{
 const NotFound = () => (
   <div>
     <Helmet
-      title="404 | Cтраница не найдена"
+      title="404 | Page not found"
       meta={metaData}
     />
     <p>
-      Ошибка 404: страница не найдена
+      404: Page not found
     </p>
     <Link to="/">
-      Вернуться на главную страницу
+      Homepage
     </Link>
   </div>
 );
