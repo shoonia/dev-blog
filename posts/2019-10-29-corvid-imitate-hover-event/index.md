@@ -5,13 +5,13 @@ template: 'default'
 date: '2019-10-29T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Imitating hover event on repeater container'
-description: "Corvid API does't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
+description: "Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311ed~mv2.png'
 ---
 
 # Corvid by Wix: Imitating hover event on repeater container
-*Corvid API does't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
+*Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
 ![](https://static.wixstatic.com/media/e3b156_c3daeef27647492bb9267b4320695859~mv2.jpg)
 
@@ -108,7 +108,7 @@ $w.onReady(function () {
 Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
 
 ## One pixel image
-We used the direct link to the one-pixel image. Size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
+We used the direct link to the one-pixel image. The size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
 
 ### data:URL
 [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), it's a protocol that allows embedded small files inline in documents as a string. It means we can convert a one-pixel PNG image to string and pass it to `background.src`.

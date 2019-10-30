@@ -8,7 +8,7 @@ function Meta({ data }) {
     title,
     description,
     // author,
-    // date,
+    date,
     lang,
     image,
     url,
@@ -29,7 +29,11 @@ function Meta({ data }) {
     },
     {
       property: 'og:type',
-      content: 'website',
+      content: 'article',
+    },
+    {
+      property: 'article:published_time',
+      content: date,
     },
     {
       property: 'og:url',
@@ -68,6 +72,7 @@ function Meta({ data }) {
       meta={metaData}
     >
       <html lang={lang} />
+      <link rel="canonical" href={url} />
       <link rel="preconnect" href="https://static.wixstatic.com" />
     </Helmet>
   );
@@ -79,7 +84,7 @@ Meta.propTypes = {
     title: T.string.isRequired,
     description: T.string.isRequired,
     // author: T.string.isRequired,
-    // date: T.string.isRequired,
+    date: T.string.isRequired,
     lang: T.string.isRequired,
     image: T.string.isRequired,
     url: T.string.isRequired,
