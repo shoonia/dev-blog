@@ -14,16 +14,8 @@ const minifyOptions = {
 };
 
 const xssOtions = {
-  onIgnoreTagAttr(tag, name, value) {
-    if (name !== 'class') {
-      return '';
-    }
-
-    return `${name}="${xss.escapeAttrValue(value)}"`;
-  },
-
   onTag(tag, html) {
-    if (tag === 'a') {
+    if (tag === 'a' && html !== '</a>') {
       const a = html.slice(0, -1);
       return `${a} target="_blank" rel="noopener noreferrer">`;
     }
