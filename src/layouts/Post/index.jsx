@@ -3,14 +3,17 @@ import T from 'prop-types';
 
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
+import Time from '../../components/Time';
 import st from './posts.module.css';
 
 function Post({ meta, html }) {
   return (
-    <Document
-      meta={meta}
-    >
+    <Document meta={meta}>
       <main className={st.content}>
+        <Time
+          lang={meta.lang}
+          date={meta.date}
+        />
         <Markdown html={html} />
       </main>
     </Document>

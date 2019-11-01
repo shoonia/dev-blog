@@ -13,7 +13,7 @@
     "clear": "rmdir /s /q .cache public"
   },
   "dependencies": {
-    "autoprefixer": "^9.7.0",
+    "autoprefixer": "^9.7.1",
     "cssnano": "^4.1.10",
     "gatsby": "^2.17.7",
     "gatsby-plugin-google-analytics": "^2.1.23",

@@ -1,7 +1,6 @@
 .md {
   --light: rgb(112, 128, 144);
   --light-op: rgb(112, 128, 144, .4);
-  --gray: rgba(0, 0, 0, .64);
 }
 
 .md h1,
@@ -16,7 +15,7 @@
 .md h1 {
   font-size: 40px;
   line-height: 48px;
-  margin-top: 1.94em;
+  margin: .9em 0;
 }
 
 .md h2 {
@@ -31,7 +30,7 @@
 }
 
 .md em {
-  color: var(--gray);
+  color: var(--cr-gray);
   font-style: italic;
 }
 
