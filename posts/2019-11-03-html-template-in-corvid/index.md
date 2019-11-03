@@ -1,5 +1,5 @@
 ---
-publish: false
+publish: true
 path: '/html-template-in-corvid'
 template: 'default'
 date: '2019-11-03T12:00:00.000Z'
@@ -29,7 +29,7 @@ $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#email").text = itemData.email;
 });
 ```
-We need to control the number of elements and trying to use fewer elements that we can. For this, we consider using templates. This way has a restriction, we can't use it with the [database collections](https://support.wix.com/en/article/corvid-working-with-wix-data) we can use it only with code.
+We need to control the number of elements and trying to use fewer elements that we can. For this, we consider using templates. This way has a restriction, we can't use it with the [database collections UI](https://support.wix.com/en/article/corvid-working-with-wix-data) we can use it only with code.
 
 ## Install Lodash
 
@@ -71,7 +71,7 @@ $w.onReady(function () {
 **How it works:**
 
 1. Importing Lodash library. The first you have to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
-2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default.
+2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default. [more](https://lodash.com/docs/4.17.15#template)
 3. Pattern string with two keys `{{firstName}}` and `{{lastName}}`.
 4. Creating a compiled template, it returns a function `compiled()` which will be passed an object with properties. `{ firstName: "John", lastName: "Doe" }`.
 5. The `compiled()` function gets an object and returns the string with replaced keys to the object properties value. Result `"Hello, John Doe!"`.
