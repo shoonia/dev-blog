@@ -83,7 +83,7 @@ We can get a text element's HTML content by `.html` property. [$w.Text](https:/
 const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
 ```
 
-This means we can get HTML of the text element with all his styles! Cool, why don't we use it as a template…
+This means we can get HTML of the text elements with all their styles! Cool, why don't we use it as a template…
 
 ![$w.Text template](https://static.wixstatic.com/media/e3b156_f1ce214c51584716a67de08242b459c4~mv2.png)
 
