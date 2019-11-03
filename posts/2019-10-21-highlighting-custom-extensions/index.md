@@ -66,7 +66,7 @@ my-app
 
 ### Выполним пару команд
 
-- В VS Code набираем комбинацию клавиш для Window, Linux: `Ctrl+Shift+P` для MacOS: `⇧⌘P`.
+- В VS Code набираем комбинацию клавиш для Window, Linux: <kbd>Ctrl+Shift+P</kbd> для MacOS: <kbd>⇧⌘P</kbd>.
 - Вводим в поиске `Preferences: Open Settings (JSON)`.
 - Добавляем в JSON объект знакомый нам код:
 
