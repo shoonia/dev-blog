@@ -13,7 +13,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 # Corvid by Wix: Imitating hover event on repeater container
 *Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
-![](https://static.wixstatic.com/media/e3b156_c3daeef27647492bb9267b4320695859~mv2.jpg)
+![](https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg)
 
 ## Motivation
 We have a `$w.Repeater` component with items of users' cards. When we point with the mouse cursor over some item we want to change background color of this item to light blue color `#CCE4F7` and when the cursor moves off of item we want to return the initial white color.
