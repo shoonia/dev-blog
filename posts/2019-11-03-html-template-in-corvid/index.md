@@ -4,13 +4,13 @@ path: '/html-template-in-corvid'
 template: 'default'
 date: '2019-11-03T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid By Wix: Using HTML template to the batter performance'
+title: 'Corvid By Wix: Using HTML template to the better performance'
 description: "The $w.Repeater most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster."
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3dc~mv2.jpg'
 ---
 
-# Corvid By Wix: Using HTML template to the batter performance
+# Corvid By Wix: Using HTML template to the better performance
 
 *The `$w.Repeater` most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster.*
 
@@ -122,4 +122,4 @@ It works faster now because we have only two elements in repeater one image and 
 - [Lodash: _.tempalate();](https://lodash.com/docs/4.17.15#template)
 - [Corvid: get a text element's HTML content](https://www.wix.com/corvid/reference/$w.Text.html#html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
-- [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-batter-performance-3679d6ef040c)
+- [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-better-performance-27ec5a18042e)
