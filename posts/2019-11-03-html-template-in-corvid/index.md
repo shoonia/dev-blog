@@ -110,7 +110,7 @@ $w.onReady(function () {
     });
 
     // set repeater data
-    $w("#repeater1").data = [  /* here are our users */ ];
+    $w("#repeater1").data = [ /* here are our users */ ];
 });
 ```
 
@@ -122,3 +122,4 @@ It works faster now because we have only two elements in repeater one image and 
 - [Lodash: _.tempalate();](https://lodash.com/docs/4.17.15#template)
 - [Corvid: get a text element's HTML content](https://www.wix.com/corvid/reference/$w.Text.html#html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
+- [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-batter-performance-3679d6ef040c)
