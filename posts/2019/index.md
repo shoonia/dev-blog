@@ -14,11 +14,13 @@ image: ''
 
 Привіт Світ!
 
-Саме API ми розгонимо на безкоштовному сайті Wix.
+## Створюємо сайт
 
-Для початку нам необхідно зареєструватися на сайті [wix.com](https://uk.wix.com) для цього ви можете використати свій обліковий запис на Facebook або Google, потім нам потрібно створити сайт, щоб ви не витрачали час перейдіть за цим посиланням [Порожнiй шаблон](https://editor.wix.com/html/editor/web/renderer/new?siteId=cbf36d3a-49d0-41c2-9482-1bb58d5fdda3&metaSiteId=a573279f-ae6f-46d1-8556-7c93ae9b2c84). За цим посиланням ми потрапляємо прямісінько в редактор нового сайту. Після цього нам потрібно активувати Corvid. Corvid це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend частині сайту. У верхній частині сайту шукаємо пункт меню "Dev Mode", обираємо цей пункт і у розгорнутому підменю в самому низі тиснемо на кнопку "Увімкнути Corvid"  (Turn on Dev Mode)
+Саме API ми розгорнимо на безкоштовному сайті Wix.
 
-Після цього у вас зліва повинна з'явитися файлова структура сайту (Site Structure):
+Для початку нам необхідно зареєструватися на сайті [wix.com](https://uk.wix.com) для цього ви можете використати свій обліковий запис на Facebook або Google, потім нам потрібно створити сайт, щоб ви не витрачали час перейдіть за цим посиланням [Порожнiй шаблон](https://editor.wix.com/html/editor/web/renderer/new?siteId=cbf36d3a-49d0-41c2-9482-1bb58d5fdda3&metaSiteId=a573279f-ae6f-46d1-8556-7c93ae9b2c84). За цим посиланням ми потрапляємо прямісінько в редактор новоствореного сайту. Після цього нам необхідно активувати Corvid. Corvid це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend. У верхній частині едітора знаходимо пункт меню "Dev Mode", обираємо цей пункт і у розгорнутому підменю тиснемо на кнопку "Увімкнути Corvid" (Turn on Dev Mode).
+
+Після цього зліва повинна з'явитися файлова структура сайту (Site Structure):
 
 - Pages
 - Public
@@ -27,19 +29,33 @@ image: ''
 - База даних
 - Мої додатки
 
-Зараз нас цікавлять тільки два з них це Backend та node_modules. Почнемо з node_modules, наводимо на цю теку і зліва з'являється іконка зубчатки, тиснемо на неї та обираємо "Install a New Pakage". Перед нами відкриється "Менеджер пакетів" (Package Manager). В полі пошуку "Пошук по пакетах" (Search packages), вводимо "qrcode", саме за допомогою цієї бібліотеки ми будемо генерувати QR Code, обираємо "Встановити" (Install).
+Зараз нас цікавлять тільки дві текі, це Backend та node_modules. Почнемо з node_modules, наводимо на цю теку і зліва з'являється іконка зубчатки, тиснемо на неї та обираємо "Install a New Pakage". Перед нами відкриється "Менеджер пакетів" (Package Manager). В полі пошуку "Пошук по пакетах" (Search packages), вводимо "qrcode", саме за допомогою цієї бібліотеки ми будемо генерувати QR Code, обираємо "Встановити" (Install).
+
+Залишилося тільки опублікувати сайт. В лівій верхній частині сайту тиснемо на кнопку "Опублікувати" (Publish). Вибираємо назву для вашого сайту, в результаті маємо таке посилання:
+
+```
+https://<USER_NAME>.wixsite.com/<SITE_NAME>
+```
 
 ## wix-http-functions
 
-Тепер перейдемо до теки Backend. В цій теці нам потрібно створити javascript файл "Hовий файл .js" (New .js File) з назвою 'http-functions.js'. Ми повинні створити файл саме с такою назвою, це обов'язково. Після створення файлу в ньому ми можемо побачити код с прикладом, ми не будемо розглядати цей приклад і створимо послідовно все з початку. Видаляємо зразок та починаємо.
+Тепер перейдемо до теки Backend. В цій теці нам потрібно створити js файл "Hовий файл .js" (New .js File) з назвою `http-functions.js`. Ми повинні створити файл саме с такою назвою. Після створення файлу в ньому є код с прикладом, ми не будемо розглядати цей приклад і створимо послідовно все з початку. Видаляємо зразок та починаємо.
+
+### Найменування функцій
+
+Для створення роутінгу в файлі `http-functions.js` нам потрібно експортувати функції назва яких складається з префіксу та назви роуту розділених нижнім підкреслюванням.
 
 ```js
  export function <prefix>_<functionName>(request) { }
 ```
 
-<prefix> is one of get, post, put, delete, options, 
+- `<prefix>` - це назва методу запиту (GET, POST, PUT ...) Докладніше на [MDN](https://developer.mozilla.org/uk/docs/Web/HTTP/Methods)
+- `<functionName>` - це назва роуту на який ми будимо відправляти запити в нашому API.
+- `request` - це oб'єкт який містить параметри вхідних даних. Докладніше [Corvid Reference](https://www.wix.com/corvid/reference/wix-http-functions.WixHttpFunctionRequest.html)
 
-or use and <functionName>
+Створімо роут для методу GET з назвою qrcode:
+
+**backend/http-functions.js**
 
 ```js
 export function get_qrcode(request) {
@@ -47,9 +63,17 @@ export function get_qrcode(request) {
 }
 ```
 
-`import { response } from "wix-http-functions";`
+Зараз ми можемо відправляти GET запити на `_functions/qrcode`. Повна адреса буде виглядати так:
 
+```
+https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
+```
 
+### Відповідь на запит
+
+Для того щоб наше API мало змогу нам відповідати, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html). В цьому прикладі ми будимо використовувати функцію [response](https://www.wix.com/corvid/reference/wix-http-functions.html#response):
+
+**backend/http-functions.js**
 ```js
 import { response } from "wix-http-functions";
 
@@ -62,16 +86,18 @@ export function get_qrcode(request) {
   });
 }
 ```
-```
-https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
-```
+
+Тепер необхідно опублікувати наші зміни, тиснемо на кнопку "Опублікувати" (Publish) і переходимо за адресою: `https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode`, результат `Hello`.
 
 `?text=Hello`
 
 `request.query.text`
 
+`hello world` `hello%20world`
+
 `decodeURIComponent(request.query.text);`
 
+**backend/http-functions.js**
 ```js
 import { response } from "wix-http-functions";
 
@@ -114,9 +140,10 @@ function getQRCode(text) {
 }
 ```
 
+**backend/http-functions.js**
 ```js
 import { response } from "wix-http-functions";
-import QRCode  from "qrcode";
+import QRCode from "qrcode";
 
 function getDataURL(text) {
   return new Promise((resolve, reject) => {
@@ -166,6 +193,7 @@ Buffer.from(base64, "base64");
 
 `/* eslint-env node */`
 
+**backend/http-functions.js**
 ```js
 /* eslint-env node */
 import { response } from "wix-http-functions";
