@@ -71,7 +71,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 
 ### Відповідь на запит
 
-Для того щоб наше API мало змогу нам відповідати, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html). В цьому прикладі ми будимо використовувати функцію [response](https://www.wix.com/corvid/reference/wix-http-functions.html#response):
+Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html). Ми будимо використовувати функцію [response](https://www.wix.com/corvid/reference/wix-http-functions.html#response):
 
 **backend/http-functions.js**
 ```js
