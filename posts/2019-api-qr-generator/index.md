@@ -12,13 +12,13 @@ image: 'https://static.wixstatic.com/media/fd206f_54a9c2cb9e664443bfdedaddaed021
 
 # Створюємо API для генерації QR Code зображень
 
-![](https://static.wixstatic.com/media/fd206f_54a9c2cb9e664443bfdedaddaed02108~mv2.jpg/v1/fill/w_300,h_300/x.jpg)
+*В цій статі ми розглянемо як за допомогою javascript та Node.js в 15 хвилин можна створити власне HTTP API що буде повертати згенероване QR Code зображення.*
 
-Привіт Світ! В цій статі ми розглянемо як за допомогою javascript та Node.js в 15 хвилин можна створити власне HTTP API що буде повертати згенероване QR Code зображення.
-
-Саме API ми розгорнимо на безкоштовному сайті Wix.
+![](https://static.wixstatic.com/media/fd206f_54a9c2cb9e664443bfdedaddaed02108~mv2.jpg/v1/fill/w_250,h_250/x.jpg)
 
 ## Створюємо сайт
+
+Саме API ми розгорнимо на безкоштовному сайті Wix.
 
 Для початку нам необхідно зареєструватися на сайті [wix.com](https://uk.wix.com) для цього ви можете використати свій обліковий запис на Facebook або Google, потім нам потрібно створити сайт, щоб ви не витрачали час перейдіть за цим посиланням [Порожнiй шаблон](https://editor.wix.com/html/editor/web/renderer/new?siteId=cbf36d3a-49d0-41c2-9482-1bb58d5fdda3&metaSiteId=a573279f-ae6f-46d1-8556-7c93ae9b2c84). За цим посиланням ми потрапляємо прямісінько в редактор новоствореного сайту. Після цього нам необхідно активувати Corvid. Corvid це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend. У верхній частині едітора знаходимо пункт меню **"Dev Mode"**, обираємо цей пункт і у розгорнутому підменю тиснемо на кнопку **"Увімкнути Corvid" (Turn on Dev Mode)**.
 
@@ -91,7 +91,7 @@ export function get_qrcode(request) {
 
 Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою: `https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode`, результат `Hello`.
 
-Реалізуємо передачу тексту за допомогою параметрів запиту. Всі передані параметри ми можемо отримати за допомогою об'єкту `request.query`. Також нам необхідно декодувати переданий текст за допомогою функції [decodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
+Реалізуємо передачу тексту за допомогою параметрів запиту. Всі передані параметри ми можемо отримати за допомогою об'єкту `request.query`. Також нам необхідно декодувати переданий текст за допомогою функції [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 
 **backend/http-functions.js**
 ```js
@@ -116,7 +116,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode?text=Hello
 
 ## QR Code
 
-На початку ми додали бібліотеку [qrcode](https://github.com/soldair/node-qrcode) за допомогою якої ми будемо генерувати зображення. Ми використаємо метод який поверне нам [data:URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+На початку ми додали бібліотеку [qrcode](https://github.com/soldair/node-qrcode) за допомогою якої будемо генерувати зображення. Ми використаємо метод який поверне нам [`data:URL`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
 
 ```js
 import QRCode  from "qrcode";
@@ -124,12 +124,10 @@ import QRCode  from "qrcode";
 const text = "Hello";
 
 QRCode.toDataURL(text, (error, url) => {
-  console.log(url); // data:URL 
+  console.log(url); // data:URL
 });
 ```
-`QRCode.toDataURL()` - це асинхронна функія яка приймає текст з якого дубе генеруватися QR Code, та функцію зворотного виклику, яка буде викликана коли зображення згенероване. Для зручности обернемо в Promise за допомогою модулю який надаються з Node.js
-
-[util.promisify(original)](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original):
+`QRCode.toDataURL()` - це асинхронна функія яка приймає текст з якого дубе генеруватися QR Code, та функцію зворотного виклику, яка буде викликана коли зображення згенероване. Для зручности обернемо в Promise за допомогою [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original):
 
 ```js
 import QRCode  from "qrcode";
@@ -162,7 +160,7 @@ export async function get_qrcode(request) {
 ```
 
 Не забуваємо опублікувати наші зміни.
-Зараз ми маємо API яке здано повертати QR Code зображення у вигляди data:URL строки. Ми вже зараз можемо використовувати цей протокол щоб побачити QR Code зображення:
+Зараз ми маємо API яке здатне повертати QR Code зображення у вигляди `data:URL` строки. Ми вже зараз можемо використовувати цей протокол щоб побачити QR Code зображення:
 
 *HTML*
 
@@ -172,14 +170,16 @@ export async function get_qrcode(request) {
 
 ## PNG
 
-Hам залишилось тільки перетворити data:URL строку в справжнє зображення. Щоб відповідь нашого API браузер розпізнавав як зображення нам потрібно перетворити його на буферний масив біт та додати заголовок у відповідь з типом контенту.
+Hам залишилось тільки перетворити `data:URL` строку в справжнє зображення. Щоб відповідь нашого API браузер розпізнавав як зображення нам потрібно перетворити його на буферний масив біт та додати заголовок у відповідь з типом контенту.
+
+Почнемо
 
 ```
 data:image/png;base64,<data>
 ```
 
 - `data:` - це протокол
-- `image/png` - MIME тип який визначає тип контенту
+- `image/png` - MIME тип контенту
 - `;base64` - кодировка
 - `<data>` - закодоване зображення
 
@@ -189,7 +189,7 @@ data:image/png;base64,<data>
 const base64 = dataURL.slice(22);
 ```
 
-Щоб створити масив біт в Node.js треба використати [Buffer.from(string[, encoding])](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
+Щоб створити масив біт в Node.js використаємо [`Buffer.from(string[,encoding])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
 
 ```js
 Buffer.from(base64, "base64");
@@ -230,18 +230,18 @@ export async function get_qrcode(request) {
 }
 ```
 
-Процює!
+Прaцює!
 
 ```html
 <img src="https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!">
 ```
 
-![Дякую за увагу!](https://shoonia.wixsite.com/blog/_functions/qrcode?text=%D0%94%D1%8F%D0%BA%D1%83%D1%8E%20%D0%B7%D0%B0%20%D1%83%D0%B2%D0%B0%D0%B3%D1%83!)
+![Дякую за увагу!](https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!)
 
 ## Посилання
 - [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html)
 - [node-qrcode](https://github.com/soldair/node-qrcode)                         
-- [decodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 - [Data:URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
-- [util.promisify()](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original)
-- [Buffer.from()](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
+- [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
+- [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original)
+- [`Buffer.from(string[,encoding])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
