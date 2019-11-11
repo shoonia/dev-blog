@@ -7,14 +7,14 @@ lang: 'uk'
 title: 'Створюємо API для генерації QR Code зображень'
 description: 'В цій статі ми розглянемо як за допомогою javascript та Node.js за 15 хвилин можна створити власне HTTP API що буде повертати згенероване QR Code зображення.'
 author: 'Олександр Зайцев'
-image: 'https://static.wixstatic.com/media/fd206f_54a9c2cb9e664443bfdedaddaed02108~mv2.jpg/v1/fill/w_480,h_480/x.png'
+image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v1/fill/w_500,h_500/q.png'
 ---
 
 # Створюємо API для генерації QR Code зображень
 
-*В цій статі ми розглянемо як за допомогою javascript та Node.js в 15 хвилин можна створити власне HTTP API що буде повертати згенероване QR Code зображення.*
+*В цій статі ми розглянемо як за допомогою javascript та Node.js за 15 хвилин можна створити власне HTTP API що буде повертати згенероване QR Code зображення.*
 
-![](https://static.wixstatic.com/media/fd206f_54a9c2cb9e664443bfdedaddaed02108~mv2.jpg/v1/fill/w_250,h_250/x.jpg)
+![](https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v1/fill/w_700,h_300/q.jpg)
 
 ## Створюємо сайт
 
@@ -136,7 +136,7 @@ import util from "util";
 const getDataURL = util.promisify(QRCode.toDataURL);
 ```
 
-Наш код виконується асинхронно, тому нам потрібно перетворити наш роут на асинхронну функцію.
+Генерація QR Code виконується асинхронно, тому і роут потрібно перетворити на асинхронну функцію.
 
 **backend/http-functions.js**
 ```js
@@ -180,7 +180,7 @@ data:image/png;base64,<data>
 
 - `data:` - це протокол
 - `image/png` - MIME тип контенту
-- `;base64` - кодировка
+- `base64` - кодировка
 - `<data>` - закодоване зображення
 
 Нам потрібне лише саме зображення тому відрізаємо всю мета інформацію до коми, перші 22 символи:
@@ -199,7 +199,6 @@ Buffer.from(base64, "base64");
 ```js
 {
   "Content-Type": "image/png",
-  SameSite: "None",
 }
 ```
 
@@ -223,7 +222,6 @@ export async function get_qrcode(request) {
     status: 200,
     headers: {
       "Content-Type": "image/png",
-      SameSite: "None",
     },
     body: Buffer.from(base64, "base64"),
   });
@@ -245,3 +243,5 @@ export async function get_qrcode(request) {
 - [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 - [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original)
 - [`Buffer.from(string[,encoding])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
+- [Ця стаття на medium.com](https://medium.com/@shoonia/%D1%81%D1%82%D0%B2%D0%BE%D1%80%D1%8E%D1%94%D0%BC%D0%BE-api-%D0%B4%D0%BB%D1%8F-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D1%96%D1%97-qr-code-%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C-62a6222b2950)
+- [Ця стаття на codeguida.com](https://codeguida.com/post/2151)

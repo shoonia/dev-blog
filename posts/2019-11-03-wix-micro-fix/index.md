@@ -1,5 +1,5 @@
 ---
-publish: true
+publish: false
 path: '/wix-micro-fix'
 template: 'default'
 date: '2019-11-03T12:00:00.000Z'
