@@ -37,6 +37,8 @@
 .md pre {
   border-radius: 8px;
   margin: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--light-op) transparent;
 }
 
 .md pre::-webkit-scrollbar {
