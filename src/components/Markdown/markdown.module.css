@@ -1,6 +1,6 @@
 .md {
   --light: rgb(112, 128, 144);
-  --light-op: rgb(112, 128, 144, .4);
+  --light-op: rgb(112, 128, 144, 0.4);
 }
 
 .md h1,
@@ -15,7 +15,7 @@
 .md h1 {
   font-size: 40px;
   line-height: 48px;
-  margin: .9em 0;
+  margin: 0.9em 0;
 }
 
 .md h2 {
@@ -87,7 +87,6 @@
 .md table td {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
-  
 }
 
 .md table tr {

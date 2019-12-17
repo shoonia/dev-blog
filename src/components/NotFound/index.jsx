@@ -7,19 +7,21 @@ const metaData = [{
   content: 'noindex',
 }];
 
-const NotFound = () => (
-  <div>
-    <Helmet
-      title="404 | Page not found"
-      meta={metaData}
-    />
-    <p>
+function NotFound() {
+  return (
+    <div>
+      <Helmet
+        title="404 | Page not found"
+        meta={metaData}
+      />
+      <p>
       404: Page not found
-    </p>
-    <Link to="/">
+      </p>
+      <Link to="/">
       Homepage
-    </Link>
-  </div>
-);
+      </Link>
+    </div>
+  );
+}
 
 export default NotFound;
