@@ -9,9 +9,9 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "lint-js": "eslint '**/*.{js,jsx}' --quiet --fix",
+    "lint-js": "eslint '**/*.{js,jsx}' --quiet",
     "lint-css": "stylelint src/**/*.css",
-    "lint": "npm run lint-js && npm run lint-css"
+    "lint": "npm run lint-js --fix && npm run lint-css"
   },
   "dependencies": {
     "autoprefixer": "^9.7.3",
