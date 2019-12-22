@@ -26,7 +26,7 @@ In this article, I share my solution. It’s a very tiny library [Storeon](https
 
 We will create a traditional study app with counters. I will use two counters for the better demonstration.
 
-For the first, we just copy and paste the [`dist/index.esm.js`](https://github.com/shoonia/corvid-storeon/blob/master/dist/index.esm.js) code from GitHub repository to public file and create one more file for store initialization.
+At first, we just copy and paste the [`dist/index.esm.js`](https://github.com/shoonia/corvid-storeon/blob/master/dist/index.esm.js) code from GitHub repository to public file and create one more file for store initialization.
 
 ```bash
 public
