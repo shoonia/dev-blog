@@ -130,7 +130,7 @@ connectPage((state) => {
 });
 ```
 
-[DEMO](https://shoonia.wixsite.com/blog/corvid-storeon)
+[Open demo editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
 
 ## Modules
 The function `createStore(modules)` accepts a list of modules. We can create different functions for splitting business logic into our app. Let’s see a few examples:
@@ -189,6 +189,6 @@ At this moment (21.12.2019) corvid-store is not available in Corvid package mana
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
 - [Storeon on GitHub](https://github.com/storeon/storeon)
 - [Corvid Storeon on GitHub](https://shoonia.wixsite.com/blog/corvid-storeon)
-- [DEMO](https://shoonia.wixsite.com/blog/corvid-storeon)
+- [Open demo editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
 - Also [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)
 - [This article on medium.com](https://medium.com/@shoonia/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
