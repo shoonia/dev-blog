@@ -17,6 +17,9 @@ export const query = graphql`
         publish: {
           eq: true
         }
+        template: {
+          eq: "default"
+        }
       }
     }
   ) {

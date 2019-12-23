@@ -16,7 +16,7 @@
   "dependencies": {
     "autoprefixer": "^9.7.3",
     "cssnano": "^4.1.10",
-    "gatsby": "^2.18.16",
+    "gatsby": "^2.18.17",
     "gatsby-plugin-google-analytics": "^2.1.31",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-plugin-mini-css-class-name": "^2.1.0",
