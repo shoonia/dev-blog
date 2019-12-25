@@ -295,7 +295,7 @@ h3::before {
 Вместо функции `counter` используйте множественную форму `counters`.
 `counters` принимает дополнительный аргумент:
 
-```
+```css
 counters(<counter name>, <string>, <counter list style>)
 ```
 

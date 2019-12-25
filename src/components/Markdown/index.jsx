@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-import 'prismjs/themes/prism.css';
+import './one-dark.css';
 import s from './markdown.module.css';
 
 function Markdown({ html }) {
