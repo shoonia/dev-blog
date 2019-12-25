@@ -2,14 +2,14 @@ import React from 'react';
 import T from 'prop-types';
 
 import 'prismjs/themes/prism.css';
-import st from './markdown.module.css';
+import s from './markdown.module.css';
 
 function Markdown({ html }) {
   return (
     <article
     // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: html }}
-      className={st.md}
+      className={s.md}
     />
   );
 }

@@ -1,5 +1,5 @@
 .content {
-  max-width: 700px;
+  max-width: var(--w-content);
   min-height: 70vh;
   padding: 0 15px;
   margin: 0 auto;

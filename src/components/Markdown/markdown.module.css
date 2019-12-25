@@ -97,6 +97,8 @@
 .md img {
   max-width: 100%;
   object-fit: cover;
+  font-size: 80%;
+  color: var(--light);
 }
 
 .md p img {

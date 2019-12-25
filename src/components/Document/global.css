@@ -7,6 +7,7 @@
 :root {
   --cr-link: rgb(26, 114, 232);
   --cr-gray: rgba(0, 0, 0, 0.64);
+  --w-content: 700px;
 }
 
 html {

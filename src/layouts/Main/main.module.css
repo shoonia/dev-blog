@@ -1,18 +1,17 @@
 .content {
   min-height: 50vh;
-  padding: 0 15px;
 }
 
 .title {
   font-size: 2em;
-  max-width: 700px;
-  margin-right: auto;
-  margin-left: auto;
+  max-width: var(--w-content);
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .list {
-  max-width: 700px;
-  padding: 0;
+  max-width: var(--w-content);
+  padding: 0 15px;
   margin: 0 auto;
   list-style: none;
 }

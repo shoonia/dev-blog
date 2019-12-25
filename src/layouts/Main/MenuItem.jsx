@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import T from 'prop-types';
 
-import st from './main.module.css';
+import s from './main.module.css';
 import Time from '../../components/Time';
 
 function MenuItem({
@@ -17,7 +17,7 @@ function MenuItem({
   return (
     <article lang={lang}>
       <Link to={path}>
-        <h2 className={st.itemTitle}>
+        <h2 className={s.itemTitle}>
           {title}
         </h2>
       </Link>

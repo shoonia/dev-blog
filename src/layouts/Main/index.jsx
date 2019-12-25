@@ -3,7 +3,7 @@ import T from 'prop-types';
 
 import Document from '../../components/Document';
 import MenuItem from './MenuItem';
-import st from './main.module.css';
+import s from './main.module.css';
 
 function Main({ nodes, meta }) {
   const list = nodes.map((node) => (
@@ -20,11 +20,11 @@ function Main({ nodes, meta }) {
       // image: '',
     }}
     >
-      <main className={st.content}>
-        <h1 className={st.title}>
+      <main className={s.content}>
+        <h1 className={s.title}>
           Posts
         </h1>
-        <ul className={st.list}>
+        <ul className={s.list}>
           {list}
         </ul>
       </main>

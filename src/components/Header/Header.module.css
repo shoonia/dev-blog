@@ -1,3 +1,10 @@
 .header {
   height: 60px;
+  line-height: 60px;
+}
+
+.nav {
+  max-width: var(--w-content);
+  padding: 0 15px;
+  margin: 0 auto;
 }

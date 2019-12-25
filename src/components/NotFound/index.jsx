@@ -15,10 +15,10 @@ function NotFound() {
         meta={metaData}
       />
       <p>
-      404: Page not found
+        404: Page not found
       </p>
       <Link to="/">
-      Homepage
+        Homepage
       </Link>
     </div>
   );
