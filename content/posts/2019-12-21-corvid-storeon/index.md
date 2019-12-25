@@ -160,7 +160,7 @@ Tracking event to external analytics tools with `wixWindow.trackEvent();`
 import wixWindow from 'wix-window';
 
 export function trackEventModule(store) {
-  // @dispatch will be fired on every dispatch(event, [data]) call.
+  // @dispatch will be fired on every `dispatch(event, [data])` call.
   // It receives an array with the event name and the event’s data.
   // Can be useful for debugging.
   store.on('@dispatch', (state, [event, data]) => {

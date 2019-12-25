@@ -11,7 +11,8 @@
     "serve": "gatsby serve",
     "lint-js": "eslint '**/*.{js,jsx}' --quiet",
     "lint-css": "stylelint src/**/*.css",
-    "lint": "npm run lint-js --fix && npm run lint-css"
+    "lint": "npm run lint-js --fix && npm run lint-css",
+    "clear": "rm -rf .cache public"
   },
   "dependencies": {
     "autoprefixer": "^9.7.3",
@@ -42,7 +43,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "stylelint": "^12.0.0",
+    "stylelint": "^12.0.1",
     "stylelint-config-standard": "^19.0.0"
   },
   "repository": {
