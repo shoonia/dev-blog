@@ -12,7 +12,7 @@ image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da423
 
 # A tiny event-based state manager Storeon for Corvid.
 
-![corvid-storeon](https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png/v2/fill/w_670,h_335/cs.png)
+![Corvid Storeon](https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png)
 
 ## Motivation
 
@@ -37,6 +37,8 @@ public
 In `public/store.js` we write our business logic.
 
 Storeon state is always an object, it can’t be anything else. It’s a small limitation not too important to us but we have to remember about it.
+
+**public/store.js**
 
 ```js
 // The store should be created with createStore() function.
@@ -73,7 +75,7 @@ So we created a store in the public folder and export from there 4 methods. In t
 
 Let’s add 2 text elements for displaying counter value, and 4 buttons for events increment/decrement.
 
-![UI](https://static.wixstatic.com/media/e3b156_51432bde392e4552aa7e2bdbf65c93fb~mv2.png/v1/fill/w_670,h_210/ui.png)
+![UI example](https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png)
 
 Of course, we have to import the store methods from the public file to the page code.
 
@@ -86,6 +88,8 @@ With `connect("key", callback)` we can subscribe for any store properties and th
 The `connectPage(callback)` it’s a wrapper around `$w.onReady(callback)`.
 
 With `dispatch(event, [data])` we will emit events.
+
+**Page Code**
 
 ```js
 import { getState, dispatch, connect, connectPage } from 'public/store';
@@ -156,8 +160,8 @@ Tracking event to external analytics tools with `wixWindow.trackEvent();`
 import wixWindow from 'wix-window';
 
 export function trackEventModule(store) {
-  // @dispatch will be fired on every store.dispatch() call. 
-  // It receives an array with the event name and the event’s data. 
+  // @dispatch will be fired on every dispatch(event, [data]) call.
+  // It receives an array with the event name and the event’s data.
   // Can be useful for debugging.
   store.on('@dispatch', (state, [event, data]) => {
     if (event !== '@changed' && event !== '@dispatch') {
@@ -182,13 +186,17 @@ const store = createStore([
 
 At this moment (21.12.2019) corvid-store is not available in Corvid package manager. If you like it, please send the request to [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager#requesting-a-package912)
 
-![Request Node Package](https://static.wixstatic.com/media/e3b156_00346a1e9cfe4bfdbc7c88f132d9e9bf~mv2.png/v1/fill/w_670,h_393/pm.png)
+![Request Node Package](https://static.wixstatic.com/media/e3b156_00346a1e9cfe4bfdbc7c88f132d9e9bf~mv2.png)
 
 ## Resources
 
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
 - [Storeon on GitHub](https://github.com/storeon/storeon)
 - [Corvid Storeon on GitHub](https://shoonia.wixsite.com/blog/corvid-storeon)
+- [Discussion on Corvid Forum](https://www.wix.com/corvid/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-corvid)
 - DEMO: [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
-- Also [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)
 - [This article on medium.com](https://medium.com/@shoonia/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
+
+## Also
+- [“State management in Corvid” by Shahar Talmi](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)
+
