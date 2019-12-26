@@ -12,6 +12,7 @@ function Meta({ data }) {
     lang,
     image,
     url,
+    template,
   } = data;
 
   const metaData = [
@@ -45,7 +46,7 @@ function Meta({ data }) {
     }),
     {
       name: 'twitter:card',
-      content: 'summary',
+      content: (template === 'snippet') ? 'summary_large_image' : 'summary',
     },
     {
       name: 'twitter:site',
@@ -89,6 +90,7 @@ Meta.propTypes = {
     lang: T.string.isRequired,
     image: T.string,
     url: T.string.isRequired,
+    template: T.string.isRequired,
   }).isRequired,
 };
 

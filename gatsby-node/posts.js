@@ -40,6 +40,7 @@ module.exports = async ({ actions, graphql }) => {
             date
             lang
             image
+            template
           }
           html
         }
