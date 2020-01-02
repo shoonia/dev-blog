@@ -4,12 +4,12 @@ import T from 'prop-types';
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
 import Time from '../../components/Time';
-import st from './posts.module.css';
+import s from './posts.module.css';
 
 function Post({ meta, html }) {
   return (
     <Document meta={meta}>
-      <main className={st.content}>
+      <main className={s.content}>
         <Time
           lang={meta.lang}
           date={meta.date}
