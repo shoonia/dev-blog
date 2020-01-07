@@ -11,11 +11,15 @@ function MenuItem({
     title,
     description,
     date,
+    author,
     lang,
   },
 }) {
   return (
-    <article lang={lang}>
+    <article
+      lang={lang}
+      className={s.post}
+    >
       <Link to={path}>
         <h2 className={s.itemTitle}>
           {title}
@@ -26,6 +30,9 @@ function MenuItem({
         date={date}
         lang={lang}
       />
+      <span className={s.author}>
+        &nbsp;- {author}
+      </span>
     </article>
   );
 }
@@ -36,6 +43,7 @@ MenuItem.propTypes = {
     title: T.string.isRequired,
     description: T.string.isRequired,
     date: T.string.isRequired,
+    author: T.string.isRequired,
     lang: T.string.isRequired,
   }).isRequired,
 };
