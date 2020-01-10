@@ -20,17 +20,20 @@ In the article [“State management in Corvid”](https://medium.com/@shahata/st
 
 The state of app it’s a really big problem. If you have a lot of components dependencies between each other or a lot of user interaction, eventually, add a new feature or support app is going through suffering.
 
-In this article, I share my solution. It’s a very tiny library [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (core 175 bytes in gzip) with an easy interface. So I wrote a wrapper for integration with Corvid. As a result, we have the state manager [corvid-storeon](https://github.com/shoonia/corvid-storeon) less than 80 lines of code.
+In this article, I share my solution. It’s a very tiny library [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (core 175 bytes in gzip) with an easy interface. So I wrote a wrapper for integration with Corvid. As a result, we have the state manager [corvid-storeon](https://github.com/shoonia/corvid-storeon) less than 90 lines of code.
 
 ## How it works
 
 We will create a traditional study app with counters. I will use two counters for the better demonstration.
 
-At first, we just copy and paste the [`dist/index.esm.js`](https://github.com/shoonia/corvid-storeon/blob/master/dist/index.esm.js) code from GitHub repository to public file and create one more file for store initialization.
+At first we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
+
+![install corvid-storeon](https://static.wixstatic.com/media/e3b156_8206bd4695354340a531829aba61b778~mv2.png)
+
+and create one more file for store initialization in public folder.
 
 ```bash
 public
-├── corvid-storeon.js
 └── store.js
 ```
 
@@ -43,7 +46,7 @@ Storeon state is always an object, it can’t be anything else. It’s a small l
 ```js
 // The store should be created with createStore() function.
 // It accepts a list of the modules.
-import { createStore } from 'public/corvid-storeon.js';
+import { createStore } from 'corvid-storeon';
 
 // Each module is just a function,
 // which will accept a store and bind their event listeners.
@@ -134,7 +137,7 @@ connectPage((state) => {
 });
 ```
 
-DEMO: [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
+[DEMO](https://www.wix.com/alexanderz5/corvid-storeon)
 
 ## Modules
 The function `createStore(modules)` accepts a list of modules. We can create different functions for splitting business logic into our app. Let’s see a few examples:
@@ -181,12 +184,6 @@ const store = createStore([
   trackEventModule,
 ]);
 ```
-
-## Request Corvid-Storeon in Package Manager
-
-At this moment (21.12.2019) corvid-store is not available in Corvid package manager. If you like it, please send the request to [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager#requesting-a-package912)
-
-![Request Node Package](https://static.wixstatic.com/media/e3b156_00346a1e9cfe4bfdbc7c88f132d9e9bf~mv2.png)
 
 ## Resources
 
