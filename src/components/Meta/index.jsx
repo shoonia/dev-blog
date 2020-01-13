@@ -76,6 +76,8 @@ function Meta({ data }) {
       <html lang={lang} />
       <link rel="canonical" href={url} />
       <link rel="preconnect" href="https://static.wixstatic.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,700&display=swap&subset=cyrillic" />
     </Helmet>
   );
 }
