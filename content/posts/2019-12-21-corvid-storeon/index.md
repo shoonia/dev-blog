@@ -5,41 +5,43 @@ template: 'default'
 date: '2019-12-21T12:00:00.000Z'
 lang: 'en'
 title: 'A tiny event-based state manager Storeon for Corvid.'
-description: 'The state of the Corvid sites it’s a really big problem. In this article, I share my solution.'
+description: 'In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager'
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
 
 # A tiny event-based state manager Storeon for Corvid.
 
+*In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager.*
+
 ![Corvid Storeon](https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png)
 
 ## Motivation
 
-In the article [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd) Shahar Talmi bringing up a question about control app states in Corvid.
+In the article, [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd), Shahar Talmi brings up a question about controlling app states in Corvid. If you’re not familiar with Corvid, it’s a development platform running on Wix that allows you to quickly and easily develop web applications.
 
-The state of app it’s a really big problem. If you have a lot of components dependencies between each other or a lot of user interaction, eventually, add a new feature or support app is going through suffering.
+Accurately controlling the state of any app is a really big problem. If you have many component dependencies or need to handle constant user interactions, you're going to suffer a bit when you want to eventually add a new feature or scale your application.
 
-In this article, I share my solution. It’s a very tiny library [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (core 175 bytes in gzip) with an easy interface. So I wrote a wrapper for integration with Corvid. As a result, we have the state manager [corvid-storeon](https://github.com/shoonia/corvid-storeon) less than 90 lines of code.
+In this article, I share my solution — a very tiny library called [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (it’s only 175 bytes) that features an easy interface. So, I wrote a wrapper for integration with Corvid. As a result, we have the state manager [corvid-storeon](https://github.com/shoonia/corvid-storeon), and it’s less than 90 lines of code.
 
 ## How it works
 
-We will create a traditional study app with counters. I will use two counters for the better demonstration.
+We will create a traditional study app with counters. I will use two counters to help provide a better demonstration.
 
-At first we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
+At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
 
 ![install corvid-storeon](https://static.wixstatic.com/media/e3b156_8206bd4695354340a531829aba61b778~mv2.png)
 
-and create one more file for store initialization in public folder.
+and create one more file for store initialization in the **public** folder.
 
 ```bash
 public
 └── store.js
 ```
 
-In `public/store.js` we write our business logic.
+We will write our business logic in `public/store.js`.
 
-Storeon state is always an object, it can’t be anything else. It’s a small limitation not too important to us but we have to remember about it.
+Storeon's state is always an object; it canʼt be anything else. Itʼs a small limitation and not too important to us, but we have to remember it.
 
 **public/store.js**
 
@@ -56,7 +58,7 @@ function counterModule(store) {
   store.on('@init', () => ({ x: 0, y: 0 }));
 
   // Reducers returns only changed part of the state
-  // You can dispatch any other events. 
+  // You can dispatch any other events.
   // Just do not start event names with @.
   store.on('INCREMENT_X', (state) => ({ x: state.x + 1 }));
   store.on('DECREMENT_X', (state) => ({ x: state.x - 1 }));
@@ -69,28 +71,26 @@ function counterModule(store) {
 export const {
   getState, // <- will return current state.
   dispatch, // <- will emit an event with optional data.
-  connect, // <- connect to state by property key. 
+  connect, // <- connect to state by property key.
   connectPage, // <- wrapper around $w.onReady()
 } = createStore([counterModule]);
 ```
 
-So we created a store in the public folder and export from there 4 methods. In the second part, we will create UI and we will write logic to change state.
+So, we created a store in the public folder and exported from there with four methods. In the second part, we will create our UI, and we will write logic to change the state.
 
-Let’s add 2 text elements for displaying counter value, and 4 buttons for events increment/decrement.
+Letʼs add two text elements to display our counter value, and four buttons for event increments/decrements.
 
 ![UI example](https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png)
 
-Of course, we have to import the store methods from the public file to the page code.
+Of course, we have to import the store methods from the public file to the page's code.
 
 ```js
 import { dispatch, connect, connectPage } from 'public/store';
 ```
 
-With `connect("key", callback)` we can subscribe for any store properties and the callback function will be run when the page loaded and each time when the listed property would change.
+With `connect("key", callback)`, we can subscribe to any store properties, and the callback function will be run when the page is loaded and each time when the listed property changes.
 
-The `connectPage(callback)` it’s a wrapper around `$w.onReady(callback)`.
-
-With `dispatch(event, [data])` we will emit events.
+The `connectPage(callback)` is a wrapper around the `$w.onReady(callback)`. With `dispatch(event, [data])`, we will emit events.
 
 **Page Code**
 
@@ -137,12 +137,12 @@ connectPage((state) => {
 });
 ```
 
-[DEMO](https://www.wix.com/alexanderz5/corvid-storeon)
+**[DEMO](https://www.wix.com/alexanderz5/corvid-storeon)**
 
 ## Modules
-The function `createStore(modules)` accepts a list of modules. We can create different functions for splitting business logic into our app. Let’s see a few examples:
+The function, `createStore(modules)`, accepts a list of modules. We can create different functions to split business logic into our app. Letʼs see a few examples:
 
-Synchronization the App state with `wix-storage` memory API:
+Synchronization the App state with the `wix-storage` memory API:
 
 ```js
 // https://www.wix.com/corvid/reference/wix-storage.html#memory
@@ -157,7 +157,8 @@ export function memoryModule(store) {
 }
 ```
 
-Tracking event to external analytics tools with `wixWindow.trackEvent();`
+Tracking an event to external analytics tools with `wixWindow.trackEvent()`:
+
 
 ```js
 import wixWindow from 'wix-window';
@@ -185,6 +186,12 @@ const store = createStore([
 ]);
 ```
 
+## Conclusion
+
+As you can see, we were able to quickly implement our state management solution with a minimal amount of code. Of course, due to data binding in Corvid, you normally don’t have to worry about state management. However, in more complex applications, the issue can become more difficult, and state management will become more challenging to handle.
+
+State management can be a tricky problem, but Storeon offers a simple, yet robust solution. In addition, Corvid allows us to quickly implement this in our application, all while focusing on code and not having to spend time dealing with other issues.
+
 ## Resources
 
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
@@ -192,6 +199,7 @@ const store = createStore([
 - [Corvid Storeon on GitHub](https://github.com/shoonia/corvid-storeon)
 - [Discussion on Corvid Forum](https://www.wix.com/corvid/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-corvid)
 - [This article on medium.com](https://medium.com/@shoonia/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
+- [This article on dzone.com](https://dzone.com/articles/a-tiny-event-based-state-manager-storeon-for-corvi)
 
 ## DEMO
 - [Site](https://www.wix.com/alexanderz5/corvid-storeon)
@@ -199,4 +207,3 @@ const store = createStore([
 
 ## Also
 - [“State management in Corvid” by Shahar Talmi](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)
-
