@@ -10,7 +10,7 @@ author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
 
-# A tiny event-based state manager Storeon for Corvid.
+# A tiny event-based state manager Storeon for Corvid
 
 *In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager.*
 
@@ -140,6 +140,7 @@ connectPage((state) => {
 **[DEMO](https://www.wix.com/alexanderz5/corvid-storeon)**
 
 ## Modules
+
 The function, `createStore(modules)`, accepts a list of modules. We can create different functions to split business logic into our app. Letʼs see a few examples:
 
 Synchronization the App state with the `wix-storage` memory API:
@@ -152,13 +153,12 @@ export function memoryModule(store) {
   // @changed will be fired every when event listeners changed the state.
   // It receives object with state changes.
   store.on('@changed', (state) => {
-    memory.setItem('key', state);
+    memory.setItem('key', JSON.stringify(state));
   });
 }
 ```
 
 Tracking an event to external analytics tools with `wixWindow.trackEvent()`:
-
 
 ```js
 import wixWindow from 'wix-window';
@@ -168,9 +168,9 @@ export function trackEventModule(store) {
   // It receives an array with the event name and the event’s data.
   // Can be useful for debugging.
   store.on('@dispatch', (state, [event, data]) => {
-    if (event !== '@changed' && event !== '@dispatch') {
+    if (event === 'product/add') {
       // Sends a tracking event to external analytics tools.
-      wixWindow.trackEvent(event, data);
+      wixWindow.trackEvent('CustomEvent', { event, data });
     }
   });
 }
@@ -202,8 +202,10 @@ State management can be a tricky problem, but Storeon offers a simple, yet robus
 - [This article on dzone.com](https://dzone.com/articles/a-tiny-event-based-state-manager-storeon-for-corvi)
 
 ## DEMO
+
 - [Site](https://www.wix.com/alexanderz5/corvid-storeon)
 - [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
 
 ## Also
+
 - [“State management in Corvid” by Shahar Talmi](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)

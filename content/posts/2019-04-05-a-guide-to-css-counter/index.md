@@ -11,6 +11,7 @@ image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377
 ---
 
 # Руководство по CSS-счетчикам
+
 *Перевод статьи Samantha Ming: [A Guide to CSS counter](https://www.samanthaming.com/tidbits/53-css-counter). Опубликовано с разрешения автора.*
 
 ---
@@ -222,7 +223,6 @@ counter(<counter name>, <counter list style>)
 | thai        | ๑, ๒, ๓ ...etc    |
 
 [Здесь](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type#Values) вы можете посмотреть полный список стилей
-
 
 И давайте посмотрим на примере:
 

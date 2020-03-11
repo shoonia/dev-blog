@@ -11,11 +11,13 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 ---
 
 # Corvid by Wix: Imitating hover event on repeater container
+
 *Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
 ![](https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg)
 
 ## Motivation
+
 We have a `$w.Repeater` component with items of users' cards. When we point with the mouse cursor over some item we want to change background color of this item to light blue color `#CCE4F7` and when the cursor moves off of item we want to return the initial white color.
 
 For this, we're going to use two other events that provide repeater API:
@@ -28,6 +30,7 @@ Also, repeater items don't have property [`style.backgroundColor`](https://www.w
 [Here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
 
 ## Event handlers
+
 To start with, set handlers to `onMouse{In/Out}` events. We will use one function for two events by repeaters containers. We declare the handler function above and pass the function's name as an argument to container methods.
 
 ```js
@@ -47,7 +50,7 @@ $w.onReady(function () {
 Please pay attention, we don't nest any containers item into the repeater for adding handlers. Like here:
 
 ```js
-// In this way, each time when onItemReady starts 
+// In this way, each time when onItemReady starts
 // would be set a new handler for containers.
 $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#container1").onMouseIn(imitateHover);
@@ -58,12 +61,14 @@ $w("#repeater1").onItemReady( ($item, itemData, index) => {
 We set globally our handler on all `#container1` with `$w()` selector. And it works well!
 
 ## Imitate hover
+
 We use one function for two events, therefore we need to listen to which type of event is going.  We're expecting two event types:
 
 - `event.type === "mouseenter"` when `onMouseIn()` is running.
 - `event.type === "mouseleave"` when `onMouseOut()` is running.
 
 Let's see the code:
+
 ```js
 function imitateHover(event) {
   if (event.type === "mouseenter") {
@@ -105,12 +110,15 @@ $w.onReady(function () {
   $w("#container1").onMouseOut(imitateHover);
 });
 ```
+
 Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
 
 ## One pixel image
+
 We used the direct link to the one-pixel image. The size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
 
 ### data:URL
+
 [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), it's a protocol that allows embedded small files inline in documents as a string. It means we can convert a one-pixel PNG image to string and pass it to `background.src`.
 
 We can create needed images by [1x1 PNG generator](https://shoonia.github.io/1x1/).
@@ -134,9 +142,11 @@ $w.onReady(function () {
   $w("#container1").onMouseOut(imitateHover);
 });
 ```
+
 The `data:URL` image is a little longer than the direct link for this image. And other reason to use `data:URL` with the small image we don't send HTTP request for fetching this image.
 
 ## Resources
+
 - [Corvid APIs](https://www.wix.com/corvid/reference)
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)

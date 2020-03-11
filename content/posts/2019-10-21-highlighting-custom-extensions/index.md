@@ -11,6 +11,7 @@ image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
 ---
 
 # Подсветка кастомных файлов/расширений в редакторе VS Code
+
 ![](https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png)
 
 Часто в проектах встречаются файлы конфигураций без расширения такие как `.postcssrc` или `.parcelrc`. Если ваш редактор кода не знаком с данным типом файла он применит к нему дефолтные стили подсветке синтаксиса, в VS Code это `html`.
@@ -30,6 +31,7 @@ my-app
 В файле `settings.json` мы пропишем настройки, которые будут примениться в конкретно данном проекте.
 
 **.vscode/settings.json**
+
 ```json
 {
   "files.associations": {
@@ -50,6 +52,7 @@ my-app
 Здесь нам понадобятся шаблоны поиска, в VS Code используется формат поиска glob.
 
 **.vscode/settings.json**
+
 ```json
 {
   "files.associations": {
@@ -83,6 +86,7 @@ my-app
 Теперь ваш редактор знает как работать с нужными вам файлами 🎉
 
 ## Ссылочки
+
 - [VS Code: docs](https://code.visualstudio.com/docs/languages/overview#_language-id)
 - [VS Code: language identifiers](https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers)
 - [Glob docs](https://github.com/isaacs/node-glob)

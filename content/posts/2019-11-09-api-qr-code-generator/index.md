@@ -78,6 +78,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html) - це внутрішній модуль Wix сайтів що містить функціональність для роботи з HTTP. Ми будимо використовувати [response](https://www.wix.com/corvid/reference/wix-http-functions.html#response):
 
 **backend/http-functions.js**
+
 ```js
 import { response } from "wix-http-functions";
 
@@ -96,6 +97,7 @@ export function get_qrcode(request) {
 Реалізуємо передачу тексту за допомогою параметрів запиту. Всі передані параметри ми можемо отримати через об'єкт `request.query`. Також нам необхідно декодувати переданий текст функцією [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 
 **backend/http-functions.js**
+
 ```js
 import { response } from "wix-http-functions";
 
@@ -129,6 +131,7 @@ QRCode.toDataURL(text, (error, url) => {
   console.log(url); // data:URL
 });
 ```
+
 `QRCode.toDataURL()` - це асинхронна функія, вона приймає текст (з якого генеруватиметься QR Code) та функцію зворотного виклику, що викличеться, коли зображення вже згенероване. Для зручності обернемо в Promise за допомогою [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original):
 
 ```js
@@ -141,6 +144,7 @@ const getDataURL = util.promisify(QRCode.toDataURL);
 Генерація QR Code виконується асинхронно, тому і роут потрібно перетворити на асинхронну функцію.
 
 **backend/http-functions.js**
+
 ```js
 import { response } from "wix-http-functions";
 import QRCode from "qrcode";
@@ -196,6 +200,7 @@ const base64 = dataURL.slice(22);
 ```js
 Buffer.from(base64, "base64");
 ```
+
 Також нам потрібно додати заголовки до відповіді:
 
 ```js
@@ -207,6 +212,7 @@ Buffer.from(base64, "base64");
 Збираємо все до купи
 
 **backend/http-functions.js**
+
 ```js
 /* eslint-env node */
 import { response } from "wix-http-functions";
@@ -239,8 +245,9 @@ export async function get_qrcode(request) {
 ![Дякую за увагу!](https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!)
 
 ## Посилання
+
 - [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html)
-- [node-qrcode](https://github.com/soldair/node-qrcode)                         
+- [node-qrcode](https://github.com/soldair/node-qrcode)
 - [Data:URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 - [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original)

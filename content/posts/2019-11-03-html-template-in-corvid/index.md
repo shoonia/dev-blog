@@ -19,6 +19,7 @@ image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3
 I have been working with the Corvid platform for more than a year. The `$w.Repeater` element most popular in our projects, it's a great element it has very flexibility potential. We really use it very often.
 
 But repeater has a problem with performance. The more we use elements in repeater containers, the slower it works. For example user cards with contact info:
+
 ```js
 $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#image1").src = itemData.avatar;
@@ -29,6 +30,7 @@ $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#email").text = itemData.email;
 });
 ```
+
 We need to control the number of elements and trying to use fewer elements that we can. For this, we consider using templates. This way has a restriction, we can't use it with the [database collections UI](https://support.wix.com/en/article/corvid-working-with-wix-data) we can use it only with code.
 
 ## Install Lodash
@@ -38,6 +40,7 @@ We would be using the function `_.template()` from library [Lodash](https://loda
 ![Install lodash](https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png)
 
 After installation, we can use Lodash just import to your code.
+
 ```js
 import _ from "lodash";
 ```
@@ -45,6 +48,7 @@ import _ from "lodash";
 ## Text templates
 
 Now we look at a simple example to understand how to work template.
+
 ```js
 // #1 install and import
 import _ from "lodash";
@@ -68,6 +72,7 @@ $w.onReady(function () {
 
 });
 ```
+
 **How it works:**
 
 1. Importing Lodash library. The first you have to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
@@ -79,6 +84,7 @@ $w.onReady(function () {
 ## HTML templates
 
 We can get a text element's HTML content by `.html` property. [$w.Text](https://www.wix.com/corvid/reference/$w.Text.html#html)
+
 ```js
 const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
 ```
