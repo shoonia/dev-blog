@@ -64,6 +64,10 @@ function Meta({ data }) {
       name: 'google-site-verification',
       content: 'r9IQYersVVRdg00VhqCTt8yTNmuCdgC-fLFsTiCrk4M',
     },
+    {
+      name: 'theme-color',
+      content: '#fff',
+    },
   ]
     .filter(Boolean);
 
@@ -92,7 +96,7 @@ Meta.propTypes = {
     lang: T.string.isRequired,
     image: T.string,
     url: T.string.isRequired,
-    template: T.string.isRequired,
+    template: T.string,
   }).isRequired,
 };
 
