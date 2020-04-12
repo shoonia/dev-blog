@@ -1,18 +1,8 @@
-const { readFileSync } = require('fs');
 const { createElement } = require('react');
 const { renderToString } = require('react-dom/server');
-const { minify: minifyJs } = require('terser');
+const { minifyHTML, minifyJS } = require('./util/html.js');
 
-const { minify } = require('./util/html.js');
-
-const { code } = minifyJs(readFileSync('./util/ga.js', 'utf8'));
-
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
-  const bodyHTML = renderToString(bodyComponent);
-  const miniHTML = minify(bodyHTML);
-
-  replaceBodyHTMLString(miniHTML);
-};
+const code = minifyJS('./util/ga.js');
 
 exports.onRenderBody = ({ setPostBodyComponents }) => {
   setPostBodyComponents([
@@ -20,4 +10,11 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
       dangerouslySetInnerHTML: { __html: code },
     }),
   ]);
+};
+
+exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
+  const bodyHTML = renderToString(bodyComponent);
+  const miniHTML = minifyHTML(bodyHTML);
+
+  replaceBodyHTMLString(miniHTML);
 };

@@ -1,7 +1,9 @@
+const { readFileSync } = require('fs');
 const xss = require('xss');
-const { minify } = require('html-minifier');
+const htmlMinifier = require('html-minifier');
+const tarser = require('terser');
 
-const minifyOptions = {
+const htmlInifierOptions = {
   removeComments: true,
   collapseWhitespace: true,
   removeRedundantAttributes: true,
@@ -25,7 +27,31 @@ const xssOtions = {
   },
 };
 
+const tarserOptions = {
+  ecma: 8,
+  module: true,
+  toplevel: true,
+  parse: {
+    ecma: 8,
+  },
+  compress: {
+    ecma: 8,
+    module: true,
+    toplevel: true,
+    warnings: false,
+    comparisons: false,
+    inline: 2,
+    drop_console: true,
+    passes: 3,
+  },
+  output: {
+    ecma: 8,
+    comments: false,
+  },
+};
+
 module.exports = {
-  minify: (html) => minify(html, minifyOptions),
+  minifyHTML: (html) => htmlMinifier.minify(html, htmlInifierOptions),
   xss: (html) => xss(html, xssOtions),
+  minifyJS: (path) => tarser.minify(readFileSync(path, 'utf8'), tarserOptions).code,
 };

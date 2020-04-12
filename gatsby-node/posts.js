@@ -1,5 +1,5 @@
 const path = require('path');
-const { xss, minify } = require('../util/html.js');
+const { xss, minifyHTML } = require('../util/html.js');
 
 module.exports = async ({ actions, graphql }) => {
   const Page = path.resolve('./src/templates/Post.jsx');
@@ -67,7 +67,7 @@ module.exports = async ({ actions, graphql }) => {
           ...node.frontmatter,
           url: createUrl(node.frontmatter.path),
         },
-        html: minify(xss(node.html)),
+        html: minifyHTML(xss(node.html)),
       },
     });
   });
