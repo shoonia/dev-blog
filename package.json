@@ -18,7 +18,6 @@
     "autoprefixer": "^9.7.6",
     "cssnano": "^4.1.10",
     "gatsby": "^2.20.18",
-    "gatsby-plugin-google-analytics": "^2.2.2",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-mini-css-class-name": "^2.1.0",
     "gatsby-plugin-no-javascript": "^2.0.5",
@@ -35,6 +34,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "terser": "^4.6.11",
     "xss": "^1.0.6"
   },
   "devDependencies": {
