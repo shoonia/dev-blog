@@ -1,13 +1,13 @@
 const pkg = require('./package.json');
 
-const IS_DEV = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   siteMetadata: {
     title: pkg.title,
     description: pkg.description,
     author: pkg.author.name,
-    siteUrl: IS_DEV ? 'http://localhost:8000' : pkg.homepage,
+    siteUrl: isDev ? 'http://localhost:8000' : pkg.homepage,
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -85,5 +85,7 @@ module.exports = {
         trackingId: 'UA-137813864-1',
       },
     },
+    'gatsby-plugin-no-javascript',
+    'gatsby-plugin-no-sourcemaps',
   ],
 };

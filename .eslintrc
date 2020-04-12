@@ -15,7 +15,6 @@
   },
   "rules": {
     "linebreak-style": "off",
-    "react/jsx-key": "error",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-key": "error"
   }
 }

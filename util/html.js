@@ -15,8 +15,9 @@ const minifyOptions = {
 
 const xssOtions = {
   onTag(tag, html) {
-    if (tag === 'a' && html !== '</a>') {
+    if (tag === 'a' && !html.startsWith('</')) {
       const a = html.slice(0, -1);
+
       return `${a} target="_blank" rel="noopener noreferrer">`;
     }
 

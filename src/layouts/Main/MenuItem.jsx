@@ -31,7 +31,8 @@ function MenuItem({
         lang={lang}
       />
       <span className={s.author}>
-        &nbsp;- {author}
+        &nbsp;-&nbsp;
+        {author}
       </span>
     </article>
   );
