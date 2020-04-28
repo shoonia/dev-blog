@@ -1,3 +1,3 @@
 # Blog
 
-- [https://shoonia.netlify.com/](https://shoonia.netlify.com/)
+- [https://shoonia.netlify.app/](https://shoonia.netlify.app/)
