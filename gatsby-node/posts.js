@@ -15,7 +15,6 @@ module.exports = async ({ actions, graphql }) => {
         },
       },
     },
-    errors,
   } = await graphql(`
     {
       allMarkdownRemark(
@@ -51,10 +50,6 @@ module.exports = async ({ actions, graphql }) => {
         }
       }
     }`);
-
-  if (errors) {
-    throw new Error(JSON.stringify(errors));
-  }
 
   const createUrl = (pth) => new URL(pth, siteUrl).toString();
 
