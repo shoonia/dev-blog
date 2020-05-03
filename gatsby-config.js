@@ -81,5 +81,6 @@ module.exports = {
     },
     'gatsby-plugin-no-javascript',
     'gatsby-plugin-no-sourcemaps',
+    'gatsby-plugin-remove-generator',
   ],
 };
