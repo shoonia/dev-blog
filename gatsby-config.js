@@ -80,7 +80,11 @@ module.exports = {
       },
     },
     'gatsby-plugin-no-javascript',
-    'gatsby-plugin-no-sourcemaps',
-    'gatsby-plugin-remove-generator',
+    {
+      resolve: 'gatsby-plugin-no-javascript-utils',
+      options: {
+        noInlineStyles: true,
+      },
+    },
   ],
 };
