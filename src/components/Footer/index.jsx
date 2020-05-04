@@ -5,10 +5,7 @@ import s from './footer.module.css';
 
 function Footer() {
   return (
-    <footer
-      className={s.footer}
-      role="contentinfo"
-    >
+    <footer className={s.footer}>
       <span className={s.me}>
         <a
           className={s.link}
