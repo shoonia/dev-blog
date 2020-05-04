@@ -1,5 +1,4 @@
 const { readFileSync } = require('fs');
-const xss = require('xss');
 const htmlMinifier = require('html-minifier');
 const tarser = require('terser');
 
@@ -11,20 +10,7 @@ const htmlInifierOptions = {
   removeEmptyAttributes: true,
   removeStyleLinkTypeAttributes: true,
   keepClosingSlash: true,
-  minifyJS: true,
   minifyURLs: true,
-};
-
-const xssOtions = {
-  onTag(tag, html) {
-    if (tag === 'a' && !html.startsWith('</')) {
-      const a = html.slice(0, -1);
-
-      return `${a} target="_blank" rel="noopener noreferrer">`;
-    }
-
-    return html;
-  },
 };
 
 const tarserOptions = {
@@ -52,6 +38,5 @@ const tarserOptions = {
 
 module.exports = {
   minifyHTML: (html) => htmlMinifier.minify(html, htmlInifierOptions),
-  xss: (html) => xss(html, xssOtions),
   minifyJS: (path) => tarser.minify(readFileSync(path, 'utf8'), tarserOptions).code,
 };
