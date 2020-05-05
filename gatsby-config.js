@@ -90,6 +90,7 @@ module.exports = {
       resolve: 'gatsby-plugin-no-javascript-utils',
       options: {
         noInlineStyles: true,
+        removeGatsbyAnnouncer: true,
       },
     },
   ],
