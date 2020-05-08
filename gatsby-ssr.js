@@ -3,13 +3,16 @@ const { renderToString } = require('react-dom/server');
 const { minifyHTML, minifyJS } = require('./util/html.js');
 
 const code = minifyJS('./util/ga.js');
+const isProduction = process.env.NODE_ENV === 'production';
 
 exports.onRenderBody = ({ setPostBodyComponents }) => {
-  setPostBodyComponents([
-    createElement('script', {
-      dangerouslySetInnerHTML: { __html: code },
-    }),
-  ]);
+  if (isProduction) {
+    setPostBodyComponents([
+      createElement('script', {
+        dangerouslySetInnerHTML: { __html: code },
+      }),
+    ]);
+  }
 };
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
