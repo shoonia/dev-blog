@@ -1,5 +1,5 @@
 ---
-publish: false
+publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
 date: '2020-05-08T12:00:00.000Z'
@@ -12,15 +12,15 @@ image: ''
 
 # Corvid by Wix: Event handling of Repeater Item
 
-When I first started working with Corvid, I'd set handling functions of repeated items in repeater loop methods.
+When I first started working with Corvid, I'd just handling events of repeated items in Repeater loop methods. But now we consider this approach as an antipattern.
 
 ```js
-$w('#repeater').onItemReady(($item, itemData, index) => {
+$w("#repeater").onItemReady(($item, itemData, index) => {
   // it look easy
-  $item('#repeatedButton').onClick((event) => {
-    // in the moment of action, we have all the needed data
+  $item("#repeatedButton").onClick((event) => {
+    // in the moment of action, we have all we need
     console.log(
-      $item('#repeatedContainer'),
+      $item("#repeatedContainer"),
       itemData,
       index,
     );
@@ -28,28 +28,30 @@ $w('#repeater').onItemReady(($item, itemData, index) => {
 });
 ```
 
-## Use scope
+What's wrong with this approach?
 
-Repeated Item Scope with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
+## Repeated Item Scope
+
+In the documentation has examples how to use [repeated-item-scope](https://www.wix.com/corvid/reference/$w.Repeater.html#repeated-item-scope) selector with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at).
 
 ```js
-$w('#repeater').onItemReady(($item, itemData, index) => {
+$w("#repeater").onItemReady(($item, itemData, index) => {
   $item('#repeatedText').text = itemData.title;
 });
 
-// we use global selector `$w()`, it provides handling all repeated items.
-$w('#repeatedButton').onClick((event) => {
+// we use global selector `$w()`, it provides handling all repeated items
+$w("#repeatedButton").onClick((event) => {
   // the ID of the repeated item which an event was fired
   const itemId = event.context.itemId;
   // a repeater's data is stored as an array of objects
-  const data = $w('#repeater').data;
+  const data = $w("#repeater").data;
 
   // create scope of the current repeated item
   const $item = $w.at(event.context);
   const itemData = data.find((item) => item._id === itemId);
   const index = data.findIndex((item) => item._id === itemId);
 
-  // we have all the needed data
+  // we have all we need
   console.log(
     $item('#repeatedContainer'),
     itemData,
@@ -58,30 +60,38 @@ $w('#repeatedButton').onClick((event) => {
 });
 ```
 
-Now, we understand how to do more careful handling of events in the Repeater. Let's tidy up the selection scope logic and moving it to public file for reuse with different pages and Repeaters.
+Now, we understand how to do more careful handling of events in the Repeater. Let's separate logic out event handler for reuse with different Repeaters and pages.
 
-**public/util.js**
+## Create hook
+
+Our flow will have next steps:
+
 ```js
-export const createScope = (getData) => (event) => {
-  // TODO:
+const createScope = (getData) => (event) => {
+  // TODO: Implement hook
 }
-```
-**HOME Page Code**
-```js
-import { createScope } from 'public/util';
 
-// Create a scope with a callback function that returns actual repeater data.
+/**
+ * Initialization:
+ * sets callback function which will return the repeater data
+ */
 const useScope = createScope(() => {
-  return $w('#repeater').data;
+  return $w("#repeater").data;
 });
 
-$w.onReady(() => {
-  $w('#repeatedButton').onClick((event) => {
-    // will accept the event and will return all data
-    const { $item, itemData, index, data } = useScope(event);
-  });
+/**
+ * using with repeated items
+ */
+$w("#repeatedButton").onClick((event) => {
+  // returns all we need
+  const { $item, itemData, index } = useScope(event);
 });
 ```
+
+1. Create a hook with `createScope(getData)` it will be work with specific Repeater. The argument `getData` it's a callback, it has to return Repeater's data.
+2. The `createScope` will return a new function `useScope(event)` which have a connection with the specific Repeater. The `useScope(event)` accepts an `event` object of an event listener and return data of the current scope.
+
+For the realization of `createScope(getData)` function, we create a public file `util.js`
 
 **public/util.js**
 ```js
@@ -110,20 +120,20 @@ export const createScope = (getData) => (event) => {
 
 **HOME Page Code**
 ```js
-import { createScope } from 'public/util';
+import { createScope } from "public/util";
 
 const useScope = createScope(() => {
-  return $w('#repeater').data;
+  return $w("#repeater").data;
 });
 
 $w.onReady(() => {
-  // Sets static data
-  $w('#repeater').onItemReady(($item, itemData) => {
+  // sets static data
+  $w("#repeater").onItemReady(($item, itemData) => {
     $item('#repeatedText').text = itemData.title;
   });
 
-  $w('#repeatedButton').onClick((event) => {
-    // returns all the needed data
+  $w("#repeatedButton").onClick((event) => {
+    // returns all we need
     const { $item, itemData, index, data } = useScope(event);
   });
 });
@@ -132,3 +142,5 @@ $w.onReady(() => {
 ## Resources
 
 - [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
+- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
+- [GitHub: repeater-scope](https://github.com/shoonia/repeater-scope)
