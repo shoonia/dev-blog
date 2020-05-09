@@ -92,7 +92,13 @@ export function get_qrcode(request) {
 }
 ```
 
-Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою: `https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode`, результат `Hello`.
+Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою:
+
+```
+https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
+```
+
+результат `Hello`.
 
 Реалізуємо передачу тексту за допомогою параметрів запиту. Всі передані параметри ми можемо отримати через об'єкт `request.query`. Також нам необхідно декодувати переданий текст функцією [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 

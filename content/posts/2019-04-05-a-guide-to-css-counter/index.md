@@ -275,7 +275,7 @@ h3::before {
 <div>
   <h2>one</h2>
   <h2>one</h2>
-  
+
   <h3>two</h3>
   <h3>two</h3>
 </div>
@@ -371,7 +371,7 @@ CSS счетчики не заменяют `<ol>`.
 <article>
   <h2>Что такое Vue.js?</h2>
   <p>Vue — это прогрессивный фреймворк для создания пользовательских интерфейсов.</p>
-  
+
   <h2>Начало работы</h2>
   <p>Посетите Vuejs.org, чтобы узнать больше!</p>
 </article>
@@ -408,12 +408,11 @@ Vue — это прогрессивный фреймворк для создан
 
 ## Поставте лайк ❤️
 
-[Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)  
+[Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)
 [Like this on Instagram](https://www.instagram.com/p/BvXHR0phDFW/)
 
 **Спасибо за прочтение ❤**
 
 ---
 
-Публикация оригинальной статьи [www.samanthaming.com](https://www.samanthaming.com/tidbits/53-css-counter)  
-Перевод на [GitHub](https://github.com/shoonia/dev-blog/blob/master/posts/2019-04-05-a-guide-to-css-counter/index.md)
+Публикация оригинальной статьи [www.samanthaming.com](https://www.samanthaming.com/tidbits/53-css-counter)

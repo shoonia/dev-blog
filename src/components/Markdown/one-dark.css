@@ -11,7 +11,6 @@ pre[class*="code-"] {
   line-height: 1.5;
   tab-size: 4;
   hyphens: none;
-  user-select: all;
 }
 
 pre[class*="code-"]::selection,
