@@ -5,14 +5,19 @@ template: 'default'
 date: '2020-05-08T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Event handling of Repeater Item'
-description: ''
+description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
 author: 'Alexander Zaytsev'
-image: ''
+image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
 ---
 
 # Corvid by Wix: Event handling of Repeater Item
 
-When I first started working with Corvid, I'd just handling events of repeated items in Repeater loop methods. But now we consider this approach as an antipattern.
+*In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it.*
+
+![poster of tales from the loop](https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg)
+
+At first sight, the adding event handling for repeated items looks easy.
+You just handling events of repeated items inside Repeater loop methods there you have all needed data and scope with selector `$item()`.
 
 ```js
 $w("#repeater").onItemReady(($item, itemData, index) => {
@@ -29,6 +34,12 @@ $w("#repeater").onItemReady(($item, itemData, index) => {
 ```
 
 What's wrong with this approach?
+
+Sometimes the loop may set a few event handlers for the same item when you change order or filter or sort Repeater Items.
+Each iteration of the loop may add a copy of the callback function to the handler when it starts again. You may don't pay attention to twice running code if you just hide or show some component by an event.
+But if you work with API or wixData, then you can have a lot of problems.
+
+But now we consider this approach as an anti-pattern.
 
 ## Repeated Item Scope
 
@@ -66,22 +77,26 @@ Now, we understand how to do more careful handling of events in the Repeater. Le
 
 Our flow will have next steps:
 
+*Implementation*
 ```js
 const createScope = (getData) => (event) => {
   // TODO: Implement hook
 }
+```
 
-/**
- * Initialization:
- * sets callback function which will return the repeater data
- */
+*initialize*
+
+```js
+// sets callback function which will return the repeater data
 const useScope = createScope(() => {
   return $w("#repeater").data;
 });
+```
 
-/**
- * using with repeated items
- */
+*using*
+
+```js
+// using with repeated items
 $w("#repeatedButton").onClick((event) => {
   // returns all we need
   const { $item, itemData, index } = useScope(event);
@@ -89,7 +104,7 @@ $w("#repeatedButton").onClick((event) => {
 ```
 
 1. Create a hook with `createScope(getData)` it will be work with specific Repeater. The argument `getData` it's a callback, it has to return Repeater's data.
-2. The `createScope` will return a new function `useScope(event)` which have a connection with the specific Repeater. The `useScope(event)` accepts an `event` object of an event listener and return data of the current scope.
+2. The `createScope` will return a new function `useScope(event)` which have a connection with the specific Repeater data. The `useScope(event)` accepts an `event` object and return data of the current scope.
 
 For the realization of `createScope(getData)` function, we create a public file `util.js`
 
@@ -118,7 +133,10 @@ export const createScope = (getData) => (event) => {
 }
 ```
 
+Here we used the [getter syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) for binding to data.
+
 **HOME Page Code**
+
 ```js
 import { createScope } from "public/util";
 
