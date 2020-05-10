@@ -2,7 +2,7 @@
 publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
-date: '2020-05-08T12:00:00.000Z'
+date: '2020-05-10T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
