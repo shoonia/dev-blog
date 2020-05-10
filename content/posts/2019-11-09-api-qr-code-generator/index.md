@@ -14,7 +14,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11
 
 *В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.*
 
-![](https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v1/fill/w_700,h_300/q.jpg)
+![](https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v2/fill/w_700,h_300/q.jpg)
 
 ## Створюємо сайт
 
@@ -92,7 +92,13 @@ export function get_qrcode(request) {
 }
 ```
 
-Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою: `https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode`, результат `Hello`.
+Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою:
+
+```
+https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
+```
+
+результат `Hello`.
 
 Реалізуємо передачу тексту за допомогою параметрів запиту. Всі передані параметри ми можемо отримати через об'єкт `request.query`. Також нам необхідно декодувати переданий текст функцією [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
 

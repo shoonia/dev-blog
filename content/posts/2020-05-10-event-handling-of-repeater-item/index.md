@@ -1,0 +1,230 @@
+---
+publish: true
+path: '/event-handling-of-repeater-item'
+template: 'default'
+date: '2020-05-08T12:00:00.000Z'
+lang: 'en'
+title: 'Corvid by Wix: Event handling of Repeater Item'
+description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
+author: 'Alexander Zaytsev'
+image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
+---
+
+# Corvid by Wix: Event handling of Repeater Item
+
+*In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it.*
+
+![poster of tales from the loop](https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg)
+
+At first sight, the adding event handling for repeated items looks easy.
+You just handling events of repeated items inside Repeater loop methods there you have all needed data and scope with selector `$item()`.
+
+```js
+$w("#repeater").onItemReady(($item, itemData, index) => {
+  // it look easy
+  $item("#repeatedButton").onClick((event) => {
+    // we have all we need
+    console.log(
+      $item("#repeatedContainer"),
+      itemData,
+      index,
+    );
+  });
+});
+```
+
+What's wrong with this approach?
+
+Sometimes the loop may set a few event handlers for the same item when you change order or filter or sort Repeater Items.
+Each iteration of the loop may add a copy of the callback function to the handler when it starts again. You may don't pay attention to twice running code if you just hide or show some component by an event.
+But if you work with APIs or wixData, then you can get a lot of problems.
+
+My team and I consider this approach as an anti-pattern and we don't use it more.
+For the "static" Repeaters which fill up once and don't change anymore during a user session, this approach can be used.
+
+But if you would like to do dynamic fill up your Repeater or change its items, you shouldn't set a handler function inside the loop. Let's see another way.
+
+## Selector Scope
+
+In the Corvid, we have two types of selector functions.
+
+- [Global Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
+- [Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#repeated-item-scope)
+
+The Global Scope Selectors it's `$w()`. We can use it anywhere in the frontend part of Wix site.
+If we use `$w()` with Repeater Items, then it changes all items
+
+```js
+// will change a text in all items
+$w("#repeatedText").text = "new";
+```
+
+### Repeated Item Scope
+
+*A selector with repeated item scope can be used to select a specific instance of a repeating element.*
+
+We can get repeated-item-scope selector in a few ways.
+
+In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/corvid/reference/$w.Repeater.html#forEachItem), [`.forItems()`](https://www.wix.com/corvid/reference/$w.Repeater.html#forItems), and [`.onItemReady()`](https://www.wix.com/corvid/reference/$w.Repeater.html#onItemReady) methods.
+
+**Deprecated** way, selector as the second argument in an event handler.
+It still works but you don't have to use it
+
+```js
+// 🙅‍♀️ DON'T USE IT 🙅‍♂️
+$w("#repeatedButton").onClick((event, $item) => {
+  // deprecated selector function (could be removed in the future)
+  $item("#repeatedText").text = "new";
+});
+```
+
+And with an event **context**. We can get the selector function with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at).
+
+```js
+$w("#repeatedButton").onClick((event) => {
+  // accepts an event context and
+  // returns repeated items scope selector
+  const $item = $w.at(event.context);
+
+  $item("#repeatedText").text = "new";
+});
+```
+
+Let's try to reproduce how we can use `event.context` instead of Repeater loop methods.
+
+```js
+// we use global selector `$w()`, it provides handling all repeated items
+$w("#repeatedButton").onClick((event) => {
+  // get repeated item scope
+  const $item = $w.at(event.context);
+
+  // get the ID of the repeated item which fired an event
+  const itemId = event.context.itemId;
+  // get all repeater's data, it's stored as an array of objects
+  const data = $w("#repeater").data;
+  // use the array methods to find the current itemData and index
+  const itemData = data.find((item) => item._id === itemId);
+  const index = data.findIndex((item) => item._id === itemId);
+
+  // we have all we need
+  console.log(
+    $item('#repeatedContainer'),
+    itemData,
+    index,
+  );
+});
+```
+
+In this way, we have only one callback for all elements with the specific ID.
+Using context we can get the active item scope, its itemData, and index
+
+Now, we see how to do more careful handling of events in the Repeater.
+But this code not good enough for reuse.
+Let's move the scope selector logic out event handler to the separate method.
+
+## Create hook
+
+Our hook will have next steps:
+
+*#1 Implementation*
+
+```js
+// here will be all logic
+const createScope = (getData) => (event) => {
+  // TODO: Implement hook
+}
+```
+
+*#2 initialize*
+
+```js
+// sets callback function, it has to return the repeater data
+const useScope = createScope(() => {
+  return $w("#repeater").data;
+});
+```
+
+*#3 using*
+
+```js
+// using with repeated items
+$w("#repeatedButton").onClick((event) => {
+  // returns all we need
+  const { $item, itemData, index } = useScope(event);
+});
+```
+
+We create a hook with `createScope(getData)` it will be work with specific Repeater. The argument `getData` it's a callback, it has to return the Repeater data.
+
+The `createScope` will return a new function `useScope(event)` which have a connection with the specific Repeater data. The `useScope(event)` accepts an `event` object and return the data of the current scope.
+
+For the realization of `createScope(getData)` function, we will create a public file `public/util.js`
+
+We can get Repeater data with `getData()`, and we have the event context. All we need just return Scope selector and item data as an object. We will use getter synax for returning itemData, index, and data.
+
+**public/util.js**
+
+```js
+export const createScope = (getData) => (event) => {
+    const itemId = event.context.itemId;
+    const find = (i) => i._id === itemId;
+
+    return {
+      $item: $w.at(event.context),
+
+      get itemData() {
+        return getData().find(find);
+      },
+
+      get index() {
+        return getData().findIndex(find);
+      },
+
+      get data() {
+        return getData();
+      },
+    };
+  };
+}
+```
+
+If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
+
+ Let's see how we can use the hook on the page.
+
+**HOME Page Code**
+
+```js
+import { createScope } from "public/util";
+
+const useScope = createScope(() => {
+  return $w("#repeater").data;
+});
+
+$w.onReady(() => {
+  $w("#repeater").onItemReady(($item, itemData) => {
+    $item('#repeatedText').text = itemData.title;
+  });
+
+  $w("#repeatedButton").onClick((event) => {
+    // returns all we need
+    const { $item, itemData, index, data } = useScope(event);
+  });
+});
+```
+
+Now, we can reuse selector hook with all Repeater in all site pages.
+
+## Resources
+
+- [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
+- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
+- [GitHub: repeater-scope](https://github.com/shoonia/repeater-scope)
+- [EventContext](https://www.wix.com/corvid/reference/$w.Event.html#EventContext)
+- [Property getters and setters](https://javascript.info/property-accessors)
+
+## Posts
+
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
+- [Using HTML template to the better performance](/html-template-in-corvid)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
