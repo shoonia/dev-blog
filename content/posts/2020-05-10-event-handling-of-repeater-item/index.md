@@ -154,13 +154,13 @@ $w("#repeatedButton").onClick((event) => {
 });
 ```
 
-We create a hook with `createScope(getData)` it will be work with specific Repeater. The argument `getData` it's a callback, it has to return the Repeater data.
+We create a hook with `createScope(getData)` it will be work with a specific Repeater. The argument `getData` it's a callback, it has to return the Repeater data.
 
-The `createScope` will return a new function `useScope(event)` which have a connection with the specific Repeater data. The `useScope(event)` accepts an `event` object and return the data of the current scope.
+The `createScope` will return a new function `useScope(event)` that has a connection with the specific Repeater data. The `useScope(event)` accepts an `event` object and return the data of the current scope.
 
 For the realization of `createScope(getData)` function, we will create a public file `public/util.js`
 
-We can get Repeater data with `getData()`, and we have the event context. All we need just return Scope selector and item data as an object. We will use getter synax for returning itemData, index, and data.
+We can get Repeater data with `getData()`, and we have the event context. All we need just return Scope selector and item data as an object. We will use getter syntax for returning itemData, index, and data.
 
 **public/util.js**
 
@@ -213,7 +213,7 @@ $w.onReady(() => {
 });
 ```
 
-Now, we can reuse selector hook with all Repeater in all site pages.
+Now, we can reuse the selector hook with all Repeater in all site pages.
 
 ## Resources
 
