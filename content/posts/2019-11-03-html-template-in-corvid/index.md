@@ -37,7 +37,7 @@ We need to control the number of elements and trying to use fewer elements that 
 
 We would be using the function `_.template()` from library [Lodash](https://lodash.com/docs/4.17.15#template). The first we need to install Lodash with [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager).
 
-![Install lodash](https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png)
+![Lodash installation with Corvid Package Manager](https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png)
 
 After installation, we can use Lodash just import to your code.
 
@@ -91,7 +91,7 @@ const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
 
 This means we can get HTML of the text elements with all their styles! Cool, why don't we use it as a template…
 
-![$w.Text template](https://static.wixstatic.com/media/e3b156_f1ce214c51584716a67de08242b459c4~mv2.png)
+![Wix text template](https://static.wixstatic.com/media/e3b156_f1ce214c51584716a67de08242b459c4~mv2.png)
 
 We created a needed text template with markup, styles, and keys where we want to pass params. Then we hide the text element in the properties panel "Hidden on load".
 
@@ -129,3 +129,9 @@ It works faster now because we have only two elements in repeater one image and 
 - [Corvid: get a text element's HTML content](https://www.wix.com/corvid/reference/$w.Text.html#html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-better-performance-27ec5a18042e)
+
+## Posts
+
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item)

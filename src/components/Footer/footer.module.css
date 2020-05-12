@@ -10,8 +10,7 @@
 }
 
 .link {
-  font-size: 90%;
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 15px;
   user-select: none;
 }

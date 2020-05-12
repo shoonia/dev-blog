@@ -30,7 +30,7 @@ We will create a traditional study app with counters. I will use two counters to
 
 At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
 
-![install corvid-storeon](https://static.wixstatic.com/media/e3b156_8206bd4695354340a531829aba61b778~mv2.png)
+![сorvid-stereon installation in corvid package manager](https://static.wixstatic.com/media/e3b156_8206bd4695354340a531829aba61b778~mv2.png)
 
 and create one more file for store initialization in the **public** folder.
 

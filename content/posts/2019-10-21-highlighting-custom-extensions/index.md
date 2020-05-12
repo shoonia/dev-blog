@@ -5,14 +5,14 @@ template: 'default'
 date: '2019-10-21T12:00:00.000Z'
 lang: 'ru'
 title: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
-description: ''
+description: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
 author: 'Alexander Zaytsev'
 image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
 ---
 
 # Подсветка кастомных файлов/расширений в редакторе VS Code
 
-![](https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png)
+![Подсветка кастомных файлов/расширений в редакторе VS Code](https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png)
 
 Часто в проектах встречаются файлы конфигураций без расширения такие как `.postcssrc` или `.parcelrc`. Если ваш редактор кода не знаком с данным типом файла он применит к нему дефолтные стили подсветке синтаксиса, в VS Code это `html`.
 

@@ -14,7 +14,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 
 *Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
-![](https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg)
+![Corvid by Wix](https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg)
 
 ## Motivation
 
@@ -151,3 +151,9 @@ The `data:URL` image is a little longer than the direct link for this image. And
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-imitating-hover-event-on-repeater-container-a65f4b6e0301)
+
+## Posts
+
+- [Event handling of Repeater Item](/event-handling-of-repeater-item)
+- [Using HTML template to the better performance](/html-template-in-corvid)
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
