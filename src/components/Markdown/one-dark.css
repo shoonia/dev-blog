@@ -13,9 +13,7 @@ pre[class*="code-"] {
   hyphens: none;
 }
 
-pre[class*="code-"]::selection,
 pre[class*="code-"] ::selection,
-code[class*="code-"]::selection,
 code[class*="code-"] ::selection {
   text-shadow: none;
   background: #9aa2b1;
@@ -28,23 +26,11 @@ code[class*="code-"] ::selection {
   }
 }
 
-/* Code blocks */
 pre[class*="code-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
-}
-
-:not(pre) > code[class*="code-"],
-pre[class*="code-"] {
-  background: #282c34;
-}
-
-/* Inline code */
-:not(pre) > code[class*="code-"] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
+  background-color: #282c34;
 }
 
 .token.comment,
@@ -84,7 +70,7 @@ pre[class*="code-"] {
 .token.operator,
 .token.entity,
 .token.url,
-.language-css .token.string,
+.code-css .token.string,
 .style .token.string {
   color: #56b6c2;
 }
