@@ -246,10 +246,24 @@ export async function get_qrcode({ query }) {
 Прaцює!
 
 ```html
-<img src="https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!">
+<img
+  src="https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!"
+  width="200"
+  height="200"
+  loading="lazy"
+  style="image-rendering: pixelated;"
+  alt="Дякую за увагу!"
+/>
 ```
 
-![Дякую за увагу!](https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!)
+<img
+  src="https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!"
+  style="image-rendering: pixelated;"
+  width="200"
+  height="200"
+  loading="lazy"
+  alt="Дякую за увагу!"
+/>
 
 ## Посилання
 
