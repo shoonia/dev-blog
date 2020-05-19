@@ -153,14 +153,14 @@ const getDataURL = util.promisify(QRCode.toDataURL);
 
 ```js
 import { response } from "wix-http-functions";
-import QRCode from "qrcode";
-import util from "util";
+import { toDataURL } from "qrcode";
+import { promisify } from "util";
 
-const getDataURL = util.promisify(QRCode.toDataURL);
+const getDataURL = promisify(toDataURL);
 
 // Додаємо оператор async
-export async function get_qrcode(request) {
-  const text = decodeURIComponent(request.query.text);
+export async function get_qrcode({ query }) {
+  const text = decodeURIComponent(query.text);
   // Чекаємо, коли виконається генерація зображення
   const dataURL = await getDataURL(text);
 
@@ -222,13 +222,13 @@ Buffer.from(base64, "base64");
 ```js
 /* eslint-env node */
 import { response } from "wix-http-functions";
-import QRCode  from "qrcode";
-import util from "util";
+import { toDataURL } from "qrcode";
+import { promisify } from "util";
 
-const getDataURL = util.promisify(QRCode.toDataURL);
+const getDataURL = promisify(toDataURL);
 
-export async function get_qrcode(request) {
-  const text = decodeURIComponent(request.query.text);
+export async function get_qrcode({ query }) {
+  const text = decodeURIComponent(query.text);
   const dataURL = await getDataURL(text);
   const base64 = dataURL.slice(22);
 
@@ -236,6 +236,7 @@ export async function get_qrcode(request) {
     status: 200,
     headers: {
       "Content-Type": "image/png",
+      "Cache-Control": "public,max-age=31536000",
     },
     body: Buffer.from(base64, "base64"),
   });

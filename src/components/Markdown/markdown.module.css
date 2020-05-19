@@ -118,6 +118,7 @@
 .md img {
   max-width: 100%;
   object-fit: cover;
+  object-position: 50% 50%;
   font-size: 80%;
   color: var(--light);
 }
