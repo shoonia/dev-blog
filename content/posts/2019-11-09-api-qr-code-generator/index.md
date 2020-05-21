@@ -133,19 +133,12 @@ import QRCode  from "qrcode";
 
 const text = "Hello";
 
-QRCode.toDataURL(text, (error, url) => {
+QRCode.toDataURL(text).then((url) => {
   console.log(url); // data:URL
 });
 ```
 
-`QRCode.toDataURL()` - це асинхронна функія, вона приймає текст (з якого генеруватиметься QR Code) та функцію зворотного виклику, що викличеться, коли зображення вже згенероване. Для зручності обернемо в Promise за допомогою [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original):
-
-```js
-import QRCode  from "qrcode";
-import util from "util";
-
-const getDataURL = util.promisify(QRCode.toDataURL);
-```
+`QRCode.toDataURL()` - це асинхронна функія, вона приймає текст (з якого генеруватиметься QR Code) та повертає Promise.
 
 Генерація QR Code виконується асинхронно, тому і роут потрібно перетворити на асинхронну функцію.
 
@@ -154,15 +147,12 @@ const getDataURL = util.promisify(QRCode.toDataURL);
 ```js
 import { response } from "wix-http-functions";
 import { toDataURL } from "qrcode";
-import { promisify } from "util";
-
-const getDataURL = promisify(toDataURL);
 
 // Додаємо оператор async
 export async function get_qrcode({ query }) {
   const text = decodeURIComponent(query.text);
   // Чекаємо, коли виконається генерація зображення
-  const dataURL = await getDataURL(text);
+  const dataURL = await toDataURL(text);
 
   return response({
     status: 200,
@@ -223,13 +213,10 @@ Buffer.from(base64, "base64");
 /* eslint-env node */
 import { response } from "wix-http-functions";
 import { toDataURL } from "qrcode";
-import { promisify } from "util";
-
-const getDataURL = promisify(toDataURL);
 
 export async function get_qrcode({ query }) {
   const text = decodeURIComponent(query.text);
-  const dataURL = await getDataURL(text);
+  const dataURL = await toDataURL(text);
   const base64 = dataURL.slice(22);
 
   return response({
@@ -271,7 +258,6 @@ export async function get_qrcode({ query }) {
 - [node-qrcode](https://github.com/soldair/node-qrcode)
 - [Data:URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
-- [`util.promisify(original)`](https://nodejs.org/dist/latest-v12.x/docs/api/util.html#util_util_promisify_original)
 - [`Buffer.from(string[,encoding])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
 - [Ця стаття на medium.com](https://medium.com/@shoonia/%D1%81%D1%82%D0%B2%D0%BE%D1%80%D1%8E%D1%94%D0%BC%D0%BE-api-%D0%B4%D0%BB%D1%8F-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D1%96%D1%97-qr-code-%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D1%8C-62a6222b2950)
 - [Ця стаття на codeguida.com](https://codeguida.com/post/2151)
