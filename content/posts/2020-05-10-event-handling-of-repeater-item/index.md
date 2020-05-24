@@ -166,31 +166,30 @@ We can get Repeater data with `getData()`, and we have the event context. All we
 
 ```js
 export const createScope = (getData) => (event) => {
-    const itemId = event.context.itemId;
-    const find = (i) => i._id === itemId;
+  const itemId = event.context.itemId;
+  const find = (i) => i._id === itemId;
 
-    return {
-      $item: $w.at(event.context),
+  return {
+    $item: $w.at(event.context),
 
-      get itemData() {
-        return getData().find(find);
-      },
+    get itemData() {
+      return getData().find(find);
+    },
 
-      get index() {
-        return getData().findIndex(find);
-      },
+    get index() {
+      return getData().findIndex(find);
+    },
 
-      get data() {
-        return getData();
-      },
-    };
+    get data() {
+      return getData();
+    },
   };
-}
+};
 ```
 
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
- Let's see how we can use the hook on the page.
+Let's see how we can use the hook on the page with [static](https://support.wix.com/en/article/corvid-reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
 
 **HOME Page Code**
 
@@ -206,11 +205,16 @@ $w.onReady(() => {
     $item('#repeatedText').text = itemData.title;
   });
 
+  // use a dynamic event handler
   $w("#repeatedButton").onClick((event) => {
-    // returns all we need
     const { $item, itemData, index, data } = useScope(event);
   });
 });
+
+// or a static event handler
+export function repeatedButton_click(event) {
+  const { $item, itemData, index, data } = useScope(event);
+}
 ```
 
 Now, we can reuse the selector hook with all Repeater in all site pages.
