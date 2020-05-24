@@ -30,7 +30,13 @@ We will create a traditional study app with counters. I will use two counters to
 
 At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
 
-![сorvid-stereon installation in corvid package manager](https://static.wixstatic.com/media/e3b156_8206bd4695354340a531829aba61b778~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_e75d14f8fea24afd825a144618d7ca7a~mv2.png"
+  width="720"
+  alt="сorvid-stereon installation in corvid package manager"
+  loading="lazy"
+  crossorigin="anonymous"
+/>
 
 and create one more file for store initialization in the **public** folder.
 
@@ -80,7 +86,13 @@ So, we created a store in the public folder and exported from there with four me
 
 Letʼs add two text elements to display our counter value, and four buttons for event increments/decrements.
 
-![UI example](https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png"
+  width="720"
+  alt="UI example"
+  loading="lazy"
+  crossorigin="anonymous"
+/>
 
 Of course, we have to import the store methods from the public file to the page's code.
 
