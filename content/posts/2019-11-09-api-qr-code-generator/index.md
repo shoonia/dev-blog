@@ -223,7 +223,7 @@ export async function get_qrcode({ query }) {
     status: 200,
     headers: {
       "Content-Type": "image/png",
-      "Cache-Control": "public,max-age=31536000",
+      "Cache-Control": "public, max-age=15552000, immutable",
     },
     body: Buffer.from(base64, "base64"),
   });
