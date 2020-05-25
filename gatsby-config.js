@@ -92,6 +92,8 @@ module.exports = {
       options: {
         noInlineStyles: true,
         removeGatsbyAnnouncer: true,
+        removePreloadLinks: true,
+        removeFocusWrapper: true,
       },
     },
   ],
