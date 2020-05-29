@@ -61,10 +61,6 @@ function Meta({ data }) {
       content: description,
     },
     {
-      name: 'google-site-verification',
-      content: 'r9IQYersVVRdg00VhqCTt8yTNmuCdgC-fLFsTiCrk4M',
-    },
-    {
       name: 'theme-color',
       content: '#fff',
     },
