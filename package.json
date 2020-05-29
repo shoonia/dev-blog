@@ -3,7 +3,7 @@
   "title": "Blog",
   "description": "Web Developer Blog",
   "version": "0.1.0",
-  "homepage": "https://shoonia.netlify.app",
+  "homepage": "https://shoonia.site",
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
     "develop": "gatsby develop",
@@ -15,7 +15,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.0",
     "cssnano": "^4.1.10",
-    "gatsby": "^2.22.9",
+    "gatsby": "^2.22.12",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-mini-css-class-name": "^2.1.0",
     "gatsby-plugin-no-javascript": "^2.0.5",
