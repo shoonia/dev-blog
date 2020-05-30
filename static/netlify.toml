@@ -4,12 +4,6 @@
   status = 200
   force = false
 
-[[redirects]]
-  from = "https://shoonia.netlify.app/*"
-  to = "https://shoonia.site/:splat"
-  status = 301
-  force = true
-
 [[headers]]
   for = "/*"
 
