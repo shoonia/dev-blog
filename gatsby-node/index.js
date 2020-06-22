@@ -1,6 +1,5 @@
-const pages = require('./posts');
+const posts = require('./posts');
 
 exports.createPages = async (gatsby) => {
-  await pages(gatsby);
-  return Promise.resolve();
+  await posts(gatsby);
 };

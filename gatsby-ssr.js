@@ -9,6 +9,12 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
   if (isProduction) {
     setPostBodyComponents([
       createElement('script', {
+        async: true,
+        id: 'ga-lite',
+        src: 'https://static.parastorage.com/unpkg/ga-lite@2.0.5/dist/ga-lite.min.js',
+        crossOrigin: 'anonymous',
+      }),
+      createElement('script', {
         dangerouslySetInnerHTML: { __html: code },
       }),
     ]);
