@@ -9,7 +9,7 @@ pre[class*="code-"] {
   word-break: normal;
   word-wrap: normal;
   line-height: 1.5;
-  tab-size: 4;
+  tab-size: 2;
   hyphens: none;
 }
 
@@ -31,6 +31,7 @@ pre[class*="code-"] {
   margin: 0.5em 0;
   overflow: auto;
   background-color: #282c34;
+  -webkit-overflow-scrolling: touch;
 }
 
 .token.comment,
