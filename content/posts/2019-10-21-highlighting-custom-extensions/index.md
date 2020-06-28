@@ -20,11 +20,17 @@ image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
 
 ```bash
 my-app
+│
 ├── .vscode
+│   │
 │   └── settings.json
+│
 ├── src
+│   │
 │   └── index.js
+│
 ├── .parcelrc
+│
 └── .postcssrc
 ```
 

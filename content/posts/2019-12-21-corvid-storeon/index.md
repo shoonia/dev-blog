@@ -42,6 +42,7 @@ and create one more file for store initialization in the **public** folder.
 
 ```bash
 public
+│
 └── store.js
 ```
 
