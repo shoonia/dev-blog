@@ -229,6 +229,6 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 ## Posts
 
-- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
-- [Using HTML template to the better performance](/html-template-in-corvid)
-- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon/)
+- [Using HTML template to the better performance](/html-template-in-corvid/)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event/)

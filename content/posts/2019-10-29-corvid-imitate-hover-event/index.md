@@ -154,6 +154,6 @@ The `data:URL` image is a little longer than the direct link for this image. And
 
 ## Posts
 
-- [Event handling of Repeater Item](/event-handling-of-repeater-item)
-- [Using HTML template to the better performance](/html-template-in-corvid)
-- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item/)
+- [Using HTML template to the better performance](/html-template-in-corvid/)
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon/)
