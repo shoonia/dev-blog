@@ -187,6 +187,8 @@ export const createScope = (getData) => (event) => {
 };
 ```
 
+[Code Snippet with JSDocs](https://github.com/shoonia/repeater-scope/blob/master/index.js)
+
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
 Let's see how we can use the hook on the page with [static](https://support.wix.com/en/article/corvid-reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
@@ -201,6 +203,7 @@ const useScope = createScope(() => {
 });
 
 $w.onReady(() => {
+  // sets static data
   $w("#repeater").onItemReady(($item, itemData) => {
     $item('#repeatedText').text = itemData.title;
   });
@@ -221,9 +224,9 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 ## Resources
 
+- [Code Snippet with JSDocs](https://github.com/shoonia/repeater-scope/blob/master/index.js)
 - [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
 - [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
-- [GitHub: repeater-scope](https://github.com/shoonia/repeater-scope)
 - [EventContext](https://www.wix.com/corvid/reference/$w.Event.html#EventContext)
 - [Property getters and setters](https://javascript.info/property-accessors)
 
