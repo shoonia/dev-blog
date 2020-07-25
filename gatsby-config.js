@@ -48,6 +48,18 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: pkg.description,
+        short_name: pkg.title,
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#fff',
+        display: 'minimal-ui',
+        icon: `${__dirname}/src/images/icon.png`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         output: '/sitemap.xml',

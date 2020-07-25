@@ -60,10 +60,6 @@ function Meta({ data }) {
       name: 'twitter:description',
       content: description,
     },
-    {
-      name: 'theme-color',
-      content: '#fff',
-    },
   ]
     .filter(Boolean);
 
