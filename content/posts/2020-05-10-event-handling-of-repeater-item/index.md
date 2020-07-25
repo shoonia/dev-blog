@@ -187,7 +187,7 @@ export const createScope = (getData) => (event) => {
 };
 ```
 
-[Code Snippet with JSDocs](https://github.com/shoonia/repeater-scope/blob/master/index.js)
+[Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
 
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
@@ -224,7 +224,7 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 ## Resources
 
-- [Code Snippet with JSDocs](https://github.com/shoonia/repeater-scope/blob/master/index.js)
+- [Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
 - [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
 - [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
 - [EventContext](https://www.wix.com/corvid/reference/$w.Event.html#EventContext)
