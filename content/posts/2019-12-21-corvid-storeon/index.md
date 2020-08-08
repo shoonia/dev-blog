@@ -14,7 +14,13 @@ image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da423
 
 *In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager.*
 
-![Corvid Storeon](https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png"
+  width="1279"
+  height="640"
+  alt="Corvid Storeon"
+  crossorigin="anonymous"
+/>
 
 ## Motivation
 
@@ -32,7 +38,8 @@ At first, we need to install the library from [Package Manager](https://support.
 
 <img
   src="https://static.wixstatic.com/media/e3b156_e75d14f8fea24afd825a144618d7ca7a~mv2.png"
-  width="720"
+  width="1222"
+  height="534"
   alt="сorvid-stereon installation in corvid package manager"
   loading="lazy"
   crossorigin="anonymous"
@@ -89,7 +96,8 @@ Letʼs add two text elements to display our counter value, and four buttons for 
 
 <img
   src="https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png"
-  width="720"
+  width="1398"
+  height="494"
   alt="UI example"
   loading="lazy"
   crossorigin="anonymous"

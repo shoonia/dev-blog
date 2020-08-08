@@ -15,7 +15,12 @@ image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377
 *Перевод статьи Samantha Ming: [A Guide to CSS counter](https://www.samanthaming.com/tidbits/53-css-counter). Опубликовано с разрешения автора.*
 
 ---
-![A Guide to CSS counter.](https://static.wixstatic.com/media/e3b156_53480454c29640919bbcf9fc14933037~mv2.jpg)
+<img
+  src="https://static.wixstatic.com/media/e3b156_53480454c29640919bbcf9fc14933037~mv2.jpg"
+  width="800"
+  height="400"
+  alt="A Guide to CSS counter."
+/>
 
 Используйте свойство "counter", чтоб превратить любой элемент в нумерованный список.
 Аналогично тому, как работает упорядоченный список внутри тега `<ol>`

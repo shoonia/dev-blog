@@ -14,7 +14,13 @@ image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e30
 
 *In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it.*
 
-![poster of tales from the loop](https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg)
+<img
+  src="https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg"
+  width="733"
+  height="453"
+  alt="poster of tales from the loop"
+  crossorigin="anonymous"
+/>
 
 At first sight, the adding event handling for repeated items looks easy.
 You just handling events of repeated items inside Repeater loop methods there you have all needed data and scope with selector `$item()`.

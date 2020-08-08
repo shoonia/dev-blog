@@ -14,7 +14,13 @@ image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11
 
 *В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.*
 
-![QR-код арт](https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v2/fill/w_700,h_300/q.jpg)
+<img
+  src="https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v2/fill/w_700,h_300/q.jpg"
+  width="700"
+  height="300"
+  alt="QR-код арт"
+  crossorigin="anonymous"
+/>
 
 ## Створюємо сайт
 

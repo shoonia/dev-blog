@@ -14,7 +14,12 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 
 *Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
-![Corvid by Wix](https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg)
+<img
+  src="https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg"
+  width="700"
+  height="338"
+  alt="Corvid by Wix"
+/>
 
 ## Motivation
 

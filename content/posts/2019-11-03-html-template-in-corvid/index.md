@@ -14,7 +14,13 @@ image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3
 
 *The `$w.Repeater` most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster.*
 
-![fragment of Wix promo video](https://static.wixstatic.com/media/e3b156_68a5d808d23c4167bbda3f55e72726e9~mv2.jpg)
+<img
+  src="https://static.wixstatic.com/media/e3b156_68a5d808d23c4167bbda3f55e72726e9~mv2.jpg"
+  width="800"
+  height="361"
+  alt="fragment of Wix promo video"
+  crossorigin="anonymous"
+/>
 
 I have been working with the Corvid platform for more than a year. The `$w.Repeater` element most popular in our projects, it's a great element it has very flexibility potential. We really use it very often.
 
@@ -37,7 +43,13 @@ We need to control the number of elements and trying to use fewer elements that 
 
 We would be using the function `_.template()` from library [Lodash](https://lodash.com/docs/4.17.15#template). The first we need to install Lodash with [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager).
 
-![Lodash installation with Corvid Package Manager](https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
+  width="948"
+  height="214"
+  loading="lazy"
+  alt="Lodash installation with Corvid Package Manager"
+/>
 
 After installation, we can use Lodash just import to your code.
 
@@ -91,13 +103,25 @@ const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
 
 This means we can get HTML of the text elements with all their styles! Cool, why don't we use it as a template…
 
-![Wix text template](https://static.wixstatic.com/media/e3b156_f1ce214c51584716a67de08242b459c4~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_f1ce214c51584716a67de08242b459c4~mv2.png"
+  width="680"
+  height="291"
+  loading="lazy"
+  alt="Wix text template"
+/>
 
 We created a needed text template with markup, styles, and keys where we want to pass params. Then we hide the text element in the properties panel "Hidden on load".
 
 In the repeater container, we keep only two elements `#image1` and `#text1`.
 
-![Repeater container has only two elements](https://static.wixstatic.com/media/e3b156_702b764780a947cbb00f7d179e4cf58e~mv2.png)
+<img
+  src="https://static.wixstatic.com/media/e3b156_702b764780a947cbb00f7d179e4cf58e~mv2.png"
+  width="680"
+  height="330"
+  loading="lazy"
+  alt="Repeater container has only two elements"
+/>
 
 There's only we need to change HTML of `#text1` elements in repeater containers to HTML of the `#textTemplate` pattern element.
 

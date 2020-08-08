@@ -117,10 +117,10 @@
 
 .md img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
   object-position: 50% 50%;
-  font-size: 80%;
-  color: var(--light);
+  background-color: #eee;
 }
 
 .md p img {
