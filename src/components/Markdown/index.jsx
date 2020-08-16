@@ -7,7 +7,7 @@ import s from './markdown.module.css';
 function Markdown({ html }) {
   return (
     <article
-    // eslint-disable-next-line react/no-danger
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: html }}
       className={s.md}
     />
