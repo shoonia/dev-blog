@@ -1,18 +1,16 @@
 const pkg = require('./package.json');
 
-const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   siteMetadata: {
     title: pkg.title,
     description: pkg.description,
     author: pkg.author.name,
-    siteUrl: isDev ? 'http://localhost:8000' : pkg.homepage,
+    siteUrl: isProd ? pkg.homepage : 'http://localhost:8000',
   },
   plugins: [
-    'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-mini-css-class-name',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -47,7 +45,9 @@ module.exports = {
         ],
       },
     },
-    {
+    isProd && 'gatsby-plugin-postcss',
+    isProd && 'gatsby-plugin-mini-css-class-name',
+    isProd && {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: pkg.description,
@@ -59,7 +59,7 @@ module.exports = {
         icon: `${__dirname}/src/images/icon.png`,
       },
     },
-    {
+    isProd && {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         output: '/sitemap.xml',
@@ -86,8 +86,8 @@ module.exports = {
         }`,
       },
     },
-    'gatsby-plugin-no-javascript',
-    {
+    isProd && 'gatsby-plugin-no-javascript',
+    isProd && {
       resolve: 'gatsby-plugin-no-javascript-utils',
       options: {
         noInlineStyles: true,
@@ -96,5 +96,5 @@ module.exports = {
         removeFocusWrapper: true,
       },
     },
-  ],
+  ].filter(Boolean),
 };
