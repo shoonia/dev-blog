@@ -20,19 +20,18 @@ function MenuItem({
       lang={lang}
       className={s.post}
     >
-      <Link to={path}>
-        <h2 className={s.itemTitle}>
+      <h2 className={s.itemTitle}>
+        <Link to={path}>
           {title}
-        </h2>
-      </Link>
+        </Link>
+      </h2>
       <p>{description}</p>
       <Time
         date={date}
         lang={lang}
       />
       <span className={s.author}>
-        &nbsp;-&nbsp;
-        {author}
+        {` - ${author}`}
       </span>
     </article>
   );
