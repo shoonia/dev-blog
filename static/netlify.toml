@@ -13,12 +13,6 @@
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31556952; preload"
     Cache-Control = "public, max-age=86400"
-    Content-Security-Policy = """
-       default-src 'self';
-       style-src 'self' https://fonts.googleapis.com;
-       img-src 'self' https://static.wixstatic.com https://shoonia.wixsite.com;
-       font-src 'self' https://fonts.gstatic.com;
-      """
 
 [[headers]]
   for = "*.css"
