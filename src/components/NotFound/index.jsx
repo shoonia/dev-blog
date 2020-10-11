@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
 const metaData = [{
@@ -17,9 +16,9 @@ function NotFound() {
       <p>
         404: Page not found
       </p>
-      <Link to="/">
+      <a href="/">
         Homepage
-      </Link>
+      </a>
     </div>
   );
 }

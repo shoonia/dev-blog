@@ -93,7 +93,6 @@ module.exports = {
         noInlineStyles: true,
         removeGatsbyAnnouncer: true,
         removePreloadLinks: true,
-        removeFocusWrapper: true,
       },
     },
   ].filter(Boolean),

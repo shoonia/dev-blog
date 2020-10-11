@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import T from 'prop-types';
 
 import s from './main.module.css';
@@ -21,9 +20,9 @@ function MenuItem({
       className={s.post}
     >
       <h2 className={s.itemTitle}>
-        <Link to={path}>
+        <a href={path}>
           {title}
-        </Link>
+        </a>
       </h2>
       <p>{description}</p>
       <Time
