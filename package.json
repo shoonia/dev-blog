@@ -28,6 +28,7 @@
     "gatsby-source-filesystem": "^2.3.34",
     "gatsby-transformer-remark": "^2.8.38",
     "html-minifier": "^4.0.0",
+    "postcss-simple-vars": "^5.0.2",
     "prismjs": "^1.22.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

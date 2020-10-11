@@ -45,7 +45,7 @@ module.exports = {
         ],
       },
     },
-    isProd && 'gatsby-plugin-postcss',
+    'gatsby-plugin-postcss',
     isProd && 'gatsby-plugin-mini-css-class-name',
     isProd && {
       resolve: 'gatsby-plugin-manifest',

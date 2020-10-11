@@ -1,6 +1,11 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   plugins: [
-    require('autoprefixer')(),
-    require('cssnano')(),
-  ],
+    isProd && require('autoprefixer')(),
+    isProd && require('cssnano')(),
+    require('postcss-simple-vars')({
+      variables: () => require('./src/cssVariables'),
+    }),
+  ].filter(Boolean),
 };
