@@ -4,12 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --cr-link: rgb(26, 114, 232);
-  --cr-gray: rgba(0, 0, 0, 0.64);
-  --w-content: 750px;
-}
-
 ::selection {
   background-color: #98c379;
 }
@@ -29,7 +23,7 @@ body {
 }
 
 a {
-  color: var(--cr-link);
+  color: $colorLink;
   text-decoration: none;
 }
 

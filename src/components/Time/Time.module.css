@@ -1,4 +1,4 @@
 .time {
-  color: var(--cr-gray);
+  color: $colorGray;
   font-size: 14px;
 }

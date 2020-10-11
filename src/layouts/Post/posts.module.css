@@ -1,5 +1,5 @@
 .content {
-  max-width: var(--w-content);
+  max-width: $contentWidht;
   min-height: 70vh;
   padding: 0 15px;
   margin: 0 auto;
