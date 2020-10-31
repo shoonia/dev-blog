@@ -34,7 +34,7 @@ In this article, I share my solution — a very tiny library called [Storeon](ht
 
 We will create a traditional study app with counters. I will use two counters to help provide a better demonstration.
 
-At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
+At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/corvid-working-with-npm-packages)
 
 <img
   src="https://static.wixstatic.com/media/e3b156_e75d14f8fea24afd825a144618d7ca7a~mv2.png"
@@ -167,7 +167,7 @@ The function, `createStore(modules)`, accepts a list of modules. We can create d
 Synchronization the App state with the `wix-storage` memory API:
 
 ```js
-// https://www.wix.com/corvid/reference/wix-storage.html#memory
+// https://www.wix.com/corvid/reference/wix-storage/memory
 import { memory } from 'wix-storage';
 
 export function memoryModule(store) {

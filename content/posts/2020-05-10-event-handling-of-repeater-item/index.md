@@ -54,8 +54,8 @@ But if you would like to do dynamic fill up your Repeater or change its items, y
 
 In the Corvid, we have two types of selector functions.
 
-- [Global Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
-- [Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#repeated-item-scope)
+- [Global Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_global-scope)
+- [Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_repeated-item-scope)
 
 The Global Scope Selectors it's `$w()`. We can use it anywhere in the frontend part of Wix site.
 If we use `$w()` with Repeater Items, then it changes all items
@@ -71,7 +71,7 @@ $w("#repeatedText").text = "new";
 
 We can get repeated-item-scope selector in a few ways.
 
-In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/corvid/reference/$w.Repeater.html#forEachItem), [`.forItems()`](https://www.wix.com/corvid/reference/$w.Repeater.html#forItems), and [`.onItemReady()`](https://www.wix.com/corvid/reference/$w.Repeater.html#onItemReady) methods.
+In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/corvid/reference/$w/repeater/foreachitem), [`.forItems()`](https://www.wix.com/corvid/reference/$w/repeater/foritems), and [`.onItemReady()`](https://www.wix.com/corvid/reference/$w/repeater/onitemready) methods.
 
 **Deprecated** way, selector as the second argument in an event handler.
 It still works but you don't have to use it
@@ -84,7 +84,7 @@ $w("#repeatedButton").onClick((event, $item) => {
 });
 ```
 
-And with an event **context**. We can get the selector function with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at).
+And with an event **context**. We can get the selector function with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w/at).
 
 ```js
 $w("#repeatedButton").onClick((event) => {
@@ -231,9 +231,9 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 ## Resources
 
 - [Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
-- [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w.html#at)
-- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w.Repeater.html#global-scope)
-- [EventContext](https://www.wix.com/corvid/reference/$w.Event.html#EventContext)
+- [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w/at)
+- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_selector-scope)
+- [Event Context](https://www.wix.com/corvid/reference/$w/event/context)
 - [Property getters and setters](https://javascript.info/property-accessors)
 
 ## Posts

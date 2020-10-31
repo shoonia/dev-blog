@@ -41,7 +41,7 @@ We need to control the number of elements and trying to use fewer elements that 
 
 ## Install Lodash
 
-We would be using the function `_.template()` from library [Lodash](https://lodash.com/docs/4.17.15#template). The first we need to install Lodash with [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager).
+We would be using the function `_.template()` from library [Lodash](https://lodash.com/docs/4.17.15#template). The first we need to install Lodash with [Package Manager](https://support.wix.com/en/article/corvid-working-with-npm-packages).
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
@@ -87,7 +87,7 @@ $w.onReady(function () {
 
 **How it works:**
 
-1. Importing Lodash library. The first you have to install the library from [Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
+1. Importing Lodash library. The first you have to install the library from [Package Manager](https://support.wix.com/en/article/corvid-working-with-npm-packages)
 2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default. [more](https://lodash.com/docs/4.17.15#template)
 3. Pattern string with two keys `{{firstName}}` and `{{lastName}}`.
 4. Creating a compiled template, it returns a function `compiled()` which will be passed an object with properties. `{ firstName: "John", lastName: "Doe" }`.
@@ -95,7 +95,7 @@ $w.onReady(function () {
 
 ## HTML templates
 
-We can get a text element's HTML content by `.html` property. [$w.Text](https://www.wix.com/corvid/reference/$w.Text.html#html)
+We can get a text element's HTML content by `.html` property. [$w.Text](https://www.wix.com/corvid/reference/$w/text/html)
 
 ```js
 const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
@@ -148,9 +148,9 @@ It works faster now because we have only two elements in repeater one image and 
 
 ## Resources
 
-- [Corvid: Managing External Code Libraries with the Package Manager](https://support.wix.com/en/article/corvid-managing-external-code-libraries-with-the-package-manager)
+- [Corvid: Managing External Code Libraries with the Package Manager](https://support.wix.com/en/article/corvid-working-with-npm-packages)
 - [Lodash: _.tempalate();](https://lodash.com/docs/4.17.15#template)
-- [Corvid: get a text element's HTML content](https://www.wix.com/corvid/reference/$w.Text.html#html)
+- [Corvid: get a text element's HTML content](https://www.wix.com/corvid/reference/$w/text/html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-better-performance-27ec5a18042e)
 

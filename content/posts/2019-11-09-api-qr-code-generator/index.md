@@ -26,7 +26,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11
 
 Саме API ми розгорнимо на безкоштовному сайті Wix.
 
-Для початку зареєструмося на [wix.com](https://uk.wix.com), можна через обліковий запис на Facebook або Google. Щоб створити сайт, перейдіть за посиланням на [порожнiй шаблон](https://editor.wix.com/html/editor/web/renderer/new?siteId=cbf36d3a-49d0-41c2-9482-1bb58d5fdda3&metaSiteId=a573279f-ae6f-46d1-8556-7c93ae9b2c84), звідси ми потрапляємо прямісінько в редактор.
+Для початку зареєструмося на [wix.com](https://uk.wix.com), можна через обліковий запис на Facebook або Google. Щоб створити сайт, перейдіть за посиланням на [порожнiй шаблон](https://wix.new/), звідси ми потрапляємо прямісінько в редактор.
 
 Після цього нам необхідно активувати Corvid. Corvid це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend. У верхній частині едітора знаходимо пункт меню "Dev Mode", обираємо цей пункт і у розгорнутому підменю тиснемо на кнопку **"Увімкнути Corvid" (Turn on Dev Mode)**.
 
@@ -61,7 +61,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>
 
 - `<prefix>` - це назва методу запиту (GET, POST, PUT ...) Докладніше на [MDN](https://developer.mozilla.org/uk/docs/Web/HTTP/Methods)
 - `<functionName>` - це назва роуту на який ми будимо відправляти запити.
-- `request` - це oб'єкт який містить параметри вхідних даних. Докладніше [Corvid Reference](https://www.wix.com/corvid/reference/wix-http-functions.WixHttpFunctionRequest.html)
+- `request` - це oб'єкт який містить параметри вхідних даних. Докладніше [Corvid Reference](https://www.wix.com/corvid/reference/wix-http-functions/wixhttpfunctionrequest)
 
 Створімо роут для методу GET з назвою qrcode:
 
@@ -81,7 +81,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 
 ### Відповідь на запит
 
-Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html) - це внутрішній модуль Wix сайтів що містить функціональність для роботи з HTTP. Ми будимо використовувати [response](https://www.wix.com/corvid/reference/wix-http-functions.html#response):
+Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions) - це внутрішній модуль Wix сайтів що містить функціональність для роботи з HTTP. Ми будимо використовувати [response](https://www.wix.com/corvid/reference/wix-http-functions/response):
 
 **backend/http-functions.js**
 
@@ -260,7 +260,7 @@ export async function get_qrcode({ query }) {
 
 ## Посилання
 
-- [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions.html)
+- [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions)
 - [node-qrcode](https://github.com/soldair/node-qrcode)
 - [Data:URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)
