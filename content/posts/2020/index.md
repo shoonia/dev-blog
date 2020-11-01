@@ -10,7 +10,17 @@ author: 'Alexander Zaytsev'
 image: '#'
 ---
 
-# S
+# A Guide to management a difficult app state on Wix Site with Storeon
+
+*Storeon it's a simple state manager that has a very friendly interface. In this guide, we look up how we can separate business logic and view using Storeon, we learn how to work with async operations and how we can create Storeon modules (middlewares) for splitting logic operation in your app.*
+
+---
+
+A year ago was released a connector [corvid-storeon](https://github.com/shoonia/corvid-storeon) that provides using a [Storeon](https://github.com/storeon/storeon) with Corvid sites. I wrote an article ["A tiny event-based state manager Storeon for Corvid"](/corvid-storeon) were showing basic capabilities to use state management.
+
+## Motivation
+
+**Site Structure**
 
 ```bash
 public/
@@ -49,7 +59,7 @@ export const itemsModule = (store) => {
 };
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 import { getState, dispatch, connect, connectPage } from 'public/store';
@@ -59,7 +69,7 @@ connectPage((state) => {
 });
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 import { v4 as uuid } from 'uuid';
@@ -138,7 +148,7 @@ export const {
 ]);
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 connect('items', ({ items }) => {
@@ -151,7 +161,7 @@ connect('items', ({ items }) => {
 });
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 connectPage(() => {
@@ -176,6 +186,8 @@ connectPage(() => {
   });
 });
 ```
+
+**console**
 
 ```bash
 action: items/remove > 33edda56-72cc-4cf2-8da4-39939f5fd8e6
@@ -229,6 +241,8 @@ export const databaseModule = async (store) => {
 };
 ```
 
+**console**
+
 ```bash
 action: items/loaded > [...]
 ```
@@ -271,7 +285,7 @@ export const databaseModule = async (store) => {
 };
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 $input.onKeyPress(({ key }) => {
@@ -333,7 +347,7 @@ export const {
 ]);
 ```
 
-**`Home Page Code`**
+**Home Page Code**
 
 ```js
 connect('isBusy', ({ isBusy }) => {
@@ -346,3 +360,18 @@ connect('isBusy', ({ isBusy }) => {
   }
 });
 ```
+
+## Conclusion
+
+## Resources
+
+- [Storeon: “Redux” in 173 bytes](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
+- GitHub source code
+  - [storeon](https://github.com/storeon/storeon)
+  - [corvid-storeon](https://github.com/shoonia/corvid-storeon)
+
+## Posts
+
+- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item)
+- [Using HTML template to the better performance](/html-template-in-corvid)
