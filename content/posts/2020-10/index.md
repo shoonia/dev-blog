@@ -1,18 +1,26 @@
 ---
-publish: false
+publish: true
 path: '/smaller-bundle-size-by-importing-npm-package-correctly'
 template: 'default'
-date: '2020'
+date: '2020-11-12T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If you use npm dependencies in your project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of the modules importing and try to find the best one.'
 author: 'Alexander Zaytsev'
-image: '#'
+image: 'https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc2368d~mv2.jpg/v2/fill/w_500,h_500/o_0.jpg'
 ---
 
 # Corvid by Wix: Smaller bundle size by importing npm package correctly
 
 *If you use npm dependencies in your project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of the modules importing and try to find the best one.*
+
+<img
+  src="https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc2368d~mv2.jpg"
+  width="1874"
+  height="1054"
+  alt="node_modules"
+  crossorigin="anonymous"
+/>
 
 Let's start with a small library [uuid](https://www.npmjs.com/package/uuid) that use for the creation of unique IDs. In the documentation, we can see how to use it with ES6 module syntax.
 
