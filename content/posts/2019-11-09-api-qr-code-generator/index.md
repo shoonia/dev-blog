@@ -19,6 +19,8 @@ image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11
   width="700"
   height="300"
   alt="QR-код арт"
+  loading="lazy"
+  decoding="async"
   crossorigin="anonymous"
 />
 
@@ -255,6 +257,7 @@ export async function get_qrcode({ query }) {
   width="200"
   height="200"
   loading="lazy"
+  decoding="async"
   alt="Дякую за увагу!"
 />
 

@@ -19,6 +19,8 @@ image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da423
   width="1279"
   height="640"
   alt="Corvid Storeon"
+  loading="lazy"
+  decoding="async"
   crossorigin="anonymous"
 />
 
@@ -42,6 +44,7 @@ At first, we need to install the library from [Package Manager](https://support.
   height="534"
   alt="сorvid-stereon installation in corvid package manager"
   loading="lazy"
+  decoding="async"
   crossorigin="anonymous"
 />
 
@@ -100,6 +103,7 @@ Letʼs add two text elements to display our counter value, and four buttons for 
   height="494"
   alt="UI example"
   loading="lazy"
+  decoding="async"
   crossorigin="anonymous"
 />
 

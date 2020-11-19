@@ -19,6 +19,8 @@ image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e30
   width="733"
   height="453"
   alt="poster of tales from the loop"
+  loading="lazy"
+  decoding="async"
   crossorigin="anonymous"
 />
 

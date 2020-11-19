@@ -19,6 +19,9 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
   width="700"
   height="338"
   alt="Corvid by Wix"
+  loading="lazy"
+  decoding="async"
+  crossorigin="anonymous"
 />
 
 ## Motivation
