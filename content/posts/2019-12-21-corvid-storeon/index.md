@@ -227,7 +227,7 @@ State management can be a tricky problem, but Storeon offers a simple, yet robus
 ## DEMO
 
 - [Site](https://www.wix.com/alexanderz5/corvid-storeon)
-- [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7)
+- [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7&autoDevMode=true)
 
 ## Also
 
