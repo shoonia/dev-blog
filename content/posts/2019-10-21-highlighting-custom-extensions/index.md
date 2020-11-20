@@ -17,8 +17,6 @@ image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
   width="764"
   height="352"
   alt="Подсветка кастомных файлов/расширений в редакторе VS Code"
-  loading="lazy"
-  decoding="async"
   crossorigin="anonymous"
 />
 

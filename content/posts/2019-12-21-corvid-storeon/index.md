@@ -19,8 +19,6 @@ image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da423
   width="1279"
   height="640"
   alt="Corvid Storeon"
-  loading="lazy"
-  decoding="async"
   crossorigin="anonymous"
 />
 

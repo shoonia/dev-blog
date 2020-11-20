@@ -19,8 +19,6 @@ image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3
   width="800"
   height="361"
   alt="fragment of Wix promo video"
-  loading="lazy"
-  decoding="async"
   crossorigin="anonymous"
 />
 

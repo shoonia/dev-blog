@@ -19,8 +19,6 @@ image: 'https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc236
   width="777"
   height="437"
   alt="node_modules"
-  loading="lazy"
-  decoding="async"
   crossorigin="anonymous"
 />
 

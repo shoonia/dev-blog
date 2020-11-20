@@ -20,8 +20,6 @@ image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377
   width="800"
   height="400"
   alt="A Guide to CSS counter."
-  loading="lazy"
-  decoding="async"
   crossorigin="anonymous"
 />
 
