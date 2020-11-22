@@ -2,24 +2,33 @@
 publish: true
 path: '/side-effect-data-saving-methods'
 template: 'default'
-date: '2020-11-21T12:00:00.000Z'
+date: '2020-11-22T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Side effect wix-data saving methods'
-description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I want to share how it goes'
+description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes'
 author: 'Alexander Zaytsev'
-image: ''
+image: 'https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg/v2/fill/w_500,h_500/i.jpg'
 ---
 
 # Corvid by Wix: Side effect wix-data saving methods
 
-*The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I want to share how it goes*
+*The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes*
 
-We have three methods for manipulation of an item in the database collection that has a side effect.
+<img
+  src="https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg"
+  width="775"
+  height="410"
+/>
 
-- [`wixData.insert("myCollection", toInsert)`](https://www.wix.com/corvid/reference/wix-data/insert)
-- [`wixData.update("myCollection", toUpdate)`](https://www.wix.com/corvid/reference/wix-data/update)
-- [`wixData.save("myCollection", toSave)`](https://www.wix.com/corvid/reference/wix-data/save)
+We have three methods for manipulation of the database collection that has the same side effect. I found this behavior when it broke my logic in the [data hook](https://support.wix.com/en/article/corvid-using-data-hooks).
 
+The pasted `item` is mutating after any of these methods is done:
+
+- [`wixData.insert("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/insert)
+- [`wixData.update("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/update)
+- [`wixData.save("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/save)
+
+So, consider the code example where we output to console a new item before and after inserting it into a collection.
 
 ```js
 import wixData from 'wix-data';
@@ -29,9 +38,11 @@ import wixData from 'wix-data';
 
   console.log(1, item);
 
-  await wixData.insert('notes', item);
+  const result = await wixData.insert('notes', item);
 
   console.log(2, item);
+
+  console.log(3, result === item);
 })();
 ```
 
@@ -41,27 +52,46 @@ import wixData from 'wix-data';
 1 {"title":"hello"}
 
 2 {"title":"hello","_createdDate":"2020-11-21T18:34:29.050Z","_updatedDate":"2020-11-21T18:34:29.050Z","_id":"6e616318-ffdb-4954-9529-84c6a63f5393"}
+
+3 true
 ```
 
+We can see above what, after inserting, the item is mutating it has new properties. And the method will return the same item which was passed.
+
+`wixData.update()` and `wixData.save()` will have the same behavior.
+
+### How it affects
+
+In my case, I used a [data hook](https://support.wix.com/en/article/corvid-about-data-hooks) that first saves a new user to private collection (only for admins), and then it creates a new row for public members collection with part of open the user data.
+
+**backend/data.js**
+
 ```js
-import wixData from 'wix-data';
+export async function Members_afterInsert(item) {
+  await wixData.insert('MembersPrivate', item);
 
-(async () => {
-  const item = { title: 'hello' };
+  /**
+   * Here I had a mutated item after inserting it into a Private database.
+   */
+}
+```
 
-  const result = await wixData.insert('notes', item);
+I had a mutated item after inserting it into a Private database, and it created a bug.
 
-  console.log(result === item); // true
-})();
+For fixing, I have to copy the item for inserting. I use the [object spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax):
+
+```js
+// Creates a copy of item
+await wixData.insert('MembersPrivate', { ...item });
 ```
 
 ## Methods for multiple items
 
-We also have methods that can work with a number of items in a collection. Let's consider three of these which use for saving data
+We also have methods that can work with a number of items. Let's consider three of these which use to save data:
 
-- [`wixData.bulkInsert("myCollection", [toInsert1, toInsert2])`](https://www.wix.com/corvid/reference/wix-data/bulkinsert)
-- [`wixData.bulkUpdate("myCollection", [toUpdate1, toUpdate2])`](https://www.wix.com/corvid/reference/wix-data/bulkupdate)
-- [`wixData.bulkSave("myCollection", [toSave1, toSave2])`](https://www.wix.com/corvid/reference/wix-data/bulksave)
+- [`wixData.bulkInsert("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulkinsert)
+- [`wixData.bulkUpdate("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulkupdate)
+- [`wixData.bulkSave("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulksave)
 
 We can get to repeat the experiment. These methods accept an array of items.
 
@@ -74,9 +104,11 @@ import wixData from 'wix-data';
 
   console.log(1, a, b);
 
-  await wixData.bulkInsert('notes', [a, b]);
+  const result = await wixData.bulkInsert('notes', [a, b]);
 
   console.log(2, a, b);
+
+  console.log(3, result);
 })();
 ```
 
@@ -86,14 +118,8 @@ import wixData from 'wix-data';
 1 {title: "a"} {title: "b"}
 
 2 {title: "a"} {title: "b"}
-```
 
-Bulk methods work differently. They don't mutate the accept items and don't return the items back. The successful results of the bulk methods return the `Promise<WixDataBulkResult>`
-
-```js
-// WixDataBulkResult
-
-{
+3 {
   errors: [],
   inserted: 2,
   insertedItemIds: [
@@ -106,6 +132,14 @@ Bulk methods work differently. They don't mutate the accept items and don't retu
   updatedItemIds: [],
 }
 ```
+
+Great, bulk methods work differently. They don't mutate the passed items and don't return the mutated items back. The successfully done bulk methods return the `Promise<WixDataBulkResult>` that contains the info about the changes.
+
+## Conclusion
+
+The understanding of how to work the platform is an important thing. If I catch the bugs that grow from a misunderstanding of some of the processes, then I prefer to spend time searching, experiments, and testing it.
+
+When the platform is not a black box for you, it saves a lot of time in the future.
 
 ## Posts
 
