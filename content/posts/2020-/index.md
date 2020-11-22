@@ -18,6 +18,7 @@ image: 'https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d
   src="https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg"
   width="775"
   height="410"
+  alt="the picture from serials 'Tales From The Loop'"
 />
 
 We have three methods for manipulation of the database collection that has the same side effect. I found this behavior when it broke my logic in the [data hook](https://support.wix.com/en/article/corvid-using-data-hooks).
@@ -139,7 +140,7 @@ Great, bulk methods work differently. They don't mutate the passed items and don
 
 The understanding of how to work the platform is an important thing. If I catch the bugs that grow from a misunderstanding of some of the processes, then I prefer to spend time searching, experiments, and testing it.
 
-When the platform is not a black box for you, it saves a lot of time in the future.
+When the platform is not a black box for you, this saves more time than you have spent learning it.
 
 ## Posts
 
