@@ -7,12 +7,13 @@ function Meta({ data }) {
     // path,
     title,
     description,
-    // author,
+    author,
     date,
     lang,
     image,
     url,
     template,
+    siteUrl,
   } = data;
 
   const metaData = [
@@ -63,6 +64,31 @@ function Meta({ data }) {
   ]
     .filter(Boolean);
 
+  const JSONLD = (template === 'default') && (
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description,
+        url,
+        datePublished: date,
+        author: {
+          '@type': 'Person',
+          name: author,
+        },
+        image: {
+          '@type': 'ImageObject',
+          url: image,
+        },
+        mainEntityOfPage: {
+          '@type': 'WebSite',
+          '@id': siteUrl,
+        },
+      })}
+    </script>
+  );
+
   return (
     <Helmet
       title={title}
@@ -70,25 +96,8 @@ function Meta({ data }) {
       meta={metaData}
     >
       <html lang={lang} />
-      <link
-        rel="canonical"
-        href={url}
-      />
-      <link
-        rel="preconnect"
-        href="https://static.wixstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,700&display=swap&subset=cyrillic"
-        crossOrigin="anonymous"
-      />
+      <link rel="canonical" href={url} />
+      {JSONLD}
     </Helmet>
   );
 }
@@ -98,12 +107,13 @@ Meta.propTypes = {
     // path: T.string.isRequired,
     title: T.string.isRequired,
     description: T.string.isRequired,
-    // author: T.string.isRequired,
+    author: T.string.isRequired,
     date: T.string,
     lang: T.string.isRequired,
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
+    siteUrl: T.string,
   }).isRequired,
 };
 

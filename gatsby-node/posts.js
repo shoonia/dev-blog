@@ -60,6 +60,7 @@ module.exports = async ({ actions, graphql }) => {
         meta: {
           ...node.frontmatter,
           url: createUrl(node.frontmatter.path),
+          siteUrl,
         },
         html: node.html,
       },

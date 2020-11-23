@@ -14,6 +14,21 @@ function HTML({
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+          <link
+            rel="preconnect"
+            href="https://static.wixstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,700&display=swap&subset=cyrillic"
+            crossOrigin="anonymous"
+          />
           {headComponents}
         </head>
         <body
@@ -30,6 +45,11 @@ function HTML({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,700&display=swap&subset=cyrillic"
+          crossOrigin="anonymous"
+        />
         {headComponents}
       </head>
       <body>
