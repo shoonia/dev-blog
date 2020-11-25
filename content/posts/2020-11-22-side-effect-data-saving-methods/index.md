@@ -61,7 +61,7 @@ We can see above what, after inserting, the item is mutating it has new properti
 
 `wixData.update()` and `wixData.save()` will have the same behavior.
 
-### How it affects
+## How it affects
 
 In my case, I used a [data hook](https://support.wix.com/en/article/corvid-about-data-hooks) that first saves a new user to private collection (only for admins), and then it creates a new row for public members collection with part of open the user data.
 

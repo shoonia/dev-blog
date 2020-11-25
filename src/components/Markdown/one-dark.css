@@ -1,6 +1,6 @@
 code[class*="code-"],
 pre[class*="code-"] {
-  color: #abb2bf;
+  color: rgba(255, 255, 255, 0.8);
   background: none;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: left;
@@ -16,7 +16,7 @@ pre[class*="code-"] {
 pre[class*="code-"] ::selection,
 code[class*="code-"] ::selection {
   text-shadow: none;
-  background: #9aa2b1;
+  background-color: #9aa2b1;
 }
 
 @media print {
@@ -42,11 +42,13 @@ code.code-bash {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #5c6370;
+  color: #708090;
+  text-shadow: 0 0 1px #000;
 }
 
 .token.punctuation {
   color: #abb2bf;
+  text-shadow: 0 0 1px #000;
 }
 
 .token.selector,
