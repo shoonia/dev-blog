@@ -117,10 +117,6 @@ export const findOneAndRemove = (collectionName) => {
 
   const proxy = new Proxy({}, {
     get(_, name) {
-      if (name === 'find') {
-        // TODO: ...
-      }
-
       //
       return (...args) => {
         //
@@ -150,10 +146,6 @@ export const findOneAndRemove = (collectionName) => {
 
   const proxy = new Proxy({}, {
     get(_, name) {
-      if (name === 'find') {
-        // TODO: ...
-      }
-
       return (...args) => {
         dataQuery = dataQuery[name](...args);
 
@@ -164,26 +156,6 @@ export const findOneAndRemove = (collectionName) => {
 
   return proxy;
 };
-```
-
-```js
-if (name === 'find') {
-  return (options) => {
-    //
-    return dataQuery.find(options).then((result) => {
-      //
-      const firstItem = result.items.shift();
-
-      //
-      if (typeof firstItem === 'undefined') {
-        return null;
-      }
-
-      //
-      return wixData.remove(collectionName, firstItem._id);
-    });
-  };
-}
 ```
 
 ```js
