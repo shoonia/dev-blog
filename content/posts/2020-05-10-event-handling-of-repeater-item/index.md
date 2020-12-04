@@ -3,6 +3,7 @@ publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
 date: '2020-05-10T12:00:00.000Z'
+modified: '2020-12-05T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
@@ -227,6 +228,60 @@ export function repeatedButton_click(event) {
 ```
 
 Now, we can reuse the selector hook with all Repeater in all site pages.
+
+## JSDoc
+
+*<time datetime="2020-12-05T12:00:00.000Z">Update (12.05.2020)</time>*
+
+The Corvid code editor supports [JSDocs](https://jsdoc.app/), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
+
+**Code snippet with JSDocs:**
+
+```js
+/**
+ * Create Repeated Item Scope
+ *
+ * @see {@link https://github.com/shoonia/repeater-scope}
+ *
+ * @typedef {{
+ *  _id: string;
+ *  [key: string]: any;
+ * }} ItemData;
+ *
+ * @typedef {{
+ *   $item: $w.$w;
+ *   itemData: ItemData;
+ *   index: number;
+ *   data: ItemData[];
+ * }} ScopeData;
+ *
+ * @param {() => ItemData[]} getData
+ * @returns {(event: $w.Event) => ScopeData}
+ */
+export const createScope = (getData) => (event) => {
+  const itemId = event.context.itemId;
+  const find = (i) => i._id === itemId;
+
+  return {
+    // @ts-ignore
+    $item: $w.at(event.context),
+
+    get itemData() {
+      return getData().find(find);
+    },
+
+    get index() {
+      return getData().findIndex(find);
+    },
+
+    get data() {
+      return getData();
+    },
+  };
+};
+```
+
+*Don't remove JSDocs in your code! In the building process, all comments will be removed automatically from the production bundle.*
 
 ## Resources
 
