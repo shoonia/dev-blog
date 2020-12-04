@@ -30,6 +30,7 @@ export const query = graphql`
         description
         path
         date
+        modified
         author
         lang
       }

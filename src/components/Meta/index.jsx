@@ -9,6 +9,7 @@ function Meta({ data }) {
     description,
     author,
     date,
+    modified,
     lang,
     image,
     url,
@@ -36,6 +37,10 @@ function Meta({ data }) {
     date && ({
       property: 'article:published_time',
       content: date,
+    }),
+    modified && ({
+      property: 'article:modified_time',
+      content: modified,
     }),
     {
       property: 'og:url',
@@ -73,6 +78,7 @@ function Meta({ data }) {
         description,
         url,
         datePublished: date,
+        dateModified: modified,
         author: {
           '@type': 'Person',
           name: author,
@@ -109,6 +115,7 @@ Meta.propTypes = {
     description: T.string.isRequired,
     author: T.string.isRequired,
     date: T.string,
+    modified: T.string,
     lang: T.string.isRequired,
     image: T.string,
     url: T.string.isRequired,

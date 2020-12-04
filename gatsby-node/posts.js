@@ -36,6 +36,7 @@ module.exports = async ({ actions, graphql }) => {
             description
             author
             date
+            modified
             lang
             image
             template
