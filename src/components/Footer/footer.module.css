@@ -15,3 +15,7 @@
   user-select: none;
   color: #1353a9;
 }
+
+.link::before {
+  display: none;
+}
