@@ -49,3 +49,9 @@ a:focus::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  a::before {
+    transition: none;
+  }
+}
