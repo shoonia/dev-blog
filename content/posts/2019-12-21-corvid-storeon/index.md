@@ -3,6 +3,7 @@ publish: true
 path: '/corvid-storeon'
 template: 'default'
 date: '2019-12-21T12:00:00.000Z'
+modified: '2020-12-08T12:00:00.000Z'
 lang: 'en'
 title: 'A tiny event-based state manager Storeon for Corvid.'
 description: 'In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager'
@@ -50,7 +51,6 @@ and create one more file for store initialization in the **public** folder.
 
 ```bash
 public
-│
 └── store.js
 ```
 

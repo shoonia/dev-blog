@@ -7,34 +7,63 @@ function HTML({
   postBodyComponents,
   body,
 }) {
+  const links = (
+    <>
+      <meta charSet="utf-8" />
+      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+      <link
+        rel="preconnect"
+        href="https://static.wixstatic.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preconnect"
+        href="https://static.parastorage.com"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="https://static.parastorage.com/unpkg/firacode@5.2.0/distr/woff2/FiraCode-Regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+    </>
+  );
+
+  const firacode = (
+    <link
+      rel="stylesheet"
+      href="https://static.parastorage.com/unpkg/firacode@5.2.0/distr/fira_code.css"
+      crossOrigin="anonymous"
+    />
+  );
+
+  // PRODUCTION
   if (process.env.NODE_ENV === 'production') {
     return (
       <html lang={htmlAttributes.lang}>
         <head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
-          <link
-            rel="preconnect"
-            href="https://static.wixstatic.com"
-            crossOrigin="anonymous"
-          />
+          {links}
           {headComponents}
         </head>
-        <body
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: body }}
-        />
+        <body>
+          <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
+          {firacode}
+        </body>
       </html>
     );
   }
 
-  // development
+  // DEVELOPMENT
   return (
     <html lang={htmlAttributes.lang}>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+        {links}
         {headComponents}
       </head>
       <body>
@@ -47,6 +76,7 @@ function HTML({
           <div id="gatsby-announcer" />
         </div>
         {postBodyComponents}
+        {firacode}
       </body>
     </html>
   );

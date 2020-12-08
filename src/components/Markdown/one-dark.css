@@ -2,7 +2,7 @@ code[class*="code-"],
 pre[class*="code-"] {
   color: rgba(255, 255, 255, 0.8);
   background: none;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -32,10 +32,6 @@ pre[class*="code-"] {
   overflow: auto;
   background-color: #282c34;
   -webkit-overflow-scrolling: touch;
-}
-
-code.code-bash {
-  line-height: 0.9em;
 }
 
 .token.comment,

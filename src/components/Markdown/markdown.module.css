@@ -65,7 +65,7 @@
 }
 
 .md code:not([class]) {
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-weight: 400;
   padding: 0 7px;
   color: #444;
@@ -74,6 +74,7 @@
 }
 
 .md kbd {
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   line-height: 1em;
   color: #444d56;
   vertical-align: middle;
