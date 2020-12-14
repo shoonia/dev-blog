@@ -12,6 +12,10 @@ image: ''
 
 # Corvid by Wix: Message channel to iFrame
 
+In this post, we consider how to build a scalable message channel for a large number of events between Corvid and iFrame.
+
+One of the powerful tools for customization Wix Sites it's a [HtmlComponent](https://www.wix.com/corvid/reference/$w/htmlcomponent) (iFrame). The Corvid provides the API to interactions with `HtmlComponent`, which are sending and listening messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening messages.
+
 **Corvid API to work with post messages**
 
 ```js
@@ -33,6 +37,22 @@ window.parent.postMessage({ data: 123 }, '*');
 // Listen messages from Corvid
 window.addEventListener('message', (event) => {
   console.log(event.data);
+});
+```
+
+Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough.
+
+**Example of communication between pages**
+
+```js
+// Sends event with data by one side
+channel.emit('@event/name', { data: 1 });
+
+/***/
+
+// got by another one
+channel.on('@event/name', ({ data }) => {
+  console.log(data);
 });
 ```
 
@@ -68,16 +88,11 @@ window.addEventListener('message', (event) => {
   src="https://static.wixstatic.com/media/e3b156_d4023e6aaee14a52b4957d8ff559ee1d~mv2.jpg"
   width="770"
   height="279"
+  alt="Example of HTML embed Component"
   loading="lazy"
   decoding="async"
   crossorigin="anonymous"
 />
-
-```html
-<script>
-  let count = 5;
-</script>
-```
 
 **iFrame Page**
 
@@ -96,7 +111,7 @@ window.addEventListener('message', (event) => {
   let count = 5;
 
   // Emitting the initial event
-  // Frame is ready
+  // iFrame is ready
   channel.emit('@ready', count);
 </script>
 ```
@@ -230,14 +245,16 @@ See how it works: **[Live Demo](https://shoonia.wixsite.com/blog/channel)**
 
 ## Source Code
 
-We implemented half of the channel API in the iFrame page `channel.emit()` and another one `channel.on()` in Corvid public file. Represented below are complete functions `createChannel()` for both sides Covid and iFrame.
+We implemented sending events from iFrame `channel.emit()` and listening events in the Corvid `channel.on()`. Below you can see full APIs for both sides of the channel.
+
+**Code Snippets**
 
 <details>
   <summary>
     <strong>iFrame Page Source</strong>
   </summary>
 
-The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browser your project:
+The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browsers to your project:
 
 [Support for the ECMAScript 2015 specification.](https://caniuse.com/?search=es6)
 
@@ -259,8 +276,6 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
   </button>
 
   <script>
-    /**************************************** */
-    /**************************************** */
     const createChannel = () => {
       const subs = [];
 
@@ -284,6 +299,7 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
         }
       };
     };
+
     /**************************************** */
     /**************************************** */
 
