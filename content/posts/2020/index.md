@@ -12,7 +12,15 @@ image: ''
 
 # Corvid by Wix: Message channel to iFrame
 
-In this post, we consider how to build a scalable message channel for a large number of events between Corvid and iFrame.
+*In this post, we consider how to build a scalable message channel for a large number of events between Corvid and iFrame.*
+
+<img
+  src="https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png"
+  width="920"
+  height="380"
+  alt="mountain chain"
+  crossorigin="anonymous"
+/>
 
 One of the powerful tools for customization Wix Sites it's a [HtmlComponent](https://www.wix.com/corvid/reference/$w/htmlcomponent) (iFrame). The Corvid provides the API to interactions with `HtmlComponent`, which are sending and listening messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening messages.
 
@@ -42,19 +50,48 @@ window.addEventListener('message', (event) => {
 
 Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough.
 
-**Example of communication between pages**
-
 ```js
-// Sends event with data by one side
+// Sends event with some payload
 channel.emit('@event/name', { data: 1 });
 
-/***/
-
-// got by another one
+// Listen the event
 channel.on('@event/name', ({ data }) => {
   console.log(data);
 });
 ```
+
+### Terminology
+
+For the avoiding of a mess, I will add the prefix `@iframe/*` for all event which will fire from the iFrame page. And all events which will fire from the main page will have the prefix `@main/*`.
+
+Let's see an example of how looks at the communication between the Main page and iFrame. When iFrame is load then it sends to the Main page the event <mark>ready</mark>. By on the <mark>ready</mark> event, the Main page start to fetch collection items, and when the collection items ready, the Main page to send items to iFrame
+
+**Example of communication between pages**
+
+```js
+/******************** iFrame ********************/
+
+// Send initial event to Main page
+channel.emit('@iframe/ready');
+
+// Get the collection items from the main page
+channel.on('@main/goods', (items) => {
+  // ...
+});
+
+/******************** Main Page ********************/
+
+// Get init event from iFrame
+channel.on('@iframe/ready', () => {
+  // Retrieve the items from a collection.
+  wixData.query('goods').find().then((data) => {
+    // Send the items to iFrame
+    channel.emit('@main/goods', data.items);
+  });
+});
+```
+
+How you can see above the Main page handle events from iFrame and vice versa.
 
 **iFrame Page**
 
@@ -69,12 +106,12 @@ channel.on('@event/name', ({ data }) => {
 
   <!-- Simple HTML page with two buttons -->
 
-  <button type="button" id="inc">
-    Increment
+  <button type="button" id="dec">
+    - Decrement
   </button>
 
-  <button type="button" id="dec">
-    Decrement
+  <button type="button" id="inc">
+    + Increment
   </button>
 
   <script>
@@ -85,7 +122,7 @@ channel.on('@event/name', ({ data }) => {
 ```
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_d4023e6aaee14a52b4957d8ff559ee1d~mv2.jpg"
+  src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
   width="770"
   height="279"
   alt="Example of HTML embed Component"
@@ -108,11 +145,9 @@ channel.on('@event/name', ({ data }) => {
 
   const channel = createChannel();
 
-  let count = 5;
-
-  // Emitting the initial event
+  // Emit the initial event
   // iFrame is ready
-  channel.emit('@ready', count);
+  channel.emit('@iframe/ready');
 </script>
 ```
 
@@ -123,14 +158,19 @@ channel.on('@event/name', ({ data }) => {
  * @param {string} id
  */
 export const createChannel = (id) => {
-  // Subscriptions list
-  const subs = [];
+  const events = {};
 
   return {
     on(type, cb) {
-      // Adds new event listener
-      subs.push({ type, cb });
-    }
+      // Create an empty subscription list
+      // for a new event type if it needs
+      if (!Array.isArray(events[type])) {
+        events[type] = [];
+      }
+
+      // Add the callback to subscription list
+      events[type].push(cb);
+    },
   };
 };
 ```
@@ -143,10 +183,10 @@ import { createChannel } from 'public/channel';
 // Initialization of channel
 const channel = createChannel('#html1');
 
-// Listens to the @ready event
-// which we send from iFrame with initial data of the "count"
-channel.on('@ready', (payload) => {
-  $w('#text1').text = String(payload);
+// Listen to the init event from iFrame
+channel.on('@iframe/ready', (payload) => {
+  // Shows the element
+  $w('#text1').show();
 });
 ```
 
@@ -168,28 +208,32 @@ $w.onReady(() => {
  * @param {string} id
  */
 export const createChannel = (id) => {
-  const subs = [];
+  const events = {};
 
   // @ts-ignore
   $w.onReady(() => {
-    $w(id).onMessage((event) => {
-      const data = event.data || {};
+    $w(id).onMessage((ev) => {
+      const data = ev.data || {};
+      const subs = events[data.type];
 
-      subs.forEach((s) => {
-        // If the current event type is equal to
-        // one of the "type" in the subscription list
-        // then we run a function callback with a "payload"
-        if (s.type === data.type) {
-          s.cb(data.payload);
-        }
-      });
+      // Check having is the subscription for this event type
+      if (Array.isArray(subs)) {
+        // Run all callback functions with payload
+        subs.forEach((cb) => {
+          cb(data.payload);
+        });
+      }
     });
   });
 
   return {
     on(type, cb) {
-      subs.push({ type, cb });
-    }
+      if (!Array.isArray(events[type])) {
+        events[type] = [];
+      }
+
+      events[type].push(cb);
+    },
   };
 };
 ```
@@ -211,17 +255,19 @@ export const createChannel = (id) => {
   const inc = document.querySelector('#inc');
   const dec = document.querySelector('#dec');
 
-  let count = 5;
+  let count = 0;
 
   inc.addEventListener('click', () => {
-    channel.emit('@count', ++count);
+    // Increment the count
+    channel.emit('@iframe/count', ++count);
   });
 
   dec.addEventListener('click', () => {
-    channel.emit('@count', --count);
+    // Decrement the count
+    channel.emit('@iframe/count', --count);
   });
 
-  channel.emit('@ready', count);
+  channel.emit('@iframe/ready');
 </script>
 ```
 
@@ -232,12 +278,12 @@ import { createChannel } from 'public/channel';
 
 const channel = createChannel('#html1');
 
-channel.on('@ready', (payload) => {
-  $w('#text1').text = String(payload);
+channel.on('@iframe/ready', () => {
+  $w('#text1').show();
 });
 
-channel.on('@count', (payload) => {
-  $w('#text1').text = String(payload);
+channel.on('@iframe/count', (count) => {
+  $w('#text1').text = String(count);
 });
 ```
 
@@ -267,31 +313,36 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
 </head>
 <body>
 
-  <button type="button" id="inc">
-    Increment
+  <button type="button" id="dec">
+    - Decrement
   </button>
 
-  <button type="button" id="dec">
-    Decrement
+  <button type="button" id="inc">
+    + Increment
   </button>
 
   <script>
     const createChannel = () => {
-      const subs = [];
+      const events = {};
 
-      window.addEventListener('message', (event) => {
-        const data = event.data || {};
+      window.addEventListener('message', (ev) => {
+        const data = ev.data || {};
+        const subs = events[data.type];
 
-        subs.forEach((s) => {
-          if (s.type === data.type) {
-            s.cb(data.payload);
-          }
-        });
+        if (Array.isArray(subs)) {
+          subs.forEach((cb) => {
+            cb(data.payload)
+          });
+        }
       });
 
       return {
         on(type, cb) {
-          subs.push({ type, cb });
+          if (!Array.isArray(events[type])) {
+            events[type] = [];
+          }
+
+          events[type].push(cb);
         },
 
         emit(type, payload) {
@@ -308,17 +359,17 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
     const inc = document.querySelector('#inc');
     const dec = document.querySelector('#dec');
 
-    let count = 5;
+    let count = 0;
 
     inc.addEventListener('click', () => {
-      channel.emit('@count', ++count);
+      channel.emit('@iframe/count', ++count);
     });
 
     dec.addEventListener('click', () => {
-      channel.emit('@count', --count);
+      channel.emit('@iframe/count', --count);
     });
 
-    channel.emit('@ready', count);
+    channel.emit('@iframe/ready');
   </script>
 </body>
 </html>
@@ -336,24 +387,29 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
  * @param {string} id
  */
 export const createChannel = (id) => {
-  const subs = [];
+  const events = {};
 
   // @ts-ignore
   $w.onReady(() => {
-    $w(id).onMessage((event) => {
-      const data = event.data || {};
+    $w(id).onMessage((ev) => {
+      const data = ev.data || {};
+      const subs = events[data.type];
 
-      subs.forEach((s) => {
-        if (s.type === data.type) {
-          s.cb(data.payload);
-        }
-      });
+      if (Array.isArray(subs)) {
+        subs.forEach((cb) => {
+          cb(data.payload);
+        });
+      }
     });
   });
 
   return {
     on(type, cb) {
-      subs.push({ type, cb });
+      if (!Array.isArray(events[type])) {
+        events[type] = [];
+      }
+
+      events[type].push(cb);
     },
 
     emit(type, payload) {
@@ -375,17 +431,55 @@ import { createChannel } from 'public/channel';
 
 const channel = createChannel('#html1');
 
-channel.on('@ready', (payload) => {
-  $w('#text1').text = String(payload);
+channel.on('@iframe/ready', () => {
+  $w('#text1').show();
 });
 
-channel.on('@count', (payload) => {
-  $w('#text1').text = String(payload);
+channel.on('@iframe/count', (count) => {
+  $w('#text1').text = String(count);
 });
 ```
 
 </details>
 
+## Improve
+
+```js
+// able to listen and emit the events inside own page
+emit(type, payload) {
+  $w(id).postMessage({ type, payload });
+
+  const subs = events[type];
+
+  // check the own subscribers
+  if (Array.isArray(subs)) {
+    subs.forEach((cb) => {
+      cb(payload);
+    });
+  }
+}
+```
+
+```js
+on(type, cb) {
+  if (!Array.isArray(events[type])) {
+    events[type] = [];
+  }
+
+  events[type].push(cb);
+
+  // The method of subscribing returns the function of unsubscribing
+  return () => {
+    events[type].filter((i) => i !== cb);
+  };
+},
+```
+
+```js
+const off = channel.on('@some/event', () => { });
+
+off();
+```
 
 ## Posts
 
