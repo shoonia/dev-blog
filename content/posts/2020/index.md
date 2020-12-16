@@ -60,11 +60,21 @@ channel.on('@event/name', ({ data }) => {
 });
 ```
 
-### Terminology
+## Terminology
 
-For the avoiding of a mess, I will add the prefix `@iframe/*` for all event which will fire from the iFrame page. And all events which will fire from the main page will have the prefix `@main/*`.
+To the avoiding of a mess, I'm going to use a convention of naming pages.
 
-Let's see an example of how looks at the communication between the Main page and iFrame. When iFrame is load then it sends to the Main page the event <mark>ready</mark>. By on the <mark>ready</mark> event, the Main page start to fetch collection items, and when the collection items ready, the Main page to send items to iFrame
+- The Main page - a page where we use the Corvid API.
+- The iFrame page - a page inside `HtmlComponent` where we use the `window` object.
+
+The events will have the prefix `@iframe/*` for all event which will fire from the iFrame page. And all events which will fire from the Main page will have the prefix `@main/*`.
+
+Let's see an example of how to look like the communication between the Main page and iFrame.
+
+- When iFrame is load then it sends to the Main page the event <mark>ready</mark>.
+- Main page gets the <mark>ready</mark> event and starts to fetch collection items.
+- When the collection items ready, Main page sends items to iFrame
+- iFrame gets the items
 
 **Example of communication between pages**
 
@@ -79,7 +89,7 @@ channel.on('@main/goods', (items) => {
   // ...
 });
 
-/******************** Main Page ********************/
+/******************** Main ********************/
 
 // Get init event from iFrame
 channel.on('@iframe/ready', () => {
@@ -91,7 +101,7 @@ channel.on('@iframe/ready', () => {
 });
 ```
 
-How you can see above the Main page handle events from iFrame and vice versa.
+How you can see above, the Main page listens to events from iFrame and vice versa the iFrame listens to events from the Main.
 
 **iFrame Page**
 
