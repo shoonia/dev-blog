@@ -5,24 +5,24 @@ template: 'default'
 date: '2020-12-12'
 lang: 'en'
 title: 'Corvid by Wix: Message channel to iFrame'
-description: 'pp'
+description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
 author: 'Alexander Zaytsev'
 image: ''
 ---
 
 # Corvid by Wix: Message channel to iFrame
 
-*In this post, we consider how to build a scalable message channel for a large number of events between Corvid and iFrame.*
+*In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.*
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png"
-  width="920"
-  height="380"
+  src="https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89f0~mv2.jpg"
+  width="729"
+  height="254"
   alt="mountain chain"
   crossorigin="anonymous"
 />
 
-One of the powerful tools for customization Wix Sites it's a [HtmlComponent](https://www.wix.com/corvid/reference/$w/htmlcomponent) (iFrame). The Corvid provides the API to interactions with `HtmlComponent`, which are sending and listening messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening messages.
+The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sending and listening messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening messages.
 
 **Corvid API to work with post messages**
 
@@ -48,7 +48,11 @@ window.addEventListener('message', (event) => {
 });
 ```
 
-Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough.
+Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough. But when we have the count of events type that starts to grow then we should use a good abstraction.
+
+I like the Event and Listener model. This model builds on two methods `.emit()` for fire the events and `.on()` for listening to the events.
+
+**Example of Event Emitter:**
 
 ```js
 // Sends event with some payload
@@ -60,16 +64,25 @@ channel.on('@event/name', ({ data }) => {
 });
 ```
 
+In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.
+
 ## Terminology
 
-To the avoiding of a mess, I'm going to use a convention of naming pages.
+To the avoiding of a mess, I'm going to use a convention of naming pages:
 
 - The Main page - a page where we use the Corvid API.
 - The iFrame page - a page inside `HtmlComponent` where we use the `window` object.
 
-The events will have the prefix `@iframe/*` for all event which will fire from the iFrame page. And all events which will fire from the Main page will have the prefix `@main/*`.
+Events:
+
+- All events which will fire from the iFrame will have the prefix `@iframe/*`.
+- And all events which will fire from the Main page will have the prefix `@main/*`.
+
+### API
 
 Let's see an example of how to look like the communication between the Main page and iFrame.
+
+Steps:
 
 - When iFrame is load then it sends to the Main page the event <mark>ready</mark>.
 - Main page gets the <mark>ready</mark> event and starts to fetch collection items.
@@ -79,7 +92,7 @@ Let's see an example of how to look like the communication between the Main page
 **Example of communication between pages**
 
 ```js
-/******************** iFrame ********************/
+/******************** iFrame Page ********************/
 
 // Send initial event to Main page
 channel.emit('@iframe/ready');
@@ -89,7 +102,9 @@ channel.on('@main/goods', (items) => {
   // ...
 });
 
-/******************** Main ********************/
+/******************** iFrame End ********************/
+
+/******************** Main Page ********************/
 
 // Get init event from iFrame
 channel.on('@iframe/ready', () => {
@@ -99,9 +114,44 @@ channel.on('@iframe/ready', () => {
     channel.emit('@main/goods', data.items);
   });
 });
+/******************** Main End ********************/
 ```
 
-How you can see above, the Main page listens to events from iFrame and vice versa the iFrame listens to events from the Main.
+How you can see above, the Main page listens to events from iFrame and vice versa the iFrame listens to events from the Main page.
+
+All event objects will build with two properties:
+
+- `type: string` *(required)* - the type of event
+- `payload?: any` *(optional)* - any data which we want to send
+
+**Example of event object**
+
+```json
+{
+  "type": "@event/name",
+  "payload": { "xyz": 123 }
+}
+```
+
+Both pages will have the same interface of the channel. The method `channel.emit()` accepts `"type"` as the first argument and `payload` as the second one. The method `channel.on()` accepts `"type"` as the first argument and callback function with `payload` as the second one.
+
+## Implementation of channel
+
+I will use a very simple example with the counter. On the Main page, we have a hidden Text component. On iFrame, we have two buttons, increment, and decrement.
+
+<img
+  src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
+  width="770"
+  height="279"
+  alt="Example of HTML embed Component"
+  loading="lazy"
+  decoding="async"
+  crossorigin="anonymous"
+/>
+
+### Add iFrame
+
+Here is a snippet of the iFrame page. Below we will write the code inside `<script>` tags
 
 **iFrame Page**
 
@@ -131,15 +181,7 @@ How you can see above, the Main page listens to events from iFrame and vice vers
 </html>
 ```
 
-<img
-  src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
-  width="770"
-  height="279"
-  alt="Example of HTML embed Component"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
+The channel will be created using the function `createChannel()`. When the iFrame page loaded, then we send the event `"@iframe/ready"`.
 
 **iFrame Page**
 
@@ -161,6 +203,30 @@ How you can see above, the Main page listens to events from iFrame and vice vers
 </script>
 ```
 
+Look like simple. We put on the type and payload into the object and sending it to the Main page.
+
+### Catch the event
+
+Let's move to the Main page, and implement the channel for listening to.
+
+The channel on Main page will create in the same way as we do it on iFrame. But we can have a few iFrames on the page or we can have a few pages on the site where we use the iFrames. That means the better place for the channel it's a public file.
+
+**Create a `channel.js` in public folder:**
+
+```file-tree
+public/
+└── channel.js
+```
+
+**Example of subscriptions container:**
+
+```js
+const events = {
+  "@event/one": [ () => {} ],
+  "@event/two": [ () => {} ],
+};
+```
+
 **public/channel.js**
 
 ```js
@@ -168,13 +234,14 @@ How you can see above, the Main page listens to events from iFrame and vice vers
  * @param {string} id
  */
 export const createChannel = (id) => {
+  // Container to hold the events subscription
   const events = {};
 
   return {
     on(type, cb) {
-      // Create an empty subscription list
-      // for a new event type if it needs
+      // Check, is the event already have a list for this type of event
       if (!Array.isArray(events[type])) {
+        // Create an empty subscription list for a new event type
         events[type] = [];
       }
 
@@ -191,11 +258,12 @@ export const createChannel = (id) => {
 import { createChannel } from 'public/channel';
 
 // Initialization of channel
+// Pass the ID of HtmlComponent
 const channel = createChannel('#html1');
 
 // Listen to the init event from iFrame
-channel.on('@iframe/ready', (payload) => {
-  // Shows the element
+channel.on('@iframe/ready', () => {
+  // Shows the Text element
   $w('#text1').show();
 });
 ```
@@ -455,10 +523,15 @@ channel.on('@iframe/count', (count) => {
 ## Improve
 
 ```js
+emitAll(type, payload) {
+  $w(id1).postMessage({ type, payload });
+  $w(id2).postMessage({ type, payload });
+},
+```
+
+```js
 // able to listen and emit the events inside own page
 emit(type, payload) {
-  $w(id).postMessage({ type, payload });
-
   const subs = events[type];
 
   // check the own subscribers
@@ -467,6 +540,8 @@ emit(type, payload) {
       cb(payload);
     });
   }
+
+  $w(id).postMessage({ type, payload });
 }
 ```
 
