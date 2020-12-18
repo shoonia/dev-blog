@@ -240,8 +240,7 @@ The Corvid code editor supports [JSDocs](https://jsdoc.app/), it's a markup lang
 ```js
 /**
  * Create Repeated Item Scope
- *
- * @see {@link https://github.com/shoonia/repeater-scope}
+ * https://github.com/shoonia/repeater-scope
  *
  * @typedef {{
  *  _id: string;
