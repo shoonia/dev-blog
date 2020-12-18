@@ -22,7 +22,7 @@ image: ''
   crossorigin="anonymous"
 />
 
-The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sending and listening messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening messages.
+The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object window that provides the same functionality of sending and listening events.
 
 **Corvid API to work with post messages**
 
@@ -48,7 +48,7 @@ window.addEventListener('message', (event) => {
 });
 ```
 
-Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough. But when we have the count of events type that starts to grow then we should use a good abstraction.
+Using these simple APIs we can share data/events between our pages. For most cases, when we have a few events that enough. But when we have the count of events type that starts to grow will be better to use the good abstraction.
 
 I like the Event and Listener model. This model builds on two methods `.emit()` for fire the events and `.on()` for listening to the events.
 
@@ -149,6 +149,8 @@ I will use a very simple example with the counter. On the Main page, we have a h
   crossorigin="anonymous"
 />
 
+By click on buttons, we send the events to the Main page and showing the count result in the Text component.
+
 ### Add iFrame
 
 Here is a snippet of the iFrame page. Below we will write the code inside `<script>` tags
@@ -203,7 +205,7 @@ The channel will be created using the function `createChannel()`. When the iFram
 </script>
 ```
 
-Look like simple. We put on the type and payload into the object and sending it to the Main page.
+Look like simple. We put on the type and payload into the object and sending it to the Main page. In the next step, we catch the sent event with Corvid API.
 
 ### Catch the event
 
@@ -213,14 +215,14 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-```file-tree
+```bash
 public/
 └── channel.js
 ```
 
-Method `channel.on()` accepts the subscription type and a callback function. We need to save callbacks in the associate group and run the callback functions whenever the subscribe event is coming.
+Method `channel.on()` accepts the event type and a callback function. We need to save callbacks in the associate group and run the callback functions whenever the subscribe event is coming.
 
-Saving the callback functions in an array allows us to subscribe a few callbacks to one event type.
+Saving the callback functions in an array allows us to subscribe to a few callbacks by one event type.
 
 **Example of subscriptions container:**
 
@@ -231,7 +233,7 @@ const events = {
 };
 ```
 
-So, above we speculated that we can have a few iFames.
+So, above we speculated that we can have a few iFames. For this case, I propose passing the component ID as an argument to the create function.
 
 **public/channel.js**
 
@@ -245,7 +247,7 @@ export const createChannel = (id) => {
 
   return {
     on(type, cb) {
-      // Check, are the events already have a list for this type of event
+      // Check, is already exist a list for this type of event
       if (!Array.isArray(events[type])) {
         // Create an empty subscription list for a new event type
         events[type] = [];
@@ -258,30 +260,14 @@ export const createChannel = (id) => {
 };
 ```
 
-Let's take a look at how we can create a channel.
+Greate, we save the callback to the array, and in the next step, we add the handler for post message.
 
-**Home Page**
-
-```js
-import { createChannel } from 'public/channel';
-
-// Initialization of channel
-// Pass the ID of HtmlComponent
-const channel = createChannel('#html1');
-
-// Listen to the init event from iFrame
-channel.on('@iframe/ready', () => {
-  // Shows the Text element
-  $w('#text1').show();
-});
-```
-
-We must wait until the page is ready.
+On the Main page, we must wait until the page is ready for interaction. I guess you know this feature of the Corvid, it's a method [`$w.onReady()`](https://www.wix.com/corvid/reference/$w/onready).
 
 **Example of a dynamic event handler**
 
 ```js
-// Wait for the page is ready
+// Wait when all the page elements have finished loading.
 $w.onReady(() => {
   // The page is ready for setting event handler
   $w('#html1').onMessage((event) => {
@@ -289,6 +275,8 @@ $w.onReady(() => {
   });
 });
 ```
+
+Here I see two ways. The first way we create the channel inside `$w.onReady()` method or use `$w.onReady()` inside the channel creator function. In my point of view, the second way is better when we use `$w.onReady()` inside the creator function.
 
 **public/channel.js**
 
@@ -305,7 +293,7 @@ export const createChannel = (id) => {
       const data = ev.data || {};
       const subs = events[data.type];
 
-      // Check having is the subscription for this event type
+      // Check, is exist subscriptions for this event type
       if (Array.isArray(subs)) {
         // Run all callback functions with payload
         subs.forEach((cb) => {
@@ -325,6 +313,26 @@ export const createChannel = (id) => {
     },
   };
 };
+```
+
+Let's unpack this. We have the `events` container that holds the callbacks. We wait when the page is ready and then start listening to `onMessage()` by ID. On receiving the post message we get `data` from the `event`, where we have our interface with `type` and `payload`. Then we check, is there existing subscriptions for this event, and if it is, we run callbacks.
+
+Let's take a look at how we can create a channel.
+
+**Home Page**
+
+```js
+import { createChannel } from 'public/channel';
+
+// Initialization of channel
+// Pass the ID of HtmlComponent
+const channel = createChannel('#html1');
+
+// Listen to the init event from iFrame
+channel.on('@iframe/ready', () => {
+  // Shows the Text element
+  $w('#text1').show();
+});
 ```
 
 **iFrame Page**
