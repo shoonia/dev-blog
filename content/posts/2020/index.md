@@ -218,6 +218,10 @@ public/
 └── channel.js
 ```
 
+Method `channel.on()` accepts the subscription type and a callback function. We need to save callbacks in the associate group and run the callback functions whenever the subscribe event is coming.
+
+Saving the callback functions in an array allows us to subscribe a few callbacks to one event type.
+
 **Example of subscriptions container:**
 
 ```js
@@ -226,6 +230,8 @@ const events = {
   "@event/two": [ () => {} ],
 };
 ```
+
+So, above we speculated that we can have a few iFames.
 
 **public/channel.js**
 
@@ -239,7 +245,7 @@ export const createChannel = (id) => {
 
   return {
     on(type, cb) {
-      // Check, is the event already have a list for this type of event
+      // Check, are the events already have a list for this type of event
       if (!Array.isArray(events[type])) {
         // Create an empty subscription list for a new event type
         events[type] = [];
@@ -251,6 +257,8 @@ export const createChannel = (id) => {
   };
 };
 ```
+
+Let's take a look at how we can create a channel.
 
 **Home Page**
 
@@ -268,11 +276,14 @@ channel.on('@iframe/ready', () => {
 });
 ```
 
+We must wait until the page is ready.
+
 **Example of a dynamic event handler**
 
 ```js
+// Wait for the page is ready
 $w.onReady(() => {
-  // The page on ready for setting event handlers
+  // The page is ready for setting event handler
   $w('#html1').onMessage((event) => {
     // Handling events
   });
