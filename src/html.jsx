@@ -18,11 +18,6 @@ function HTML({
         crossOrigin="anonymous"
       />
       <link
-        rel="preconnect"
-        href="https://static.parastorage.com"
-        crossOrigin="anonymous"
-      />
-      <link
         rel="preload"
         href="https://static.parastorage.com/unpkg/firacode@5.2.0/distr/woff2/FiraCode-Regular.woff2"
         as="font"

@@ -1,16 +1,22 @@
-const htmlMinifier = require('html-minifier');
+const { minify } = require('html-minifier');
 
 const htmlInifierOptions = {
-  removeComments: true,
   collapseWhitespace: true,
+  keepClosingSlash: true,
+  removeComments: true,
   removeRedundantAttributes: true,
-  useShortDoctype: true,
   removeEmptyAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  keepClosingSlash: true,
-  minifyURLs: true,
+  removeEmptyElements: true,
 };
 
 module.exports = {
-  minifyHTML: (html) => htmlMinifier.minify(html, htmlInifierOptions),
+  minifyHTML: (html) => {
+    const mini = minify(html, htmlInifierOptions);
+
+    return mini
+      .replace(/ style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"/, '')
+      .replace(/ class="gatsby-highlight"/g, '')
+      .replace(/\bclass="token ([a-z]+)"/g, 'class="$1"');
+  },
 };
