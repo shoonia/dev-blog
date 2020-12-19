@@ -7,7 +7,7 @@ lang: 'en'
 title: 'Corvid by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
 author: 'Alexander Zaytsev'
-image: ''
+image: 'https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89f0~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
 ---
 
 # Corvid by Wix: Message channel to iFrame
@@ -18,7 +18,7 @@ image: ''
   src="https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89f0~mv2.jpg"
   width="729"
   height="254"
-  alt="mountain chain"
+  alt="radio astronomy"
   crossorigin="anonymous"
 />
 
@@ -539,7 +539,7 @@ channel.on('@iframe/count', (count) => {
 
 </details>
 
-## Improve
+## Improvements
 
 ```js
 emitAll(type, payload) {
