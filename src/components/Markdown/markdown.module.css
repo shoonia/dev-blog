@@ -117,13 +117,16 @@
   object-fit: cover;
   object-position: 50% 50%;
   background-color: #eee;
-  content-visibility: auto;
 }
 
 .md p img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.md img[decoding="async"] {
+  content-visibility: auto;
 }
 
 .md strong {
