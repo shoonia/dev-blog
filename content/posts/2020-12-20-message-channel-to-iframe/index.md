@@ -622,6 +622,12 @@ on(type, cb) {
 
 🎉 Thank you for reading. I hope this post will be useful for your projects! 🎉
 
+## Resources
+
+- [Demo](https://shoonia.wixsite.com/blog/channel)
+- [Wix Editor Elements - `HtmlComponent`](https://www.wix.com/corvid/reference/$w/htmlcomponent)
+- [Corvid: Working with the HTML iframe Element](https://support.wix.com/en/article/corvid-working-with-the-html-iframe-element)
+
 ## Posts
 
 - [Side effect wix-data saving methods](/side-effect-data-saving-methods/)
