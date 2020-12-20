@@ -3,6 +3,7 @@ publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
+modified: '2020-12-06T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Imitating hover event on repeater container'
 description: "Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
@@ -127,7 +128,7 @@ We used the direct link to the one-pixel image. The size of this image is only 7
 
 [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), it's a protocol that allows embedded small files inline in documents as a string. It means we can convert a one-pixel PNG image to string and pass it to `background.src`.
 
-We can create needed images by [1x1 PNG generator](https://shoonia.github.io/1x1/).
+We can create needed images by [1x1 PNG generator #cce4f7ff](https://shoonia.github.io/1x1/#cce4f7ff).
 
 ```js
 // one-pixel image encoded to base64

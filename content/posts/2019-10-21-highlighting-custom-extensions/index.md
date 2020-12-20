@@ -3,6 +3,7 @@ publish: true
 path: '/highlighting-custom-extensions'
 template: 'default'
 date: '2019-10-21T12:00:00.000Z'
+modified: '2020-12-08T12:00:00.000Z'
 lang: 'ru'
 title: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
 description: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
@@ -26,17 +27,11 @@ image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
 
 ```bash
 my-app
-│
 ├── .vscode
-│   │
 │   └── settings.json
-│
 ├── src
-│   │
 │   └── index.js
-│
 ├── .parcelrc
-│
 └── .postcssrc
 ```
 
@@ -81,7 +76,7 @@ my-app
 
 ### Выполним пару команд
 
-- В VS Code набираем комбинацию клавиш для Window, Linux: <kbd>Ctrl+Shift+P</kbd> для MacOS: <kbd>⇧⌘P</kbd>.
+- В VS Code набираем комбинацию клавиш для Window, Linux: <kbd>Ctrl + Shift + P</kbd> для MacOS: <kbd>⇧ ⌘ P</kbd>.
 - Вводим в поиске `Preferences: Open Settings (JSON)`.
 - Добавляем в JSON объект знакомый нам код:
 
