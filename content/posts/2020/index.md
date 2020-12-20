@@ -22,7 +22,7 @@ image: 'https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89
   crossorigin="anonymous"
 />
 
-The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object window that provides the same functionality of sending and listening events.
+The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening events.
 
 **Corvid API to work with post messages**
 
@@ -137,7 +137,9 @@ Both pages will have the same interface of the channel. The method `channel.emit
 
 ## Implementation of channel
 
-I will use a very simple example with the counter. On the Main page, we have a hidden Text component. On iFrame, we have two buttons, increment, and decrement.
+I will use a very simple example with the counter. On the Main page, we have a hidden Text component. On iFrame, we have two buttons for increment and decrement.
+
+**Example of UI:**
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
@@ -205,7 +207,7 @@ The channel will be created using the function `createChannel()`. When the iFram
 </script>
 ```
 
-Look like simple. We put on the type and payload into the object and sending it to the Main page. In the next step, we catch the sent event with Corvid API.
+Look like simple. We put on the `type` and `payload` into the object and sending it to the Main page. In the next step, we catch the sent event with Corvid API.
 
 ### Catch the event
 
@@ -233,7 +235,7 @@ const events = {
 };
 ```
 
-So, above we speculated that we can have a few iFames. For this case, I propose passing the component ID as an argument to the create function.
+So, above we speculated that we can have a few iFames. For this case, I propose passing the iFrame ID as an argument to the creator function.
 
 **public/channel.js**
 
@@ -276,7 +278,7 @@ $w.onReady(() => {
 });
 ```
 
-Here I see two ways. The first way we create the channel inside `$w.onReady()` method or use `$w.onReady()` inside the channel creator function. In my point of view, the second way is better when we use `$w.onReady()` inside the creator function.
+Here I see two ways. The first way we create the channel inside `$w.onReady()` or use `$w.onReady()` inside the channel creator function. In my point of view, the second way is better when we use `$w.onReady()` inside the creator function.
 
 **public/channel.js**
 
@@ -315,9 +317,9 @@ export const createChannel = (id) => {
 };
 ```
 
-Let's unpack this. We have the `events` container that holds the callbacks. We wait when the page is ready and then start listening to `onMessage()` by ID. On receiving the post message we get `data` from the `event`, where we have our interface with `type` and `payload`. Then we check, is there existing subscriptions for this event, and if it is, we run callbacks.
+Let's unpack this. We have the `events` container that holds the callbacks. We wait when the page is ready and then start listening to `onMessage()` by iFrame ID. When the post message is received we get `data` from the `event`, where we have our interface with `type` and `payload`. Then we check, is there existing subscriptions for this event, and if it is, we pass `payload` to each callback.
 
-Let's take a look at how we can create a channel.
+Let's take a look at how we can create a channel. The iFrame sends the event `"@iframe/ready"` we can start to listen to it.
 
 **Home Page**
 
@@ -335,6 +337,10 @@ channel.on('@iframe/ready', () => {
 });
 ```
 
+So, by now, we have a channel between pages. The last one in this example we add the event `"@iframe/count"` to the Main page.
+
+Just add two event handlers to iFrame for increment and decrement counter.
+
 **iFrame Page**
 
 ```html
@@ -349,9 +355,11 @@ channel.on('@iframe/ready', () => {
 
   const channel = createChannel();
 
+  // Select the buttons by ID
   const inc = document.querySelector('#inc');
   const dec = document.querySelector('#dec');
 
+  // Initial state
   let count = 0;
 
   inc.addEventListener('click', () => {
@@ -368,6 +376,8 @@ channel.on('@iframe/ready', () => {
 </script>
 ```
 
+Listen to increment and decrement events
+
 **Home Page**
 
 ```js
@@ -379,6 +389,7 @@ channel.on('@iframe/ready', () => {
   $w('#text1').show();
 });
 
+// Listens to the event and update counter
 channel.on('@iframe/count', (count) => {
   $w('#text1').text = String(count);
 });
@@ -388,7 +399,9 @@ See how it works: **[Live Demo](https://shoonia.wixsite.com/blog/channel)**
 
 ## Source Code
 
-We implemented sending events from iFrame `channel.emit()` and listening events in the Corvid `channel.on()`. Below you can see full APIs for both sides of the channel.
+We implemented sending events from iFrame with `channel.emit()` and listening events in the Corvid with `channel.on()`.
+
+Below you can see the full implementation of the channel for both pages.
 
 **Code Snippets**
 
@@ -541,15 +554,14 @@ channel.on('@iframe/count', (count) => {
 
 ## Improvements
 
-```js
-emitAll(type, payload) {
-  $w(id1).postMessage({ type, payload });
-  $w(id2).postMessage({ type, payload });
-},
-```
+It's a good idea to use the abstraction instead of directly API. The abstraction able to give to change the implementation of the channel without changing behave of using it. Let's consider a few examples of how we can improve this approach.
+
+### Sending message within one page.
+
+For example, we have some events that we need to send to iFrame and doing something within the Main page. Here we can add support to the channel of listening to its own subscribers.
 
 ```js
-// able to listen and emit the events inside own page
+// Support of listening to and emit the events within one page
 emit(type, payload) {
   const subs = events[type];
 
@@ -564,6 +576,35 @@ emit(type, payload) {
 }
 ```
 
+### A few iFrames
+
+Sending a message for a few iFrames. Here we can add a new method `channel.emitAll()` that allows sending for a few pages.
+
+```js
+emitAll(type, payload) {
+  $w(id1).postMessage({ type, payload });
+  $w(id2).postMessage({ type, payload });
+},
+```
+
+### Unsubscribe
+
+For example, we want to unsubscribe from some listener. We may do it like this:
+
+```js
+// Returns the function that unsubscribes of this listener
+const off = channel.on('@some/event', () => {
+  // ...
+});
+
+channel.on('@unsubscribe', () => {
+  off();
+});
+
+```
+
+Realisation:
+
 ```js
 on(type, cb) {
   if (!Array.isArray(events[type])) {
@@ -572,18 +613,14 @@ on(type, cb) {
 
   events[type].push(cb);
 
-  // The method of subscribing returns the function of unsubscribing
+  // Returns the function of unsubscribing
   return () => {
     events[type].filter((i) => i !== cb);
   };
 },
 ```
 
-```js
-const off = channel.on('@some/event', () => { });
-
-off();
-```
+🎉 Thank you for reading. I hope this post will be useful for your projects! 🎉
 
 ## Posts
 
