@@ -34,6 +34,10 @@ pre[class*="code-"] {
   -webkit-overflow-scrolling: touch;
 }
 
+.parameter {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .comment,
 .prolog,
 .doctype,
@@ -43,13 +47,13 @@ pre[class*="code-"] {
 }
 
 .punctuation {
-  color: #abb2bf;
+  color: #a9b2c0;
   text-shadow: 0 0 1px #000;
 }
 
 .selector,
 .tag {
-  color: #e06c75;
+  color: #f16372;
 }
 
 .property,
@@ -59,7 +63,7 @@ pre[class*="code-"] {
 .symbol,
 .attr-name,
 .deleted {
-  color: #d19a66;
+  color: #db975c;
 }
 
 .string,
@@ -67,7 +71,7 @@ pre[class*="code-"] {
 .attr-value,
 .builtin,
 .inserted {
-  color: #98c379;
+  color: #8cc570;
 }
 
 .operator,
@@ -75,22 +79,23 @@ pre[class*="code-"] {
 .url,
 .code-css .string,
 .style .string {
-  color: #56b6c2;
+  color: #19b9c4;
 }
 
 .atrule,
 .keyword {
-  color: #c678dd;
+  color: #d373e3;
 }
 
-.function {
-  color: #61afef;
+.function,
+.function-variable {
+  color: #40b1f5;
 }
 
 .regex,
 .important,
 .variable {
-  color: #c678dd;
+  color: #d373e3;
 }
 
 .important,

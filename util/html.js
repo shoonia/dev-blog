@@ -17,6 +17,6 @@ module.exports = {
     return mini
       .replace(/ style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"/, '')
       .replace(/ class="gatsby-highlight"/g, '')
-      .replace(/\bclass="token ([a-z]+)"/g, 'class="$1"');
+      .replace(/\bclass="token ([a-z- ]+)"/g, 'class="$1"');
   },
 };
