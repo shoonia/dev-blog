@@ -2,7 +2,7 @@
 publish: true
 path: '/message-channel-to-iframe'
 template: 'default'
-date: '2020-12-12'
+date: '2020-12-20T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
