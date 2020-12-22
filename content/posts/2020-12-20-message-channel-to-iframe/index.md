@@ -615,7 +615,7 @@ on(type, cb) {
 
   // Returns the function of unsubscribing
   return () => {
-    events[type].filter((i) => i !== cb);
+    events[type] = events[type].filter((i) => i !== cb);
   };
 },
 ```
