@@ -3,6 +3,7 @@ publish: true
 path: '/message-channel-to-iframe'
 template: 'default'
 date: '2020-12-20T12:00:00.000Z'
+modified: '2020-12-23T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
@@ -92,7 +93,7 @@ Steps:
 **Example of communication between pages**
 
 ```js
-/******************** iFrame Page ********************/
+/************* iFrame Page **************/
 
 // Send initial event to Main page
 channel.emit('@iframe/ready');
@@ -102,9 +103,10 @@ channel.on('@main/goods', (items) => {
   // ...
 });
 
-/******************** iFrame End ********************/
-
-/******************** Main Page ********************/
+/**************************************
+            iFrame End.
+             Main Page:
+ *************************************/
 
 // Get init event from iFrame
 channel.on('@iframe/ready', () => {
@@ -114,7 +116,8 @@ channel.on('@iframe/ready', () => {
     channel.emit('@main/goods', data.items);
   });
 });
-/******************** Main End ********************/
+
+/************* Main End **************/
 ```
 
 How you can see above, the Main page listens to events from iFrame and vice versa the iFrame listens to events from the Main page.
@@ -410,7 +413,7 @@ Below you can see the full implementation of the channel for both pages.
     <strong>iFrame Page Source</strong>
   </summary>
 
-The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browsers to your project:
+The code example used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browsers to your project:
 
 [Support for the ECMAScript 2015 specification.](https://caniuse.com/?search=es6)
 
@@ -461,8 +464,9 @@ The example code used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wik
       };
     };
 
-    /**************************************** */
-    /**************************************** */
+    /****************************************
+                    Use:
+    *****************************************/
 
     const channel = createChannel();
 
