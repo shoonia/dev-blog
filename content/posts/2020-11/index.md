@@ -25,14 +25,18 @@ const proxy = new Proxy({}, {
   },
 });
 
-console.log(proxy.any);
+console.log(proxy.Any);
 console.log(proxy.properties);
+console.log(proxy.names);
 console.log(proxy["🤘"]);
 
-// any
+// Any
 // properties
+// names
 // 🤘
 ```
+
+**Proxy chain**
 
 ```js
 const proxy = new Proxy({}, {
@@ -43,9 +47,9 @@ const proxy = new Proxy({}, {
   },
 });
 
-proxy.wow.it.is.amazing;
+proxy.Wow.it.is.amazing;
 
-// wow
+// Wow
 // it
 // is
 // amazing
@@ -59,10 +63,12 @@ const proxy = new Proxy({}, {
   },
 });
 
-proxy.we_also_can_use_a_functions("🙃");
+proxy['We also can use a functions']("🙃");
 
-// we_also_can_use_a_functions 🙃
+// We also can use a functions 🙃
 ```
+
+**Proxy chain with functions**
 
 ```js
 const proxy = new Proxy({}, {
@@ -87,20 +93,22 @@ proxy.chain("😳").functions("😱").with("🤯").attributes("🤪");
 - [Proxy - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 - [Proxy - JavaScript.info](https://javascript.info/proxy#proxy)
 
+## Data helper
+
 ```js
 //
 import wixData from 'wix-data';
 
 //
-export const findOneAndRemove = (collectionName) => { };
+export const findOneAndRemove = (collectionId) => { };
 ```
 
 ```js
 import wixData from 'wix-data';
 
-export const findOneAndRemove = (collectionName) => {
+export const findOneAndRemove = (collectionId) => {
   //
-  let dataQuery = wixData.query(collectionName);
+  let dataQuery = wixData.query(collectionId);
 
   const proxy = new Proxy({}, {
     get(_, name) { },
@@ -112,8 +120,8 @@ export const findOneAndRemove = (collectionName) => {
 ```
 
 ```js
-export const findOneAndRemove = (collectionName) => {
-  let dataQuery = wixData.query(collectionName);
+export const findOneAndRemove = (collectionId) => {
+  let dataQuery = wixData.query(collectionId);
 
   const proxy = new Proxy({}, {
     get(_, name) {
@@ -138,11 +146,11 @@ import wixData from 'wix-data';
 /**
  * Finds to remove an item from a collection
  *
- * @param {string} collectionName
+ * @param {string} collectionId
  * @returns {wix_data.WixDataQuery}
  */
-export const findOneAndRemove = (collectionName) => {
-  let dataQuery = wixData.query(collectionName);
+export const findOneAndRemove = (collectionId) => {
+  let dataQuery = wixData.query(collectionId);
 
   const proxy = new Proxy({}, {
     get(_, name) {
@@ -164,11 +172,11 @@ import wixData from 'wix-data';
 /**
  * Finds to remove an item from a collection
  *
- * @param {string} collectionName
+ * @param {string} collectionId
  * @returns {wix_data.WixDataQuery}
  */
-export const findOneAndRemove = (collectionName) => {
-  let dataQuery = wixData.query(collectionName);
+export const findOneAndRemove = (collectionId) => {
+  let dataQuery = wixData.query(collectionId);
 
   const proxy = new Proxy({}, {
     get(_, name) {
@@ -181,7 +189,7 @@ export const findOneAndRemove = (collectionName) => {
               return null;
             }
 
-            return wixData.remove(collectionName, firstItem._id);
+            return wixData.remove(collectionId, firstItem._id);
           });
         };
       }
