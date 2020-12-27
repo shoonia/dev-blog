@@ -3,12 +3,12 @@ publish: true
 path: '/highlighting-custom-extensions'
 template: 'default'
 date: '2019-10-21T12:00:00.000Z'
-modified: '2020-12-08T12:00:00.000Z'
+modified: '2020-12-27T12:00:00.000Z'
 lang: 'ru'
 title: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
 description: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
 author: 'Alexander Zaytsev'
-image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
+image: 'https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png/v2/fill/w_300,h_300/i.jpg'
 ---
 
 # Подсветка кастомных файлов/расширений в редакторе VS Code
@@ -25,7 +25,7 @@ image: 'https://miro.medium.com/max/764/1*HqWGL8OipT8z9jfAN3jTxQ.png'
 
 Мы можем поискать и установить новое расширение для VS Code, или можем подсказать едитору что внутри `.parcelrc` файла лежит именно JSON код. Для этого в корне проекта создадим новую папку `.vscode` c файлом `settings.json` внутри.
 
-```bash
+```tree
 my-app
 ├── .vscode
 │   └── settings.json

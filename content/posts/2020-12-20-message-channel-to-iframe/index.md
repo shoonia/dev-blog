@@ -3,7 +3,7 @@ publish: true
 path: '/message-channel-to-iframe'
 template: 'default'
 date: '2020-12-20T12:00:00.000Z'
-modified: '2020-12-23T12:00:00.000Z'
+modified: '2020-12-27T12:00:00.000Z'
 lang: 'en'
 title: 'Corvid by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
@@ -142,17 +142,20 @@ Both pages will have the same interface of the channel. The method `channel.emit
 
 I will use a very simple example with the counter. On the Main page, we have a hidden Text component. On iFrame, we have two buttons for increment and decrement.
 
-**Example of UI:**
-
-<img
-  src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
-  width="770"
-  height="279"
-  alt="Example of HTML embed Component"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
+<figure>
+ <figcaption>
+  <strong>Example of UI:</strong>
+ </figcaption>
+  <img
+    src="https://static.wixstatic.com/media/e3b156_fc6d952923c043a59a8c85903550c227~mv2.jpg"
+    width="770"
+    height="279"
+    alt="Example of HTML embed Component"
+    loading="lazy"
+    decoding="async"
+    crossorigin="anonymous"
+  />
+</figure>
 
 By click on buttons, we send the events to the Main page and showing the count result in the Text component.
 
@@ -220,7 +223,7 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-```bash
+```tree
 public/
 └── channel.js
 ```
@@ -528,7 +531,7 @@ export const createChannel = (id) => {
 
     emit(type, payload) {
       $w(id).postMessage({ type, payload });
-    }
+    },
   };
 };
 ```

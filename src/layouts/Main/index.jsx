@@ -7,7 +7,10 @@ import s from './main.module.css';
 
 function Main({ nodes, meta }) {
   const list = nodes.map((node) => (
-    <li key={node.id}>
+    <li
+      key={node.id}
+      className={s.item}
+    >
       <MenuItem data={node.frontmatter} />
     </li>
   ));

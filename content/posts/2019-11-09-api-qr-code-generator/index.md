@@ -3,11 +3,12 @@ publish: true
 path: '/api-qr-code-generator'
 template: 'default'
 date: '2019-11-09T12:00:00.000Z'
+modified: '2020-12-27T12:00:00.000Z'
 lang: 'uk'
 title: 'Створюємо API для генерації QR Code зображень'
 description: 'В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.'
 author: 'Олександр Зайцев'
-image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v1/fill/w_500,h_500/q.png'
+image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b98484~mv2.jpg/v2/fill/w_300,h_300/q.jpg'
 ---
 
 # Створюємо API для генерації QR Code зображень
@@ -15,7 +16,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11
 *В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.*
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_a11ed4e3d577493585155cdbce9a11f0~mv2.jpg/v2/fill/w_700,h_300/q.jpg"
+  src="https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b98484~mv2.jpg/v2/fill/w_800,h_330/q.jpg"
   width="700"
   height="300"
   alt="QR-код арт"
