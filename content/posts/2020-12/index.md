@@ -23,16 +23,9 @@ image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d
 
 ## Motivation
 
-One of my lovely feature in the Corvid sites it's the [Web Modules](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. Each call of **Web Modules** function will do a new request to the backend.
+One of my lovely feature in the Corvid sites it's the [Web Modules](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
 
-How does it work?
-
-We just add a new file with a special extension `.jsw` to the backend section. This extension needed to mark this file as a Web Module.
-
-```tree
-backand
-└── aModule.jsw
-```
+In this article, we create a caching mechanism for backend functions. If your `jsw` function always returns the same response then we don't need to execute HTTP requests for each call. We can cache the first response and reuse it for the next calls.
 
 <figure>
   <figcaption>
@@ -49,7 +42,11 @@ backand
   />
 </figure>
 
-Inside the `.jsw` file, we have to export a function statement. Be attention, it must be a [function statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) (Traditional Function) or async function statement (Web Modules doesn't support [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) or any other type of export).
+## Example
+
+Start with a basic example.
+
+This demonstration function depends on two arguments.
 
 **backend/aModule.jsw**
 
@@ -61,10 +58,6 @@ export function multiply(factor1, factor2) {
 }
 ```
 
-That's all! The Corvid automatically creates the API entry point to your backend function.
-
-On the client code, you export the `.jsw` as a regular module. When we call a `.jsw` function the Corvid doing a POST request to the backend, therefore `.jsw` functions always return a promise.
-
 **Home Page**
 
 ```js
@@ -75,16 +68,14 @@ multiply(4, 5).then((product) => {
 });
 ```
 
-So, return to caching.
-
-In this article, we create a caching mechanism for backend functions that return a persistent result. When we call the backend function the first time then we save the response to the cache, and in the next call, we reuse a previous result without API calls.
-
 ## Implementation
 
 ```tree
 public
 └── memo.js
 ```
+
+### Decorator
 
 **public/memo.js**
 
@@ -96,16 +87,54 @@ export const memo = (func) => {
 }
 ```
 
+### Cache
+
+For storing a cache we will use a standard build-in JavaScript object [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). This object has convenient methods for work with key-value pairs.
+
+**The Map object**
+
+```js
+// Creates a new Map object.
+const map = new Map();
+
+// Stores the value by the key.
+map.set('key', 'value');
+
+// Returns true if the key exists, false otherwise.
+map.has('key');
+
+// Returns the value by the key, undefined if key doesn't exist in map.
+map.get('key');
+
+// Removes the value by the key.
+map.delete('key');
+
+// Removes everything from the map
+map.clear();
+
+// Also:
+// map.size;
+// map.keys();
+// map.values();
+// map.entries();
+// map.forEach((value, key, map) => {  });
+```
+
 ```js
 export const memo = (func) => {
   const cache = new Map();
 
   return (...args) => {
+    // Create a key from arguments
     const key = JSON.stringify(args);
 
+    // Execute the original function
     return func(...args).then((response) => {
+      // Waits when the promise resolves
+      // and saves the response to the cache
       cache.set(key, response);
 
+      // Returns the response to next `.then()` chain
       return response;
     });
   };
@@ -119,7 +148,9 @@ export const memo = (func) => {
   return (...args) => {
     const key = JSON.stringify(args);
 
+    // Checking cache
     if (cache.has(key)) {
+      // Wrap the cached result to promise
       return Promise.resolve(cache.get(key));
     }
 
@@ -149,33 +180,39 @@ memoizedMultiply(4, 5).then((product) => {
 
 Let's consider another case when we don't want to cache a response to infinity time.
 
-Suppose, we have some API that changes a response result not very often, but the result could change (for example a currency exchange). And we want to set a max-age of the cache, and if the cache is expired then redo of API call.
+Suppose, we have some API that changes a response result not very often, but the result could change (for example a currency exchange). And we want to set a max-age of the cache, and if the cache is expired then redo of the API call.
 
 ```js
 const FIVE_MINUTES = 1000 * 60 * 5;
 
+// Store cache to 5 minute
 const memoizedMultiply = memo(multiply, FIVE_MINUTES);
 ```
 
 ```js
+// Set a default value for max-age as Infinity time
 export const memo = (func, maxAge = Infinity) => {
   // ...
 }
 ```
 
 ```js
+// Save in the cache a time of created
 cache.set(key, [Date.now(), response]);
 ```
 
 ```js
 if (cache.has(key)) {
   const [createdDate, response] = cache.get(key);
+  // Calculate a time between calls
   const time = Date.now() - createdDate;
 
+  // Check time interval is less max age
   if (time < maxAge) {
     return Promise.resolve(response);
   }
 
+  // Free a cache if max-age has expired
   cache.delete(key);
 }
 ```
@@ -210,7 +247,9 @@ memoizedMultiply(2, 3)
 memoizedMultiply.clear();
 ```
 
-## Examples
+## Other examples
+
+We created the decorator function that wraps a promise function. We can use it with all functions that return a promise.
 
 **Caching the wix-data response**
 
@@ -226,12 +265,15 @@ const getGoods = memo((category) => {
     .then((response) => response.items);
 });
 
+// Use: get collection items by category
 getGoods('gifts')
   .then((items) => { })
   .catch((error) => { });
 ```
 
-**Caching an API call**
+The last example.
+
+**Caching an API call: [Live Demo](https://shoonia.wixsite.com/blog/cache)**
 
 ```js
 import { getJSON } from 'wix-fetch';
@@ -242,9 +284,18 @@ const getPostById = memo((id) => {
   return getJSON(`https://jsonplaceholder.typicode.com/posts/${id}`);
 });
 
-getPostById('1')
-  .then((post) => { })
-  .catch((error) => { });
+const loadPost = () => {
+  const id = $w('#pagination1').currentPage;
+
+  getPostById(id).then((post) => {
+    $w('#text1').text = post.body;
+  });
+}
+
+$w.onReady(() => {
+  $w('#pagination1').onClick(loadPost);
+  loadPost();
+});
 ```
 
 ## Code Snippets
@@ -332,8 +383,10 @@ export const memo = (func, maxAge = Infinity) => {
 ## Resources
 
 - [MDN: Standard built-in objects - Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+- [Map and Set](https://javascript.info/map-set)
 - [MDN: `Promise.resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 - [Corvid Web Modules: Calling Server-Side Code from the Front-End](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end)
+- [Demo](https://shoonia.wixsite.com/blog/cache)
 
 ## Posts
 
