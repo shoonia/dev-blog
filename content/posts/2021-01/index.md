@@ -25,7 +25,11 @@ image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d
 
 One of my lovely feature in the Corvid sites it's the [Web Modules](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
 
-In this article, we create a caching mechanism for backend functions. If your `jsw` function always returns the same response then we don't need to execute HTTP requests for each call. We can cache the first response and reuse it for the next calls.
+In this article, we create a caching mechanism for backend functions. If your `jsw` function always returns the same response then we don't need to execute extra HTTP requests for each call. We can cache the first response and reuse it for the next calls.
+
+## Example
+
+Start with a basic example.
 
 <figure>
   <figcaption>
@@ -35,18 +39,14 @@ In this article, we create a caching mechanism for backend functions. If your `j
     src="https://static.wixstatic.com/media/e3b156_19655839bf914cde8b778f65fe91383a~mv2.jpg"
     width="800"
     height="280"
-    alt="Add new Web Module"
+    alt="Sidebar panel of Wix Editor for adding a new Web Module"
     loading="lazy"
     decoding="async"
     crossorigin="anonymous"
   />
 </figure>
 
-## Example
-
-Start with a basic example.
-
-This demonstration function depends on two arguments.
+This demonstration function depends on two arguments. This function is running on the backend.
 
 **backend/aModule.jsw**
 
@@ -58,40 +58,35 @@ export function multiply(factor1, factor2) {
 }
 ```
 
+We import the backend function to the client code and pass two numbers.
+
 **Home Page**
 
 ```js
 import { multiply } from 'backend/aModule';
 
 multiply(4, 5).then((product) => {
+  // Response from the backend
   console.log(product);
 });
 ```
 
 ## Implementation
 
+Our cache mechanism will depend on the passed arguments to the backend function. If the function has called with the same arguments again then it returns the result from the cache.
+
+For the implementation of the cache, we create a js file in the public section.
+
 ```tree
 public
 └── memo.js
-```
-
-### Decorator
-
-**public/memo.js**
-
-```js
-export const memo = (func) => {
-  return (...args) => {
-    return func(...args);
-  };
-}
 ```
 
 ### Cache
 
 For storing a cache we will use a standard build-in JavaScript object [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). This object has convenient methods for work with key-value pairs.
 
-**The Map object**
+**Instance methods of the Map object**
 
 ```js
 // Creates a new Map object.
@@ -118,6 +113,24 @@ map.clear();
 // map.values();
 // map.entries();
 // map.forEach((value, key, map) => {  });
+```
+
+### Decorator
+
+Let's start by creating a function decorator.
+
+`memo` is a function that accepts a function and returns the new one. The new function will run the target function. In this way, we will have a map object inside the closure.
+
+**public/memo.js**
+
+```js
+export const memo = (func) => {
+  const cache = new Map();
+
+  return (...args) => {
+    return func(...args);
+  };
+}
 ```
 
 **public/memo.js**
@@ -326,7 +339,7 @@ $w.onReady(() => {
     height="320"
     loading="lazy"
     crossorigin="anonymous"
-    title="Example: Cache the API calls"
+    title="Embed Wix Site with the example of the cache the API calls"
   ></iframe>
 </figure>
 
