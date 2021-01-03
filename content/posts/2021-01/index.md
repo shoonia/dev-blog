@@ -2,16 +2,16 @@
 publish: true
 path: '/cache'
 template: 'default'
-date: '2020-12-25'
+date: '2021-01-01'
 modified: ''
 lang: 'en'
-title: 'Corvid by Wix: Reducing server-side calls using a caching mechanism'
+title: 'Corvid by Wix: Reduce server-side calls using a caching mechanism'
 description: ''
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png/v2/fill/w_300,h_300/i.jpg'
 ---
 
-# Corvid by Wix: Reducing server-side calls using a caching mechanism
+# Corvid by Wix: Reduce server-side calls using a caching mechanism
 
 <img
   src="https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png"
@@ -120,6 +120,8 @@ map.clear();
 // map.forEach((value, key, map) => {  });
 ```
 
+**public/memo.js**
+
 ```js
 export const memo = (func) => {
   const cache = new Map();
@@ -140,6 +142,8 @@ export const memo = (func) => {
   };
 }
 ```
+
+**public/memo.js**
 
 ```js
 export const memo = (func) => {
@@ -176,7 +180,7 @@ memoizedMultiply(4, 5).then((product) => {
 });
 ```
 
-## Expirable cache
+## Expiration
 
 Let's consider another case when we don't want to cache a response to infinity time.
 
@@ -189,12 +193,16 @@ const FIVE_MINUTES = 1000 * 60 * 5;
 const memoizedMultiply = memo(multiply, FIVE_MINUTES);
 ```
 
+First, we add the second argument `maxAge` to the decorator function. By default, it will be [`Infinity`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity) value.
+
 ```js
 // Set a default value for max-age as Infinity time
 export const memo = (func, maxAge = Infinity) => {
   // ...
 }
 ```
+
+Second, we need to save the date of the creation cache record. We change the structure for caching, it will be an array where the first item contains a timestamp and the second item the response.
 
 ```js
 // Save in the cache a time of created
@@ -217,21 +225,24 @@ if (cache.has(key)) {
 }
 ```
 
+**public/memo.js**
+
 ```js
-export const memo = (func) => {
+export const memo = (func, maxAge = Infinity) => {
   const cache = new Map();
 
   const memoFunc = (...args) => {
     // ...
   };
 
-  memoFunc.clear = () => {
-    cache.clear();
-  };
+  // Set the cache map as a property to the returned function
+  memoFunc.cache = cache;
 
   return memoFunc;
 }
 ```
+
+**Home Page**
 
 ```js
 import { multiply } from 'backend/aModule';
@@ -244,20 +255,24 @@ memoizedMultiply(2, 3)
   .catch((error) => { });
 
 // Manually clear all cache
-memoizedMultiply.clear();
+memoizedMultiply.cache.clear();
 ```
 
 ## Other examples
 
-We created the decorator function that wraps a promise function. We can use it with all functions that return a promise.
+We created the decorator function that wraps a `Promise`. We can use it with all functions that return a promise.
 
-**Caching the wix-data response**
+For example, we have data collection that contains the category of goods. We want to cache the items of collection by some category.
+
+We can create a function that will accept the category as the argument and return the items, this function we can put to memo decorator.
+
+**Cache the wix-data response**
 
 ```js
 import wixData from 'wix-data';
 import { memo } from 'public/memo';
 
-// Caching the wix-data response by some field
+// Caches the wix-data response by category field
 const getGoods = memo((category) => {
   return wixData.query('goods')
     .eq('category', category)
@@ -271,15 +286,19 @@ getGoods('gifts')
   .catch((error) => { });
 ```
 
-The last example.
+One more example.
 
-**Caching an API call: [Live Demo](https://shoonia.wixsite.com/blog/cache)**
+Here we use a [fake API](https://jsonplaceholder.typicode.com/) that returns [Lorem ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) posts by ID.
+
+When any pagination button is clicked then we fetch the JSON and show the body of the post. For the key of cache, we use the ID of the post.
+
+**Cache the API calls**
 
 ```js
 import { getJSON } from 'wix-fetch';
 import { memo } from 'public/memo';
 
-// Caching an API call by some path part
+// Caches an API call by some path part
 const getPostById = memo((id) => {
   return getJSON(`https://jsonplaceholder.typicode.com/posts/${id}`);
 });
@@ -297,8 +316,23 @@ $w.onReady(() => {
   loadPost();
 });
 ```
+<figure>
+ <figcaption>
+    Example: Cache the API calls
+  </figcaption>
+  <iframe
+    src="https://shoonia.wixsite.com/blog/cache"
+    width="100%"
+    height="320"
+    loading="lazy"
+    crossorigin="anonymous"
+    title="Example: Cache the API calls"
+  ></iframe>
+</figure>
 
 ## Code Snippets
+
+Here you find the two snippets of code. The minimum needed code snippet and the full snippet with max-age.
 
 <details>
   <summary>
@@ -342,6 +376,7 @@ export const memo = (func) => {
  * @param {number} maxAge - milliseconds of response store in cache
  */
 export const memo = (func, maxAge = Infinity) => {
+  /** @type {Map<string, [number, any]>} */
   const cache = new Map();
 
   /** MemoFunc */
@@ -366,16 +401,11 @@ export const memo = (func, maxAge = Infinity) => {
     });
   };
 
-  /**
-   * Clears all cache
-   * @memberof MemoFunc
-   */
-  memoFunc.clear = () => {
-    cache.clear();
-  };
+  /** @memberof MemoFunc */
+  memoFunc.cache = cache;
 
   return memoFunc;
-}
+};
 ```
 
 </details>
@@ -383,10 +413,10 @@ export const memo = (func, maxAge = Infinity) => {
 ## Resources
 
 - [MDN: Standard built-in objects - Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-- [Map and Set](https://javascript.info/map-set)
+- [Learn: Map and Set](https://javascript.info/map-set)
 - [MDN: `Promise.resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 - [Corvid Web Modules: Calling Server-Side Code from the Front-End](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end)
-- [Demo](https://shoonia.wixsite.com/blog/cache)
+- [Live Demo](https://shoonia.wixsite.com/blog/cache)
 
 ## Posts
 
