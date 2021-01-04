@@ -3,7 +3,7 @@ publish: true
 path: '/api-qr-code-generator'
 template: 'default'
 date: '2019-11-09T12:00:00.000Z'
-modified: '2020-12-27T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'uk'
 title: 'Створюємо API для генерації QR Code зображень'
 description: 'В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.'
@@ -29,7 +29,7 @@ image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b984
 
 Для початку зареєструмося на [wix.com](https://uk.wix.com), можна через обліковий запис на Facebook або Google. Щоб створити сайт, перейдіть за посиланням на [порожнiй шаблон](https://wix.new/), звідси ми потрапляємо прямісінько в редактор.
 
-Після цього нам необхідно активувати Corvid. Corvid це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend. У верхній частині едітора знаходимо пункт меню "Dev Mode", обираємо цей пункт і у розгорнутому підменю тиснемо на кнопку **"Увімкнути Corvid" (Turn on Dev Mode)**.
+Після цього нам необхідно активувати Velo. Velo це розширення можливостей сайтів Wix, що дає нам змогу до написання скриптів як на frontend так і backend. У верхній частині едітора знаходимо пункт меню "Dev Mode", обираємо цей пункт і у розгорнутому підменю тиснемо на кнопку **"Увімкнути Velo" (Turn on Dev Mode)**.
 
 Ліворуч з'явиться файлова структура сайту (Site Structure): **(Site Structure)**:
 
@@ -62,7 +62,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>
 
 - `<prefix>` - це назва методу запиту (GET, POST, PUT ...) Докладніше на [MDN](https://developer.mozilla.org/uk/docs/Web/HTTP/Methods)
 - `<functionName>` - це назва роуту на який ми будимо відправляти запити.
-- `request` - це oб'єкт який містить параметри вхідних даних. Докладніше [Corvid Reference](https://www.wix.com/corvid/reference/wix-http-functions/wixhttpfunctionrequest)
+- `request` - це oб'єкт який містить параметри вхідних даних. Докладніше [Velo Reference](https://www.wix.com/velo/reference/wix-http-functions/wixhttpfunctionrequest)
 
 Створімо роут для методу GET з назвою qrcode:
 
@@ -82,7 +82,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 
 ### Відповідь на запит
 
-Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions) - це внутрішній модуль Wix сайтів що містить функціональність для роботи з HTTP. Ми будимо використовувати [response](https://www.wix.com/corvid/reference/wix-http-functions/response):
+Для того щоб наше API мало змогу відповідати на запити, нам потрібно експортувати модуль [wix-http-functions](https://www.wix.com/velo/reference/wix-http-functions) - це внутрішній модуль Wix сайтів що містить функціональність для роботи з HTTP. Ми будимо використовувати [response](https://www.wix.com/velo/reference/wix-http-functions/response):
 
 **backend/http-functions.js**
 
@@ -262,7 +262,7 @@ export async function get_qrcode({ query }) {
 
 ## Посилання
 
-- [wix-http-functions](https://www.wix.com/corvid/reference/wix-http-functions)
+- [wix-http-functions](https://www.wix.com/velo/reference/wix-http-functions)
 - [node-qrcode](https://github.com/soldair/node-qrcode)
 - [Data:URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [`decodeURIComponent(encodedURI)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent)

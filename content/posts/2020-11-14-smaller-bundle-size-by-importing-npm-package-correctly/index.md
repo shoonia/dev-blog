@@ -3,14 +3,15 @@ publish: true
 path: '/smaller-bundle-size-by-importing-npm-package-correctly'
 template: 'default'
 date: '2020-11-14T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Smaller bundle size by importing npm package correctly'
+title: 'Velo by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one'
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc2368d~mv2.jpg/v2/fill/w_500,h_500/i.jpg'
 ---
 
-# Corvid by Wix: Smaller bundle size by importing npm package correctly
+# Velo by Wix: Smaller bundle size by importing npm package correctly
 
 *If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one*
 
@@ -63,7 +64,7 @@ const lang = _.get(customer, 'language.code', 'en');
 
 *Bundle size grows +73.5KB (gzip: 29.0KB).*
 
-Unfortunately, the named import doesn't work on Corvid platform. The next code will get the same result as above.
+Unfortunately, the named import doesn't work on Velo platform. The next code will get the same result as above.
 
 ```js
 import { get } from 'lodash';
@@ -91,13 +92,13 @@ A few questions to yourself:
 
 Is my favorite package still good enough? Learn the npm packages that you use most often, and don't forget to look at the alternative. With time, even the best solutions are to become old. [The Moment.js docs have a great example](https://momentjs.com/docs/#/-project-status/recommendations/) where authors recommend using some modern packages instead of Moment.js.
 
-Am I need this package? The Corvid supports JavaScript until of ES2017 version. Maybe your issue may solve by new JavaScript features without three-party libraries?
+Am I need this package? The Velo supports JavaScript until of ES2017 version. Maybe your issue may solve by new JavaScript features without three-party libraries?
 
 ## Resources
 
 - [bundlephobia.com](https://bundlephobia.com/) - the great service to query package sizes.
 - [RunKit](https://npm.runkit.com/) - playground to test code.
-- [Corvid: Working with npm Packages](https://support.wix.com/en/article/corvid-working-with-npm-packages)
+- [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
 
 ## Posts
 

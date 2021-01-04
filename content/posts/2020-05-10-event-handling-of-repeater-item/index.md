@@ -3,15 +3,15 @@ publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
 date: '2020-05-10T12:00:00.000Z'
-modified: '2020-12-05T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Event handling of Repeater Item'
+title: 'Velo by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
 ---
 
-# Corvid by Wix: Event handling of Repeater Item
+# Velo by Wix: Event handling of Repeater Item
 
 *In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it.*
 
@@ -53,10 +53,10 @@ But if you would like to do dynamic fill up your Repeater or change its items, y
 
 ## Selector Scope
 
-In the Corvid, we have two types of selector functions.
+In the Velo, we have two types of selector functions.
 
-- [Global Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_global-scope)
-- [Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_repeated-item-scope)
+- [Global Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_global-scope)
+- [Repeated Item Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_repeated-item-scope)
 
 The Global Scope Selectors it's `$w()`. We can use it anywhere in the frontend part of Wix site.
 If we use `$w()` with Repeater Items, then it changes all items
@@ -72,7 +72,7 @@ $w("#repeatedText").text = "new";
 
 We can get repeated-item-scope selector in a few ways.
 
-In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/corvid/reference/$w/repeater/foreachitem), [`.forItems()`](https://www.wix.com/corvid/reference/$w/repeater/foritems), and [`.onItemReady()`](https://www.wix.com/corvid/reference/$w/repeater/onitemready) methods.
+In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/velo/reference/$w/repeater/foreachitem), [`.forItems()`](https://www.wix.com/velo/reference/$w/repeater/foritems), and [`.onItemReady()`](https://www.wix.com/velo/reference/$w/repeater/onitemready) methods.
 
 **Deprecated** way, selector as the second argument in an event handler.
 It still works but you don't have to use it
@@ -85,7 +85,7 @@ $w("#repeatedButton").onClick((event, $item) => {
 });
 ```
 
-And with an event **context**. We can get the selector function with [`$w.at(context)`](https://www.wix.com/corvid/reference/$w/at).
+And with an event **context**. We can get the selector function with [`$w.at(context)`](https://www.wix.com/velo/reference/$w/at).
 
 ```js
 $w("#repeatedButton").onClick((event) => {
@@ -198,7 +198,7 @@ export const createScope = (getData) => (event) => {
 
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
-Let's see how we can use the hook on the page with [static](https://support.wix.com/en/article/corvid-reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
+Let's see how we can use the hook on the page with [static](https://support.wix.com/en/article/velo-reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
 
 **HOME Page Code**
 
@@ -233,7 +233,7 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 *<time datetime="2020-12-05T12:00:00.000Z">Update (12.05.2020)</time>*
 
-The Corvid code editor supports [JSDocs](https://jsdoc.app/), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
+The Velo code editor supports [JSDocs](https://jsdoc.app/), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
 
 **Code snippet with JSDocs:**
 
@@ -285,9 +285,9 @@ export const createScope = (getData) => (event) => {
 ## Resources
 
 - [Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
-- [Scope selector `$w.at(context)`](https://www.wix.com/corvid/reference/$w/at)
-- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/corvid/reference/$w/repeater/introduction#$w_repeater_introduction_selector-scope)
-- [Event Context](https://www.wix.com/corvid/reference/$w/event/context)
+- [Scope selector `$w.at(context)`](https://www.wix.com/velo/reference/$w/at)
+- [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_selector-scope)
+- [Event Context](https://www.wix.com/velo/reference/$w/event/context)
 - [Property getters and setters](https://javascript.info/property-accessors)
 
 ## Posts

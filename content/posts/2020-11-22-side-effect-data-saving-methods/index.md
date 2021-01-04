@@ -3,14 +3,15 @@ publish: true
 path: '/side-effect-data-saving-methods'
 template: 'default'
 date: '2020-11-22T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Side effect wix-data saving methods'
+title: 'Velo by Wix: Side effect wix-data saving methods'
 description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes'
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg/v2/fill/w_500,h_500/i.jpg'
 ---
 
-# Corvid by Wix: Side effect wix-data saving methods
+# Velo by Wix: Side effect wix-data saving methods
 
 *The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes*
 
@@ -25,9 +26,9 @@ We have three methods for manipulation of the database collection that has the s
 
 The pasted `item` is mutating after any of these methods is done:
 
-- [`wixData.insert("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/insert)
-- [`wixData.update("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/update)
-- [`wixData.save("myCollection", item)`](https://www.wix.com/corvid/reference/wix-data/save)
+- [`wixData.insert("myCollection", item)`](https://www.wix.com/velo/reference/wix-data/insert)
+- [`wixData.update("myCollection", item)`](https://www.wix.com/velo/reference/wix-data/update)
+- [`wixData.save("myCollection", item)`](https://www.wix.com/velo/reference/wix-data/save)
 
 So, consider the code example where we output to console a new item before and after inserting it into a collection.
 
@@ -90,9 +91,9 @@ await wixData.insert('MembersPrivate', { ...item });
 
 We also have methods that can work with a number of items. Let's consider three of these which use to save data:
 
-- [`wixData.bulkInsert("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulkinsert)
-- [`wixData.bulkUpdate("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulkupdate)
-- [`wixData.bulkSave("myCollection", [item1, item2])`](https://www.wix.com/corvid/reference/wix-data/bulksave)
+- [`wixData.bulkInsert("myCollection", [item1, item2])`](https://www.wix.com/velo/reference/wix-data/bulkinsert)
+- [`wixData.bulkUpdate("myCollection", [item1, item2])`](https://www.wix.com/velo/reference/wix-data/bulkupdate)
+- [`wixData.bulkSave("myCollection", [item1, item2])`](https://www.wix.com/velo/reference/wix-data/bulksave)
 
 We can get to repeat the experiment. These methods accept an array of items.
 
