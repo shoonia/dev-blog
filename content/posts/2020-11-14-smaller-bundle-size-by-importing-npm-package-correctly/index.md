@@ -103,5 +103,5 @@ Am I need this package? The Velo supports JavaScript until of ES2017 version. Ma
 ## Posts
 
 - [Event handling of Repeater Item](/event-handling-of-repeater-item/)
-- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon/)
+- [A tiny event-based state manager Storeon for Velo.](/corvid-storeon/)
 - [Using HTML template to the better performance](/html-template-in-corvid/)

@@ -3,33 +3,40 @@ publish: true
 path: '/corvid-storeon'
 template: 'default'
 date: '2019-12-21T12:00:00.000Z'
-modified: '2020-12-27T12:00:00.000Z'
+modified: '2021-01-06T12:00:00.000Z'
 lang: 'en'
-title: 'A tiny event-based state manager Storeon for Corvid.'
-description: 'In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager'
+title: 'A tiny event-based state manager Storeon for Velo.'
+description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
 
-# A tiny event-based state manager Storeon for Corvid
+<small>
+  <time datetime="2021-01-06T12:00:00.000Z">Update: Jan 6, 2021</time>
+  <a href="https://www.youtube.com/watch?v=iAWEOpkUz-U" target="_blank" rel="noopener noreferrer">
+    Corvid changed name to Velo.
+  </a>
+</small>
 
-*In this article, we explain how to manage an state in Corvid with a light-weight and robust solution: Storeon, an event-based state manager.*
+# A tiny event-based state manager Storeon for Velo
+
+*In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager.*
 
 <img
   src="https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png"
-  width="1279"
-  height="640"
-  alt="Corvid Storeon"
+  width="750"
+  height="375"
+  alt="Logo of library Storeon Velo"
   crossorigin="anonymous"
 />
 
 ## Motivation
 
-In the article, [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd), Shahar Talmi brings up a question about controlling app states in Corvid. If you’re not familiar with Corvid, it’s a development platform running on Wix that allows you to quickly and easily develop web applications.
+In the article, [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd), Shahar Talmi brings up a question about controlling app states in Velo. If you’re not familiar with Velo, it’s a development platform running on Wix that allows you to quickly and easily develop web applications.
 
 Accurately controlling the state of any app is a really big problem. If you have many component dependencies or need to handle constant user interactions, you're going to suffer a bit when you want to eventually add a new feature or scale your application.
 
-In this article, I share my solution — a very tiny library called [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (it’s only 175 bytes) that features an easy interface. So, I wrote a wrapper for integration with Corvid. As a result, we have the state manager [corvid-storeon](https://github.com/shoonia/corvid-storeon), and it’s less than 90 lines of code.
+In this article, I share my solution — a very tiny library called [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes) (it’s only 180 bytes) that features an easy interface. So, I wrote a wrapper for integration with Velo. As a result, we have the state manager [storeon-velo](https://github.com/shoonia/storeon-velo), and it’s less than 90 lines of code.
 
 ## How it works
 
@@ -38,10 +45,10 @@ We will create a traditional study app with counters. I will use two counters to
 At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_e75d14f8fea24afd825a144618d7ca7a~mv2.png"
-  width="1222"
-  height="534"
-  alt="сorvid-stereon installation in corvid package manager"
+  src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
+  width="751"
+  height="304"
+  alt="Package Manager panel in Wix editor, installing storeon-velo"
   loading="lazy"
   decoding="async"
   crossorigin="anonymous"
@@ -61,14 +68,14 @@ Storeon's state is always an object; it canʼt be anything else. Itʼs a small l
 **public/store.js**
 
 ```js
-// The store should be created with createStore() function.
+// The store should be created with createStoreon() function.
 // It accepts a list of the modules.
-import { createStore } from 'corvid-storeon';
+import { createStoreon } from 'storeon-velo';
 
 // Each module is just a function,
 // which will accept a store and bind their event listeners.
-function counterModule(store) {
-  // @init will be fired in createStore.
+const counterModule = (store) => {
+  // @init will be fired in createStoreon.
   // The best moment to set an initial state.
   store.on('@init', () => ({ x: 0, y: 0 }));
 
@@ -82,13 +89,13 @@ function counterModule(store) {
   store.on('DECREMENT_Y', (state) => ({ y: state.y - 1 }));
 }
 
-// createStore() returns 4 methods to work with store
+// createStoreon() returns 4 methods to work with store
 export const {
   getState, // <- will return current state.
   dispatch, // <- will emit an event with optional data.
   connect, // <- connect to state by property key.
   connectPage, // <- wrapper around $w.onReady()
-} = createStore([counterModule]);
+} = createStoreon([counterModule]);
 ```
 
 So, we created a store in the public folder and exported from there with four methods. In the second part, we will create our UI, and we will write logic to change the state.
@@ -99,7 +106,7 @@ Letʼs add two text elements to display our counter value, and four buttons for 
   src="https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png"
   width="1398"
   height="494"
-  alt="UI example"
+  alt="Example: Wix Editor layouts with two counters for increment and decrement"
   loading="lazy"
   decoding="async"
   crossorigin="anonymous"
@@ -146,6 +153,7 @@ connectPage((state) => {
   $w('#buttonIncX').onClick(() => {
     dispatch('INCREMENT_X');
   });
+
   $w('#buttonDecX').onClick(() => {
     dispatch('DECREMENT_X');
   });
@@ -154,17 +162,18 @@ connectPage((state) => {
   $w('#buttonIncY').onClick(() => {
     dispatch('INCREMENT_Y');
   });
+
   $w('#buttonDecY').onClick(() => {
     dispatch('DECREMENT_Y');
   });
 });
 ```
 
-**[DEMO](https://www.wix.com/alexanderz5/corvid-storeon)**
+**[Live Demo](https://www.wix.com/alexanderz5/storeon-velo)**
 
 ## Modules
 
-The function, `createStore(modules)`, accepts a list of modules. We can create different functions to split business logic into our app. Letʼs see a few examples:
+The function, `createStoreon(modules)`, accepts a list of modules. We can create different functions to split business logic into our app. Letʼs see a few examples:
 
 Synchronization the App state with the `wix-storage` memory API:
 
@@ -172,7 +181,7 @@ Synchronization the App state with the `wix-storage` memory API:
 // https://www.wix.com/velo/reference/wix-storage/memory
 import { memory } from 'wix-storage';
 
-export function memoryModule(store) {
+export const memoryModule = (store) => {
   // @changed will be fired every when event listeners changed the state.
   // It receives object with state changes.
   store.on('@changed', (state) => {
@@ -186,7 +195,7 @@ Tracking an event to external analytics tools with `wixWindow.trackEvent()`:
 ```js
 import wixWindow from 'wix-window';
 
-export function trackEventModule(store) {
+export const trackEventModule = (store) => {
   // @dispatch will be fired on every `dispatch(event, [data])` call.
   // It receives an array with the event name and the event’s data.
   // Can be useful for debugging.
@@ -202,7 +211,7 @@ export function trackEventModule(store) {
 Combining modules
 
 ```js
-const store = createStore([
+const store = createStoreon([
   coutnerModule,
   memoryModule,
   trackEventModule,
@@ -211,22 +220,22 @@ const store = createStore([
 
 ## Conclusion
 
-As you can see, we were able to quickly implement our state management solution with a minimal amount of code. Of course, due to data binding in Corvid, you normally don’t have to worry about state management. However, in more complex applications, the issue can become more difficult, and state management will become more challenging to handle.
+As you can see, we were able to quickly implement our state management solution with a minimal amount of code. Of course, due to data binding in Velo, you normally don’t have to worry about state management. However, in more complex applications, the issue can become more difficult, and state management will become more challenging to handle.
 
-State management can be a tricky problem, but Storeon offers a simple, yet robust solution. In addition, Corvid allows us to quickly implement this in our application, all while focusing on code and not having to spend time dealing with other issues.
+State management can be a tricky problem, but Storeon offers a simple, yet robust solution. In addition, Velo allows us to quickly implement this in our application, all while focusing on code and not having to spend time dealing with other issues.
 
 ## Resources
 
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
 - [Storeon on GitHub](https://github.com/storeon/storeon)
-- [Corvid Storeon on GitHub](https://github.com/shoonia/corvid-storeon)
-- [Discussion on Corvid Forum](https://www.wix.com/velo/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-corvid)
+- [Storeon Velo on GitHub](https://github.com/shoonia/storeon-velo)
+- [Discussion on Velo Forum](https://www.wix.com/velo/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-corvid)
 - [This article on medium.com](https://medium.com/@shoonia/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
 - [This article on dzone.com](https://dzone.com/articles/a-tiny-event-based-state-manager-storeon-for-corvi)
 
-## DEMO
+## Demo
 
-- [Site](https://www.wix.com/alexanderz5/corvid-storeon)
+- [Site](https://www.wix.com/alexanderz5/storeon-velo)
 - [Open In Editor](https://editor.wix.com/html/editor/web/renderer/new?siteId=d6003ab4-7b91-4fe1-b65e-55ff3baca1f4&metaSiteId=654936ba-93bc-4f97-920a-c3050dd82fe7&autoDevMode=true)
 
 ## Also

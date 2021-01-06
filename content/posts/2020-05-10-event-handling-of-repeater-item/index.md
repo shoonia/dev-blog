@@ -292,6 +292,6 @@ export const createScope = (getData) => (event) => {
 
 ## Posts
 
-- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon/)
+- [A tiny event-based state manager Storeon for Velo.](/corvid-storeon/)
 - [Using HTML template to the better performance](/html-template-in-corvid/)
 - [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
