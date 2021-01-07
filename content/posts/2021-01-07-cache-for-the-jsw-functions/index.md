@@ -1,17 +1,19 @@
 ---
 publish: true
-path: '/cache'
+path: '/cache-for-the-jsw-functions'
 template: 'default'
-date: '2021-01-01'
-modified: ''
+date: '2021-01-07T12:00:00.000Z'
+modified: '2021-01-07T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Reduce server-side calls using a caching mechanism'
-description: ''
+title: 'Velo by Wix: Reduce server-side calls using a caching mechanism'
+description: "In this article, we create a cache mechanism for backend (jsw) functions"
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png/v2/fill/w_300,h_300/i.jpg'
 ---
 
-# Corvid by Wix: Reduce server-side calls using a caching mechanism
+# Velo by Wix: Reduce server-side calls using a caching mechanism
+
+*In this article, we create a cache mechanism for backend (jsw) functions*
 
 <img
   src="https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png"
@@ -23,7 +25,7 @@ image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d
 
 ## Motivation
 
-One of my lovely feature in the Corvid sites it's the [Web Modules](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
+One of my lovely feature in the Velo sites it's the [Web Modules](https://support.wix.com/en/article/velo-web-modules-calling-server-side-code-from-the-front-end). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
 
 In this article, we create a caching mechanism for backend functions. If your `jsw` function always returns the same response then we don't need to execute extra HTTP requests for each call. We can cache the first response and reuse it for the next calls.
 
@@ -71,9 +73,11 @@ multiply(4, 5).then((product) => {
 });
 ```
 
+If we run this function with the same arguments it executes a new request, we want to escape a new request because we know that the result doesn't change.
+
 ## Implementation
 
-Our cache mechanism will depend on the passed arguments to the backend function. If the function has called with the same arguments again then it returns the result from the cache.
+Our cache mechanism will depend on the passed arguments. If the backend function has called again with the same arguments then it returns the result from the cache.
 
 For the implementation of the cache, we create a js file in the public section.
 
@@ -119,7 +123,7 @@ map.clear();
 
 Let's start by creating a function decorator.
 
-`memo` is a function that accepts a function and returns the new one. The new function will run the target function. In this way, we will have a map object inside the closure.
+`memo` is a function that accepts a function and returns the new one. The new function will run the target function. In this way, we will have a map object inside the [closure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 **public/memo.js**
 
@@ -132,6 +136,8 @@ export const memo = (func) => {
   };
 }
 ```
+
+We will create a cache key from arguments. Then we wait when the request will be done and save the result to cache by key.
 
 **public/memo.js**
 
@@ -156,6 +162,8 @@ export const memo = (func) => {
 }
 ```
 
+And in the last step, we checking a cache before running the origin function. Our function must always return a Promise object. Therefore when `memo` returns the result from the cache we should wrap the result with the [`Promise.resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve).
+
 **public/memo.js**
 
 ```js
@@ -179,6 +187,8 @@ export const memo = (func) => {
   };
 }
 ```
+
+Now, when we run the wrapped function with the same arguments again then the result would get from the cache.
 
 **Home Page**
 
@@ -222,6 +232,8 @@ Second, we need to save the date of the creation cache record. We change the str
 cache.set(key, [Date.now(), response]);
 ```
 
+The last we add the condition of checking time. Just calculate the difference between two calls and check that the interval must be less than `maxAge`. If the interval bigger than `maxAge` then we need to free cache and redo API call.
+
 ```js
 if (cache.has(key)) {
   const [createdDate, response] = cache.get(key);
@@ -237,6 +249,14 @@ if (cache.has(key)) {
   cache.delete(key);
 }
 ```
+
+[Code Snippets](#code-snippets)
+
+## Cache management
+
+The map instance has a convenient interface. For example, we can go over all keys and value with [`Map.forEach(callback[, thisArg])`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach)
+
+Let's provide access to the map object.
 
 **public/memo.js**
 
@@ -255,6 +275,8 @@ export const memo = (func, maxAge = Infinity) => {
 }
 ```
 
+There is a very simple solution. Save a cache as a property on the returned function.
+
 **Home Page**
 
 ```js
@@ -271,13 +293,15 @@ memoizedMultiply(2, 3)
 memoizedMultiply.cache.clear();
 ```
 
+Now, we able to manually manage the cache.
+
 ## Other examples
 
-We created the decorator function that wraps a `Promise`. We can use it with all functions that return a promise.
+We created the decorator for the functions that return a `Promise` object. We can use it with all functions that return a `Promise`.
 
 For example, we have data collection that contains the category of goods. We want to cache the items of collection by some category.
 
-We can create a function that will accept the category as the argument and return the items, this function we can put to memo decorator.
+We can create a function that will accept the category as the argument and return the items, and this function we can put to `memo` decorator. It will cache wix-data items by category.
 
 **Cache the wix-data response**
 
@@ -299,11 +323,11 @@ getGoods('gifts')
   .catch((error) => { });
 ```
 
-One more example.
+### One more example. Fetch.
 
-Here we use a [fake API](https://jsonplaceholder.typicode.com/) that returns [Lorem ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) posts by ID.
+Here we use a [fake API](https://jsonplaceholder.typicode.com/) that returns [Lorem ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) posts by ID. Let's set up the cache of the response by ID.
 
-When any pagination button is clicked then we fetch the JSON and show the body of the post. For the key of cache, we use the ID of the post.
+When any pagination button is clicked then we fetch the JSON and show the body of the post.
 
 **Cache the API calls**
 
@@ -340,12 +364,14 @@ $w.onReady(() => {
     loading="lazy"
     crossorigin="anonymous"
     title="Embed Wix Site with the example of the cache the API calls"
+    scrolling="no"
+    style="overflow:hidden"
   ></iframe>
 </figure>
 
-## Code Snippets
+<h2 id="code-snippets">Code Snippets</h2>
 
-Here you find the two snippets of code. The minimum needed code snippet and the full snippet with max-age.
+Here you find two snippets of code. The minimum needed code snippet and the full snippet with max-age.
 
 <details>
   <summary>
@@ -428,7 +454,7 @@ export const memo = (func, maxAge = Infinity) => {
 - [MDN: Standard built-in objects - Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 - [Learn: Map and Set](https://javascript.info/map-set)
 - [MDN: `Promise.resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
-- [Corvid Web Modules: Calling Server-Side Code from the Front-End](https://support.wix.com/en/article/corvid-web-modules-calling-server-side-code-from-the-front-end)
+- [Velo Web Modules: Calling Server-Side Code from the Front-End](https://support.wix.com/en/article/velo-web-modules-calling-server-side-code-from-the-front-end)
 - [Live Demo](https://shoonia.wixsite.com/blog/cache)
 
 ## Posts
