@@ -8,7 +8,7 @@ lang: 'en'
 title: 'A tiny event-based state manager Storeon for Velo.'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
 author: 'Alexander Zaytsev'
-image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png/v2/fill/w_300,h_300/cs.png'
+image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d39~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
 
 <small>
@@ -23,7 +23,7 @@ image: 'https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da423
 *In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager.*
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_f345e612268141b89367f3ef3da42337~mv2.png"
+  src="https://static.wixstatic.com/shapes/e3b156_1c18e400397044b2ba3a2b2be8bcaf60.svg"
   width="750"
   height="375"
   alt="Logo of library Storeon Velo"
