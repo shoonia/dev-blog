@@ -3,17 +3,17 @@ publish: true
 path: '/message-channel-to-iframe'
 template: 'default'
 date: '2020-12-20T12:00:00.000Z'
-modified: '2020-12-27T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Message channel to iFrame'
-description: 'In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.'
+title: 'Velo by Wix: Message channel to iFrame'
+description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89f0~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
 ---
 
-# Corvid by Wix: Message channel to iFrame
+# Velo by Wix: Message channel to iFrame
 
-*In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.*
+*In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.*
 
 <img
   src="https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89f0~mv2.jpg"
@@ -23,9 +23,9 @@ image: 'https://static.wixstatic.com/media/fd206f_7e11f7f25f1949cab357c6c9fb7f89
   crossorigin="anonymous"
 />
 
-The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/corvid/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Corvid provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening events.
+The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/velo/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Velo provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening events.
 
-**Corvid API to work with post messages**
+**Velo API to work with post messages**
 
 ```js
 // Sends data to iFrame
@@ -40,10 +40,10 @@ $w('#html1').onMessage((event) => {
 **Browser native API to work with post messages**
 
 ```js
-// Sends data to Corvid
+// Sends data to Velo
 window.parent.postMessage({ data: 123 }, '*');
 
-// Listen messages from Corvid
+// Listen messages from Velo
 window.addEventListener('message', (event) => {
   console.log(event.data);
 });
@@ -65,13 +65,13 @@ channel.on('@event/name', ({ data }) => {
 });
 ```
 
-In this post, we consider building a scalable message channel for large numbers of events between Corvid and iFrame using the Event and Listener model.
+In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.
 
 ## Terminology
 
 To the avoiding of a mess, I'm going to use a convention of naming pages:
 
-- The Main page - a page where we use the Corvid API.
+- The Main page - a page where we use the Velo API.
 - The iFrame page - a page inside `HtmlComponent` where we use the `window` object.
 
 Events:
@@ -213,7 +213,7 @@ The channel will be created using the function `createChannel()`. When the iFram
 </script>
 ```
 
-Look like simple. We put on the `type` and `payload` into the object and sending it to the Main page. In the next step, we catch the sent event with Corvid API.
+Look like simple. We put on the `type` and `payload` into the object and sending it to the Main page. In the next step, we catch the sent event with Velo API.
 
 ### Catch the event
 
@@ -270,7 +270,7 @@ export const createChannel = (id) => {
 
 Greate, we save the callback to the array, and in the next step, we add the handler for post message.
 
-On the Main page, we must wait until the page is ready for interaction. I guess you know this feature of the Corvid, it's a method [`$w.onReady()`](https://www.wix.com/corvid/reference/$w/onready).
+On the Main page, we must wait until the page is ready for interaction. I guess you know this feature of the Velo, it's a method [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready).
 
 **Example of a dynamic event handler**
 
@@ -405,7 +405,7 @@ See how it works: **[Live Demo](https://shoonia.wixsite.com/blog/channel)**
 
 ## Source Code
 
-We implemented sending events from iFrame with `channel.emit()` and listening events in the Corvid with `channel.on()`.
+We implemented sending events from iFrame with `channel.emit()` and listening events in the Velo with `channel.on()`.
 
 Below you can see the full implementation of the channel for both pages.
 
@@ -632,8 +632,8 @@ on(type, cb) {
 ## Resources
 
 - [Demo](https://shoonia.wixsite.com/blog/channel)
-- [Wix Editor Elements - `HtmlComponent`](https://www.wix.com/corvid/reference/$w/htmlcomponent)
-- [Corvid: Working with the HTML iframe Element](https://support.wix.com/en/article/corvid-working-with-the-html-iframe-element)
+- [Wix Editor Elements - `HtmlComponent`](https://www.wix.com/velo/reference/$w/htmlcomponent)
+- [Velo: Working with the HTML iframe Element](https://support.wix.com/en/article/velo-working-with-the-html-iframe-element)
 
 ## Posts
 

@@ -3,23 +3,23 @@ publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
-modified: '2020-12-06T12:00:00.000Z'
+modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
-title: 'Corvid by Wix: Imitating hover event on repeater container'
-description: "Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
+title: 'Velo by Wix: Imitating hover event on repeater container'
+description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
 author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311ed~mv2.png'
 ---
 
-# Corvid by Wix: Imitating hover event on repeater container
+# Velo by Wix: Imitating hover event on repeater container
 
-*Corvid API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
+*Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
 <img
   src="https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg"
   width="700"
   height="338"
-  alt="Corvid by Wix"
+  alt="Velo by Wix"
   crossorigin="anonymous"
 />
 
@@ -29,10 +29,10 @@ We have a `$w.Repeater` component with items of users' cards. When we point with
 
 For this, we're going to use two other events that provide repeater API:
 
-- [`onMouseIn()`](https://www.wix.com/corvid/reference/$w/element/onmousein) runs when the mouse pointer is moved onto the element.
-- [`onMouseOut()`](https://www.wix.com/corvid/reference/$w/element/onmouseout) runs when the mouse pointer is moved off of the element
+- [`onMouseIn()`](https://www.wix.com/velo/reference/$w/element/onmousein) runs when the mouse pointer is moved onto the element.
+- [`onMouseOut()`](https://www.wix.com/velo/reference/$w/element/onmouseout) runs when the mouse pointer is moved off of the element
 
-Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/corvid/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/corvid/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
+Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/velo/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/velo/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
 [Here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
 
@@ -154,7 +154,7 @@ The `data:URL` image is a little longer than the direct link for this image. And
 
 ## Resources
 
-- [Corvid APIs](https://www.wix.com/corvid/reference/api-overview/introduction)
+- [Velo APIs](https://www.wix.com/velo/reference/api-overview/introduction)
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-imitating-hover-event-on-repeater-container-a65f4b6e0301)
@@ -163,4 +163,4 @@ The `data:URL` image is a little longer than the direct link for this image. And
 
 - [Event handling of Repeater Item](/event-handling-of-repeater-item/)
 - [Using HTML template to the better performance](/html-template-in-corvid/)
-- [A tiny event-based state manager Storeon for Corvid.](/corvid-storeon/)
+- [A tiny event-based state manager Storeon for Velo.](/corvid-storeon/)
