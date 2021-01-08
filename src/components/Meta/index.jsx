@@ -14,7 +14,7 @@ function Meta({ data }) {
     image,
     url,
     template,
-    siteUrl,
+    // siteUrl,
   } = data;
 
   const metaData = [
@@ -51,6 +51,10 @@ function Meta({ data }) {
       content: image,
     }),
     {
+      property: 'og:site_name',
+      content: 'Alexander Zaytsev | Web Developer Blog',
+    },
+    {
       name: 'twitter:card',
       content: (template === 'snippet') ? 'summary_large_image' : 'summary',
     },
@@ -73,9 +77,10 @@ function Meta({ data }) {
     <script type="application/ld+json">
       {JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'Article',
+        '@type': 'BlogPosting',
         headline: title,
         description,
+        inLanguage: lang,
         url,
         datePublished: date,
         dateModified: modified,
@@ -88,8 +93,9 @@ function Meta({ data }) {
           url: image,
         },
         mainEntityOfPage: {
-          '@type': 'WebSite',
-          '@id': siteUrl,
+          '@type': 'itemPage',
+          '@id': url,
+          url,
         },
       })}
     </script>
@@ -120,7 +126,7 @@ Meta.propTypes = {
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
-    siteUrl: T.string,
+    // siteUrl: T.string,
   }).isRequired,
 };
 
