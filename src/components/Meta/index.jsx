@@ -104,7 +104,7 @@ function Meta({ data }) {
   return (
     <Helmet
       title={title}
-      titleTemplate="%s | Blog"
+      titleTemplate="%s | Web Developer Blog"
       meta={metaData}
     >
       <html lang={lang} />

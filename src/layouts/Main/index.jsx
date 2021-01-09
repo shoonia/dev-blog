@@ -19,7 +19,7 @@ function Main({ nodes, meta }) {
     <Document meta={{
       // TODO:
       ...meta,
-      title: 'Alexander Zaytsev',
+      title: meta.author,
       lang: 'en',
       // image: '',
     }}
