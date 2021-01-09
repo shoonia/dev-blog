@@ -2,7 +2,8 @@
 publish: true
 path: '/management-of-app-state-on-wix-site'
 template: 'default'
-date: '2020'
+date: '2020-01-10'
+modified: '2021-01-10'
 lang: 'en'
 title: 'A Guide to management of a difficult app state on Wix Site with Storeon'
 description: "Storeon it's a simple state manager that has a so friendly interface. In this guide, we look up how we can separate business logic from view part using Storeon"
@@ -29,7 +30,6 @@ To understand this tutorial, you should know of modern JavaScript ES2017 paradig
 ```tree
 public/
 └── store/
-    ├── itemsModule.js
     └── index.js
 ```
 
@@ -47,7 +47,7 @@ export const {
 } = createStoreon([]);
 ```
 
-So we create an empty store. By now, it's an empty object. For describing stored data in the Storeon used module functions. The module function accepts a store object that provides three methods to work with the state.
+So we create an empty store it hasn't any data. By now, it's an empty object. For management data in the Storeon used module functions. The module's function accepts a store object that provides [three methods](https://github.com/storeon/storeon#store) to work with the state.
 
 **Example of a store module:**
 
@@ -63,6 +63,13 @@ export const storeModule = ({ get, on, dispatch }) => {
   // will emit an event with optional data.
   dispatch('event/type', { xyz: 124 });
 };
+```
+
+```diff
+public/
+└── store/
++   ├── itemsModule.js
+    └── index.js
 ```
 
 **public/store/itemsModule.js**
@@ -495,7 +502,7 @@ connect('isBusy', ({ isBusy }) => {
   src="https://static.wixstatic.com/media/fd206f_0ac80f242f60439f853d6eafeb47106c~mv2.jpg"
   width="770"
   height="263"
-  alt="install a new package"
+  alt="Wix Editor left side panel to install a new package"
   loading="lazy"
   decoding="async"
   crossorigin="anonymous"
