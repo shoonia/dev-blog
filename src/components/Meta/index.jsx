@@ -56,7 +56,7 @@ function Meta({ data }) {
     },
     {
       name: 'twitter:card',
-      content: (template === 'snippet') ? 'summary_large_image' : 'summary',
+      content: 'summary',
     },
     {
       name: 'twitter:site',
