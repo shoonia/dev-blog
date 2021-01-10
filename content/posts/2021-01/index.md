@@ -23,6 +23,26 @@ To understand this tutorial, you should know of modern JavaScript ES2017 paradig
 
 ## DO
 
+<img
+  src="https://static.wixstatic.com/media/fd206f_0ac80f242f60439f853d6eafeb47106c~mv2.jpg"
+  width="770"
+  height="263"
+  alt="Wix Editor left side panel to install a new package"
+  loading="lazy"
+  decoding="async"
+  crossorigin="anonymous"
+/>
+
+<img
+  src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
+  width="751"
+  height="304"
+  alt="Package Manager panel in Wix editor, installing storeon-velo"
+  loading="lazy"
+  decoding="async"
+  crossorigin="anonymous"
+/>
+
 ### Create store
 
 **Files Structure**
@@ -136,10 +156,10 @@ connect('items', (state) => {
 // Wrapper around $w.onReady()
 // The callback function will be run once.
 connectPage(() => {
-  const $input = $w('#input');
+  const $input = $w('#input1');
 
-  $input.onKeyPress(({ key }) => {
-    if (key !== 'Enter') {
+  $input.onKeyPress((event) => {
+    if (event.key !== 'Enter') {
       return;
     }
 
@@ -226,11 +246,11 @@ export const {
 
 ```js
 connect('items', ({ items }) => {
-  const $repeater = $w('#repeater');
+  const $repeater = $w('#repeater1');
 
   $repeater.data = items;
   $repeater.forEachItem(($item, data) => {
-    $item('#text').text = data.title;
+    $item('#text1').text = data.title;
   });
 });
 ```
@@ -241,11 +261,10 @@ connect('items', ({ items }) => {
 
 ```js
 connectPage(() => {
-  const $input = $w('#input');
-  const $buttonRemove = $w('#buttonRemove');
+  const $input = $w('#input1');
 
-  $input.onKeyPress(({ key }) => {
-    if (key !== 'Enter') {
+  $input.onKeyPress((event) => {
+    if (event.key !== 'Enter') {
       return;
     }
 
@@ -257,7 +276,7 @@ connectPage(() => {
     $input.value = '';
   });
 
-  $buttonRemove.onClick((event) => {
+  $w('#button1').onClick((event) => {
     dispatch('items/remove', event.context.itemId);
   });
 });
@@ -281,6 +300,15 @@ on('items/remove', ({ items }, itemId) => {
 
 ## Synchronization with database
 
+<img
+  src="https://static.wixstatic.com/media/fd206f_4b7551f3bc754e3cb04e11e03fe5c3da~mv2.jpg"
+  width="343"
+  height="201"
+  alt="Wix Editor side panel with an example for adding a new collection"
+  oading="lazy"
+  decoding="async"
+  crossorigin="anonymous"
+/>
 ### Create database module
 
 ```diff
@@ -351,6 +379,8 @@ on('items/loaded', (_, loadedItems) => {
 **public/store/databaseModule.js**
 
 ```js
+import wixData from 'wix-data';
+
 export const databaseModule = async ({ on, dispatch }) => {
   const collectionId = 'notes';
 
@@ -358,7 +388,7 @@ export const databaseModule = async ({ on, dispatch }) => {
     const { items } = await wixData.query(collectionId).find();
 
     dispatch('items/loaded', items);
-  } catch (error) { }
+  } catch (error) { /**/ }
 
   // Save:
   on('database/add', async (_, newItem) => {
@@ -366,7 +396,7 @@ export const databaseModule = async ({ on, dispatch }) => {
       await wixData.save(collectionId, newItem);
 
       dispatch('items/add', newItem);
-    } catch (error) { }
+    } catch (error) { /**/ }
   });
 
   // Remove:
@@ -375,7 +405,7 @@ export const databaseModule = async ({ on, dispatch }) => {
       await wixData.remove(collectionId, itemId);
 
       dispatch('items/remove', itemId);
-    } catch (error) { }
+    } catch (error) { /**/ }
   });
 };
 ```
@@ -383,12 +413,12 @@ export const databaseModule = async ({ on, dispatch }) => {
 **Home Page Code**
 
 ```js
-$input.onKeyPress(({ key }) => {
-  if (key !== 'Enter') {
+$input.onKeyPress((event) => {
+  if (event.key !== 'Enter') {
     return;
   }
 
-  // Redirected to database module
+  // to database from "items/add"
   dispatch('database/add', {
     _id: uuid(),
     title: $input.value,
@@ -397,8 +427,8 @@ $input.onKeyPress(({ key }) => {
   $input.value = '';
 });
 
-$buttonRemove.onClick((event) => {
-  // to database module
+$w('#button1').onClick((event) => {
+  // to database from "items/remove"
   dispatch('database/remove', event.context.itemId);
 });
 ```
@@ -477,6 +507,218 @@ connect('isBusy', ({ isBusy }) => {
 });
 ```
 
+## Code Snippets
+
+```diff
+public/
+└── store/
+    ├── itemsModule.js
+    ├── databaseModule.js
+    ├── operationModule.js
+    ├── logger.js
+    └── index.js
+```
+
+<details>
+  <summary>
+    <strong>public/store/itemsModule.js</strong>
+  </summary>
+
+```js
+export const itemsModule = ({ on }) => {
+  on('@init', () => {
+    return {
+      items: [],
+    };
+  });
+
+  on('items/loaded', (_, loadedItems) => {
+    return {
+      items: [...loadedItems],
+    };
+  });
+
+  on('items/add', ({ items }, newItem) => {
+    return {
+      items: [newItem, ...items],
+    };
+  });
+
+  on('items/remove', ({ items }, itemId) => {
+    return {
+      items: items.filter((i) => i._id !== itemId),
+    };
+  });
+};
+```
+
+</details>
+
+<details>
+  <summary>
+    <strong>public/store/databaseModule.js</strong>
+  </summary>
+
+```js
+import wixData from 'wix-data';
+
+export const databaseModule = async ({ on, dispatch }) => {
+  const collectionId = 'notes';
+
+  try {
+    const { items } = await wixData.query(collectionId).find();
+
+    dispatch('items/loaded', items);
+  } catch (error) { /**/ }
+
+  on('database/add', async (_, newItem) => {
+    try {
+      await wixData.save(collectionId, newItem);
+
+      dispatch('items/add', newItem);
+    } catch (error) { /**/ }
+  });
+
+  on('database/remove', async (_, itemId) => {
+    try {
+      await wixData.remove(collectionId, itemId);
+
+      dispatch('items/remove', itemId);
+    } catch (error) { /**/ }
+  });
+};
+```
+
+</details>
+
+<details>
+  <summary>
+    <strong>public/store/operationModule.js</strong>
+  </summary>
+
+```js
+export const operationModule = ({ on }) => {
+  on('@init', () => {
+    return { isBusy: true };
+  });
+
+  on('@dispatch', (_, [event]) => {
+    if (/^database/.test(event)) {
+      return { isBusy: true };
+    }
+
+    if (/^items/.test(event)) {
+      return { isBusy: false };
+    }
+  });
+};
+```
+
+</details>
+
+<details>
+  <summary>
+    <strong>public/store/logger.js</strong>
+  </summary>
+
+```js
+export const logger = ({ on }) => {
+  on('@dispatch', (state, [event, data]) => {
+    if (event === '@changed') {
+      const keys = Object.keys(data).join(', ');
+      console.log(`changed: ${keys}`, state);
+    } else if (typeof data !== 'undefined') {
+      console.log(`action: ${event}`, data);
+    } else {
+      console.log(`action: ${event}`);
+    }
+  });
+};
+```
+
+</details>
+
+<details>
+  <summary>
+    <strong>public/store/index.js</strong>
+  </summary>
+
+```js
+import { viewMode } from 'wix-window';
+import { createStoreon } from 'storeon-velo';
+
+import { itemsModule } from './itemsModule';
+import { databaseModule } from './databaseModule';
+import { operationModule } from './operationModule';
+import { logger } from './logger';
+
+export const {
+  getState,
+  dispatch,
+  connect,
+  connectPage,
+} = createStoreon([
+  itemsModule,
+  databaseModule,
+  operationModule,
+  viewMode === 'Preview' && logger,
+]);
+```
+
+</details>
+
+<details>
+  <summary>
+    <strong>Home Page (code)</strong>
+  </summary>
+
+```js
+import { v4 as uuid } from 'uuid';
+import { getState, dispatch, connect, connectPage } from 'public/store';
+
+connect('items', ({ items }) => {
+  const $repeater = $w('#repeater1');
+
+  $repeater.data = items;
+  $repeater.forEachItem(($item, data) => {
+    $item('#text1').text = data.title;
+  });
+});
+
+connect('isBusy', ({ isBusy }) => {
+  const $els = $w('#input1, #button1');
+
+  if (isBusy) {
+    $els.disable();
+  } else {
+    $els.enable();
+  }
+});
+
+connectPage(() => {
+  const $input = $w('#input1');
+
+  $input.onKeyPress((event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    dispatch('database/add', {
+      _id: uuid(),
+      title: $input.value,
+    });
+
+    $input.value = '';
+  });
+
+  $w('#button1').onClick((event) => {
+    dispatch('database/remove', event.context.itemId);
+  });
+});
+```
+
+</details>
+
 ## Conclusion
 
 ## Resources
@@ -486,34 +728,6 @@ connect('isBusy', ({ isBusy }) => {
   - [storeon](https://github.com/storeon/storeon)
   - [storeon-velo](https://github.com/shoonia/storeon-velo)
 
----
+## Posts
 
-<img
-  src="https://static.wixstatic.com/media/fd206f_4b7551f3bc754e3cb04e11e03fe5c3da~mv2.jpg"
-  width="343"
-  height="201"
-  alt="add a new collection"
-  oading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
-
-<img
-  src="https://static.wixstatic.com/media/fd206f_0ac80f242f60439f853d6eafeb47106c~mv2.jpg"
-  width="770"
-  height="263"
-  alt="Wix Editor left side panel to install a new package"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
-
-<img
-  src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
-  width="751"
-  height="304"
-  alt="Package Manager panel in Wix editor, installing storeon-velo"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
+- [A tiny event-based state manager Storeon for Velo](/corvid-storeon/)
