@@ -229,8 +229,8 @@ State management can be a tricky problem, but Storeon offers a simple, yet robus
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
 - [Storeon on GitHub](https://github.com/storeon/storeon)
 - [Storeon Velo on GitHub](https://github.com/shoonia/storeon-velo)
-- [Discussion on Velo Forum](https://www.wix.com/velo/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-corvid)
-- [This article on medium.com](https://medium.com/@shoonia/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
+- [Discussion on Velo Forum](https://www.wix.com/velo/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-velo)
+- [This article on medium.com](https://shoonia.medium.com/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
 - [This article on dzone.com](https://dzone.com/articles/a-tiny-event-based-state-manager-storeon-for-corvi)
 
 ## Demo
