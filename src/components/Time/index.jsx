@@ -2,27 +2,21 @@ import React from 'react';
 import T from 'prop-types';
 
 import s from './Time.module.css';
+import useDate from './useDate';
 
-function toLocaleString(date, lang) {
-  const time = new Date(date).toLocaleString(lang, {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  });
+const Time = ({ date, lang }) => {
+  const { label, a11y, iso } = useDate(date, lang);
 
-  return (time === 'Invalid Date') ? '' : time;
-}
-
-function Time({ date, lang }) {
   return (
     <time
       className={s.time}
-      dateTime={date}
+      dateTime={iso}
+      title={a11y}
     >
-      {toLocaleString(date, lang)}
+      {label}
     </time>
   );
-}
+};
 
 Time.propTypes = {
   date: T.string.isRequired,
