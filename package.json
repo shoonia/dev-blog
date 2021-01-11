@@ -1,7 +1,7 @@
 {
   "name": "dev-blog",
   "title": "Blog",
-  "description": "Web Developer Blog",
+  "description": "Web Development Blog",
   "version": "0.1.0",
   "homepage": "https://shoonia.site",
   "scripts": {

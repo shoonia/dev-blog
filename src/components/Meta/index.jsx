@@ -17,6 +17,8 @@ function Meta({ data }) {
     // siteUrl,
   } = data;
 
+  const siteName = 'Alexander Zaytsev | Web Development Blog';
+
   const metaData = [
     {
       name: 'description',
@@ -52,7 +54,7 @@ function Meta({ data }) {
     }),
     {
       property: 'og:site_name',
-      content: 'Alexander Zaytsev | Web Developer Blog',
+      content: siteName,
     },
     {
       name: 'twitter:card',
@@ -78,6 +80,7 @@ function Meta({ data }) {
       {JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
+        name: siteName,
         headline: title,
         description,
         inLanguage: lang,
@@ -104,7 +107,7 @@ function Meta({ data }) {
   return (
     <Helmet
       title={title}
-      titleTemplate="%s | Web Developer Blog"
+      titleTemplate="%s | Web Development Blog"
       meta={metaData}
     >
       <html lang={lang} />
