@@ -401,7 +401,22 @@ channel.on('@iframe/count', (count) => {
 });
 ```
 
-See how it works: **[Live Demo](https://shoonia.wixsite.com/blog/channel)**
+<figure>
+ <figcaption>
+
+  **[Live Demo](https://shoonia.wixsite.com/blog/channel)** Message Channel
+  </figcaption>
+  <iframe
+    src="https://shoonia.wixsite.com/blog/channel"
+    width="100%"
+    height="250"
+    loading="lazy"
+    crossorigin="anonymous"
+    title="Example of the Wix Site with the message channel to iFrame"
+    scrolling="no"
+    style="overflow:hidden"
+  ></iframe>
+</figure>
 
 ## Source Code
 

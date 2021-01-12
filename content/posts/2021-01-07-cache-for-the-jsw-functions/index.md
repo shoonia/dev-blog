@@ -353,6 +353,7 @@ $w.onReady(() => {
   loadPost();
 });
 ```
+
 <figure>
  <figcaption>
     Example: Cache the API calls

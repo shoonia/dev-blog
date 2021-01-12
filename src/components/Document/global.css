@@ -184,6 +184,7 @@ img {
   background-color: #eee;
 }
 
+iframe,
 img[decoding="async"] {
   content-visibility: auto;
 }
