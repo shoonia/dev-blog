@@ -19,29 +19,41 @@ image: '#'
 
 ## Requirements
 
-To understand this tutorial, you should know of modern JavaScript ES2017 paradigms and have the experience to work with Wix Editor and with the basic Velo APIs, like [wix-data](https://www.wix.com/velo/reference/wix-data) or [wix-window](https://www.wix.com/velo/reference/wix-window), etc.
+To understand this tutorial, you should know of modern JavaScript ES2017 paradigms and have the experience to work with Wix Editor and with the basic Velo APIs, like [wix-data](https://www.wix.com/velo/reference/wix-data) and [wix-window](https://www.wix.com/velo/reference/wix-window), etc.
 
 ## DO
 
-<img
-  src="https://static.wixstatic.com/media/fd206f_0ac80f242f60439f853d6eafeb47106c~mv2.jpg"
-  width="770"
-  height="263"
-  alt="Wix Editor left side panel to install a new package"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
+<figure>
+ <figcaption>
+    Installing <mark>storeon-velo</mark>. Hover the Packages (npm) section header in the Velo sidebar, click the <code>+</code>  plus icon, and select Install a New Package.
+  </figcaption>
+  <img
+    src="https://static.wixstatic.com/media/fd206f_0ac80f242f60439f853d6eafeb47106c~mv2.jpg"
+    width="770"
+    height="263"
+    alt="Wix Editor left side panel to install a new package"
+    loading="lazy"
+    decoding="async"
+    crossorigin="anonymous"
+  />
+</figure>
 
-<img
-  src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
-  width="751"
-  height="304"
-  alt="Package Manager panel in Wix editor, installing storeon-velo"
-  loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
-/>
+<figure>
+  <figcaption>
+    Use the search box to find the package.
+  </figcaption>
+  <img
+    src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
+    width="751"
+    height="304"
+    alt="Package Manager panel in Wix editor, installing storeon-velo"
+    loading="lazy"
+    decoding="async"
+    crossorigin="anonymous"
+  />
+</figure>
+
+Now we can use the package in our code.
 
 ### Create store
 
@@ -220,6 +232,8 @@ export const logger = ({ on }) => {
 };
 ```
 
+[`wixWindow.viewMode`](https://www.wix.com/velo/reference/wix-window/viewmode)
+
 **public/store/index.js**
 
 ```js
@@ -256,6 +270,8 @@ connect('items', ({ items }) => {
 ```
 
 ### Remove notes
+
+[`event.context`](https://www.wix.com/velo/reference/$w/event/context) `itemId`
 
 **Home Page Code**
 
@@ -336,6 +352,18 @@ export const databaseModule = async ({ dispatch }) => {
 };
 ```
 
+**Example of error handling:**
+
+```js
+try {
+  const { items } = await wixData.query(collectionId).find();
+
+  dispatch('items/loaded', items);
+} catch (error) {
+  dispatch('errors/database', error);
+}
+```
+
 **public/store/index.js**
 
 ```js
@@ -390,7 +418,7 @@ export const databaseModule = async ({ on, dispatch }) => {
     dispatch('items/loaded', items);
   } catch (error) { /**/ }
 
-  // Save:
+  // Add a new item to the database collection
   on('database/add', async (_, newItem) => {
     try {
       await wixData.save(collectionId, newItem);
@@ -399,7 +427,7 @@ export const databaseModule = async ({ on, dispatch }) => {
     } catch (error) { /**/ }
   });
 
-  // Remove:
+  // Remove an item from database collection by ID
   on('database/remove', async (_, itemId) => {
     try {
       await wixData.remove(collectionId, itemId);
@@ -418,7 +446,7 @@ $input.onKeyPress((event) => {
     return;
   }
 
-  // to database from "items/add"
+  // Redirect dispatching to "database/add" from "items/add"
   dispatch('database/add', {
     _id: uuid(),
     title: $input.value,
@@ -428,7 +456,7 @@ $input.onKeyPress((event) => {
 });
 
 $w('#button1').onClick((event) => {
-  // to database from "items/remove"
+  // Redirect dispatching "database/remove" from "items/remove"
   dispatch('database/remove', event.context.itemId);
 });
 ```
@@ -445,6 +473,8 @@ public/
     └── index.js
 ```
 
+[`regexObj.test(str)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)
+
 **public/store/operationModule.js**
 
 ```js
@@ -455,7 +485,7 @@ export const operationModule = ({ on }) => {
 
   on('@dispatch', (_, [event]) => {
     // If the events name starts with "database"
-    // that means the going async operation
+    // that means it's going async operation
     if (/^database/.test(event)) {
       return { isBusy: true };
     }
@@ -497,7 +527,7 @@ export const {
 
 ```js
 connect('isBusy', ({ isBusy }) => {
-  const $els = $w('#input, #buttonRemove');
+  const $els = $w('#input1, #button1');
 
   if (isBusy) {
     $els.disable();

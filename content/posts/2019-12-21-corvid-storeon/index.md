@@ -63,7 +63,7 @@ public
 
 We will write our business logic in `public/store.js`.
 
-Storeon's state is always an object; it canʼt be anything else. Itʼs a small limitation and not too important to us, but we have to remember it.
+Storeon's state is always an object; it can't be anything else. Itʼs a small limitation and not too important to us, but we have to remember it.
 
 **public/store.js**
 
