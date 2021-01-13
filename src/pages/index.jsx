@@ -7,7 +7,6 @@ import Main from '../layouts/Main';
 export const query = graphql`
 {
   allMarkdownRemark(
-    limit: 10
     sort: {
       fields: [frontmatter___date]
       order: DESC
