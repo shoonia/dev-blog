@@ -1,4 +1,6 @@
+@import '../../variables.css';
+
 .time {
-  color: $colorGray;
+  color: $color-gray;
   font-size: 14px;
 }

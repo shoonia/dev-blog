@@ -44,7 +44,17 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        postCssPlugins: [
+          require('postcss-import'),
+          require('postcss-simple-vars'),
+          isProd && require('autoprefixer'),
+          isProd && require('cssnano'),
+        ].filter(Boolean),
+      },
+    },
     isProd && 'gatsby-plugin-mini-css-class-name',
     isProd && {
       resolve: 'gatsby-plugin-manifest',

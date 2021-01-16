@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .header {
   height: 80px;
   line-height: 80px;
@@ -6,7 +8,7 @@
 }
 
 .nav {
-  max-width: $contentWidht;
+  max-width: $content-widht;
   padding: 0 15px;
   margin: 0 auto;
 }
