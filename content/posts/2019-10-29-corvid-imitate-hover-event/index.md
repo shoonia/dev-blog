@@ -54,7 +54,7 @@ $w.onReady(function () {
 Please pay attention, we don't nest any containers item into the repeater for adding handlers. Like here:
 
 ```js
-// In this way, each time when onItemReady starts
+// ❌ In this way, each time when onItemReady starts
 // may set a new handler for containers
 $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#container1").onMouseIn(imitateHover);
@@ -101,6 +101,7 @@ function imitateHover(event) {
   if (event.type === "mouseenter") {
     event.target.background.src = HOVER_PNG;
   }
+
   if (event.type === "mouseleave") {
     // when the cursor is gone then remove the pixel image.
     event.target.background.src = "";
@@ -133,6 +134,7 @@ function imitateHover(event) {
   if (event.type === "mouseenter") {
     event.target.background.src = HOVER_PNG;
   }
+
   if (event.type === "mouseleave") {
     event.target.background.src = "";
   }

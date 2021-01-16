@@ -1,8 +1,6 @@
-code[class*="code-"],
 pre[class*="code-"] {
   color: rgba(255, 255, 255, 0.8);
-  background: none;
-  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background-color: #282c34;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -11,27 +9,21 @@ pre[class*="code-"] {
   line-height: 1.5;
   tab-size: 2;
   hyphens: none;
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-pre[class*="code-"] ::selection,
-code[class*="code-"] ::selection {
+pre[class*="code-"] ::selection {
   text-shadow: none;
   background-color: #9aa2b1;
 }
 
 @media print {
-  code[class*="code-"],
   pre[class*="code-"] {
     text-shadow: none;
   }
-}
-
-pre[class*="code-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-  background-color: #282c34;
-  -webkit-overflow-scrolling: touch;
 }
 
 .parameter {
