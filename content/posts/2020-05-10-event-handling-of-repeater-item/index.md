@@ -3,7 +3,7 @@ publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
 date: '2020-05-10T12:00:00.000Z'
-modified: '2021-01-07T12:00:00.000Z'
+modified: '2021-01-16T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
@@ -157,7 +157,7 @@ const useScope = createScope(() => {
 // using with repeated items
 $w("#repeatedButton").onClick((event) => {
   // returns all we need
-  const { $item, itemData, index } = useScope(event);
+  const { $item, itemData, index, data } = useScope(event);
 });
 ```
 
@@ -210,11 +210,6 @@ const useScope = createScope(() => {
 });
 
 $w.onReady(() => {
-  // sets static data
-  $w("#repeater").onItemReady(($item, itemData) => {
-    $item('#repeatedText').text = itemData.title;
-  });
-
   // use a dynamic event handler
   $w("#repeatedButton").onClick((event) => {
     const { $item, itemData, index, data } = useScope(event);
@@ -233,7 +228,7 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 *<time datetime="2020-12-05T12:00:00.000Z">Update (12.05.2020)</time>*
 
-The Velo code editor supports [JSDocs](https://jsdoc.app/), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
+The Velo code editor supports [JSDocs](https://jsdoc.app), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
 
 <details>
   <summary>

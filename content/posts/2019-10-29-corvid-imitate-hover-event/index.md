@@ -3,7 +3,7 @@ publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
-modified: '2021-01-04T12:00:00.000Z'
+modified: '2021-01-16T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Imitating hover event on repeater container'
 description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
@@ -41,14 +41,11 @@ Also, repeater items don't have property [`style.backgroundColor`](https://www.w
 To start with, set handlers to `onMouse{In/Out}` events. We will use one function for two events by repeaters containers. We declare the handler function above and pass the function's name as an argument to container methods.
 
 ```js
-const items = [ /* here are our users */ ];
-
 function imitateHover(event) {
   // our handler for containers
 }
 
 $w.onReady(function () {
-  $w("#repeater1").data = items;
   $w("#container1").onMouseIn(imitateHover); // set handler
   $w("#container1").onMouseOut(imitateHover);
 });
@@ -58,7 +55,7 @@ Please pay attention, we don't nest any containers item into the repeater for ad
 
 ```js
 // In this way, each time when onItemReady starts
-// would be set a new handler for containers.
+// may set a new handler for containers
 $w("#repeater1").onItemReady( ($item, itemData, index) => {
   $item("#container1").onMouseIn(imitateHover);
   $item("#container1").onMouseOut(imitateHover);
@@ -88,7 +85,6 @@ function imitateHover(event) {
 }
 
 $w.onReady(function () {
-  $w("#repeater1").data = items;
   $w("#container1").onMouseIn(imitateHover);
   $w("#container1").onMouseOut(imitateHover);
 });
@@ -112,7 +108,6 @@ function imitateHover(event) {
 }
 
 $w.onReady(function () {
-  $w("#repeater1").data = items;
   $w("#container1").onMouseIn(imitateHover);
   $w("#container1").onMouseOut(imitateHover);
 });
@@ -120,7 +115,7 @@ $w.onReady(function () {
 
 Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
 
-## One pixel image
+## One-pixel image
 
 We used the direct link to the one-pixel image. The size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
 
@@ -144,7 +139,6 @@ function imitateHover(event) {
 }
 
 $w.onReady(function () {
-  $w("#repeater1").data = items;
   $w("#container1").onMouseIn(imitateHover);
   $w("#container1").onMouseOut(imitateHover);
 });

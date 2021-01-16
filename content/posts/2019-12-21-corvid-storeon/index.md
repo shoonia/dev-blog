@@ -3,7 +3,7 @@ publish: true
 path: '/corvid-storeon'
 template: 'default'
 date: '2019-12-21T12:00:00.000Z'
-modified: '2021-01-06T12:00:00.000Z'
+modified: '2021-01-16T12:00:00.000Z'
 lang: 'en'
 title: 'A tiny event-based state manager Storeon for Velo'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
@@ -115,7 +115,7 @@ Letʼs add two text elements to display our counter value, and four buttons for 
 Of course, we have to import the store methods from the public file to the page's code.
 
 ```js
-import { dispatch, connect, connectPage } from 'public/store';
+import { getState, dispatch, connect, connectPage } from 'public/store';
 ```
 
 With `connect("key", callback)`, we can subscribe to any store properties, and the callback function will be run when the page is loaded and each time when the listed property changes.
