@@ -258,3 +258,9 @@ details[open] summary::before {
     margin: 16px 0;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  a::before {
+    transition: none;
+  }
+}
