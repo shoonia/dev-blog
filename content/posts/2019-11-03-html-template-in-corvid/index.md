@@ -163,6 +163,6 @@ It works faster now because we have only two elements in repeater one image and 
 
 ## Posts
 
-- [A tiny event-based state manager Storeon for Velo.](/corvid-storeon/)
-- [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
-- [Event handling of Repeater Item](/event-handling-of-repeater-item/)
+- [A tiny event-based state manager Storeon for Velo](/corvid-storeon)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item)
