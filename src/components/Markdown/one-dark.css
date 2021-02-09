@@ -17,7 +17,7 @@ pre[class*="code-"] {
 
 pre[class*="code-"] ::selection {
   text-shadow: none;
-  background-color: #9aa2b1;
+  background-color: rgba(154, 162, 177, 0.2);
 }
 
 @media print {
