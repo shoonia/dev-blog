@@ -1,9 +1,9 @@
 import React from 'react';
 import T from 'prop-types';
 
+import * as s from './main.module.css';
 import Document from '../../components/Document';
 import MenuItem from './MenuItem';
-import s from './main.module.css';
 
 function Main({ nodes, meta }) {
   const list = nodes.map((node) => (

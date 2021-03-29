@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-import s from './Time.module.css';
+import * as s from './Time.module.css';
 import useDate from './useDate';
 
 const Time = ({ date, lang }) => {

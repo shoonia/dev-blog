@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import s from './Header.module.css';
+import * as s from './Header.module.css';
 
 function Header() {
   return (
