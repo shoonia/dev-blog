@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-import s from './main.module.css';
+import * as s from './main.module.css';
 import Time from '../../components/Time';
 
 function MenuItem({

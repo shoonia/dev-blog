@@ -1,10 +1,10 @@
 import React from 'react';
 import T from 'prop-types';
 
+import * as s from './posts.module.css';
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
 import Time from '../../components/Time';
-import s from './posts.module.css';
 
 function Post({ meta, html }) {
   return (

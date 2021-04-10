@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 
-import s from './footer.module.css';
+import * as s from './footer.module.css';
 
 function Footer() {
   return (
