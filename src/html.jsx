@@ -24,6 +24,8 @@ function HTML({
         type="font/woff2"
         crossOrigin="anonymous"
       />
+      <link rel="webmention" href="https://webmention.io/shoonia.site/webmention" />
+      <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc" />
     </>
   );
 
