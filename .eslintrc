@@ -17,6 +17,7 @@
   "rules": {
     "global-require": "off",
     "linebreak-style": "off",
-    "react/jsx-key": "error"
+    "react/jsx-key": "error",
+    "import/prefer-default-export": "off"
   }
 }
