@@ -3,7 +3,7 @@ publish: true
 path: '/event-handling-of-repeater-item'
 template: 'default'
 date: '2020-05-10T12:00:00.000Z'
-modified: '2021-01-16T12:00:00.000Z'
+modified: '2021-04-19T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
@@ -194,7 +194,7 @@ export const createScope = (getData) => (event) => {
 };
 ```
 
-[Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
+[Code on GitHub](https://github.com/shoonia/repeater-scope)
 
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
@@ -284,7 +284,7 @@ export const createScope = (getData) => (event) => {
 
 ## Resources
 
-- [Code Snippet on GitHub](https://github.com/shoonia/repeater-scope/blob/master/index.js)
+- [Code on GitHub](https://github.com/shoonia/repeater-scope)
 - [Scope selector `$w.at(context)`](https://www.wix.com/velo/reference/$w/at)
 - [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_selector-scope)
 - [Event Context](https://www.wix.com/velo/reference/$w/event/context)
