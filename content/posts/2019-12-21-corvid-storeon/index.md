@@ -3,7 +3,7 @@ publish: true
 path: '/corvid-storeon'
 template: 'default'
 date: '2019-12-21T12:00:00.000Z'
-modified: '2021-01-16T12:00:00.000Z'
+modified: '2021-04-25T12:00:00.000Z'
 lang: 'en'
 title: 'A tiny event-based state manager Storeon for Velo'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
@@ -32,7 +32,7 @@ image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d
 
 ## Motivation
 
-In the article, [“State management in Corvid”](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd), Shahar Talmi brings up a question about controlling app states in Velo. If you’re not familiar with Velo, it’s a development platform running on Wix that allows you to quickly and easily develop web applications.
+In the article, [“State management in Velo”](https://shahata.medium.com/state-management-in-corvid-2ebfa8740abd), Shahar Talmi brings up a question about controlling app states in Velo. If you’re not familiar with Velo, it’s a development platform running on Wix that allows you to quickly and easily develop web applications.
 
 Accurately controlling the state of any app is a really big problem. If you have many component dependencies or need to handle constant user interactions, you're going to suffer a bit when you want to eventually add a new feature or scale your application.
 
@@ -229,7 +229,7 @@ State management can be a tricky problem, but Storeon offers a simple, yet robus
 - [Storeon](https://evilmartians.com/chronicles/storeon-redux-in-173-bytes)
 - [Storeon on GitHub](https://github.com/storeon/storeon)
 - [Storeon Velo on GitHub](https://github.com/shoonia/storeon-velo)
-- [Discussion on Velo Forum](https://www.wix.com/velo/forum/community-discussion/a-tiny-event-based-state-manager-storeon-for-velo)
+- [Discussion on Velo Forum](https://www.wix.com/velo/forum/coding-with-velo/a-tiny-event-based-state-manager-storeon-for-velo)
 - [This article on medium.com](https://shoonia.medium.com/a-tiny-event-based-state-manager-storeon-for-corvid-32bf750529e5)
 - [This article on dzone.com](https://dzone.com/articles/a-tiny-event-based-state-manager-storeon-for-corvi)
 
@@ -240,4 +240,4 @@ State management can be a tricky problem, but Storeon offers a simple, yet robus
 
 ## Also
 
-- [“State management in Corvid” by Shahar Talmi](https://medium.com/@shahata/state-management-in-corvid-2ebfa8740abd)
+- [“State management in Velo” by Shahar Talmi](https://shahata.medium.com/state-management-in-corvid-2ebfa8740abd)

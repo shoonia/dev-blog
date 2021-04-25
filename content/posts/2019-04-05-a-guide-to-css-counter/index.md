@@ -12,10 +12,11 @@ image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377
 ---
 
 <link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">
+<!-- https://webmention.io/shoonia.site/webmention/Iji5NfOn0EsikwB1vEG5 -->
 
 # Руководство по CSS-счетчикам
 
-*Перевод статьи Samantha Ming: [A Guide to CSS counter](https://www.samanthaming.com/tidbits/53-css-counter). Опубликовано с разрешения автора.*
+*Перевод статьи Samantha Ming: [A Guide to CSS counter](https://www.samanthaming.com/tidbits/53-css-counter/). Опубликовано с разрешения автора.*
 
 ---
 <img
@@ -424,4 +425,4 @@ Vue — это прогрессивный фреймворк для создан
 
 ---
 
-Публикация оригинальной статьи [www.samanthaming.com](https://www.samanthaming.com/tidbits/53-css-counter)
+Публикация оригинальной статьи [www.samanthaming.com](https://www.samanthaming.com/tidbits/53-css-counter/)
