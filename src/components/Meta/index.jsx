@@ -2,6 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import T from 'prop-types';
 
+import {
+  author as blogAuthor,
+  description as blogTitle,
+} from '../../../package.json';
+
 const Meta = ({ data }) => {
   const {
     // path,
@@ -14,10 +19,10 @@ const Meta = ({ data }) => {
     image,
     url,
     template,
-    // siteUrl,
+    siteUrl,
   } = data;
 
-  const siteName = 'Alexander Zaytsev | Web Development Blog';
+  const siteName = `${blogAuthor.name} | ${blogTitle}`;
 
   const metaData = [
     {
@@ -102,6 +107,16 @@ const Meta = ({ data }) => {
           '@type': 'Person',
           name: author,
         },
+        publisher: {
+          '@type': 'Organization',
+          name: blogAuthor.name,
+          email: blogAuthor.email,
+          sameAs: blogAuthor.url,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/icons/icon-512x512.png`,
+          },
+        },
         image: {
           '@type': 'ImageObject',
           url: image,
@@ -140,7 +155,7 @@ Meta.propTypes = {
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
-    // siteUrl: T.string,
+    siteUrl: T.string,
   }).isRequired,
 };
 
