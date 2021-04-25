@@ -2,7 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 
 import * as s from './Time.module.css';
-import useDate from './useDate';
+import { useDate } from './useDate';
 
 const Time = ({ date, lang }) => {
   const { label, a11y, iso } = useDate(date, lang);

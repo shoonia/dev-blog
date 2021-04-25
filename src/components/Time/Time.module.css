@@ -3,4 +3,5 @@
 .time {
   color: $color-gray;
   font-size: 14px;
+  font-family: Courier, monospace;
 }

@@ -1,8 +1,8 @@
-const useDate = (date, lang) => {
+export const useDate = (date, lang) => {
   const time = new Date(date);
 
   if (time.toString() === 'Invalid Date') {
-    return {};
+    throw new Error('Invalid Date');
   }
 
   return {
@@ -20,5 +20,3 @@ const useDate = (date, lang) => {
     iso: time.toISOString(),
   };
 };
-
-export default useDate;

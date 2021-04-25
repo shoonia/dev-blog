@@ -1,8 +1,8 @@
 @import '../../variables.css';
 
 .header {
-  height: 80px;
-  line-height: 80px;
+  height: 60px;
+  line-height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
