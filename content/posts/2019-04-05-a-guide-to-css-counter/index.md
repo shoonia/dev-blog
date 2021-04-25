@@ -3,7 +3,7 @@ publish: true
 path: '/a-guide-to-css-counter'
 template: 'default'
 date: '2019-04-05T12:00:00.000Z'
-modified: '2019-04-05T12:00:00.000Z'
+modified: '2021-04-25T12:00:00.000Z'
 lang: 'ru'
 title: 'Руководство по CSS-счетчикам'
 description: 'Перевод статьи, Samantha Ming: "A Guide to CSS counter"'
@@ -12,7 +12,7 @@ image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377
 ---
 
 <link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">
-<!-- https://webmention.io/shoonia.site/webmention/Iji5NfOn0EsikwB1vEG5 -->
+<!-- https://webmention.io/shoonia.site/webmention/8cpkuQnyFAGfAKMhPlYS -->
 
 # Руководство по CSS-счетчикам
 
@@ -418,8 +418,8 @@ Vue — это прогрессивный фреймворк для создан
 
 ## Поставте лайк ❤️
 
-[Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)
-[Like this on Instagram](https://www.instagram.com/p/BvXHR0phDFW/)
+- [Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)
+- [Like this on Instagram](https://www.instagram.com/p/BvXHR0phDFW/)
 
 **Спасибо за прочтение ❤**
 

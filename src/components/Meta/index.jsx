@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import T from 'prop-types';
 
-function Meta({ data }) {
+const Meta = ({ data }) => {
   const {
     // path,
     title,
@@ -36,22 +36,22 @@ function Meta({ data }) {
       property: 'og:type',
       content: 'article',
     },
-    date && ({
+    date && {
       property: 'article:published_time',
       content: date,
-    }),
-    modified && ({
+    },
+    modified && {
       property: 'article:modified_time',
       content: modified,
-    }),
+    },
     {
       property: 'og:url',
       content: url,
     },
-    image && ({
+    image && {
       property: 'og:image',
       content: image,
-    }),
+    },
     {
       property: 'og:site_name',
       content: siteName,
@@ -72,8 +72,19 @@ function Meta({ data }) {
       name: 'twitter:description',
       content: description,
     },
-  ]
-    .filter(Boolean);
+    {
+      itemprop: 'name',
+      content: title,
+    },
+    {
+      itemprop: 'description',
+      content: description,
+    },
+    image && {
+      itemprop: 'image',
+      content: image,
+    },
+  ].filter(Boolean);
 
   const JSONLD = (template === 'default') && (
     <script type="application/ld+json">
@@ -115,7 +126,7 @@ function Meta({ data }) {
       {JSONLD}
     </Helmet>
   );
-}
+};
 
 Meta.propTypes = {
   data: T.shape({
