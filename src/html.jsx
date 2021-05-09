@@ -1,6 +1,8 @@
 import React from 'react';
 import T from 'prop-types';
 
+import { homepage } from '../package.json';
+
 function HTML({
   htmlAttributes,
   headComponents,
@@ -43,6 +45,7 @@ function HTML({
       <html lang={htmlAttributes.lang}>
         <head>
           {links}
+          <base href={homepage} />
           {headComponents}
         </head>
         <body>
