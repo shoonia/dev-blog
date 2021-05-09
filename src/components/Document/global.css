@@ -220,7 +220,7 @@ summary {
   cursor: pointer;
 }
 
-summary::-webkit-details-marker {
+summary::marker {
   display: none;
 }
 
