@@ -1,5 +1,5 @@
 const { renderToString } = require('react-dom/server');
-const { minifyHTML } = require('./util/html.js');
+const { minifyHTML } = require('./util/html');
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   const bodyHTML = renderToString(bodyComponent);
