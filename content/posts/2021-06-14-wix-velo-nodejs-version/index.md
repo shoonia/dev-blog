@@ -16,7 +16,7 @@ image: 'https://static.wixstatic.com/media/fd206f_fef1024a2084464ab6c6aca7a168d6
 Online checker of Node.js version on Velo backend.
 
 <mark>Today: <time id="ts">Loading...</time></mark>
-<output id="error" style="color:red">!</output>
+<output id="error" style="color:red">&nbsp;</output>
 
 <table id="table">
   <tbody>
@@ -43,8 +43,6 @@ Online checker of Node.js version on Velo backend.
 
   const resolve = (data) => {
     const date = new Date(data.ts);
-
-    h('#error').remove();
 
     h('#ts', {
       title: date.toLocaleString([], {
