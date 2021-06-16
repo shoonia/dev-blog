@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import T from 'prop-types';
 
 import {
+  homepage,
   author as blogAuthor,
   description as blogTitle,
 } from '../../../package.json';
@@ -19,7 +20,6 @@ const Meta = ({ data }) => {
     image,
     url,
     template,
-    siteUrl,
   } = data;
 
   const siteName = `${blogAuthor.name} | ${blogTitle}`;
@@ -114,7 +114,7 @@ const Meta = ({ data }) => {
           sameAs: blogAuthor.url,
           logo: {
             '@type': 'ImageObject',
-            url: `${siteUrl}/icons/icon-512x512.png`,
+            url: `${homepage}/icons/icon-512x512.png`,
           },
         },
         image: {
@@ -141,7 +141,7 @@ const Meta = ({ data }) => {
       {JSONLD}
       <link
         rel="alternate"
-        href={`${siteUrl}/rss.xml`}
+        href={`${homepage}/rss.xml`}
         type="application/rss+xml"
         title={siteName}
       />
@@ -161,7 +161,7 @@ Meta.propTypes = {
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
-    siteUrl: T.string,
+    // siteUrl: T.string,
   }).isRequired,
 };
 
