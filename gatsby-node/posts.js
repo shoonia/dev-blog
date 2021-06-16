@@ -51,7 +51,7 @@ module.exports = async ({ actions, graphql }) => {
       }
     }`);
 
-  const createUrl = (pth) => new URL(pth, siteUrl).toString();
+  const createUrl = (pth) => new URL(pth, siteUrl).href;
 
   nodes.forEach((node) => {
     actions.createPage({
