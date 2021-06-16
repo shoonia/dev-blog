@@ -246,6 +246,12 @@ details[open] summary::before {
   content: "-";
 }
 
+iframe,
+video {
+  border: 1px solid $color-light-gray-opacity;
+  border-radius: 8px;
+}
+
 @media (max-width: 700px) {
   h1 {
     font-size: 32px;
