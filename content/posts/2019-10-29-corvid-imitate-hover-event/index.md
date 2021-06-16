@@ -3,7 +3,7 @@ publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
-modified: '2021-01-16T12:00:00.000Z'
+modified: '2021-06-16T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Imitating hover event on repeater container'
 description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
@@ -114,7 +114,7 @@ $w.onReady(function () {
 });
 ```
 
-Great! It works: [DEMO](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
+Great! It works.
 
 ## One-pixel image
 
@@ -148,12 +148,30 @@ $w.onReady(function () {
 
 The `data:URL` image is a little longer than the direct link for this image. And other reason to use `data:URL` with the small image we don't send HTTP request for fetching this image.
 
+<figure>
+  <figcaption>
+
+  **Live Demo: Hover on repeater container**
+  </figcaption>
+  <iframe
+    src="https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid"
+    width="100%"
+    height="510"
+    loading="lazy"
+    crossorigin="anonymous"
+    title="Velo by Wix: Imitating hover event on repeater container"
+    scrolling="no"
+    style="overflow:hidden"
+  ></iframe>
+</figure>
+
 ## Resources
 
 - [Velo APIs](https://www.wix.com/velo/reference/api-overview/introduction)
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-imitating-hover-event-on-repeater-container-a65f4b6e0301)
+- [Live Demo](https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid)
 
 ## Posts
 
