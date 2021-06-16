@@ -51,7 +51,6 @@ module.exports = {
           require('postcss-import'),
           require('postcss-simple-vars'),
           isProd && require('autoprefixer'),
-          isProd && require('cssnano'),
         ].filter(Boolean),
       },
     },
