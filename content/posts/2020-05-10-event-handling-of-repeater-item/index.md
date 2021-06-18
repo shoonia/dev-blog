@@ -228,11 +228,11 @@ Now, we can reuse the selector hook with all Repeater in all site pages.
 
 *<time datetime="2020-12-05T12:00:00.000Z">Update (12.05.2020)</time>*
 
-The Velo code editor supports [JSDocs](https://jsdoc.app), it's a markup language that is used inside JS block comments. JSDocs provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDocs.
+The Velo code editor supports [JSDoc](https://jsdoc.app), it's a markup language that is used inside JS block comments. JSDoc provides static type checking, adds the autocomplete, and making good documentation of your code. I recommend using JSDoc.
 
 <details>
   <summary>
-    <strong>Code snippet with JSDocs:</strong>
+    <strong>Code snippet with JSDoc:</strong>
   </summary>
 
 ```js
@@ -278,9 +278,9 @@ export const createScope = (getData) => (event) => {
 };
 ```
 
-</details>
+*Don't remove JSDoc in your code! In the building process, all comments will be removed automatically from the production bundle.*
 
-*Don't remove JSDocs in your code! In the building process, all comments will be removed automatically from the production bundle.*
+</details>
 
 ## Resources
 
