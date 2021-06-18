@@ -102,7 +102,7 @@ const Meta = ({ data }) => {
         inLanguage: lang,
         url,
         datePublished: date,
-        dateModified: modified,
+        dateModified: modified || undefined,
         author: {
           '@type': 'Person',
           name: author,
