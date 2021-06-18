@@ -75,7 +75,7 @@ We can get repeated-item-scope selector in a few ways.
 In the **loop**, selector as the first argument in callback function for [`.forEachItem()`](https://www.wix.com/velo/reference/$w/repeater/foreachitem), [`.forItems()`](https://www.wix.com/velo/reference/$w/repeater/foritems), and [`.onItemReady()`](https://www.wix.com/velo/reference/$w/repeater/onitemready) methods.
 
 **Deprecated** way, selector as the second argument in an event handler.
-It still works but you don't have to use it
+It still works but you don't have to use it. [Removal of the $w Parameter from Event Handlers](https://www.wix.com/velo/forum/tips-tutorials-examples/removal-of-the-w-parameter-from-event-handlers)
 
 ```js
 // 🙅‍♀️ DON'T USE IT 🙅‍♂️
