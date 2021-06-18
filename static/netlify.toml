@@ -6,7 +6,6 @@
 
 [[headers]]
   for = "*"
-
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
@@ -14,9 +13,8 @@
     Strict-Transport-Security = "max-age=31556952; preload"
     Cache-Control = "public, max-age=86400"
 
-[[headers]]
   for = "*.css"
-
+  for = "*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
 
