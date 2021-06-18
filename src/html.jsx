@@ -12,7 +12,6 @@ function HTML({
   const links = (
     <>
       <meta charSet="utf-8" />
-      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
       <link
         rel="preconnect"
@@ -21,7 +20,7 @@ function HTML({
       />
       <link
         rel="preload"
-        href="https://static.parastorage.com/unpkg/firacode@5.2.0/distr/woff2/FiraCode-Regular.woff2"
+        href="firacode@5.2.0/FiraCode-Regular.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
@@ -31,21 +30,13 @@ function HTML({
     </>
   );
 
-  const firacode = (
-    <link
-      rel="stylesheet"
-      href="https://static.parastorage.com/unpkg/firacode@5.2.0/distr/fira_code.css"
-      crossOrigin="anonymous"
-    />
-  );
-
   // PRODUCTION
   if (process.env.NODE_ENV === 'production') {
     return (
       <html lang={htmlAttributes.lang}>
         <head>
-          {links}
           <base href={homepage} />
+          {links}
           {headComponents}
         </head>
         <body>
@@ -53,7 +44,6 @@ function HTML({
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: body }}
           />
-          {firacode}
         </body>
       </html>
     );
@@ -76,7 +66,6 @@ function HTML({
           <div id="gatsby-announcer" />
         </div>
         {postBodyComponents}
-        {firacode}
       </body>
     </html>
   );
