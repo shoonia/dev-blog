@@ -250,7 +250,7 @@ if (cache.has(key)) {
 }
 ```
 
-[Code Snippets](#code-snippets)
+[Code Snippets](/cache-for-the-jsw-functions#code-snippets)
 
 ## Cache management
 
