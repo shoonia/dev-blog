@@ -23,5 +23,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
 
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31556952, immutable"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31556952, immutable"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31556952, immutable"
+
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
