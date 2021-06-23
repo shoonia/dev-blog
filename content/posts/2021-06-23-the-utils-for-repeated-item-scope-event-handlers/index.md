@@ -15,9 +15,9 @@ image: 'https://shoonia.site/images/velo.png'
 
 *npm library with utils for event handlers in Repeater*
 
-In the article ["Event handling of Repeater Item"](/event-handling-of-repeater-item), we considered how to handle events in the repeater items. There we created a code snippet that encapsulates the logic for receiving item selector and item data.
+In the article ["Event handling of Repeater Item"](/event-handling-of-repeater-item), we considered how to handle events in the repeater items and why we shouldn't nest event handler inside the Repeater loop. There we created a code snippet that encapsulates the logic for receiving item selector and item data.
 
-Copying and pasting the same block of code isn't comfortable. Therefore I moved small helpers to npm package [repeater-scope](https://github.com/shoonia/repeater-scope). You can install this package using [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+Copying and pasting the snippet of code isn't comfortable. Therefore I moved these little helpers to npm package [repeater-scope](https://github.com/shoonia/repeater-scope). You can install this package using [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
 
 <figure>
   <figcaption>
@@ -32,13 +32,16 @@ Copying and pasting the same block of code isn't comfortable. Therefore I moved 
     crossorigin="anonymous"
   />
 </figure>
-<div style="margin:18px 0;height: 24px;">
-  <a href="https://bundlephobia.com/result?p=repeater-scope" target="_blank" rel="noopener noreferrer">
+
+<div style="margin:18px 0;display:flex;">
+  Package size:
+  <a href="https://bundlephobia.com/result?p=repeater-scope@latest" target="_blank" rel="noopener noreferrer">
     <img
       src="https://badgen.net/bundlephobia/minzip/repeater-scope@latest"
       width="auto"
       height="20"
       alt="minzip"
+      style="float:right;margin-left:10px"
       loading="lazy"
       decoding="async"
     />
