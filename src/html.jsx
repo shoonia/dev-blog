@@ -9,10 +9,14 @@ function HTML({
   postBodyComponents,
   body,
 }) {
+  const isProd = process.env.NODE_ENV === 'production';
+  const baseUrl = isProd ? homepage : 'http://localhost:8000';
+
   const links = (
     <>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+      <base href={baseUrl} />
       <link
         rel="preconnect"
         href="https://static.wixstatic.com"
@@ -31,11 +35,10 @@ function HTML({
   );
 
   // PRODUCTION
-  if (process.env.NODE_ENV === 'production') {
+  if (isProd) {
     return (
       <html lang={htmlAttributes.lang}>
         <head>
-          <base href={homepage} />
           {links}
           {headComponents}
         </head>
