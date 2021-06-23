@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: The utils for repeated item scope event handlers'
 description: 'npm library with utils for event handlers in Repeater'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/velo.png'
+image: 'https://shoonia.site/images/velo.png'
 ---
 
 # Velo by Wix: The utils for repeated item scope event handlers
