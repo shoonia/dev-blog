@@ -102,7 +102,6 @@ let parentElement = event.target.parent;
 while (parentElement.type !== '$w.Repeater') {
   parentElement = parentElement.parent;
 }
-
 ```
 
 We get the repeater data array directly from the repeater property.
@@ -127,12 +126,12 @@ And the last, we create a selector function for the target element. We can use t
 ```js
 // Gets a selector function
 // which selects items from a specific repeater item
-const $item = $w.at(event.context)
+const $item = $w.at(event.context);
 ```
 
 ## Any questions?
 
-If you have any issues as bugs, feature requests, and more, please contact me [GitHub Issue](https://github.com/shoonia/repeater-scope/issues) or my personal <a href="https://twitter.com/_shoonia" rel="me">Twitter</a> .
+If you have any issues as bugs, feature requests, and more, please contact me [GitHub Issue](https://github.com/shoonia/repeater-scope/issues), or my personal <a href="https://twitter.com/_shoonia" rel="me">Twitter</a>.
 
 I hope this small library will helpful in your projects too.
 
