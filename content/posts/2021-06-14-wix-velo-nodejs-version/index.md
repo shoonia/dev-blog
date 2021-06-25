@@ -3,7 +3,7 @@ publish: true
 path: '/wix-velo-nodejs-version'
 template: 'default'
 date: '2021-06-14T12:00:00.000Z'
-modified: ''
+modified: '2021-06-25T12:00:00.000Z'
 lang: 'en'
 title: 'Current Node.js version on Velo by Wix'
 description: 'Online checker of current Node.js version on Velo backend'

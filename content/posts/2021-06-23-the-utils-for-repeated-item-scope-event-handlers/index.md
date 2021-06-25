@@ -3,7 +3,7 @@ publish: true
 path: '/the-utils-for-repeated-item-scope-event-handlers'
 template: 'default'
 date: '2021-06-23T12:00:00.000Z'
-modified: ''
+modified: '2021-06-23T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: The utils for repeated item scope event handlers'
 description: 'npm library with utils for event handlers in Repeater'
