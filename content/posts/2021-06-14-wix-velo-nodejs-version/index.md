@@ -18,7 +18,7 @@ Online checker of current Node.js version on Velo backend.
 <mark>Checked now: <time id="ts">Loading...</time></mark>
 <output id="error" style="color:red">&nbsp;</output>
 
-<table id="table">
+<table>
   <tbody>
     <tr>
       <td>Node.js</td>
