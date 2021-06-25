@@ -15,7 +15,7 @@ image: 'https://shoonia.site/images/velo.png'
 
 Online checker of current Node.js version on Velo backend.
 
-<mark>Today: <time id="ts">Loading...</time></mark>
+<mark>Checked now: <time id="ts">Loading...</time></mark>
 <output id="error" style="color:red">&nbsp;</output>
 
 <table id="table">
@@ -41,8 +41,8 @@ Online checker of current Node.js version on Velo backend.
 - [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
 - [Velo: Available list of npm packages](https://www.wix.com/velo/npm-modules)
 
-<script async>
-(() => {
+<script>
+{
   const h = (selector, props) => {
     return Object.assign(document.querySelector(selector), props);
   };
@@ -89,5 +89,5 @@ Online checker of current Node.js version on Velo backend.
     })
     .then(resolve)
     .catch(reject);
-})();
+};
 </script>
