@@ -1,10 +1,11 @@
 const { resolve } = require('path');
 const { writeFile } = require('fs').promises;
 const { Feed } = require('feed');
+const { Sitemap } = require('sitemap');
 
 const pkg = require('../package.json');
 
-exports.rss = async ({ graphql }) => {
+exports.sitemapAndRss = async ({ graphql }) => {
   const {
     data: {
       allMarkdownRemark: {
@@ -35,11 +36,16 @@ exports.rss = async ({ graphql }) => {
           description
           path
           date
+          modified
           image
         }
       }
     }
   }`);
+
+  const root = process.cwd();
+
+  const sitemap = new Sitemap([], pkg.homepage);
 
   const feed = new Feed({
     title: pkg.title,
@@ -65,17 +71,24 @@ exports.rss = async ({ graphql }) => {
 
   const createUrl = (pth) => new URL(pth, pkg.homepage).href;
 
-  nodes.forEach(({ frontmatter }) => {
-    const url = createUrl(frontmatter.path);
+  nodes.forEach(({ frontmatter: i }) => {
+    const url = createUrl(i.path);
+
+    sitemap.add({
+      url,
+      lastmodISO: i.modified,
+      changefreq: 'weekly',
+      priority: 0.7,
+    });
 
     feed.addItem({
       id: url,
       link: url,
-      title: frontmatter.title,
-      description: frontmatter.description,
-      content: frontmatter.description,
-      date: new Date(frontmatter.date),
-      image: frontmatter.image,
+      title: i.title,
+      description: i.description,
+      content: i.description,
+      date: new Date(i.date),
+      image: i.image,
       author: [
         {
           name: pkg.author.name,
@@ -87,8 +100,14 @@ exports.rss = async ({ graphql }) => {
     });
   });
 
-  await writeFile(
-    resolve(process.cwd(), 'public/rss.xml'),
-    feed.rss2(),
-  );
+  await Promise.all([
+    writeFile(
+      resolve(root, 'public/sitemap.xml'),
+      sitemap.toXML(),
+    ),
+    writeFile(
+      resolve(root, 'public/rss.xml'),
+      feed.rss2(),
+    ),
+  ]);
 };

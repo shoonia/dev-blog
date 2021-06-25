@@ -145,6 +145,12 @@ const Meta = ({ data }) => {
         type="application/rss+xml"
         title={siteName}
       />
+      <link
+        rel="sitemap"
+        href="/sitemap.xml"
+        type="application/xml"
+        title={siteName}
+      />
     </Helmet>
   );
 };
