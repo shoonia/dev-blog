@@ -44,8 +44,18 @@ exports.sitemapAndRss = async ({ graphql }) => {
   }`);
 
   const root = process.cwd();
+  const dateNow = new Date();
 
-  const sitemap = new Sitemap([], pkg.homepage);
+  const sitemap = new Sitemap({
+    urls: [
+      {
+        url: pkg.homepage,
+        lastmod: dateNow,
+        changefreq: 'weekly',
+        priority: 1,
+      },
+    ],
+  });
 
   const feed = new Feed({
     title: pkg.title,
@@ -53,7 +63,7 @@ exports.sitemapAndRss = async ({ graphql }) => {
     id: pkg.homepage,
     link: pkg.homepage,
     language: 'en',
-    updated: new Date(),
+    updated: dateNow,
     generator: 'generator',
     author: {
       name: pkg.author.name,
@@ -76,9 +86,9 @@ exports.sitemapAndRss = async ({ graphql }) => {
 
     sitemap.add({
       url,
-      lastmodISO: i.modified,
+      lastmod: i.modified,
       changefreq: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     });
 
     feed.addItem({
