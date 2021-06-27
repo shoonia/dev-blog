@@ -38,7 +38,7 @@ Start with a basic example.
     <strong>Add new Web Module</strong>
   </figcaption>
   <img
-    src="https://static.wixstatic.com/media/e3b156_19655839bf914cde8b778f65fe91383a~mv2.jpg"
+    src="/images/example-jsw.jpg"
     width="800"
     height="280"
     alt="Sidebar panel of Wix Editor for adding a new Web Module"
@@ -90,7 +90,10 @@ public
 
 For storing a cache we will use a standard build-in JavaScript object [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). This object has convenient methods for work with key-value pairs.
 
-**Instance methods of the Map object**
+<figure>
+  <figcaption>
+    <strong>Instance methods of the Map object</strong>
+  </figcaption>
 
 ```js
 // Creates a new Map object.
@@ -118,6 +121,7 @@ map.clear();
 // map.entries();
 // map.forEach((value, key, map) => {  });
 ```
+</figure>
 
 ### Decorator
 

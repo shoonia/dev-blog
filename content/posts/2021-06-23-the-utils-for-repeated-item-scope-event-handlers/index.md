@@ -21,8 +21,7 @@ Copying and pasting the snippet of code isn't comfortable. Therefore I moved the
 
 <figure>
   <figcaption>
-
-  **Velo Package Manager**
+    <strong>Velo Package Manager</strong>
   </figcaption>
   <img
     src="/images/install-repeater-scope.jpeg"
@@ -35,13 +34,17 @@ Copying and pasting the snippet of code isn't comfortable. Therefore I moved the
 
 <div style="margin:18px 0;display:flex;">
   Package size:
-  <a href="https://bundlephobia.com/result?p=repeater-scope@latest" target="_blank" rel="noopener noreferrer">
+  <a
+    href="https://bundlephobia.com/result?p=repeater-scope@latest"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="float:right;margin-left:10px"
+  >
     <img
       src="https://badgen.net/bundlephobia/minzip/repeater-scope@latest"
       width="auto"
       height="20"
       alt="minzip"
-      style="float:right;margin-left:10px"
       loading="lazy"
       decoding="async"
     />
@@ -52,8 +55,7 @@ There is available a method that can automatic find the parent Repeater by the f
 
 <figure>
   <figcaption>
-
-  **Retrieve Repeater item data when clicked**
+    <strong>Retrieve Repeater item data when clicked</strong>
   </figcaption>
 
 ```js
@@ -67,7 +69,7 @@ $w.onReady(() => {
   });
 });
 ```
-<figure>
+</figure>
 
 ### Returns parameters
 
