@@ -1,7 +1,32 @@
 import React from 'react';
 import T from 'prop-types';
 
-import { homepage } from '../package.json';
+import pkg from '../package.json';
+
+const isProd = process.env.NODE_ENV === 'production';
+const baseUrl = isProd ? pkg.homepage : 'http://localhost:8000';
+
+const links = (
+  <>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
+    <base href={baseUrl} />
+    <link
+      rel="preconnect"
+      href="https://static.wixstatic.com"
+      crossOrigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/firacode@5.2.0/FiraCode-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+    />
+    <link rel="webmention" href="https://webmention.io/shoonia.site/webmention" />
+    <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc" />
+  </>
+);
 
 function HTML({
   htmlAttributes,
@@ -9,31 +34,6 @@ function HTML({
   postBodyComponents,
   body,
 }) {
-  const isProd = process.env.NODE_ENV === 'production';
-  const baseUrl = isProd ? homepage : 'http://localhost:8000';
-
-  const links = (
-    <>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
-      <base href={baseUrl} />
-      <link
-        rel="preconnect"
-        href="https://static.wixstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="firacode@5.2.0/FiraCode-Regular.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      <link rel="webmention" href="https://webmention.io/shoonia.site/webmention" />
-      <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc" />
-    </>
-  );
-
   // PRODUCTION
   if (isProd) {
     return (

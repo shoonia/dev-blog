@@ -2,11 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import T from 'prop-types';
 
-import {
-  homepage,
-  author as blogAuthor,
-  description as blogTitle,
-} from '../../../package.json';
+import pkg from '../../../package.json';
 
 const Meta = ({ data }) => {
   const {
@@ -22,7 +18,7 @@ const Meta = ({ data }) => {
     template,
   } = data;
 
-  const siteName = `${blogAuthor.name} | ${blogTitle}`;
+  const siteName = `${pkg.author.name} | ${pkg.description}`;
 
   const metaData = [
     {
@@ -109,12 +105,12 @@ const Meta = ({ data }) => {
         },
         publisher: {
           '@type': 'Organization',
-          name: blogAuthor.name,
-          email: blogAuthor.email,
-          sameAs: blogAuthor.url,
+          name: pkg.author.name,
+          email: pkg.author.email,
+          sameAs: pkg.author.url,
           logo: {
             '@type': 'ImageObject',
-            url: `${homepage}/icons/icon-512x512.png`,
+            url: `${pkg.homepage}/icons/icon-512x512.png`,
           },
         },
         image: {
@@ -141,7 +137,7 @@ const Meta = ({ data }) => {
       {JSONLD}
       <link
         rel="alternate"
-        href={`${homepage}/rss.xml`}
+        href={`${pkg.homepage}/rss.xml`}
         type="application/rss+xml"
         title={siteName}
       />
