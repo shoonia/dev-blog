@@ -67,13 +67,15 @@ module.exports = {
         icon: resolve(root, 'src/images/icon.png'),
       },
     },
-    isProd && 'gatsby-plugin-no-javascript',
     isProd && {
       resolve: 'gatsby-plugin-no-javascript-utils',
       options: {
+        noScript: true,
+        noSourcemaps: true,
+        removeGeneratorTag: true,
+        removeReactHelmetAttrs: true,
         noInlineStyles: true,
         removeGatsbyAnnouncer: true,
-        removePreloadLinks: true,
       },
     },
   ].filter(Boolean),
