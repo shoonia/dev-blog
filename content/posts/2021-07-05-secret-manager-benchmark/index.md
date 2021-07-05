@@ -165,6 +165,7 @@ export async function getBenchmark() {
 
   one('#run').addEventListener('click', run);
 
+  outputArea.value = '';
   run();
 }
 </script>
