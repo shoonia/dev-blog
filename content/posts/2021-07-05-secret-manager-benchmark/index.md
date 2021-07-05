@@ -103,6 +103,8 @@ Online checker of performance benchmark for Velo [Secrets Manager](https://suppo
     id="output-area"
     spellcheck="false"
     placeholder="0"
+    autocomplete="off"
+    readonly
   ></textarea>
 </div>
 
