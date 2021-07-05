@@ -9,6 +9,7 @@ const htmlInifierOptions = {
   removeStyleLinkTypeAttributes: true,
   removeEmptyElements: true,
   minifyJS: true,
+  minifyCSS: true,
 };
 
 module.exports = {
