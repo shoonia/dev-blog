@@ -38,5 +38,10 @@
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
 
+[[headers]]
+  for = "*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=31556952, immutable"
+
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
