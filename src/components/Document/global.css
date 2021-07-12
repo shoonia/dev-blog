@@ -254,6 +254,10 @@ details[open] summary::before {
   content: "-";
 }
 
+video {
+  height: auto;
+}
+
 iframe,
 video {
   border: 1px solid $color-light-gray-opacity;
