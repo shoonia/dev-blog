@@ -12,11 +12,6 @@ const links = (
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
     <base href={baseUrl} />
     <link
-      rel="preconnect"
-      href="https://static.wixstatic.com"
-      crossOrigin="anonymous"
-    />
-    <link
       rel="preload"
       href="/firacode@5.2.0/FiraCode-Regular.woff2"
       as="font"
