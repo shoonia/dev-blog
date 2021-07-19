@@ -81,7 +81,7 @@ Our cache mechanism will depend on the passed arguments. If the backend function
 
 For the implementation of the cache, we create a js file in the public section.
 
-```tree
+```text
 public
 └── memo.js
 ```

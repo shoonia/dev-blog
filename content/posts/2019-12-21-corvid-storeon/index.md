@@ -56,7 +56,7 @@ At first, we need to install the library from [Package Manager](https://support.
 
 and create one more file for store initialization in the **public** folder.
 
-```tree
+```text
 public
 └── store.js
 ```

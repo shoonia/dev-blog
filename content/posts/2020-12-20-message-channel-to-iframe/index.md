@@ -223,7 +223,7 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-```tree
+```text
 public/
 └── channel.js
 ```
