@@ -228,7 +228,8 @@ summary {
   cursor: pointer;
 }
 
-summary::marker {
+summary::marker,
+summary::-webkit-details-marker {
   display: none;
 }
 
