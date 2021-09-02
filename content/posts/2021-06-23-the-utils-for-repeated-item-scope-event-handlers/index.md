@@ -3,7 +3,7 @@ publish: true
 path: '/the-utils-for-repeated-item-scope-event-handlers'
 template: 'default'
 date: '2021-06-23T12:00:00.000Z'
-modified: '2021-06-23T12:00:00.000Z'
+modified: '2021-09-02T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: The utils for repeated item scope event handlers'
 description: 'npm library with utils for event handlers in Repeater'
@@ -120,7 +120,7 @@ const itemId = event.context.itemId;
 
 // Use the Array methods to find the current itemData and index
 const itemData = data.find((i) => i._id === itemId);
-const index = data.find((i) => i._id === itemId);
+const index = data.findIndex((i) => i._id === itemId);
 ```
 
 And the last, we create a selector function for the target element. We can use the event context with [`$w.at()`](https://www.wix.com/velo/reference/$w/at) to get a selector function.
