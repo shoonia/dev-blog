@@ -17,7 +17,7 @@ module.exports = {
     const mini = minify(html, htmlInifierOptions);
 
     return mini
-      .replace(/ style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"/, '')
+      .replace(/ style="outline:(none|0)" tabindex="-1" id="gatsby-focus-wrapper"/, '')
       .replace(/ class="gatsby-highlight"/g, '')
       .replace(/\bclass="token ([a-z- ]+)"/g, 'class="$1"');
   },
