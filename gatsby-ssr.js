@@ -1,9 +1,9 @@
 const { renderToString } = require('react-dom/server');
 const { minifyHTML } = require('./util/html');
 
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
+exports.replaceRenderer = async ({ bodyComponent, replaceBodyHTMLString }) => {
   const bodyHTML = renderToString(bodyComponent);
-  const miniHTML = minifyHTML(bodyHTML);
+  const miniHTML = await minifyHTML(bodyHTML);
 
   replaceBodyHTMLString(miniHTML);
 };

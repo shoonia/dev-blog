@@ -1,4 +1,4 @@
-const { minify } = require('html-minifier');
+const { minify } = require('html-minifier-terser');
 
 const htmlInifierOptions = {
   collapseWhitespace: true,
@@ -13,8 +13,8 @@ const htmlInifierOptions = {
 };
 
 module.exports = {
-  minifyHTML: (html) => {
-    const mini = minify(html, htmlInifierOptions);
+  async minifyHTML(html) {
+    const mini = await minify(html, htmlInifierOptions);
 
     return mini
       .replace(/ style="outline:(none|0)" tabindex="-1" id="gatsby-focus-wrapper"/, '')
