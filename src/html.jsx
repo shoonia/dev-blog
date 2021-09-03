@@ -37,12 +37,10 @@ function HTML({
           {links}
           {headComponents}
         </head>
-        <body>
-          <div
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: body }}
-          />
-        </body>
+        <body
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: body }}
+        />
       </html>
     );
   }
