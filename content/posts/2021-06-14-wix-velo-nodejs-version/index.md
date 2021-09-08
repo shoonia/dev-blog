@@ -41,6 +41,11 @@ Online checker of current Node.js version on Velo backend.
 - [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
 - [Velo: Available list of npm packages](https://www.wix.com/velo/npm-modules)
 
+## Tools
+
+- [Secret Manager Benchmark](/secret-manager-benchmark)
+- [Online generator and validator for Velo `jobs.config` scheduling file](https://shoonia.github.io/jobs.config/)
+
 <script>
 {
   const h = (selector, props) => {
