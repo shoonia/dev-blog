@@ -1,21 +1,27 @@
 ---
-publish: false
+publish: true
 path: '/custom-pagination-with-unique-urls'
 template: 'default'
 date: '2021-09-08T12:00:00.000Z'
 modified: '2021-09-08T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
-description: 'I have reproduced the pagination element that uses unique URLs and creates my own implementation'
+description: 'Creating a custom pagination element with Velo'
 author: 'Alexander Zaytsev'
 image: 'https://shoonia.site/images/pagination.png'
 ---
 
 # Velo by Wix: Custom pagination with unique URLs
 
-![the illustration depicting a pagination component on the web page](/images/pagination.png)
+<img
+  src="https://shoonia.site/images/pagination.png"
+  width="708"
+  height="371"
+  alt="the illustration depicting a pagination component on the web page"
+  crossorigin="anonymous"
+/>
 
-The Wix Blog has built-in pagination with links. Links are required for good SEO.
+The Wix Blog App has built-in pagination with links. Each button on the pagination element has a unique link. Links are required for good SEO.
 
 I have reproduced the pagination element that uses unique URLs and creates my own implementation. (Lots of code 😳)
 
@@ -29,9 +35,9 @@ So pagination is a difficult component. I share my solution I hope it will be he
 
 **Route logic for pagination.**
 
-We create a router page named `custom-blog-page`. With [wix-router](https://www.wix.com/velo/reference/wix-router) APIs, we can dynamically return any data to the router page from the router server hook.
+We create a router page named `custom-blog-page`. With [wix-router](https://www.wix.com/velo/reference/wix-router) APIs, we can dynamically return any data to the router page from the server hook.
 
-I use regular Wix Blog databases. These collections are created when you [add a Wix Blog app](https://support.wix.com/en/article/wix-blog-creating-your-blog) to your site. In the router, we are able to use any kind of database collection.
+I use regular Wix Blog databases. These collections are created when you [add a Wix Blog App](https://support.wix.com/en/article/wix-blog-creating-your-blog) to your site. In the router, we are able to use any kind of database collection.
 
 In the router hook, we are parsing a request path. If request params are valid then we receive data from collections and return it to the page.
 
@@ -187,7 +193,7 @@ export async function custom_blog_SiteMap(sitemapRequest) {
 
 **Route page with blog posts repeater's and custom pagination.**
 
-On the router page, we are able to get data that we return from the router hook.
+On the router page, we are able to get data that we return from the router hook. We use route data to create custom pagination with the [Repeater](https://www.wix.com/velo/reference/$w/repeater/introduction) element.
 
 <details>
   <summary>
@@ -249,7 +255,7 @@ $w.onReady(function () {
 
 **Pagination logic.**
 
-This file contains logic for generating a repeater data array.
+This file contains logic for generating a [repeater data](https://www.wix.com/velo/reference/$w/repeater/data) array. It's the most difficult part of custom pagination for me, the logic of calculating the position of repeater items.
 
 <details>
   <summary>

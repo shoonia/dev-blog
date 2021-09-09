@@ -26,6 +26,7 @@ exports.clean = async () => {
   await Promise.all([
     rmAsync('page-data'),
     rmAsync('static'),
+    rmAsync('webpack.stats.json'),
     ...removeFiles,
   ]);
 };
