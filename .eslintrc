@@ -1,7 +1,9 @@
 {
   "parser": "@babel/eslint-parser",
   "extends": [
-    "airbnb"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended"
   ],
   "plugins": [
     "react"
@@ -11,13 +13,55 @@
     "ecmaVersion": 2020
   },
   "env": {
+    "es6": true,
     "node": true,
     "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/ignore": [
+      "node_modules"
+    ],
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
   },
   "rules": {
     "global-require": "off",
     "linebreak-style": "off",
     "react/jsx-key": "error",
-    "import/prefer-default-export": "off"
+    "no-trailing-spaces": "error",
+    "no-use-before-define": "error",
+    "no-unused-vars": "off",
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "semi": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ]
   }
 }
