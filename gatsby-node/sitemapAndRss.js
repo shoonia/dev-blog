@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const { writeFile } = require('fs').promises;
 const { Feed } = require('feed');
-const { Sitemap } = require('sitemap');
+const { SitemapStream, streamToPromise } = require('sitemap');
 
 const pkg = require('../package.json');
 
@@ -45,16 +45,13 @@ exports.sitemapAndRss = async ({ graphql }) => {
 
   const root = process.cwd();
   const dateNow = new Date();
+  const sitemap = new SitemapStream();
 
-  const sitemap = new Sitemap({
-    urls: [
-      {
-        url: pkg.homepage,
-        lastmod: dateNow,
-        changefreq: 'weekly',
-        priority: 1,
-      },
-    ],
+  sitemap.write({
+    url: pkg.homepage,
+    lastmod: dateNow,
+    changefreq: 'weekly',
+    priority: 1,
   });
 
   const feed = new Feed({
@@ -84,7 +81,7 @@ exports.sitemapAndRss = async ({ graphql }) => {
   nodes.forEach(({ frontmatter: i }) => {
     const url = createUrl(i.path);
 
-    sitemap.add({
+    sitemap.write({
       url,
       lastmod: i.modified,
       changefreq: 'weekly',
@@ -110,10 +107,14 @@ exports.sitemapAndRss = async ({ graphql }) => {
     });
   });
 
+  sitemap.end();
+
   await Promise.all([
-    writeFile(
-      resolve(root, 'public/sitemap.xml'),
-      sitemap.toXML(),
+    streamToPromise(sitemap).then(
+      (buffer) => writeFile(
+        resolve(root, 'public/sitemap.xml'),
+        buffer.toString('utf8'),
+      ),
     ),
     writeFile(
       resolve(root, 'public/rss.xml'),
