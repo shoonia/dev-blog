@@ -13,7 +13,7 @@ image: 'https://shoonia.site/images/pagination.png'
 
 # Velo by Wix: Custom pagination with unique URLs
 
-![](/images/pagination.png)
+![the illustration depicting a pagination component on the web page](/images/pagination.png)
 
 The Wix Blog has built-in pagination with links. Links are required for good SEO.
 
