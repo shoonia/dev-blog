@@ -1,5 +1,5 @@
 ---
-publish: true
+publish: false
 path: '/custom-pagination-with-unique-urls'
 template: 'default'
 date: '2021-09-08T12:00:00.000Z'
@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
 description: 'I have reproduced the pagination element that uses unique URLs and creates my own implementation'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/velo.png'
+image: 'https://shoonia.site/images/pagination.png'
 ---
 
 # Velo by Wix: Custom pagination with unique URLs
