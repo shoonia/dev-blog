@@ -13,20 +13,21 @@ const rmAsync = (path) => promises.rm(
 exports.clean = async () => {
   const files = await promises.readdir(resolvePath());
 
-  const removeFiles = files
-    .map((file) => {
-      if (extname(file) === '.js') {
-        return rmAsync(file);
-      }
+  const removeFiles = files.filter(
+    (file) => extname(file) === '.js',
+  );
 
-      return false;
-    })
-    .filter(Boolean);
+  const removeList = [
+    'page-data',
+    'static',
+    'webpack.stats.json',
+    'chunk-map.json',
+  ];
 
-  await Promise.all([
-    rmAsync('page-data'),
-    rmAsync('static'),
-    rmAsync('webpack.stats.json'),
-    ...removeFiles,
-  ]);
+  await Promise.all(
+    [
+      ...removeList,
+      ...removeFiles,
+    ].map((path) => rmAsync(path)),
+  );
 };
