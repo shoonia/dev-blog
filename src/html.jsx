@@ -5,6 +5,7 @@ import pkg from '../package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
 const baseUrl = isProd ? pkg.homepage : 'http://localhost:8000';
+const siteName = `${pkg.author.name} | ${pkg.description}`;
 
 const links = (
   <>
@@ -20,6 +21,24 @@ const links = (
     />
     <link rel="webmention" href="https://webmention.io/shoonia.site/webmention" />
     <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc" />
+    <link
+      rel="alternate"
+      href={`${pkg.homepage}/rss.xml`}
+      type="application/rss+xml"
+      title={siteName}
+    />
+    <link
+      rel="alternate"
+      href={`${pkg.homepage}/rss.json`}
+      type="application/json"
+      title={siteName}
+    />
+    <link
+      rel="sitemap"
+      href="/sitemap.xml"
+      type="application/xml"
+      title={siteName}
+    />
   </>
 );
 

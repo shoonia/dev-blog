@@ -135,18 +135,6 @@ const Meta = ({ data }) => {
       <html lang={lang} />
       <link rel="canonical" href={url} />
       {JSONLD}
-      <link
-        rel="alternate"
-        href={`${pkg.homepage}/rss.xml`}
-        type="application/rss+xml"
-        title={siteName}
-      />
-      <link
-        rel="sitemap"
-        href="/sitemap.xml"
-        type="application/xml"
-        title={siteName}
-      />
     </Helmet>
   );
 };

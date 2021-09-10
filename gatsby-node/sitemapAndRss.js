@@ -5,6 +5,8 @@ const { SitemapStream, streamToPromise } = require('sitemap');
 
 const pkg = require('../package.json');
 
+const createUrl = (pth) => new URL(pth, pkg.homepage).href;
+
 exports.sitemapAndRss = async ({ graphql }) => {
   const {
     data: {
@@ -67,16 +69,14 @@ exports.sitemapAndRss = async ({ graphql }) => {
       email: pkg.author.email,
       link: pkg.author.url,
     },
-    // image: 'http://example.com/image.png',
-    // favicon: 'http://example.com/favicon.ico',
+    image: 'https://shoonia.site/icon-256x256.png',
+    favicon: 'https://shoonia.site/favicon-32x32.png',
     // copyright: 'All rights reserved 2013, John Doe',
-    // feedLinks: {
-    //   json: 'https://example.com/json',
-    //   atom: 'https://example.com/atom',
-    // },
+    feedLinks: {
+      json: createUrl('rss.json'),
+      atom: createUrl('rss.xml'),
+    },
   });
-
-  const createUrl = (pth) => new URL(pth, pkg.homepage).href;
 
   nodes.forEach(({ frontmatter: i }) => {
     const url = createUrl(i.path);
@@ -118,7 +118,11 @@ exports.sitemapAndRss = async ({ graphql }) => {
     ),
     writeFile(
       resolve(root, 'public/rss.xml'),
-      feed.rss2(),
+      feed.atom1(),
+    ),
+    writeFile(
+      resolve(root, 'public/rss.json'),
+      feed.json1(),
     ),
   ]);
 };
