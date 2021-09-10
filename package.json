@@ -10,8 +10,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "lint": "eslint '**/*.{js,jsx}' && stylelint 'src/**/*.css'",
-    "clean": "gatsby clean",
-    "postinstall": "simple-git-hooks"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "autoprefixer": "^10.3.4",
