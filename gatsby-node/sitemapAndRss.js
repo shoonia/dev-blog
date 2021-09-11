@@ -46,9 +46,15 @@ exports.sitemapAndRss = async ({ graphql }) => {
   }`);
 
   const dateNow = new Date();
-  const sitemap = new SitemapStream();
+  const sitemapStream = new SitemapStream();
 
-  sitemap.write({
+  const author = {
+    name: pkg.author.name,
+    email: pkg.author.email,
+    link: pkg.author.url,
+  };
+
+  sitemapStream.write({
     url: pkg.homepage,
     lastmod: dateNow,
     changefreq: 'weekly',
@@ -63,13 +69,9 @@ exports.sitemapAndRss = async ({ graphql }) => {
     language: 'en',
     updated: dateNow,
     generator: 'generator',
-    author: {
-      name: pkg.author.name,
-      email: pkg.author.email,
-      link: pkg.author.url,
-    },
-    image: 'https://shoonia.site/icon-256x256.png',
-    favicon: 'https://shoonia.site/favicon-32x32.png',
+    author,
+    image: createUrl('icons/icon-256x256.png'),
+    favicon: createUrl('favicon-32x32.png'),
     // copyright: 'All rights reserved 2013, John Doe',
     feedLinks: {
       json: createUrl('rss.json'),
@@ -80,7 +82,7 @@ exports.sitemapAndRss = async ({ graphql }) => {
   nodes.forEach(({ frontmatter: i }) => {
     const url = createUrl(i.path);
 
-    sitemap.write({
+    sitemapStream.write({
       url,
       lastmod: i.modified,
       changefreq: 'weekly',
@@ -96,20 +98,16 @@ exports.sitemapAndRss = async ({ graphql }) => {
       date: new Date(i.date),
       image: i.image,
       author: [
-        {
-          name: pkg.author.name,
-          email: pkg.author.email,
-          link: pkg.author.url,
-        },
+        author,
       ],
       // contributor: [],
     });
   });
 
-  sitemap.end();
+  sitemapStream.end();
 
   await Promise.all([
-    streamToPromise(sitemap).then(
+    streamToPromise(sitemapStream).then(
       (buffer) => writeFile(
         rootResolve('public/sitemap.xml'),
         buffer.toString('utf8'),
