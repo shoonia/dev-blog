@@ -1,11 +1,11 @@
-const { resolve } = require('path');
 const { writeFile } = require('fs').promises;
 const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
 
-const pkg = require('../package.json');
+const { rootResolve } = require('../util/paths');
+const { createUrl } = require('../util/meta');
 
-const createUrl = (pth) => new URL(pth, pkg.homepage).href;
+const pkg = require('../package.json');
 
 exports.sitemapAndRss = async ({ graphql }) => {
   const {
@@ -45,7 +45,6 @@ exports.sitemapAndRss = async ({ graphql }) => {
     }
   }`);
 
-  const root = process.cwd();
   const dateNow = new Date();
   const sitemap = new SitemapStream();
 
@@ -112,16 +111,16 @@ exports.sitemapAndRss = async ({ graphql }) => {
   await Promise.all([
     streamToPromise(sitemap).then(
       (buffer) => writeFile(
-        resolve(root, 'public/sitemap.xml'),
+        rootResolve('public/sitemap.xml'),
         buffer.toString('utf8'),
       ),
     ),
     writeFile(
-      resolve(root, 'public/rss.xml'),
+      rootResolve('public/rss.xml'),
       feed.atom1(),
     ),
     writeFile(
-      resolve(root, 'public/rss.json'),
+      rootResolve('public/rss.json'),
       feed.json1(),
     ),
   ]);

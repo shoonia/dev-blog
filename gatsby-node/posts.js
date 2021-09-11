@@ -1,5 +1,7 @@
 const path = require('path');
 
+const { createUrl } = require('../util/meta');
+
 module.exports = async ({ actions, graphql }) => {
   const Page = path.resolve('./src/templates/Post.jsx');
 
@@ -50,8 +52,6 @@ module.exports = async ({ actions, graphql }) => {
         }
       }
     }`);
-
-  const createUrl = (pth) => new URL(pth, siteUrl).href;
 
   nodes.forEach((node) => {
     actions.createPage({
