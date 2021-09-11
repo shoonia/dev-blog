@@ -219,7 +219,7 @@ li {
   font-size: 18px;
   line-height: 1.7;
   margin: 5px 0;
-  list-style: url('https://shoonia.site/images/i.svg');
+  list-style: url('/images/i.svg');
 }
 
 summary {

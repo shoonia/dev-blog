@@ -75,7 +75,6 @@ function HTML({
         <div id="___gatsby">
           <div
             id="gatsby-focus-wrapper"
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: body }}
           />
           <div id="gatsby-announcer" />
