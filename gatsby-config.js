@@ -1,12 +1,9 @@
-const { realpathSync } = require('fs');
-const { resolve } = require('path');
-
+const { rootResolve } = require('./util/paths');
 const pkg = require('./package.json');
 
 const isProd = process.env.NODE_ENV === 'production';
-const root = realpathSync(process.cwd());
 
-process.env.NODE_ICU_DATA = resolve(root, 'node_modules/full-icu');
+process.env.NODE_ICU_DATA = rootResolve('node_modules/full-icu');
 
 module.exports = {
   siteMetadata: {
@@ -21,7 +18,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'posts',
-        path: resolve(root, 'content/posts'),
+        path: rootResolve('content/posts'),
       },
     },
     {
@@ -64,7 +61,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#fff',
         display: 'minimal-ui',
-        icon: resolve(root, 'src/images/icon.png'),
+        icon: rootResolve('src/images/icon.png'),
       },
     },
     isProd && {

@@ -1,17 +1,15 @@
-const { realpathSync, promises } = require('fs');
-const { resolve, extname } = require('path');
+const { promises } = require('fs');
+const { extname } = require('path');
 
-const root = realpathSync(process.cwd());
-
-const resolvePath = (...paths) => resolve(root, 'public', ...paths);
+const { rootResolve } = require('../util/paths');
 
 const rmAsync = (path) => promises.rm(
-  resolvePath(path),
+  rootResolve('public', path),
   { recursive: true },
 );
 
 exports.clean = async () => {
-  const files = await promises.readdir(resolvePath());
+  const files = await promises.readdir(rootResolve('public'));
 
   const removeFiles = files.filter(
     (file) => extname(file) === '.js',
