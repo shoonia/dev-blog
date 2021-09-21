@@ -4,14 +4,25 @@ import T from 'prop-types';
 import pkg from '../package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
-const baseUrl = isProd ? pkg.homepage : 'http://localhost:8000';
 const siteName = `${pkg.author.name} | ${pkg.description}`;
+
+const getBaseUrl = () => {
+  if (isProd) {
+    if (process.env.NETLIFY) {
+      return pkg.homepage;
+    }
+
+    return 'http://localhost:9000';
+  }
+
+  return 'http://localhost:8000';
+};
 
 const links = (
   <>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
-    <base href={baseUrl} />
+    <base href={getBaseUrl()} />
     <link
       rel="preload"
       href="/firacode@5.2.0/FiraCode-Regular.woff2"
