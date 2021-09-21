@@ -8,6 +8,12 @@
   "plugins": [
     "react"
   ],
+  "ignorePatterns": [
+    ".cache/",
+    "node_modules/",
+    "public/",
+    "static/"
+  ],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020
