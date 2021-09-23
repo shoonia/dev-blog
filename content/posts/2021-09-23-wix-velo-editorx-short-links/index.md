@@ -6,7 +6,7 @@ date: '2021-09-23T12:00:00.000Z'
 modified: '2021-09-23T12:00:00.000Z'
 lang: 'en'
 title: 'Short links to create a new Wix / Editor X site editor'
-description: 'A set of short links for creating a new site on Wix, Velo, and Editor X. Just type the below links on your browser address bar'
+description: 'A set of short links for creating a new site on Wix, Velo, and Editor X'
 author: 'Alexander Zaytsev'
 image: 'https://shoonia.site/images/wix-yellow.png'
 ---
