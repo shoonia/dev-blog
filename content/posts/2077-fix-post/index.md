@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Fix'
 description: 'Fix'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/pagination.png'
+image: 'https://shoonia.site/icons/icon-256x256.png'
 ---
 
 <meta name="robots" content="noindex" />
