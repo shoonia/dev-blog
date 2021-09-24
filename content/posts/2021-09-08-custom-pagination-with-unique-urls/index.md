@@ -3,7 +3,7 @@ publish: true
 path: '/custom-pagination-with-unique-urls'
 template: 'default'
 date: '2021-09-08T12:00:00.000Z'
-modified: '2021-09-08T12:00:00.000Z'
+modified: '2021-09-24T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
 description: 'Creating a custom pagination element with Velo'
@@ -38,6 +38,15 @@ So pagination is a difficult component. I share my solution I hope it will be he
 We create a router page named `custom-blog-page`. With [wix-router](https://www.wix.com/velo/reference/wix-router) APIs, we can dynamically return any data to the router page from the server hook.
 
 I use regular Wix Blog databases. These collections are created when you [add a Wix Blog App](https://support.wix.com/en/article/wix-blog-creating-your-blog) to your site. In the router, we are able to use any kind of database collection.
+
+In the router, we have four URLs types that we will handle:
+
+```text
+/custom-blog                       - First page for all post categories
+/custom-blog/:pageNumber           - Pagination page for all post categories
+/custom-blog/:category             - First page for specific post categories
+/custom-blog/:category/:pageNumber - Pagination page for specific post categories
+```
 
 In the router hook, we are parsing a request path. If request params are valid then we receive data from collections and return it to the page.
 
@@ -207,6 +216,9 @@ import urlJoin from 'url-join';
 
 import { paginate } from 'public/paginate';
 
+// Join paths to URL prefix
+const join = (...paths) => urlJoin('/', prefix, ...paths);
+
 $w.onReady(function () {
   // Here we get router data that we return from "backend/routers.js"
   const {
@@ -238,17 +250,17 @@ $w.onReady(function () {
     $item('#button1').label = itemData.label;
 
     if (itemData.isActive) {
-      $item('#button1').link = urlJoin('/', prefix, label, String(itemData.number));
+      $item('#button1').link = join(label, String(itemData.number));
     } else {
       $item('#button1').disable();
     }
   });
 
   // Build a links for categories
-  $w('#buttonLinkAll').link = urlJoin('/', prefix);
-  $w('#buttonLinkCss').link = urlJoin('/', prefix, 'css');
-  $w('#buttonLinkHtml').link = urlJoin('/', prefix, 'html');
-  $w('#buttonLinkJs').link = urlJoin('/', prefix, 'js');
+  $w('#buttonLinkAll').link = join('');
+  $w('#buttonLinkCss').link = join('css');
+  $w('#buttonLinkHtml').link = join('html');
+  $w('#buttonLinkJs').link = join('js');
 });
 ```
 </details>

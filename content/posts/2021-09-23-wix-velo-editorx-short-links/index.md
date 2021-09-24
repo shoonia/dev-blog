@@ -20,7 +20,7 @@ image: 'https://shoonia.site/images/wix-yellow.png'
   alt="Wix logo"
 />
 
-A set of short links for creating a new site on Wix, Velo, and Editor X. Just type the below links on your browser address bar.
+A set of short links for creating a new site on Wix, Velo, and Editor X. Just type the below links to your browser address bar.
 
 - **[wix.new](https://wix.new)** - Creates a new Wix site editor from a blank template
 - **[velo.new](https://velo.new)** - Creates a new Wix site editor with enabled Velo from a blank template
