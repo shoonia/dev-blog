@@ -3,9 +3,13 @@ const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
 
 const { rootResolve } = require('../util/paths');
-const { createUrl } = require('../util/meta');
-
-const pkg = require('../package.json');
+const {
+  title,
+  description,
+  author: metaAuthor,
+  homepage,
+  createUrl,
+} = require('../util/meta');
 
 exports.sitemapAndRss = async ({ graphql }) => {
   const {
@@ -49,26 +53,26 @@ exports.sitemapAndRss = async ({ graphql }) => {
   const sitemapStream = new SitemapStream();
 
   const author = {
-    name: pkg.author.name,
-    email: pkg.author.email,
-    link: pkg.author.url,
+    name: metaAuthor.name,
+    email: metaAuthor.email,
+    link: metaAuthor.url,
   };
 
   sitemapStream.write({
-    url: pkg.homepage,
+    url: homepage,
     lastmod: dateNow,
     changefreq: 'weekly',
     priority: 1,
   });
 
   const feed = new Feed({
-    title: pkg.title,
-    description: pkg.description,
-    id: pkg.homepage,
-    link: pkg.homepage,
+    title,
+    description,
+    id: homepage,
+    link: homepage,
     language: 'en',
     updated: dateNow,
-    generator: 'generator',
+    // generator: '',
     author,
     image: createUrl('icons/icon-256x256.png'),
     favicon: createUrl('favicon-32x32.png'),
@@ -110,7 +114,8 @@ exports.sitemapAndRss = async ({ graphql }) => {
     streamToPromise(sitemapStream).then(
       (buffer) => writeFile(
         rootResolve('public/sitemap.xml'),
-        buffer.toString('utf8'),
+        buffer,
+        'binary',
       ),
     ),
     writeFile(

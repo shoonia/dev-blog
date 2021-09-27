@@ -1,16 +1,14 @@
 const { rootResolve } = require('./util/paths');
-const pkg = require('./package.json');
-
-const isProd = process.env.NODE_ENV === 'production';
+const { title, description, author, homepage, isProd } = require('./util/meta');
 
 process.env.NODE_ICU_DATA = rootResolve('node_modules/full-icu');
 
 module.exports = {
   siteMetadata: {
-    title: pkg.title,
-    description: pkg.description,
-    author: pkg.author.name,
-    siteUrl: isProd ? pkg.homepage : 'http://localhost:8000',
+    title,
+    description,
+    author: author.name,
+    siteUrl: homepage,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -55,8 +53,8 @@ module.exports = {
     isProd && {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: pkg.description,
-        short_name: pkg.title,
+        name: title,
+        short_name: description,
         start_url: '/',
         background_color: '#fff',
         theme_color: '#fff',

@@ -1,17 +1,13 @@
 import React from 'react';
 import T from 'prop-types';
 
-import pkg from '../package.json';
-
-const isProd = process.env.NODE_ENV === 'production';
-const baseUrl = isProd ? pkg.homepage : 'http://localhost:8000';
-const siteName = `${pkg.author.name} | ${pkg.description}`;
+import { title, homepage, createUrl, isProd } from '../util/meta';
 
 const links = (
   <>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no" />
-    <base href={baseUrl} />
+    <base href={homepage} />
     <link
       rel="preload"
       href="/firacode@5.2.0/FiraCode-Regular.woff2"
@@ -23,21 +19,21 @@ const links = (
     <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc" />
     <link
       rel="alternate"
-      href={`${pkg.homepage}/rss.xml`}
+      href={createUrl('rss.xml')}
       type="application/rss+xml"
-      title={siteName}
+      title={title}
     />
     <link
       rel="alternate"
-      href={`${pkg.homepage}/rss.json`}
+      href={createUrl('rss.json')}
       type="application/json"
-      title={siteName}
+      title={title}
     />
     <link
       rel="sitemap"
       href="/sitemap.xml"
       type="application/xml"
-      title={siteName}
+      title={title}
     />
   </>
 );

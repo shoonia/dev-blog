@@ -10,11 +10,6 @@ module.exports = async ({ actions, graphql }) => {
       allMarkdownRemark: {
         nodes,
       },
-      site: {
-        siteMetadata: {
-          siteUrl,
-        },
-      },
     },
   } = await graphql(`
     {
@@ -46,11 +41,6 @@ module.exports = async ({ actions, graphql }) => {
           html
         }
       }
-      site {
-        siteMetadata {
-          siteUrl
-        }
-      }
     }`);
 
   nodes.forEach((node) => {
@@ -61,7 +51,6 @@ module.exports = async ({ actions, graphql }) => {
         meta: {
           ...node.frontmatter,
           url: createUrl(node.frontmatter.path),
-          siteUrl,
         },
         html: node.html,
       },

@@ -2,7 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import T from 'prop-types';
 
-import pkg from '../../../package.json';
+import {
+  title as metaTitle,
+  author as metaAuthor,
+  createUrl,
+} from '../../../util/meta';
 
 const Meta = ({ data }) => {
   const {
@@ -17,8 +21,6 @@ const Meta = ({ data }) => {
     url,
     template,
   } = data;
-
-  const siteName = `${pkg.author.name} | ${pkg.description}`;
 
   const metaData = [
     {
@@ -55,7 +57,7 @@ const Meta = ({ data }) => {
     },
     {
       property: 'og:site_name',
-      content: siteName,
+      content: metaTitle,
     },
     {
       name: 'twitter:card',
@@ -92,7 +94,7 @@ const Meta = ({ data }) => {
       {JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
-        name: siteName,
+        name: metaTitle,
         headline: title,
         description,
         inLanguage: lang,
@@ -105,12 +107,12 @@ const Meta = ({ data }) => {
         },
         publisher: {
           '@type': 'Organization',
-          name: pkg.author.name,
-          email: pkg.author.email,
-          sameAs: pkg.author.url,
+          name: metaAuthor.name,
+          email: metaAuthor.email,
+          sameAs: metaAuthor.url,
           logo: {
             '@type': 'ImageObject',
-            url: `${pkg.homepage}/icons/icon-512x512.png`,
+            url: createUrl('icons/icon-512x512.png'),
           },
         },
         image: {
@@ -151,7 +153,6 @@ Meta.propTypes = {
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
-    // siteUrl: T.string,
   }).isRequired,
 };
 
