@@ -26,7 +26,7 @@ function Main({ nodes, meta }) {
     >
       <main className={s.content}>
         <h1 className={s.title}>
-          Posts
+          All Posts
         </h1>
         <ul className={s.list}>
           {list}
