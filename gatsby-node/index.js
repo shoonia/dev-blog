@@ -1,4 +1,6 @@
+const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 const posts = require('./posts');
+
 const { sitemapAndRss } = require('./sitemapAndRss');
 const { clean } = require('./clean');
 
@@ -11,4 +13,14 @@ exports.onPostBuild = async (...args) => {
     sitemapAndRss(...args),
     clean(),
   ]);
+};
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (stage.includes('build')) {
+    actions.setWebpackConfig({
+      plugins: [
+        new CssMqpackerPlugin(),
+      ],
+    });
+  }
 };
