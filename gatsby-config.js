@@ -4,6 +4,7 @@ const { title, description, author, homepage, isProd } = require('./util/meta');
 process.env.NODE_ICU_DATA = rootResolve('node_modules/full-icu');
 
 module.exports = {
+  polyfill: false,
   siteMetadata: {
     title,
     description,
