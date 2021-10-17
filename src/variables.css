@@ -3,3 +3,4 @@ $color-gray: rgba(0, 0, 0, 0.64);
 $color-light-gray: rgb(112, 128, 144);
 $color-light-gray-opacity: rgba(112, 128, 144, 0.4);
 $content-widht: 750px;
+$max-width: 700px;

@@ -4,11 +4,17 @@
   height: 60px;
   line-height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .nav {
   max-width: $content-widht;
   padding: 0 15px;
   margin: 0 auto;
+}
+
+@media (max-width: $max-width) {
+  .header {
+    margin-bottom: 30px;
+  }
 }
