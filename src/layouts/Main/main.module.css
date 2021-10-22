@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import "../../variables.css";
 
 .content {
   min-height: 50vh;
@@ -6,7 +6,7 @@
 
 .post {
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 
 .title {
@@ -29,6 +29,7 @@
   margin: 0;
 }
 
+/* stylelint-disable */
 .itemTitle {
   font-weight: normal;
   font-size: 1.3em;

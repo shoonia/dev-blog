@@ -1,5 +1,5 @@
 pre[class*="code-"] {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255 255 255 / 80%);
   background-color: #282c34;
   text-align: left;
   white-space: pre;
@@ -17,7 +17,7 @@ pre[class*="code-"] {
 
 pre[class*="code-"] ::selection {
   text-shadow: none;
-  background-color: rgba(154, 162, 177, 0.2);
+  background-color: rgb(154 162 177 / 20%);
 }
 
 @media print {
@@ -27,7 +27,7 @@ pre[class*="code-"] ::selection {
 }
 
 .parameter {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255 255 255 / 80%);
 }
 
 .comment,

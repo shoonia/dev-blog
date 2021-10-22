@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import "../../variables.css";
 
 .content {
   max-width: $content-widht;
