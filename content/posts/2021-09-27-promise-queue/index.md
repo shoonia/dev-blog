@@ -338,7 +338,7 @@ export const createQueue = (maxLength = 1) => {
   ></iframe>
 </figure>
 
-**That's it!**. I hope it could be helpful to your projects. Thanks for reading.
+**That's it!** I hope it could be helpful to your projects. Thanks for reading.
 
 ## Code Snippets
 
