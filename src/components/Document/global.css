@@ -204,6 +204,7 @@ img {
   background-color: #eee;
 }
 
+video,
 iframe,
 img[decoding="async"] {
   content-visibility: auto;
