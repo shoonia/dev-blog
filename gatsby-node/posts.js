@@ -1,9 +1,9 @@
-const path = require('path');
+const { resolve } = require('path');
 
 const { createUrl } = require('../util/meta');
 
 module.exports = async ({ actions, graphql }) => {
-  const Page = path.resolve('./src/templates/Post.jsx');
+  const Page = resolve('./src/templates/Post.jsx');
 
   const {
     data: {
