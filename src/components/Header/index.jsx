@@ -3,16 +3,12 @@ import { Link } from 'gatsby';
 
 import * as s from './Header.module.css';
 
-function Header() {
-  return (
-    <header className={s.header}>
-      <nav className={s.nav}>
-        <Link to="/">
+export const Header = () => (
+  <header className={s.header}>
+    <nav className={s.nav}>
+      <Link to="/" className={s.link}>
           Home
-        </Link>
-      </nav>
-    </header>
-  );
-}
-
-export default Header;
+      </Link>
+    </nav>
+  </header>
+);

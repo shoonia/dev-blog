@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .footer {
   margin-top: 80px;
   height: 100px;
@@ -11,11 +13,19 @@
 
 .link {
   display: inline-block;
-  margin: 0 15px;
+  margin: 0 30px;
   user-select: none;
   color: #1353a9;
+  font-size: 1.2em;
 }
 
 .link::before {
   display: none;
+}
+
+@media (max-width: $max-width) {
+  .link {
+    margin: 0 15px;
+    font-size: 1em;
+  }
 }

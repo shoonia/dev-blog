@@ -2,7 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 
 import Meta from '../Meta';
-import Header from '../Header';
+import { Header } from '../Header';
 import { Footer } from '../Footer';
 import './global.css';
 
