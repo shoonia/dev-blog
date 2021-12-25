@@ -32,7 +32,7 @@
     "postcss-import": "^14.0.2",
     "postcss-simple-vars": "^6.0.3",
     "prismjs": "^1.25.0",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
@@ -41,9 +41,9 @@
   "devDependencies": {
     "eslint": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react": "^7.28.0",
     "simple-git-hooks": "^2.7.0",
-    "stylelint": "^14.1.0",
+    "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0"
   },
   "simple-git-hooks": {
