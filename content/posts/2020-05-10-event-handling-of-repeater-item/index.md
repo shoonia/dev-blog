@@ -278,8 +278,10 @@ export const createScope = (getData) => (event) => {
 };
 ```
 
-*Don't remove JSDoc in your code! In the building process, all comments will be removed automatically from the production bundle.*
+  <aside>
 
+*Don't remove JSDoc in your code! In the building process, all comments will be removed automatically from the production bundle.*
+  </aside>
 </details>
 
 ## Resources
