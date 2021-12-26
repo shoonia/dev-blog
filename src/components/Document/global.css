@@ -237,6 +237,7 @@ summary {
   list-style: none;
   outline: none;
   cursor: pointer;
+  position: relative;
 }
 
 summary::marker,
@@ -244,12 +245,17 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+summary::after {
+  content: "open";
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #1a72e8;
+}
+
 details {
   padding: 16px;
-  margin: 16px 0;
-  border: 1px solid #1a72e8;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  margin: 18px 0;
 }
 
 details summary::before {
@@ -266,10 +272,15 @@ details[open] summary::before {
   content: "-";
 }
 
+details[open] summary::after {
+  content: "close";
+}
+
 video {
   height: auto;
 }
 
+details,
 iframe,
 video {
   border: 1px solid $color-light-gray-opacity;
