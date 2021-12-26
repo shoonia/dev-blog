@@ -41,6 +41,18 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+html,
+body {
+  min-height: 100vh;
+}
+
+body > div {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
 a {
   color: $color-link;
   text-decoration: none;

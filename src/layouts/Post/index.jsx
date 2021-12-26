@@ -1,20 +1,20 @@
 import T from 'prop-types';
 
-import * as s from './posts.module.css';
 import Document from '../../components/Document';
 import Markdown from '../../components/Markdown';
 import Time from '../../components/Time';
+import { Page } from '../../components/Page';
 
 function Post({ meta, html }) {
   return (
     <Document meta={meta}>
-      <main className={s.content}>
+      <Page>
         <Time
           lang={meta.lang}
           date={meta.date}
         />
         <Markdown html={html} />
-      </main>
+      </Page>
     </Document>
   );
 }

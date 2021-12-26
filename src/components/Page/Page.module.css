@@ -2,7 +2,6 @@
 
 .content {
   max-width: $content-widht;
-  min-height: 70vh;
   padding: 0 15px;
   margin: 0 auto;
 }

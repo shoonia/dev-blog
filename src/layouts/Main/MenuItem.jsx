@@ -3,7 +3,7 @@ import T from 'prop-types';
 import * as s from './main.module.css';
 import Time from '../../components/Time';
 
-function MenuItem({
+export const MenuItem = ({
   data: {
     path,
     title,
@@ -12,28 +12,26 @@ function MenuItem({
     author,
     lang,
   },
-}) {
-  return (
-    <article
+}) => (
+  <article
+    lang={lang}
+    className={s.post}
+  >
+    <h2 className={s.itemTitle}>
+      <a href={path}>
+        {title}
+      </a>
+    </h2>
+    <p>{description}</p>
+    <Time
+      date={date}
       lang={lang}
-      className={s.post}
-    >
-      <h2 className={s.itemTitle}>
-        <a href={path}>
-          {title}
-        </a>
-      </h2>
-      <p>{description}</p>
-      <Time
-        date={date}
-        lang={lang}
-      />
-      <span className={s.author}>
-        {` - ${author}`}
-      </span>
-    </article>
-  );
-}
+    />
+    <span className={s.author}>
+      {` - ${author}`}
+    </span>
+  </article>
+);
 
 MenuItem.propTypes = {
   data: T.shape({
@@ -45,5 +43,3 @@ MenuItem.propTypes = {
     lang: T.string.isRequired,
   }).isRequired,
 };
-
-export default MenuItem;
