@@ -39,9 +39,11 @@
     }
   },
   "rules": {
+    "react/jsx-key": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "global-require": "off",
     "linebreak-style": "off",
-    "react/jsx-key": "error",
     "no-trailing-spaces": "error",
     "no-use-before-define": "error",
     "no-unused-vars": "off",

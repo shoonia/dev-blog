@@ -1,4 +1,3 @@
-import React from 'react';
 import T from 'prop-types';
 
 import './one-dark.css';

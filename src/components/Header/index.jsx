@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'gatsby';
 
 import * as s from './Header.module.css';

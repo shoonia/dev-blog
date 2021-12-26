@@ -1,4 +1,3 @@
-import React from 'react';
 import T from 'prop-types';
 
 import * as s from './main.module.css';

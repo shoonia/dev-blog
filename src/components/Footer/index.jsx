@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as s from './footer.module.css';
 
 export const Footer = () => (
