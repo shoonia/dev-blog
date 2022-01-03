@@ -300,10 +300,22 @@ video {
   width: 100%;
 }
 
-aside {
-  background-color: #eaf8ff;
+aside,
+blockquote {
   padding: 10px 18px;
-  border-left: 3px solid #1eb4ff;
+  margin: 18px 0;
+  border-left-width: 6px;
+  border-left-style: solid;
+}
+
+aside {
+  border-left-color: #1eb4ff;
+  background-color: #eaf8ff;
+}
+
+blockquote {
+  border-left-color: #fff380;
+  background-color: rgb(255 229 100 / 30%);
 }
 
 @media (max-width: $max-width) {
