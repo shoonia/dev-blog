@@ -3,12 +3,12 @@ publish: true
 path: '/corvid-imitate-hover-event'
 template: 'default'
 date: '2019-10-29T12:00:00.000Z'
-modified: '2021-06-16T12:00:00.000Z'
+modified: '2022-01-03T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Imitating hover event on repeater container'
 description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
 author: 'Alexander Zaytsev'
-image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311ed~mv2.png'
+image: 'https://shoonia.site/images/repeater-small.png'
 ---
 
 # Velo by Wix: Imitating hover event on repeater container
@@ -16,7 +16,7 @@ image: 'https://static.wixstatic.com/media/e3b156_a9f6621c175946b8a41f7d349d3311
 *Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_4dbd2d10726340d48df87c9526939b89~mv2.jpg"
+  src="/images/coubs.jpeg"
   width="700"
   height="338"
   alt="Velo by Wix"
@@ -41,28 +41,36 @@ Also, repeater items don't have property [`style.backgroundColor`](https://www.w
 To start with, set handlers to `onMouse{In/Out}` events. We will use one function for two events by repeaters containers. We declare the handler function above and pass the function's name as an argument to container methods.
 
 ```js
-function imitateHover(event) {
+/**
+ * @param {$w.MouseEvent} event
+ */
+const imitateHover = (event) => {
   // our handler for containers
 }
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover); // set handler
-  $w("#container1").onMouseOut(imitateHover);
+  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover); // set handlers
 });
 ```
 
-Please pay attention, we don't nest any containers item into the repeater for adding handlers. Like here:
+<aside>
 
-```js
-// ❌ In this way, each time when onItemReady starts
-// may set a new handler for containers
-$w("#repeater1").onItemReady( ($item, itemData, index) => {
-  $item("#container1").onMouseIn(imitateHover);
-  $item("#container1").onMouseOut(imitateHover);
-});
-```
+  **Please pay attention**
 
-We set globally our handler on all `#container1` with `$w()` selector. And it works well!
+  We don't nest any containers item into the repeater for adding handlers. Like here:
+
+  ```js
+  // ❌ In this way, each time when onItemReady starts
+  // may set a new handler for containers
+  $w("#repeater1").onItemReady(($item, itemData, index) => {
+    $item("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
+  });
+  ```
+  We set globally our handler on all `#container1` with `$w()` selector. And it works well!
+
+  More: [Event handling of Repeater Item](/event-handling-of-repeater-item)
+</aside>
+
 
 ## Imitate hover
 
@@ -74,7 +82,10 @@ We use one function for two events, therefore we need to listen to which type of
 Let's see the code:
 
 ```js
-function imitateHover(event) {
+/**
+ * @param {$w.MouseEvent} event
+ */
+const imitateHover = (event) => {
   if (event.type === "mouseenter") {
     console.log("we have mouseenter if onMouseIn() is running");
   }
@@ -82,11 +93,10 @@ function imitateHover(event) {
   if (event.type === "mouseleave") {
     console.log("we have mouseleave if onMouseOut() is running");
   }
-}
+};
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover);
-  $w("#container1").onMouseOut(imitateHover);
+  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
@@ -96,6 +106,9 @@ The object `event` always will be consistent with the current container item, wh
 // link to one pixel image
 const HOVER_PNG = "https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png";
 
+/**
+ * @param {$w.MouseEvent} event
+ */
 function imitateHover(event) {
   // when the cursor over container then set image.
   if (event.type === "mouseenter") {
@@ -109,8 +122,7 @@ function imitateHover(event) {
 }
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover);
-  $w("#container1").onMouseOut(imitateHover);
+  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
@@ -130,7 +142,10 @@ We can create needed images by [1x1 PNG generator #cce4f7ff](https://shoonia.git
 // one-pixel image encoded to base64
 const HOVER_PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM88+R7PQAIUwMo5M6pSAAAAABJRU5ErkJggg==';
 
-function imitateHover(event) {
+/**
+ * @param {$w.MouseEvent} event
+ */
+const imitateHover = (event) => {
   if (event.type === "mouseenter") {
     event.target.background.src = HOVER_PNG;
   }
@@ -138,11 +153,10 @@ function imitateHover(event) {
   if (event.type === "mouseleave") {
     event.target.background.src = "";
   }
-}
+};
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover);
-  $w("#container1").onMouseOut(imitateHover);
+  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
