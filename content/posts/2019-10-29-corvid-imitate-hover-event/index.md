@@ -34,7 +34,16 @@ For this, we're going to use two other events that provide repeater API:
 
 Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/velo/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/velo/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
-[Here is one-pixel image](https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png)
+<a href="/images/1x1_cce4f7ff.png" target="_blank">
+  Here is one-pixel image
+  <img
+    src="/images/1x1_cce4f7ff.png"
+    alt="light blue pixel image"
+    width="12"
+    height="12"
+    loading="lazy"
+  />
+</a>
 
 ## Event handlers
 
