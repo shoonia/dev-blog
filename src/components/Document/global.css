@@ -114,7 +114,8 @@ figure {
   margin: 0;
 }
 
-em {
+em,
+cite {
   color: $color-gray;
   font-style: italic;
 }
