@@ -9,10 +9,8 @@ title: 'Руководство по CSS-счетчикам'
 description: 'Перевод статьи, Samantha Ming: "A Guide to CSS counter"'
 author: 'Samantha Ming'
 image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377d6~mv2.png'
+head: '<link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">'
 ---
-
-<link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">
-<!-- https://webmention.io/shoonia.site/webmention/8cpkuQnyFAGfAKMhPlYS -->
 
 # Руководство по CSS-счетчикам
 
