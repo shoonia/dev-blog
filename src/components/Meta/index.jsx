@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet';
+import { Parser } from 'html-to-react';
 import T from 'prop-types';
 
 import {
@@ -6,6 +7,8 @@ import {
   author as metaAuthor,
   createUrl,
 } from '../../../util/meta';
+
+const htmlToReact = new Parser();
 
 const Meta = ({ data }) => {
   const {
@@ -19,7 +22,10 @@ const Meta = ({ data }) => {
     image,
     url,
     template,
+    head,
   } = data;
+
+  const headers = typeof head === 'string' && htmlToReact.parse(head);
 
   const metaData = [
     {
@@ -135,6 +141,7 @@ const Meta = ({ data }) => {
     >
       <html lang={lang} />
       <link rel="canonical" href={url} />
+      {headers}
       {JSONLD}
     </Helmet>
   );
@@ -152,6 +159,7 @@ Meta.propTypes = {
     image: T.string,
     url: T.string.isRequired,
     template: T.string,
+    head: T.string,
   }).isRequired,
 };
 

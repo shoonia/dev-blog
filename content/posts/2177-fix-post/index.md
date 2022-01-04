@@ -9,6 +9,7 @@ title: 'Fix'
 description: 'Fix'
 author: 'Alexander Zaytsev'
 image: 'https://shoonia.site/icons/icon-256x256.png'
+head: '<meta name="robots" content="noindex" />'
 ---
 
-<meta name="robots" content="noindex" />
+# Fix
