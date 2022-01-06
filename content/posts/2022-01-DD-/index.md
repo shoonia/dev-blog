@@ -269,27 +269,6 @@ export const findIn = (selector) => {
 };
 ```
 
-```js
-export const findIn = (selector) => {
-  return {
-    all(type) {
-      /** @type {any} */
-      const elements = $w(type);
-
-      // TODO:
-      const ids = elements.reduce((acc, element) => {
-        acc.push(`#${element.id}`);
-
-        return acc;
-      }, []);
-
-      // TODO:
-      console.log(ids); // [ "#checkboxAllYellow", "#checkbox1", "#checkbox4", "#checkbox2", "#checkbox5", "#checkbox3", "#checkbox6", "#checkboxAllBlue", "#checkbox12", "#checkbox11", "#checkbox10", "#checkbox9", "#checkbox8", "#checkbox7"]
-    },
-  };
-};
-```
-
 
 ```js
 export const findIn = (selector) => {
@@ -298,13 +277,16 @@ export const findIn = (selector) => {
       /** @type {any} */
       const elements = $w(type);
 
+      // Gets an array with elements ID
+      // ids === [ "#checkbox1", "#checkbox2", …]
       const ids = elements.reduce((acc, element) => {
+        // Add hash symbol
         acc.push(`#${element.id}`);
 
         return acc;
       }, []);
 
-      // TODO:
+      // Creates a new select query by ID
       return $w(ids.join(','));
     },
   };
@@ -312,40 +294,23 @@ export const findIn = (selector) => {
 ```
 
 ```js
-// TODO:
 const hasParent = (element, parentId) => {
-  // TODO:
   while (element) {
-    // TODO:
+    // On each iteration, we get a next parent element
     element = element.parent;
 
-    // TODO:
     if (element?.id === parentId) {
-      // TODO:
       return true;
     }
   }
 
-  // TODO:
   return false;
 };
 ```
 
 ```js
-const hasParent = (element, parentId) => {
-  while (element) {
-    element = element.parent;
-
-    if (element?.id === parentId) {
-      return true;
-    }
-  }
-
-  return false;
-};
-
 export const findIn = (selector) => {
-  // TODO:
+  // Removes a hash symbol at the ID start
   const parentId = selector.replace(/^#/, '');
 
   return {
@@ -354,7 +319,9 @@ export const findIn = (selector) => {
       const elements = $w(type);
 
       const ids = elements.reduce((acc, element) => {
-        // TODO:
+        // Add condition:
+        // if the element has a parent node with the needed ID
+        // then add it to the return result.
         if (hasParent(element, parentId)) {
           acc.push(`#${element.id}`);
         }
