@@ -15,7 +15,7 @@
 }
 
 ::selection {
-  background-color: #98c379;
+  background-color: #d3edff;
 }
 
 body {
@@ -305,6 +305,7 @@ aside,
 blockquote {
   padding: 10px 18px;
   margin: 18px 0;
+  line-height: 1.7;
   border-left-width: 6px;
   border-left-style: solid;
 }
@@ -315,8 +316,27 @@ aside {
 }
 
 blockquote {
-  border-left-color: #fff380;
+  border-left-color: #ffe564;
   background-color: rgb(255 229 100 / 30%);
+}
+
+blockquote::before,
+blockquote::after {
+  color: $color-light-gray;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 2em;
+  line-height: 0.1em;
+  vertical-align: -0.4em;
+}
+
+blockquote::before {
+  content: open-quote;
+  margin-right: 0.25em;
+}
+
+blockquote::after {
+  content: close-quote;
+  margin-left: 0.25em;
 }
 
 @media (max-width: $max-width) {
