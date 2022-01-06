@@ -6,14 +6,14 @@ date: '2022-01-01T12:00:00.000Z'
 modified: '2022-01-01T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
-description: 'Get the child elements of a parent node. In this post, we take a look deeper at $w() selector and trying to filter children element by specific parent node.'
+description: 'Get the child elements of a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node.'
 author: 'Alexander Zaytsev'
 image: ''
 ---
 
 # Velo by Wix: Query selector for child elements
 
-*Get the child elements of a parent node. In this post, we take a look deeper at `$w()` selector and trying to filter children element by specific parent node.*
+*Get the child elements of a parent node. In this post, we take a look deeper at `$w()` selector and try to filter children elements by the specific parent node*
 
 <img
   src="/images/december1994.jpg"
@@ -61,13 +61,13 @@ In general, we need to find a way to query select all child elements into a spec
   ```
 </figure>
 
-Thinking about it, I tried reproduce this mechanism for Velo.
+Thinking about it, let's try to reproduce this query selector for Velo.
 
 ## CSS selector work from right to left
 
 If you are familiar with CSS selectors, you can see that they work from right to left.
 
-Let's look at an example, here we want to apply styles for all `<span>` child elements into parent nodes that have `.content-box` class:
+Look at an example, here we want to apply styles for all `<span>` child elements into parent nodes that have `.content-box` class name:
 
 ```html
 <style>
@@ -90,7 +90,7 @@ Let's look at an example, here we want to apply styles for all `<span>` child el
 
 **Reslut:**
 
-<div style="border:1px solid rgb(112 128 144 / 40%);padding:0 18px">
+<div style="border:1px solid rgb(112 128 144/40%);border-left:6px solid rgb(112 128 144/40%);padding:0 18px">
   <style>
   .content-box span {
     font-weight: bold;
@@ -102,21 +102,21 @@ Let's look at an example, here we want to apply styles for all `<span>` child el
   </p>
 </div>
 
-Under the hood, a Browser use the "from right to left" algorithm to select child elements. The Browser literally start to find the first all `<span>` elements on the page and then browser is filtering only the `<span>` that have a parent node with `class="content-box"`.
+Under the hood, a browser uses the "from right to left" algorithm to select child elements. The browser literally starts to find all `<span>` elements on the page and then the browser filters only the `<span>` that have a parent node with `class="content-box"`.
 
 <aside>
 
   More: [Why do browsers match CSS selectors from right to left?](https://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left/5813672#5813672)
 </aside>
 
-So, in our task we have two step:
+So, in our task we need to do two steps:
 
-1. Query select all needed element by type
-2. Filtering only element which have a parent with specific ID.
+1. Query select all needed elements by type
+2. Filter only elements that have a parent with a specific ID.
 
 ## Child selector for Velo
 
-I propose using the "from right to left" algorithm for our task. Especially we have all needed API for this.
+I propose using the "from right to left" search for our task. Especially we have all needed API for this.
 
 In one of my previous posts, we solved a very similar issue. There we have created a tiny library for [getting a parent Repeater from repeated items](/the-utils-for-repeated-item-scope-event-handlers).
 
@@ -130,12 +130,13 @@ In one of my previous posts, we solved a very similar issue. There we have creat
   <cite>Velo API Reference:</cite>
   </figcaption>
   <blockquote cite="https://www.wix.com/velo/reference/$w/$w">
-
-  To select by type, pass a selector string with the name of the type without the preceding `#` (e.g. "Button"). The function returns an array of the selected element objects. An array is returned even if one or no elements are selected.
+    To select by type, pass a selector string with the name of the type without the preceding `#` (e.g. "Button"). The function returns an array of the selected element objects. An array is returned even if one or no elements are selected.
   </blockquote>
 </figure>
 
-For example, we can get a list of elements and manipulate their methods.
+For example, we can get a list of elements and manipulate this group's methods.
+
+**Select elements by type:**
 
 <figure>
 
@@ -156,7 +157,7 @@ textElemets.text = 'Hello';
   </figcaption>
 </figure>
 
-Fortunately, all type definitions for Velo APIs are available on the open source. We can found it on [GitHub repository](https://github.com/wix-incubator/corvid-types) and [npm package](https://www.npmjs.com/package/corvid-types).
+Fortunately, all type definitions for Velo APIs are available on the open source. We can find it on the [GitHub repository](https://github.com/wix-incubator/corvid-types) and [npm package](https://www.npmjs.com/package/corvid-types).
 
 <details>
   <summary>
@@ -223,6 +224,8 @@ declare type TypeNameToSdkType = {
 
 ### Get the parent element and the parent's ID
 
+We can get a parent element with the same name property. The top-level elements Page, Header, and Footer have no parent.
+
 ```js
 // Gets a checkbox's parent element
 const parentElement = $w('#checkboxAllYellow').parent;
@@ -238,18 +241,22 @@ const parentId = parentElement.id; // "boxYellow"
   The `id` property return element ID without preceding hash (`#`) symbol
 
   ```js
-  console.log($w('#boxYellow').id); // "boxYellow"
+  $w('#boxYellow').id; // => "boxYellow"
   ```
 </aside>
 
-## Realisation
+## Realization
 
 I guess it's enough theory by now. Let's start to implement a selector function.
 
+`findIn()` will be accepted a parent element ID and return an object with method `all()` that accepts searched children elements type.
+
 ```js
-// Find in #boxYellow all child elements with type `$w.Checkbox`
+// Find in #boxYellow element all child elements with type `$w.Checkbox`
 findIn('#boxYellow').all('Checkbox');
 ```
+
+First, we get all child elements:
 
 ```js
 export const findIn = (selector) => {
