@@ -287,7 +287,7 @@ export const findIn = (selector) => {
       }, []);
 
       // Creates a new select query by ID
-      return $w(ids.join(','));
+      return $w(ids.join(',')); // $w("#checkbox1,#checkbox2,…")
     },
   };
 };
@@ -335,6 +335,8 @@ export const findIn = (selector) => {
 };
 ```
 
+**An example of use:**
+
 ```js
 $w.onReady(() => {
   $w('#checkboxAllYellow').onChange((event) => {
@@ -350,12 +352,12 @@ $w.onReady(() => {
 <figure>
   <figcaption>
 
-  Check how it works on **Live Demo**
+  **Live Demo:**
   </figcaption>
   <iframe
     src="https://shoonia.wixsite.com/blog/child-selector"
     width="100%"
-    height="390"
+    height="480"
     loading="lazy"
     crossorigin="anonymous"
     title="Live Demo of Child selector"
@@ -365,6 +367,24 @@ $w.onReady(() => {
 </figure>
 
 ## JSDoc
+
+```js
+/**
+ * @param {WixElementSelector} selector
+ */
+export const findIn = (selector) => {
+  const parentId = selector.replace(/^#/, '');
+
+  return {
+    /**
+     * @template {keyof TypeNameToSdkType} T
+     * @param {T} type
+     * @returns {TypeNameToSdkType[T]}
+     */
+    all(type) {…},
+  };
+};
+```
 
 <figure>
   <figcaption>
@@ -445,3 +465,11 @@ $w.onReady(() => {
 });
 ```
 </details>
+
+## Resources
+
+## Posts
+
+- [Promise Queue](/promise-queue)
+- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
