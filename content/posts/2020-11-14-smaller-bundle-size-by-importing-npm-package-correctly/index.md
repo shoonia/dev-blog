@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one'
 author: 'Alexander Zaytsev'
-image: 'https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc2368d~mv2.jpg/v2/fill/w_500,h_500/i.jpg'
+image: 'https://shoonia.site/images/node_modules500x500.jpeg'
 ---
 
 # Velo by Wix: Smaller bundle size by importing npm package correctly
@@ -16,7 +16,7 @@ image: 'https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc236
 *If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one*
 
 <img
-  src="https://static.wixstatic.com/media/358a0d_049725d1d0ef40c98ae2f6f73cc2368d~mv2.jpg"
+  src="/images/node_modules.jpeg"
   width="777"
   height="437"
   alt="node_modules"
@@ -80,11 +80,14 @@ import _get from 'lodash/get';
 
 *Bundle size grows +10.9KB (gzip: 4.7KB).*
 
-### Attention!
+<aside>
 
-For using this approach, you should understand how is work the package. This approach is grad for libraries that is a collection of independent utility (like: [uuid](https://github.com/uuidjs/uuid), [lodash](https://lodash.com/), [validator](https://github.com/validatorjs/validator.js), [ramda](https://ramdajs.com/), [underscore](https://underscorejs.org/), etc) when each method has an atomic functional.
+  ### Attention!
 
-If you support the legacy browser, pay attention to JS syntax in the file (ES5, ES2015).
+  For using this approach, you should understand how is work the package. This approach is grad for libraries that is a collection of independent utility (like: [uuid](https://github.com/uuidjs/uuid), [lodash](https://lodash.com/), [validator](https://github.com/validatorjs/validator.js), [ramda](https://ramdajs.com/), [underscore](https://underscorejs.org/), etc) when each method has an atomic functional.
+
+  If you support the legacy browser, pay attention to JS syntax in the file (ES5, ES2015).
+</aside>
 
 ## Conclusion
 
