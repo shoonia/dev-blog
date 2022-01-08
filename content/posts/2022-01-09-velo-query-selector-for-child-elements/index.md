@@ -2,18 +2,18 @@
 publish: false
 path: '/velo-query-selector-for-child-elements'
 template: 'default'
-date: '2022-01-01T12:00:00.000Z'
-modified: '2022-01-01T12:00:00.000Z'
+date: '2022-09-01T12:00:00.000Z'
+modified: '2022-09-01T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
-description: 'Get the child elements of a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node.'
+description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node.'
 author: 'Alexander Zaytsev'
-image: ''
+image: 'https://shoonia.site/images/load-editor.jpeg'
 ---
 
 # Velo by Wix: Query selector for child elements
 
-*Get the child elements of a parent node. In this post, we take a look deeper at `$w()` selector and try to filter children elements by the specific parent node*
+*Get the child elements inside a parent node. In this post, we take a look deeper at `$w()` selector and try to filter children elements by the specific parent node*
 
 <img
   src="/images/december1994.jpg"
