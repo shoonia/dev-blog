@@ -1,5 +1,5 @@
 ---
-publish: true
+publish: false
 path: '/velo-query-selector-for-child-elements'
 template: 'default'
 date: '2022-01-01T12:00:00.000Z'
@@ -45,23 +45,7 @@ We want to provide a good abstract solution for avoiding hard coding of elements
   />
 </figure>
 
-In general, we need to find a way to query select all child elements into a specific parent node. Using CSS selector syntax we can describe our selector as:
-
-<figure>
-  <figcaption>
-
-  **Pseudocode via CSS syntax for describing a child selector behavior**
-  </figcaption>
-
-  ```css
-  /* Gets all "$w.Chackbox" element into "#boxYellow" */
-  #boxYellow $w.Checkbox {
-
-  }
-  ```
-</figure>
-
-Thinking about it, let's try to reproduce this query selector for Velo.
+In general, we need to find a way to query select all child elements into a specific parent node. There are exist similar selectors in DOM and CSS.
 
 ## CSS selector work from right to left
 
@@ -102,7 +86,7 @@ Look at an example, here we want to apply styles for all `<span>` child elements
   </p>
 </div>
 
-Under the hood, a browser uses the "from right to left" algorithm to select child elements. The browser literally starts to find all `<span>` elements on the page and then the browser filters only the `<span>` that have a parent node with `class="content-box"`.
+Under the hood, a browser uses the *"from right to left"* algorithm to select child elements. The browser literally starts to find all `<span>` elements on the page and then the browser filters only the `<span>` that have a parent node with `class="content-box"`.
 
 <aside>
 
@@ -113,6 +97,8 @@ So, in our task we need to do two steps:
 
 1. Query select all needed elements by type
 2. Filter only elements that have a parent with a specific ID.
+
+Thinking about it, let's try to reproduce this query selector for Velo.
 
 ## Child selector for Velo
 

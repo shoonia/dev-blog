@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/radio-astronomy.jpg'
 *In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.*
 
 <img
-  src="https://shoonia.site/images/radio-astronomy.jpg"
+  src="/images/radio-astronomy.jpg"
   width="729"
   height="254"
   alt="radio astronomy"
@@ -147,7 +147,7 @@ I will use a very simple example with the counter. On the Main page, we have a h
   <strong>Example of UI:</strong>
  </figcaption>
   <img
-    src="https://shoonia.site/images/iframe-example.jpg"
+    src="/images/iframe-example.jpg"
     width="770"
     height="279"
     alt="Example of HTML embed Component"
