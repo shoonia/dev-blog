@@ -1,5 +1,5 @@
 ---
-publish: false
+publish: true
 path: '/velo-query-selector-for-child-elements'
 template: 'default'
 date: '2022-08-01T12:00:00.000Z'
