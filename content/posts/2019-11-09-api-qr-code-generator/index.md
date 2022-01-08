@@ -57,7 +57,7 @@ https://<USER_NAME>.wixsite.com/<SITE_NAME>
 Для створення роутингу в файлі `http-functions.js`, нам потрібно експортувати функції, назва яких складається з префіксу та назви роуту, розділених нижнім підкреслюванням.
 
 ```js
- export function <prefix>_<functionName>(request) { }
+export function <prefix>_<functionName>(request) { }
 ```
 
 - `<prefix>` - це назва методу запиту (GET, POST, PUT ...) Докладніше на [MDN](https://developer.mozilla.org/uk/docs/Web/HTTP/Methods)

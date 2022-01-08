@@ -2,8 +2,8 @@
 publish: false
 path: '/velo-query-selector-for-child-elements'
 template: 'default'
-date: '2022-09-01T12:00:00.000Z'
-modified: '2022-09-01T12:00:00.000Z'
+date: '2022-08-01T12:00:00.000Z'
+modified: '2022-08-01T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
 description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node.'
@@ -49,9 +49,9 @@ In general, we need to find a way to query select all child elements into a spec
 
 ## CSS selector work from right to left
 
-If you are familiar with CSS selectors, you can see that they work from right to left.
+Take a look at the CSS works in this case. If you are familiar with CSS selectors, you can see that they work from right to left.
 
-Look at an example, here we want to apply styles for all `<span>` child elements into parent nodes that have `.content-box` class name:
+For example, we want to apply styles for all `<span>` child elements into parent nodes that have `.content-box` class name:
 
 ```html
 <style>
@@ -104,7 +104,7 @@ Thinking about it, let's try to reproduce this query selector for Velo.
 
 I propose using the *"from right to left"* search for our task. Especially we have all needed API for this.
 
-In one of my previous posts, we solved a very similar issue. There we have created a tiny library for [getting a parent Repeater from repeated items](/the-utils-for-repeated-item-scope-event-handlers).
+In one of my previous posts, we solved a very similar issue. There we have created a tiny library for [getting a parent Repeater element from repeated items](/the-utils-for-repeated-item-scope-event-handlers).
 
 ### Select elements by type
 
@@ -139,7 +139,7 @@ textElemets.text = 'Hello';
 ```
   <figcaption>
 
-  Each editor element has its own type. In Velo, API Reference documentation describes a small piece of [the possible editor elements type](https://www.wix.com/velo/reference/$w/element/type). It's not a full list of types.
+  Each editor element has its own type. In Velo, API Reference documentation describes a small piece of [the possible editor elements type](https://www.wix.com/velo/reference/$w/element/type). It's not a full list.
   </figcaption>
 </figure>
 
@@ -254,8 +254,7 @@ export const findIn = (selector) => {
   };
 };
 ```
-The `$w(type)` selector returns an array of elements. We transform this array to an array with ID's. And then we create a new multiple select from list of IDs.
-
+The `$w(type)` selector returns an array of elements. We transform this array to an array with ID's. Then we create a new multiple select from a joined list of IDs.
 ```js
 export const findIn = (selector) => {
   return {
@@ -281,7 +280,7 @@ export const findIn = (selector) => {
 
 I use the [array method `arr.reduce()`](https://javascript.info/array-methods#reduce-reduceright) because we need to filter and transform array items.
 
-For the filtering, we will use the helper function `hasParent()`. In this function, we return `true` if the element has a parent element with the needed ID or `false` if all parents don't have one.
+For the filtering, we will use the helper function `hasParent()`. In this function, we return `true` if the element has a parent element with the needed ID or `false` if all parents don't have this ID.
 
 ```js
 const hasParent = (element, parentId) => {
@@ -362,10 +361,10 @@ $w.onReady(() => {
 
 ## JSDoc
 
-Finally, I want to add the [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, We have a built-in types annotation in Velo editor.
+Finally, I want to add the [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, we have a built-in types annotation in Velo editor.
 
-- `WixElementSelector` - it's a union of all IDs on the current site page. Unfortunately, we can't use this union on the public files. Only on the page files.
-- `TypeNameToSdkType` - it's a map for all elements type.
+- `WixElementSelector` - it's a [union type](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html) of all IDs on the current site page. Unfortunately, we can't use this union on the public files. Only on the page files.
+- `TypeNameToSdkType` - it's an [interface](https://www.typescriptlang.org/docs/handbook/interfaces.html) for all elements type.
 
 **Add types annotation:**
 
