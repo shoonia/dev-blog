@@ -374,7 +374,7 @@ $w.onReady(() => {
   ></iframe>
 </figure>
 
-<h2 id="code-snippets">Code Snippets</h2>
+## Code Snippets
 
 Here you find two snippets of code. The minimum needed code snippet and the full snippet with max-age.
 

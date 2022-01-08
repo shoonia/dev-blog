@@ -432,9 +432,9 @@ Below you can see the full implementation of the channel for both pages.
   </summary>
   <aside>
 
-The code example used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browsers to your project:
+  The code example used the [`ECMAScript 2015 (ES6)`](https://en.wikipedia.org/wiki/ECMAScript) version of JavaScript. Be attention, the code inside iFrame doesn't transpile to the older version of JavaScript `(ES5)` and don't have a polyfills. Check a list of supported browsers to your project:
 
-[Support for the ECMAScript 2015 specification.](https://caniuse.com/?search=es6)
+  [Support for the ECMAScript 2015 specification.](https://caniuse.com/?search=es6)
   </aside>
 
 ```html
