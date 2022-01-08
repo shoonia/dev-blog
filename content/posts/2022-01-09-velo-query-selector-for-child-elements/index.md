@@ -362,7 +362,7 @@ $w.onReady(() => {
 
 ## JSDoc
 
-Finally, I want to add a [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, We have a built-in types annotation in Velo editor.
+Finally, I want to add the [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, We have a built-in types annotation in Velo editor.
 
 - `WixElementSelector` - it's a union of all IDs on the current site page. Unfortunately, we can't use this union on the public files. Only on the page files.
 - `TypeNameToSdkType` - it's a map for all elements type.
@@ -387,7 +387,7 @@ export const findIn = (selector) => {
 };
 ```
 
-Demonstration of types annotation benefits.
+Below is a video demonstrating the benefits of using JSDoc annotations.
 
 <figure>
   <figcaption>
@@ -471,7 +471,7 @@ $w.onReady(() => {
 ```
 </details>
 
-If you have any questions, feel free to ask me on my [Twitter](https://twitter.com/_shoonia). Cheers! <span aria-label="Man Technologist" role="img">👨‍💻</span> <span aria-label="Woman Technologist" role="img">👩‍💻</span>
+If you have any questions, feel free to ask me on my [Twitter](https://twitter.com/_shoonia). Cheers! 👨‍💻 👩‍💻
 
 ## Posts
 

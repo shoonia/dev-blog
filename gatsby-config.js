@@ -37,6 +37,7 @@ module.exports = {
               rel: 'noopener noreferrer',
             },
           },
+          '@fec/remark-a11y-emoji/gatsby',
         ],
       },
     },
