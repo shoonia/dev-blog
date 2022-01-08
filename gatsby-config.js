@@ -44,7 +44,7 @@ module.exports = {
               icon: false,
               maintainCase: false,
               removeAccents: true,
-              elements: ['h1', 'h2', 'h3'],
+              elements: ['h2', 'h3'],
             },
           },
         ],
