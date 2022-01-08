@@ -106,8 +106,10 @@ Let's visualize a timeline of the animation's execution. For example, we have th
                             │ .show() ───────────────────│ ✅ Done
 ```
 </figure>
+<aside>
 
-*The Wix elements can't be animating with two concurrent (hide/show) animations on the same element at one time.*
+  *The Wix elements can't be animating with two concurrent (hide/show) animations on the same element at one time.*
+</aside>
 
 ## How can we fix it?
 

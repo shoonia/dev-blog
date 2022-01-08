@@ -4,7 +4,7 @@
   height: 80px;
   line-height: 80px;
   border-bottom: 1px solid rgb(0 0 0 / 10%);
-  margin-bottom: 80px;
+  margin-bottom: 3em;
 }
 
 .nav {
@@ -19,6 +19,6 @@
 
 @media (max-width: $max-width) {
   .header {
-    margin-bottom: 30px;
+    margin-bottom: 1.5em
   }
 }

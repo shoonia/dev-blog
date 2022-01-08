@@ -14,7 +14,7 @@ image: 'https://shoonia.site/images/pagination.png'
 # Velo by Wix: Custom pagination with unique URLs
 
 <img
-  src="https://shoonia.site/images/pagination.png"
+  src="/images/pagination.png"
   width="708"
   height="371"
   alt="the illustration depicting a pagination component on the web page"

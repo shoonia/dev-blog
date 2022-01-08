@@ -3,12 +3,12 @@ publish: true
 path: '/side-effect-data-saving-methods'
 template: 'default'
 date: '2020-11-22T12:00:00.000Z'
-modified: '2021-01-05T12:00:00.000Z'
+modified: '2022-01-08T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Side effect wix-data saving methods'
 description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes'
 author: 'Alexander Zaytsev'
-image: 'https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg/v2/fill/w_500,h_500/i.jpg'
+image: 'https://shoonia.site/images/side-effect500x500.jpeg'
 ---
 
 # Velo by Wix: Side effect wix-data saving methods
@@ -16,7 +16,7 @@ image: 'https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d
 *The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes*
 
 <img
-  src="https://static.wixstatic.com/media/fd206f_828ed263e9c945b69d04dbf6e2328d9a~mv2.jpg"
+  src="/images/side-effect.jpeg"
   width="775"
   height="410"
   alt="a picture by motive to serials 'Tales From The Loop'"
@@ -58,33 +58,35 @@ import wixData from 'wix-data';
 3 true
 ```
 
-We can see above what, after inserting, the item is mutating it has new properties. And the method will return the same item which was passed.
+We can see above what, after inserting a new item, it is mutated and item has new properties. And the insert method returns the same mutated item which have passed into method.
 
-`wixData.update()` and `wixData.save()` will have the same behavior.
+`wixData.update()` and `wixData.save()` have also this behavior.
 
-## How it affects
+## How it affects a code
 
-In my case, I used a [data hook](https://support.wix.com/en/article/velo-about-data-hooks) that first saves a new user to private collection (only for admins), and then it creates a new row for public members collection with part of open the user data.
+I have a two collection on the site, a Private (only for admins) and Public (for any one).
+
+In my case, I used a [data hook](https://support.wix.com/en/article/velo-about-data-hooks) that saves a new item to Private collection, and inside <mark>data hook</mark> for Private collection I create a new row for Public collection with part of initial data.
 
 **backend/data.js**
 
 ```js
-export async function Members_afterInsert(item) {
-  await wixData.insert('MembersPrivate', item);
+export async function Private_afterInsert(item) {
+  await wixData.insert('Public', item.publicData);
 
   /**
-   * Here I had a mutated item after inserting it into a Private database.
+   * Here I have a mutated item after inserting it into a Public database.
    */
 }
 ```
 
-I had a mutated item after inserting it into a Private database, and it created a bug.
+I had a mutated item after inserting it into a Public database, and it created a bug.
 
-For fixing, I have to copy the item for inserting. I use the [object spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax):
+For fixing it, I should copy an object before inserting. I use the [object spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax):
 
 ```js
 // Creates a copy of item
-await wixData.insert('MembersPrivate', { ...item });
+await wixData.insert('Private', { ...item.publicData });
 ```
 
 ## Methods for multiple items
@@ -135,7 +137,7 @@ import wixData from 'wix-data';
 }
 ```
 
-Great, bulk methods work differently. They don't mutate the passed items and don't return the mutated items back. The successfully done bulk methods return the `Promise<WixDataBulkResult>` that contains the info about the changes.
+Great, bulk methods work differently. They don't mutate the passed items and don't return the mutated items back. The successfully done bulk methods return the [`Promise<WixDataBulkResult>`](https://www.wix.com/velo/reference/wix-data/bulkinsert#:~:text=insert.%20Rejected%20%2D%20The%20error%20that%20caused%20the%20rejection.-,Return%20Type%3A,Promise%3CWixDataBulkResult%3E,-Hide%20Members) that contains the info about the changes.
 
 ## Conclusion
 
