@@ -93,16 +93,16 @@ Under the hood, a browser uses the *"from right to left"* algorithm to select ch
   More: [Why do browsers match CSS selectors from right to left?](https://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left/5813672#5813672)
 </aside>
 
-So, in our task we need to do two steps:
+So, in our task we need to do this two steps:
 
 1. Query select all needed elements by type
-2. Filter only elements that have a parent with a specific ID.
+2. Filter only elements that have a parent element with a specific ID.
 
 Thinking about it, let's try to reproduce this query selector for Velo.
 
 ## Child selector for Velo
 
-I propose using the "from right to left" search for our task. Especially we have all needed API for this.
+I propose using the *"from right to left"* search for our task. Especially we have all needed API for this.
 
 In one of my previous posts, we solved a very similar issue. There we have created a tiny library for [getting a parent Repeater from repeated items](/the-utils-for-repeated-item-scope-event-handlers).
 
@@ -128,7 +128,7 @@ For example, we can get a list of elements and manipulate this group's methods.
 
 ```js
 // Gets all buttons on the page
-const buttonElements = $w('Checkbox');
+const buttonElements = $w('Button');
 // Disable all buttons
 buttonElements.disable();
 
@@ -139,11 +139,11 @@ textElemets.text = 'Hello';
 ```
   <figcaption>
 
-  Each editor element has its own type. In Velo, ref documentation describes a small piece of [the possible editor elements type](https://www.wix.com/velo/reference/$w/element/type).
+  Each editor element has its own type. In Velo, API Reference documentation describes a small piece of [the possible editor elements type](https://www.wix.com/velo/reference/$w/element/type). It's not a full list of types.
   </figcaption>
 </figure>
 
-Fortunately, all type definitions for Velo APIs are available on the open source. We can find it on the [GitHub repository](https://github.com/wix-incubator/corvid-types) and [npm package](https://www.npmjs.com/package/corvid-types).
+Fortunately, all type definitions for Velo APIs are available on the open source. We can find it on the [GitHub repository](https://github.com/wix-incubator/corvid-types) or [npm package](https://www.npmjs.com/package/corvid-types).
 
 <details>
   <summary>
@@ -151,7 +151,7 @@ Fortunately, all type definitions for Velo APIs are available on the open source
   </summary>
   <aside>
 
-  Source: [Type definitions for Velo by Wix](https://npm.runkit.com/corvid-types/types/pages/$w.d.ts)
+  Source: [Type definitions for Velo by Wix](https://runkit-packages.com/14.x.x/1641656995847/corvid-types/types/pages/$w.d.ts)
   </aside>
 
 ```ts
@@ -210,7 +210,7 @@ declare type TypeNameToSdkType = {
 
 ### Get the parent element and the parent's ID
 
-We can get a parent element with the same name property. The top-level elements Page, Header, and Footer have no parent.
+We can get a parent element with the self-titled property. The top-level elements [Page](https://www.wix.com/velo/reference/$w/page), [Header](https://www.wix.com/velo/reference/$w/header), and [Footer](https://www.wix.com/velo/reference/$w/footer) have no parent.
 
 ```js
 // Gets a checkbox's parent element
@@ -235,7 +235,7 @@ const parentId = parentElement.id; // "boxYellow"
 
 I guess it's enough theory by now. Let's start to implement a selector function.
 
-`findIn()` will be accepted a parent element ID and return an object with method `all()` that accepts searched children elements type.
+Our selector will have the next signature. `findIn()` will be accepted a parent element ID and return an object with method `all()` that accepts searched children elements type.
 
 ```js
 // Find in #boxYellow element all child elements with type `$w.Checkbox`
@@ -254,7 +254,7 @@ export const findIn = (selector) => {
   };
 };
 ```
-
+The `$w(type)` selector returns an array of elements. We transform this array to an array with ID's. And then we create a new multiple select from list of IDs.
 
 ```js
 export const findIn = (selector) => {
@@ -272,12 +272,16 @@ export const findIn = (selector) => {
         return acc;
       }, []);
 
-      // Creates a new select query by ID
+      // Creates a new multiple select from list of IDs
       return $w(ids.join(',')); // $w("#checkbox1,#checkbox2,…")
     },
   };
 };
 ```
+
+I use the [array method `arr.reduce()`](https://javascript.info/array-methods#reduce-reduceright) because we need to filter and transform array items.
+
+For the filtering, we will use the helper function `hasParent()`. In this function, we return `true` if the element has a parent element with the needed ID or `false` if all parents don't have one.
 
 ```js
 const hasParent = (element, parentId) => {
@@ -294,9 +298,12 @@ const hasParent = (element, parentId) => {
 };
 ```
 
+Add the condition to filter.
+
 ```js
 export const findIn = (selector) => {
-  // Removes a hash symbol at the ID start
+  // Removes a hash symbol at the selector start
+  // Because the `element.id` doesn't have a hash (#) symbol in value.
   const parentId = selector.replace(/^#/, '');
 
   return {
@@ -321,7 +328,9 @@ export const findIn = (selector) => {
 };
 ```
 
-**An example of use:**
+We created a child selector. Let's see an example of using and live demo
+
+**An example of use.** Child selector for two groups of checkboxes:
 
 ```js
 $w.onReady(() => {
@@ -337,8 +346,7 @@ $w.onReady(() => {
 
 <figure>
   <figcaption>
-
-  **Live Demo:**
+    <strong>Live Demo:</strong>
   </figcaption>
   <iframe
     src="https://shoonia.wixsite.com/blog/child-selector"
@@ -353,6 +361,13 @@ $w.onReady(() => {
 </figure>
 
 ## JSDoc
+
+Finally, I want to add a [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, We have a built-in types annotation in Velo editor.
+
+- `WixElementSelector` - it's a union of all IDs on the current site page. Unfortunately, we can't use this union on the public files. Only on the page files.
+- `TypeNameToSdkType` - it's a map for all elements type.
+
+**Add types annotation:**
 
 ```js
 /**
@@ -372,9 +387,11 @@ export const findIn = (selector) => {
 };
 ```
 
+Demonstration of types annotation benefits.
+
 <figure>
   <figcaption>
-    <strong>Velo Editor: JSDoc autocomplete</strong>
+    <strong>JSDoc autocomplete and type checking</strong>
   </figcaption>
   <video
     src="/videos/jsdoc-autocomplete.mp4"
@@ -387,6 +404,8 @@ export const findIn = (selector) => {
 </figure>
 
 ## Code Snippet
+
+Here is a full snippet of the child query selector function with JSDoc types.
 
 <details>
   <summary>
@@ -451,6 +470,8 @@ $w.onReady(() => {
 });
 ```
 </details>
+
+If you have any questions, feel free to ask me on my [Twitter](https://twitter.com/_shoonia). Cheers! <span aria-label="Man Technologist" role="img">👨‍💻</span> <span aria-label="Woman Technologist" role="img">👩‍💻</span>
 
 ## Resources
 
