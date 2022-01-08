@@ -473,10 +473,9 @@ $w.onReady(() => {
 
 If you have any questions, feel free to ask me on my [Twitter](https://twitter.com/_shoonia). Cheers! <span aria-label="Man Technologist" role="img">👨‍💻</span> <span aria-label="Woman Technologist" role="img">👩‍💻</span>
 
-## Resources
-
 ## Posts
 
 - [Promise Queue](/promise-queue)
 - [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers)
 - [Imitating hover event on repeater container](/corvid-imitate-hover-event)
+- [Short links to create a new Wix / Editor X site editor](/wix-velo-editorx-short-links)
