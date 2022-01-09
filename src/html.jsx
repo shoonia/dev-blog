@@ -34,6 +34,12 @@ const links = (
       type="application/xml"
       title={title}
     />
+    <script
+      type="module"
+      dangerouslySetInnerHTML={{
+        __html: 'import("/quicklink@2.2.0/quicklink.mjs").then(i=>i.listen())',
+      }}
+    />
   </>
 );
 
