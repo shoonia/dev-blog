@@ -1,5 +1,6 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
+const isAbsoluteUrl = require('is-absolute-url').default;
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -53,6 +54,15 @@ const transformer = posthtml().use((tree) => {
       case 'code': {
         if (isString(node.attrs?.class)) {
           node.attrs.class = '_';
+        }
+
+        return node;
+      }
+
+      case 'a': {
+        if (isString(node.attrs?.href) && isAbsoluteUrl(node.attrs?.href)) {
+          node.attrs.target = '_blank';
+          node.attrs.rel = 'noopener noreferrer';
         }
 
         return node;

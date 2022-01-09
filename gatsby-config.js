@@ -31,12 +31,6 @@ module.exports = {
               classPrefix: 'code-',
             },
           },
-          {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              rel: 'noopener noreferrer',
-            },
-          },
           '@fec/remark-a11y-emoji/gatsby',
         ],
       },
