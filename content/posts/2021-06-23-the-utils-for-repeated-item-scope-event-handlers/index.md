@@ -139,8 +139,9 @@ I hope this small library will helpful in your projects too.
 
 ## Resources
 
-- [Velo: About Packages](https://support.wix.com/en/article/velo-about-packages)
 - [GitHub: `repeater-scope`](https://github.com/shoonia/repeater-scope)
+- [Velo: About Packages](https://support.wix.com/en/article/velo-about-packages)
+- [Velo: Understanding the Scope of Selector Functions](https://support.wix.com/en/article/velo-understanding-the-scope-of-selector-functions)
 
 ## Posts
 

@@ -74,7 +74,7 @@ For example, we want to apply styles for all `<span>` child elements into parent
 
 **Reslut:**
 
-<div style="border:1px solid rgb(112 128 144/40%);border-left:6px solid rgb(112 128 144/40%);padding:0 18px">
+<div style="border:1px solid rgb(112 128 144/40%);border-left:6px solid rgb(112 128 144/40%);padding:0 1em">
   <style>
   .content-box span {
     font-weight: bold;
@@ -470,7 +470,7 @@ $w.onReady(() => {
 ```
 </details>
 
-If you have any questions, feel free to ask me on my [Twitter](https://twitter.com/_shoonia). Cheers! 👨‍💻 👩‍💻
+If you have any questions, feel free to ask me on my <a href="https://twitter.com/_shoonia" rel="me">Twitter</a>. Cheers! 👨‍💻 👩‍💻
 
 ## Posts
 
