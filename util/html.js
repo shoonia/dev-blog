@@ -1,4 +1,5 @@
 const { minify } = require('html-minifier-terser');
+const posthtml = require('posthtml');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -13,13 +14,80 @@ const htmlMinifierOptions = {
   minifyCSS: true,
 };
 
-module.exports = {
-  async minifyHTML(html) {
-    const mini = await minify(html, htmlMinifierOptions);
+const isString = (val) => typeof val === 'string';
 
-    return mini
-      .replace(/ style="outline:(none|0)" tabindex="-1" id="gatsby-focus-wrapper"/, '')
-      .replace(/ class="gatsby-highlight"/g, '')
-      .replace(/\bclass="token ([a-z- ]+)"/g, 'class="$1"');
-  },
+const createId = (content) => {
+  if (Array.isArray(content)) {
+    const title = content
+      .filter((i) => isString(i))
+      .join('')
+      .trim();
+
+    if (title !== '') {
+      return title.toLowerCase().replace(/[^\wа-яїієґ]+/ig, '-');
+    }
+  }
+};
+
+const transformer = posthtml().use((tree) => {
+  tree.walk((node) => {
+    if (isString(node)) {
+      return node;
+    }
+
+    switch (node.tag) {
+      case 'span': {
+        if (isString(node.attrs?.class) && node.attrs.class.startsWith('token ')) {
+          node.attrs.class = node.attrs.class.slice(6);
+        }
+
+        return node;
+      }
+
+      case 'code': {
+        if (isString(node.attrs?.class)) {
+          node.attrs.class = '_';
+        }
+
+        return node;
+      }
+
+      case 'h2':
+      case 'h3':
+      case 'h4': {
+        const id = createId(node.content);
+
+        if (isString(id)) {
+          if (node.attrs == null) {
+            node.attrs = {};
+          }
+
+          node.attrs.id = id;
+        }
+
+        return node;
+      }
+
+      case 'div': {
+        if (node.attrs?.class === 'gatsby-highlight') {
+          return node.content;
+        }
+
+        if (node.attrs?.id === 'gatsby-focus-wrapper') {
+          return node.content;
+        }
+      }
+    }
+
+    return node;
+  });
+
+  return tree;
+});
+
+exports.transformHtml = async (source) => {
+  const minifiedSource = await minify(source, htmlMinifierOptions);
+  const { html } = await transformer.process(minifiedSource);
+
+  return html;
 };

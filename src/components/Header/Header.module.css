@@ -19,6 +19,6 @@
 
 @media (max-width: $max-width) {
   .header {
-    margin-bottom: 1.5em
+    margin-bottom: 1.5em;
   }
 }

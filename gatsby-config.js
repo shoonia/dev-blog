@@ -38,15 +38,6 @@ module.exports = {
             },
           },
           '@fec/remark-a11y-emoji/gatsby',
-          {
-            resolve: 'gatsby-remark-autolink-headers',
-            options: {
-              icon: false,
-              maintainCase: false,
-              removeAccents: true,
-              elements: ['h2', 'h3'],
-            },
-          },
         ],
       },
     },
