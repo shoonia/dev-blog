@@ -37,10 +37,12 @@ pre[class*="code-"] ::selection {
   text-shadow: 0 0 1px #000;
 }
 
+/*
 .punctuation {
   color: #a9b2c0;
   text-shadow: 0 0 1px #000;
 }
+*/
 
 .selector,
 .tag {

@@ -37,8 +37,14 @@ const transformer = posthtml().use((tree) => {
 
     switch (node.tag) {
       case 'span': {
-        if (isString(node.attrs?.class) && node.attrs.class.startsWith('token ')) {
-          node.attrs.class = node.attrs.class.slice(6);
+        if (isString(node.attrs?.class) ) {
+          if (node.attrs.class === 'token punctuation') {
+            return node.content;
+          }
+
+          if (node.attrs.class.startsWith('token ')) {
+            node.attrs.class = node.attrs.class.slice(6);
+          }
         }
 
         return node;
