@@ -34,12 +34,6 @@ const links = (
       type="application/xml"
       title={title}
     />
-    <script
-      type="module"
-      dangerouslySetInnerHTML={{
-        __html: 'import("/quicklink@2.2.0/quicklink.mjs").then(i=>i.listen())',
-      }}
-    />
   </>
 );
 
@@ -56,6 +50,12 @@ function HTML({
         <head>
           {links}
           {headComponents}
+          <script
+            type="module"
+            dangerouslySetInnerHTML={{
+              __html: 'import("/quicklink@2.2.0/quicklink.mjs").then(i=>i.listen())',
+            }}
+          />
         </head>
         <body
           // eslint-disable-next-line react/no-danger
