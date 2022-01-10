@@ -1,5 +1,5 @@
 ---
-publish: false
+publish: true
 path: '/fix-2'
 template: 'default'
 date: '2177-09-08T12:00:00.000Z'
