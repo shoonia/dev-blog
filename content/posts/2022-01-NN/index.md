@@ -98,35 +98,33 @@ Automatically find the parent Repeater by the emitted `event` object
 import { useScope } from 'repeater-scope';
 
 $w.onReady(() => {
-  // use dynamic event handler with global selector function $w
   $w('#repeatedButton').onClick((event) => {
     const { $item, itemData, index, data } = useScope(event);
 
     $item('#repeatedText').text = itemData.title;
   });
 });
-
-// or a static event handler
-export function repeatedButton_dblClick(event) {
-  const { $item, itemData, index, data } = useScope(event);
-};
 ```
 
 **createScope**
 
-Create scope function with specific data array. It can be useful with state management libraries.
+Create scope function with specific data array. It can be useful with state management libraries for example [redux](https://redux.js.org/), [mobx](https://mobx.js.org/README.html) or [storeon-velo](https://github.com/shoonia/storeon-velo) etc.
 
 ```js
 import { createScope } from 'repeater-scope';
 
 // Create a scope with a callback function that returns actual repeater data.
 const useScope = createScope(() => {
-  return $w('#repeater').data;
+  return $w('#myRepeater').data;
 });
 
-export function repeatedButton_Click(event) {
-  const { $item, itemData, index, data } = useScope(event);
-};
+$w.onReady(() => {
+  $w('#repeatedButton').onClick((event) => {
+    const { $item, itemData, index, data } = useScope(event);
+
+    $item('#repeatedText').text = itemData.title;
+  });
+});
 ```
 
 **getRepeater**
