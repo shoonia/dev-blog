@@ -17,10 +17,9 @@ image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d
 
 <img
   src="https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png"
+  alt="mountain chain"
   width="800"
   height="330"
-  alt="mountain chain"
-  crossorigin="anonymous"
 />
 
 ## Motivation
@@ -39,12 +38,10 @@ Start with a basic example.
   </figcaption>
   <img
     src="/images/example-jsw.jpg"
+    alt="Sidebar panel of Wix Editor for adding a new Web Module"
     width="800"
     height="280"
-    alt="Sidebar panel of Wix Editor for adding a new Web Module"
     loading="lazy"
-    decoding="async"
-    crossorigin="anonymous"
   />
 </figure>
 
@@ -364,13 +361,9 @@ $w.onReady(() => {
   </figcaption>
   <iframe
     src="https://shoonia.wixsite.com/blog/cache"
-    width="100%"
-    height="320"
-    loading="lazy"
-    crossorigin="anonymous"
     title="Embed Wix Site with the example of the cache the API calls"
+    height="320"
     scrolling="no"
-    style="overflow:hidden"
   ></iframe>
 </figure>
 

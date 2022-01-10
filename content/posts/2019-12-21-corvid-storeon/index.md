@@ -24,10 +24,9 @@ image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d
 
 <img
   src="https://static.wixstatic.com/shapes/e3b156_1c18e400397044b2ba3a2b2be8bcaf60.svg"
+  alt="Logo of library Storeon Velo"
   width="750"
   height="375"
-  alt="Logo of library Storeon Velo"
-  crossorigin="anonymous"
 />
 
 ## Motivation
@@ -46,12 +45,10 @@ At first, we need to install the library from [Package Manager](https://support.
 
 <img
   src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
+  alt="Package Manager panel in Wix editor, installing storeon-velo"
   width="751"
   height="304"
-  alt="Package Manager panel in Wix editor, installing storeon-velo"
   loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
 />
 
 and create one more file for store initialization in the **public** folder.
@@ -104,12 +101,10 @@ Letʼs add two text elements to display our counter value, and four buttons for 
 
 <img
   src="https://static.wixstatic.com/media/e3b156_62643a01cf9843439a560fab7dde566a~mv2.png"
+  alt="Example: Wix Editor layouts with two counters for increment and decrement"
   width="1398"
   height="494"
-  alt="Example: Wix Editor layouts with two counters for increment and decrement"
   loading="lazy"
-  decoding="async"
-  crossorigin="anonymous"
 />
 
 Of course, we have to import the store methods from the public file to the page's code.

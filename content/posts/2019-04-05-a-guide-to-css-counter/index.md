@@ -19,10 +19,9 @@ head: '<link rel="alternate" hreflang="en" href="https://www.samanthaming.com/ti
 ---
 <img
   src="https://static.wixstatic.com/media/e3b156_53480454c29640919bbcf9fc14933037~mv2.jpg"
+  alt="a Guide to CSS counter"
   width="800"
   height="400"
-  alt="A Guide to CSS counter."
-  crossorigin="anonymous"
 />
 
 Используйте свойство "counter", чтоб превратить любой элемент в нумерованный список.

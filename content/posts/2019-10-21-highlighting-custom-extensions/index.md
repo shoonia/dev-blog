@@ -15,10 +15,9 @@ image: 'https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f
 
 <img
   src="https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png"
+  alt="фрагмент кода с яркой подсветкой синтаксиса"
   width="764"
   height="352"
-  alt="фрагмент кода с яркой подсветкой синтаксиса"
-  crossorigin="anonymous"
 />
 
 Часто в проектах встречаются файлы конфигураций без расширения такие как `.postcssrc` или `.parcelrc`. Если ваш редактор кода не знаком с данным типом файла он применит к нему дефолтные стили подсветке синтаксиса, в VS Code это `html`.

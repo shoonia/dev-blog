@@ -17,10 +17,9 @@ image: 'https://shoonia.site/images/repeater-small.png'
 
 <img
   src="/images/coubs.jpeg"
+  alt="Velo by Wix"
   width="700"
   height="338"
-  alt="Velo by Wix"
-  crossorigin="anonymous"
 />
 
 ## Motivation
@@ -178,13 +177,9 @@ The `data:URL` image is a little longer than the direct link for this image. And
   </figcaption>
   <iframe
     src="https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid"
-    width="100%"
-    height="510"
-    loading="lazy"
-    crossorigin="anonymous"
     title="Velo by Wix: Imitating hover event on repeater container"
+    height="510"
     scrolling="no"
-    style="overflow:hidden"
   ></iframe>
 </figure>
 
