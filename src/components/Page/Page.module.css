@@ -1,8 +1,7 @@
 @import "../../variables.css";
 
 .content {
-  width: 100vw;
   max-width: $content-widht;
-  padding: 0 15px;
+  padding: 0 1.2em;
   margin: 0 auto;
 }
