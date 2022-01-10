@@ -1,6 +1,6 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
-const isAbsoluteUrl = require('is-absolute-url').default;
+const _isAbsolute = require('is-absolute-url').default;
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -16,6 +16,11 @@ const htmlMinifierOptions = {
 };
 
 const isString = (val) => typeof val === 'string';
+const isAbsoluteUrl = (url) => isString(url) && _isAbsolute(url);
+
+const isAnonymous = (url) => {
+  return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
+};
 
 const createId = (content) => {
   if (Array.isArray(content)) {
@@ -38,7 +43,7 @@ const transformer = posthtml().use((tree) => {
 
     switch (node.tag) {
       case 'span': {
-        if (isString(node.attrs?.class) ) {
+        if (isString(node.attrs?.class)) {
           if (node.attrs.class === 'token punctuation') {
             return node.content;
           }
@@ -60,7 +65,7 @@ const transformer = posthtml().use((tree) => {
       }
 
       case 'a': {
-        if (isString(node.attrs?.href) && isAbsoluteUrl(node.attrs?.href)) {
+        if (isAbsoluteUrl(node.attrs?.href)) {
           node.attrs.target = '_blank';
           node.attrs.rel = 'noopener noreferrer';
         }
@@ -80,6 +85,32 @@ const transformer = posthtml().use((tree) => {
 
           node.attrs.id = id;
         }
+
+        return node;
+      }
+
+      case 'img': {
+        if (!isString(node.attrs?.alt)) {
+          throw new Error(node);
+        }
+
+        if (isAnonymous(node.attrs.src)) {
+          node.attrs.crossorigin = 'anonymous';
+        }
+
+        if (node.attrs.loading === 'lazy') {
+          node.attrs.decoding = 'async';
+        }
+
+        node.attrs.alt = node.attrs.alt.toLowerCase();
+
+        return node;
+      }
+
+      case 'iframe': {
+        node.attrs.width = '100%';
+        node.attrs.loading = 'lazy';
+        node.attrs.crossorigin = 'anonymous';
 
         return node;
       }

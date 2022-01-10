@@ -25,31 +25,11 @@ Copying and pasting the snippet of code isn't comfortable. Therefore I moved the
   </figcaption>
   <img
     src="/images/install-repeater-scope.jpeg"
+    alt="Installing an npm package in Velo editor"
     width="1486"
     height="400"
-    alt="Installing an npm package in Velo editor"
-    crossorigin="anonymous"
   />
 </figure>
-
-<div style="margin:18px 0;display:flex;">
-  Package size:
-  <a
-    href="https://bundlephobia.com/result?p=repeater-scope@latest"
-    target="_blank"
-    rel="noopener noreferrer"
-    style="float:right;margin-left:10px"
-  >
-    <img
-      src="https://badgen.net/bundlephobia/minzip/repeater-scope@latest"
-      width="auto"
-      height="20"
-      alt="minzip"
-      loading="lazy"
-      decoding="async"
-    />
-  </a>
-</div>
 
 There is available a method that can automatic find the parent Repeater by the fired `event` object.
 

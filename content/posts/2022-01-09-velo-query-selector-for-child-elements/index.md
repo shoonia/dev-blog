@@ -17,10 +17,9 @@ image: 'https://shoonia.site/images/load-editor.jpeg'
 
 <img
   src="/images/december1994.jpg"
+  alt="concept art by television serial - tales from the loop"
   width="1024"
   height="421"
-  alt="Concept ART by television serial - Tales from the loop"
-  crossorigin="anonymous"
 />
 
 Let's suppose we have a few containers with checkboxes in each of them. We don't know how many checkboxes will be in each container at the final design.
@@ -35,12 +34,10 @@ We want to provide a good abstract solution for avoiding hard coding of elements
   </figcaption>
   <img
     src="/images/yellow-blue.jpg"
+    alt="Wix Editor with two box groups"
     width="1500"
     height="600"
-    alt="Wix Editor with two box groups"
     loading="lazy"
-    decoding="async"
-    crossorigin="anonymous"
     style="border:1px solid rgb(112 128 144 / 40%);border-radius:8px"
   />
 </figure>
@@ -349,13 +346,9 @@ $w.onReady(() => {
   </figcaption>
   <iframe
     src="https://shoonia.wixsite.com/blog/child-selector"
-    width="100%"
+    title="Live Demo - child query selector for Velo elements"
     height="480"
-    loading="lazy"
-    crossorigin="anonymous"
-    title="Live Demo of Child selector"
     scrolling="no"
-    style="overflow:hidden"
   ></iframe>
 </figure>
 

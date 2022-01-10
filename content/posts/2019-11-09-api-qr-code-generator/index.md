@@ -17,10 +17,9 @@ image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b984
 
 <img
   src="https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b98484~mv2.jpg/v2/fill/w_800,h_330/q.jpg"
+  alt="QR-код арт"
   width="700"
   height="300"
-  alt="QR-код арт"
-  crossorigin="anonymous"
 />
 
 ## Створюємо сайт
@@ -253,11 +252,11 @@ export async function get_qrcode({ query }) {
 <img
   src="https://shoonia.wixsite.com/blog/_functions/qrcode?text=Дякую%20за%20увагу!"
   style="image-rendering: pixelated;"
+  alt="Дякую за увагу!"
   width="200"
   height="200"
   loading="lazy"
   decoding="async"
-  alt="Дякую за увагу!"
 />
 
 ## Посилання

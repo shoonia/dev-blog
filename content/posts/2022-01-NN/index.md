@@ -15,10 +15,9 @@ image: ''
 
 <img
   src="/images/a.jpg"
+  alt="concept art by television serial - tales from the loop"
   width="1021"
   height="460"
-  alt="Concept ART by television serial - Tales from the loop"
-  crossorigin="anonymous"
 />
 
 1. [Event handling of Repeater Item](/event-handling-of-repeater-item) - here we considered how to handle events in the repeated items and we created a primitive helper function.
@@ -71,12 +70,10 @@ $w.onReady(() => {
   </figcaption>
   <img
     src="/images/install-repeater-scope.jpeg"
+    alt="Installing an npm package in Velo editor"
     width="1486"
     height="400"
-    alt="Installing an npm package in Velo editor"
-    crossorigin="anonymous"
     loading="lazy"
-    decoding="async"
   />
 </figure>
 

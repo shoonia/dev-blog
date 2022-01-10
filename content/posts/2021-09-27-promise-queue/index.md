@@ -330,13 +330,9 @@ export const createQueue = (maxLength = 1) => {
   </figcaption>
   <iframe
     src="https://alexanderz5.wixsite.com/promise-queue"
-    width="100%"
-    height="600"
-    loading="lazy"
-    crossorigin="anonymous"
     title="Live Demo of Promise Queue in Velo"
+    height="600"
     scrolling="no"
-    style="overflow:hidden"
   ></iframe>
 </figure>
 

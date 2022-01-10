@@ -303,6 +303,10 @@ video {
   height: auto;
 }
 
+iframe {
+  overflow: hidden;
+}
+
 details,
 iframe,
 video {

@@ -17,10 +17,9 @@ image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e30
 
 <img
   src="https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg"
+  alt="poster of tales from the loop"
   width="733"
   height="453"
-  alt="poster of tales from the loop"
-  crossorigin="anonymous"
 />
 
 At first sight, the adding event handling for repeated items looks easy.
