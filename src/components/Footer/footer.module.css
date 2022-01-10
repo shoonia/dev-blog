@@ -13,7 +13,7 @@
 
 .link {
   display: inline-block;
-  margin: 0 30px;
+  margin: 0 1em;
   user-select: none;
   color: #1353a9;
   font-size: 1.2em;
@@ -25,7 +25,6 @@
 
 @media (max-width: $max-width) {
   .link {
-    margin: 0 15px;
     font-size: 1em;
   }
 }

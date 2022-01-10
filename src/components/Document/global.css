@@ -82,6 +82,19 @@ a:focus::before {
   transform-origin: bottom left;
 }
 
+.anchor {
+  float: left;
+  margin-left: -1em;
+  width: 1em;
+  height: 1em;
+  background: 50% no-repeat url("/images/link.svg");
+  opacity: 0;
+}
+
+.anchor::before {
+  content: none;
+}
+
 h1,
 h2,
 h3,
@@ -97,8 +110,7 @@ h2::before,
 h3::before {
   content: " ";
   display: block;
-  padding-top: 2em;
-  margin-top: -1em;
+  padding-top: 1em;
 }
 
 h1 {
@@ -112,6 +124,17 @@ h2 {
 
 h3 {
   font-size: 1.15em;
+}
+
+h2:focus > .anchor,
+h2:hover > .anchor,
+h3:focus > .anchor,
+h3:hover > .anchor,
+h4:focus > .anchor,
+h4:hover > .anchor,
+.anchor:focus,
+.anchor:hover  {
+  opacity: 1;
 }
 
 p,

@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 
-const { createUrl, isDev } = require('../util/meta');
+const { createUrl } = require('../util/meta');
 
 module.exports = async ({ actions, graphql }) => {
   const Page = resolve('./src/templates/Post.jsx');
@@ -39,14 +39,16 @@ module.exports = async ({ actions, graphql }) => {
     }`);
 
   nodes.forEach((node) => {
-    if (node.frontmatter.publish || isDev) {
+    const i = node.frontmatter;
+
+    if (i.publish || i.template === 'noindex') {
       actions.createPage({
-        path: node.frontmatter.path,
+        path: i.path,
         component: Page,
         context: {
           meta: {
-            ...node.frontmatter,
-            url: createUrl(node.frontmatter.path),
+            ...i,
+            url: createUrl(i.path),
           },
           html: node.html,
         },
