@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 
-const { createUrl } = require('../util/meta');
+const { createUrl, isDev } = require('../util/meta');
 
 module.exports = async ({ actions, graphql }) => {
   const Page = resolve('./src/templates/Post.jsx');
@@ -18,13 +18,6 @@ module.exports = async ({ actions, graphql }) => {
           fields: [frontmatter___date]
           order: DESC
         }
-        # filter: {
-        #   frontmatter: {
-        #     publish: {
-        #       eq: true
-        #     }
-        #   }
-        # }
       ) {
         nodes {
           frontmatter {
@@ -38,6 +31,7 @@ module.exports = async ({ actions, graphql }) => {
             image
             template
             head
+            publish
           }
           html
         }
@@ -45,16 +39,18 @@ module.exports = async ({ actions, graphql }) => {
     }`);
 
   nodes.forEach((node) => {
-    actions.createPage({
-      path: node.frontmatter.path,
-      component: Page,
-      context: {
-        meta: {
-          ...node.frontmatter,
-          url: createUrl(node.frontmatter.path),
+    if (node.frontmatter.publish || isDev) {
+      actions.createPage({
+        path: node.frontmatter.path,
+        component: Page,
+        context: {
+          meta: {
+            ...node.frontmatter,
+            url: createUrl(node.frontmatter.path),
+          },
+          html: node.html,
         },
-        html: node.html,
-      },
-    });
+      });
+    }
   });
 };
