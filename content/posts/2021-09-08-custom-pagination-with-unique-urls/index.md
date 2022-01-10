@@ -18,7 +18,6 @@ image: 'https://shoonia.site/images/pagination.png'
   alt="the illustration depicting a pagination component on the web page"
   width="708"
   height="371"
-
 />
 
 The Wix Blog App has built-in pagination with links. Each button on the pagination element has a unique link. Links are required for good SEO.
