@@ -53,7 +53,7 @@ const HTML = ({
       <script
         type="module"
         dangerouslySetInnerHTML={{
-          __html: 'import("/quicklink@2.2.0/quicklink.mjs").then(i=>i.listen({ignores:[i=>i.startsWith("#")]}))',
+          __html: 'import("/quicklink@2.2.0/quicklink.mjs").then(i=>i.listen({ignores:[i=>i.indexOf("#")>-1]}))',
         }}
       />
     </head>
