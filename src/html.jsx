@@ -53,7 +53,7 @@ const HTML = ({
       <script
         async
         type="module"
-        src="/static/vendor.js?v=1"
+        src="/static/vendor.js?v=2"
       />
     </head>
     {isProd

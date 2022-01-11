@@ -8,7 +8,7 @@ const to = rootResolve('public/static/vendor.js');
 
 exports.createVendorScript = async () => {
   const source = await readFile(from, 'utf8');
-  const { code } = await minify(`{${source}}`);
+  const { code } = await minify(source);
 
   await writeFile(to, code);
 };
