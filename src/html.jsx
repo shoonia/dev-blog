@@ -1,6 +1,6 @@
 import T from 'prop-types';
 
-import { title, homepage, createUrl, isProd } from '../util/meta';
+import { title, createUrl, isProd } from '../util/meta';
 
 const HTML = ({
   htmlAttributes,
@@ -16,7 +16,6 @@ const HTML = ({
         name="viewport"
         content="width=device-width,initial-scale=1,shrink-to-fit=no"
       />
-      <base href={homepage} />
       <link
         rel="preload"
         href="/firacode@5.2.0/FiraCode-Regular.woff2"

@@ -113,7 +113,6 @@ h3 {
   font-size: 1.15em;
 }
 
-/*
 .anchor {
   float: left;
   margin-left: -1em;
@@ -127,17 +126,16 @@ h3 {
   content: none;
 }
 
+.anchor:focus,
+.anchor:hover,
 h2:focus > .anchor,
 h2:hover > .anchor,
 h3:focus > .anchor,
 h3:hover > .anchor,
 h4:focus > .anchor,
-h4:hover > .anchor,
-.anchor:focus,
-.anchor:hover  {
+h4:hover > .anchor {
   opacity: 1;
 }
-*/
 
 p,
 ul,

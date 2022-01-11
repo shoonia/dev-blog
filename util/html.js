@@ -1,6 +1,6 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
-// const { parser } = require('posthtml-parser');
+const { parser } = require('posthtml-parser');
 const _isAbsolute = require('is-absolute-url').default;
 
 /**@type {import('html-minifier-terser').Options} */
@@ -80,14 +80,14 @@ const transformer = posthtml().use((tree) => {
         const id = createId(node.content);
 
         if (isString(id)) {
-          // const [link] = parser('<a aria-hidden="true" class="anchor" />');
+          const [link] = parser('<a aria-hidden="true" class="anchor"/>');
 
           if (node.attrs == null) {
             node.attrs = {};
           }
 
-          // link.attrs.href = `#${id}`;
-          // node.content.unshift(link);
+          link.attrs.href = `#${id}`;
+          node.content.unshift(link);
           node.attrs.id = id;
         }
 
