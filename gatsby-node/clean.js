@@ -12,7 +12,6 @@ exports.clean = async () => {
 
   const removeList = [
     'page-data',
-    'static',
     'webpack.stats.json',
     'chunk-map.json',
   ];

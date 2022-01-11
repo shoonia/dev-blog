@@ -2,6 +2,7 @@ const CssMqpackerPlugin = require('css-mqpacker-webpack-plugin');
 const posts = require('./posts');
 
 const { sitemapAndRss } = require('./sitemapAndRss');
+const { createVendorScript } = require('./createVendorScript');
 const { clean } = require('./clean');
 
 exports.createPages = async (gatsby) => {
@@ -11,6 +12,7 @@ exports.createPages = async (gatsby) => {
 exports.onPostBuild = async (...args) => {
   await Promise.all([
     sitemapAndRss(...args),
+    createVendorScript(),
     clean(),
   ]);
 };
