@@ -2,7 +2,7 @@ const { resolve } = require('path');
 
 const { createUrl } = require('../util/meta');
 
-module.exports = async ({ actions, graphql }) => {
+exports.createPage = async ({ actions, graphql }) => {
   const Page = resolve('./src/templates/Post.jsx');
 
   const {
