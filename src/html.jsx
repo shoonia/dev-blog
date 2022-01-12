@@ -50,11 +50,13 @@ const HTML = ({
         title={title}
       />
       {headComponents}
-      <script
-        async
-        type="module"
-        src="/static/vendor.js?v=2"
-      />
+      {isProd && (
+        <script
+          async
+          type="module"
+          src="/assets/vendor.js?v=2"
+        />
+      )}
     </head>
     {isProd
       ? <body dangerouslySetInnerHTML={{ __html: body }} />

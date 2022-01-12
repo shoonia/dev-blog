@@ -8,11 +8,14 @@ exports.clean = async () => {
   if (isCI) {
     const files = await readdir(rootResolve('public'));
 
-    const removeFiles = files.filter(
-      (file) => extname(file) === '.js',
-    );
+    const removeFiles = files.filter((i) => {
+      return extname(i) === '.js' || i.endsWith('.LICENSE.txt');
+    });
 
     const removeList = [
+      'fix-1',
+      'fix-2',
+      'static',
       'page-data',
       'webpack.stats.json',
       'chunk-map.json',
