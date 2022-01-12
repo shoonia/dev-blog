@@ -2,6 +2,7 @@ const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
 const { parser } = require('posthtml-parser');
 const _isAbsolute = require('is-absolute-url').default;
+const miniClassNames = require('mini-css-class-name');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -37,6 +38,8 @@ const createId = (content) => {
 };
 
 const transformer = posthtml().use((tree) => {
+  const generate = miniClassNames();
+
   tree.walk((node) => {
     if (isString(node)) {
       return node;
@@ -80,15 +83,18 @@ const transformer = posthtml().use((tree) => {
         const id = createId(node.content);
 
         if (isString(id)) {
-          const [link] = parser('<a aria-hidden="true" class="anchor"/>');
+          const [a] = parser('<a class="anchor"/>');
+          const [span] = parser(`<span id="${generate()}"/>`);
 
           if (node.attrs == null) {
             node.attrs = {};
           }
 
-          link.attrs.href = `#${id}`;
-          node.content.unshift(link);
+          a.attrs.href = `#${id}`;
+          a.attrs['aria-labelledby'] = span.attrs.id;
+          span.content = node.content;
           node.attrs.id = id;
+          node.content = [a, span];
         }
 
         return node;
