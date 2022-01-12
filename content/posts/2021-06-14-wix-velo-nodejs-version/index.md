@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Current Node.js version on Velo by Wix'
 description: 'Online checker of current Node.js version on Velo backend'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/velo.png'
+image: 'https://shoonia.site/assets/images/velo.png'
 ---
 
 # Current Node.js version on Velo by Wix

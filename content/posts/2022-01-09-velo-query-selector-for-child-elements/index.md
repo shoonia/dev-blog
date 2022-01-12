@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
 description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node.'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/load-editor.jpeg'
+image: 'https://shoonia.site/assets/images/load-editor.jpeg'
 ---
 
 # Velo by Wix: Query selector for child elements
@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/load-editor.jpeg'
 *Get the child elements inside a parent node. In this post, we take a look deeper at `$w()` selector and try to filter children elements by the specific parent node*
 
 <img
-  src="/images/december1994.jpg"
+  src="/assets/images/december1994.jpg"
   alt="concept art by television serial - tales from the loop"
   width="1024"
   height="421"
@@ -33,7 +33,7 @@ We want to provide a good abstract solution for avoiding hard coding of elements
     <strong>Example of two groups with checkboxes</strong>
   </figcaption>
   <img
-    src="/images/yellow-blue.jpg"
+    src="/assets/images/yellow-blue.jpg"
     alt="Wix Editor with two box groups"
     width="1500"
     height="600"
@@ -386,7 +386,7 @@ Below is a video demonstrating the benefits of using JSDoc annotations.
     <strong>JSDoc autocomplete and type checking</strong>
   </figcaption>
   <video
-    src="/videos/jsdoc-autocomplete.mp4"
+    src="/assets/videos/jsdoc-autocomplete.mp4"
     type="video/mp4"
     preload="metadata"
     width="1920"

@@ -8,13 +8,13 @@ lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
 description: 'Creating a custom pagination element with Velo'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/pagination.png'
+image: 'https://shoonia.site/assets/images/pagination.png'
 ---
 
 # Velo by Wix: Custom pagination with unique URLs
 
 <img
-  src="/images/pagination.png"
+  src="/assets/images/pagination.png"
   alt="the illustration depicting a pagination component on the web page"
   width="708"
   height="371"

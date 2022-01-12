@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const isCI = Boolean(process.env.NETLIFY);
 
 if (isCI) {
-  console.log('n\n**** CI Build is running ****\n\n');
+  console.log('\n\n**** CI Build is running ****\n\n');
 }
 
 exports.title = pkg.title;

@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Promise Queue'
 description: "In this post, we look at concurrent hide/show animation behavior in Velo APIs. When one of the animation effects can't start because a previous one isn't finished yet."
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/promise-hands-590x590.jpg'
+image: 'https://shoonia.site/assets/images/promise-hands-590x590.jpg'
 ---
 
 # Velo by Wix: Promise Queue
@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/promise-hands-590x590.jpg'
 *In this post, we look at concurrent [hide](https://www.wix.com/velo/reference/$w/hiddenmixin/hide)/[show](https://www.wix.com/velo/reference/$w/hiddenmixin/show) animation behavior in Velo APIs. When one of the animation effects can't start because a previous one isn't finished yet.*
 
 <img
-  src="/images/promise-hands.jpg"
+  src="/assets/images/promise-hands.jpg"
   width="750"
   height="466"
   alt="find hand promise"
@@ -31,7 +31,7 @@ Let's suppose that we have to animate an image by mouse event. For example, we w
     <strong>Velo: hide/show animation by mouse event</strong>
   </figcaption>
   <video
-    src="/videos/promise-queue-2.mp4"
+    src="/assets/videos/promise-queue-2.mp4"
     type="video/mp4"
     preload="metadata"
     width="720"
@@ -74,7 +74,7 @@ As you can see above, the animation has a duration of 300 ms. What happens if we
     <strong>Velo: Glitch with show/hide animation</strong>
   </figcaption>
   <video
-    src="/videos/promise-queue-3.mp4"
+    src="/assets/videos/promise-queue-3.mp4"
     type="video/mp4"
     preload="metadata"
     width="720"
@@ -265,7 +265,7 @@ The last thing we need is control of the queue length. We can create a lot of an
     <strong>Velo: blink effect by a long Promise queue</strong>
   </figcaption>
   <video
-    src="/videos/promise-queue-1.mp4"
+    src="/assets/videos/promise-queue-1.mp4"
     type="video/mp4"
     preload="metadata"
     width="720"

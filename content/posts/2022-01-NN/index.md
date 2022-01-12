@@ -14,7 +14,7 @@ image: ''
 # Velo by Wix: The utils for repeated item event handlers v2.1.0
 
 <img
-  src="/images/a.jpg"
+  src="/assets/images/a.jpg"
   alt="concept art by television serial - tales from the loop"
   width="1021"
   height="460"
@@ -69,7 +69,7 @@ $w.onReady(() => {
     <strong>Velo Package Manager</strong>
   </figcaption>
   <img
-    src="/images/install-repeater-scope.jpeg"
+    src="/assets/images/install-repeater-scope.jpeg"
     alt="Installing an npm package in Velo editor"
     width="1486"
     height="400"

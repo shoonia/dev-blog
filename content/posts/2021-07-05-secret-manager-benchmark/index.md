@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo: Secrets Manager Benchmark'
 description: 'Online checker of performance benchmark for Velo Secrets Manager'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/velo.png'
+image: 'https://shoonia.site/assets/images/velo.png'
 ---
 
 <style>

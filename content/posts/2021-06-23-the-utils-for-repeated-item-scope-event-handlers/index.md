@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: The utils for repeated item scope event handlers'
 description: 'npm library with utils for event handlers in Repeater'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/velo.png'
+image: 'https://shoonia.site/assets/images/velo.png'
 ---
 
 # Velo by Wix: The utils for repeated item scope event handlers
@@ -24,7 +24,7 @@ Copying and pasting the snippet of code isn't comfortable. Therefore I moved the
     <strong>Velo Package Manager</strong>
   </figcaption>
   <img
-    src="/images/install-repeater-scope.jpeg"
+    src="/assets/images/install-repeater-scope.jpeg"
     alt="Installing an npm package in Velo editor"
     width="1486"
     height="400"

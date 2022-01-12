@@ -18,7 +18,7 @@ const HTML = ({
       />
       <link
         rel="preload"
-        href="/firacode@5.2.0/FiraCode-Regular.woff2"
+        href="/assets/firacode@5.2.0/firacode-regular.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"

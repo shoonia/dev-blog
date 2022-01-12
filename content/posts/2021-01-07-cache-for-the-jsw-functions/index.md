@@ -37,7 +37,7 @@ Start with a basic example.
     <strong>Add new Web Module</strong>
   </figcaption>
   <img
-    src="/images/example-jsw.jpg"
+    src="/assets/images/example-jsw.jpg"
     alt="Sidebar panel of Wix Editor for adding a new Web Module"
     width="800"
     height="280"

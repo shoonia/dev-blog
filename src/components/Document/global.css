@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Fira Code";
-  src: url("/firacode@5.2.0/FiraCode-Regular.woff2") format("woff2");
+  src: url("/assets/firacode@5.2.0/firacode-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -118,7 +118,7 @@ h3 {
   margin-left: -1em;
   width: 1em;
   height: 1em;
-  background: 50% no-repeat url("/images/link.svg");
+  background: 50% no-repeat url("/assets/images/link.svg");
   opacity: 0;
 }
 
@@ -277,7 +277,7 @@ li {
 }
 
 ul > li {
-  list-style: url("/images/i.svg");
+  list-style: url("/assets/images/i.svg");
 }
 
 summary {

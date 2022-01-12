@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Imitating hover event on repeater container'
 description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/repeater-small.png'
+image: 'https://shoonia.site/assets/images/repeater-small.png'
 ---
 
 # Velo by Wix: Imitating hover event on repeater container
@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/repeater-small.png'
 *Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event.*
 
 <img
-  src="/images/coubs.jpeg"
+  src="/assets/images/coubs.jpeg"
   alt="Velo by Wix"
   width="700"
   height="338"
@@ -33,10 +33,10 @@ For this, we're going to use two other events that provide repeater API:
 
 Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/velo/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/velo/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
-<a href="/images/1x1_cce4f7ff.png" target="_blank">
+<a href="/assets/images/1x1_cce4f7ff.png" target="_blank">
   Here is one-pixel image
   <img
-    src="/images/1x1_cce4f7ff.png"
+    src="/assets/images/1x1_cce4f7ff.png"
     alt="light blue pixel image"
     width="12"
     height="12"
@@ -136,7 +136,7 @@ $w.onReady(function () {
 
 Great! It works.
 
-## One-pixel image
+## One-pixel image
 
 We used the direct link to the one-pixel image. The size of this image is only 70 bytes. For example, the link of this image has 82 chars length, it's 82 bytes. The link takes up more memory than the image. ¯\\\_(ツ)\_/¯
 

@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Short links to create a new Wix / Editor X site editor'
 description: 'A set of short links for creating a new site on Wix, Velo, and Editor X'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/load-editor.jpeg'
+image: 'https://shoonia.site/assets/images/load-editor.jpeg'
 ---
 
 <style>
@@ -29,7 +29,7 @@ image: 'https://shoonia.site/images/load-editor.jpeg'
 </h1>
 <div class="_center">
   <img
-    src="/images/load-editor.jpeg"
+    src="/assets/images/load-editor.jpeg"
     width="250"
     height="250"
     alt="wix editor load illustration"

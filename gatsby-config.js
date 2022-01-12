@@ -60,7 +60,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#fff',
         display: 'minimal-ui',
-        icon: rootResolve('src/images/icon.png'),
+        icon: rootResolve('static/assets/images/icon.png'),
       },
     },
     isProd && {

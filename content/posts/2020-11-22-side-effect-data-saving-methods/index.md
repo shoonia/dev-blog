@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Side effect wix-data saving methods'
 description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/side-effect500x500.jpeg'
+image: 'https://shoonia.site/assets/images/side-effect500x500.jpeg'
 ---
 
 # Velo by Wix: Side effect wix-data saving methods
@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/side-effect500x500.jpeg'
 *The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes*
 
 <img
-  src="/images/side-effect.jpeg"
+  src="/assets/images/side-effect.jpeg"
   width="775"
   height="410"
   alt="a picture by motive to serials 'Tales From The Loop'"

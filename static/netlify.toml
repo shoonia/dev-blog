@@ -1,3 +1,6 @@
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
+
 [[redirects]]
   from = "/*"
   to = "/404.html"
@@ -14,17 +17,7 @@
     Cache-Control = "public, max-age=86400"
 
 [[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.woff2"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
 
@@ -32,26 +25,3 @@
   for = "*.png"
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.mp4"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"

@@ -8,7 +8,7 @@ lang: 'en'
 title: 'Velo by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'
 author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/images/radio-astronomy.jpg'
+image: 'https://shoonia.site/assets/images/radio-astronomy.jpg'
 ---
 
 # Velo by Wix: Message channel to iFrame
@@ -16,7 +16,7 @@ image: 'https://shoonia.site/images/radio-astronomy.jpg'
 *In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.*
 
 <img
-  src="/images/radio-astronomy.jpg"
+  src="/assets/images/radio-astronomy.jpg"
   alt="radio astronomy"
   width="729"
   height="254"
@@ -146,7 +146,7 @@ I will use a very simple example with the counter. On the Main page, we have a h
   <strong>Example of UI:</strong>
  </figcaption>
   <img
-    src="/images/iframe-example.jpg"
+    src="/assets/images/iframe-example.jpg"
     alt="Example of HTML embed Component"
     width="770"
     height="279"
