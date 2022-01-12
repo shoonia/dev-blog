@@ -45,7 +45,12 @@ module.exports = {
         ].filter(Boolean),
       },
     },
-    isProd && 'gatsby-plugin-mini-css-class-name',
+    isProd && {
+      resolve: 'gatsby-plugin-mini-css-class-name',
+      options: {
+        excludePattern: /_/,
+      },
+    },
     isProd && {
       resolve: 'gatsby-plugin-manifest',
       options: {
