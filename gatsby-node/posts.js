@@ -41,7 +41,7 @@ exports.createPage = async ({ actions, graphql }) => {
   nodes.forEach((node) => {
     const i = node.frontmatter;
 
-    if (i.publish || i.template === 'noindex') {
+    if (i.publish) {
       actions.createPage({
         path: i.path,
         component: Page,

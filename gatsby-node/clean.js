@@ -13,8 +13,6 @@ exports.clean = async () => {
     });
 
     const removeList = [
-      'fix-1',
-      'fix-2',
       'static',
       'page-data',
       'webpack.stats.json',
