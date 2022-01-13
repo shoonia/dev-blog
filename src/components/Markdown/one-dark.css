@@ -37,13 +37,6 @@ pre[class*="code-"] ::selection {
   text-shadow: 0 0 1px #000;
 }
 
-/*
-.punctuation {
-  color: #a9b2c0;
-  text-shadow: 0 0 1px #000;
-}
-*/
-
 .selector,
 .tag {
   color: #f16372;
@@ -59,6 +52,7 @@ pre[class*="code-"] ::selection {
   color: #db975c;
 }
 
+.regex,
 .string,
 .char,
 .attr-value,
@@ -67,6 +61,7 @@ pre[class*="code-"] ::selection {
   color: #8cc570;
 }
 
+.interpolation-punctuation,
 .operator,
 .entity,
 .url,
@@ -75,22 +70,19 @@ pre[class*="code-"] ::selection {
   color: #19b9c4;
 }
 
-.atrule,
-.keyword {
-  color: #d373e3;
-}
-
-.function,
-.function-variable {
+.function {
   color: #40b1f5;
 }
 
-.regex,
+.regex-flags,
+.atrule,
+.keyword,
 .important,
 .variable {
   color: #d373e3;
 }
 
+.template-punctuation,
 .important,
 .bold {
   font-weight: bold;
@@ -103,3 +95,8 @@ pre[class*="code-"] ::selection {
 .entity {
   cursor: help;
 }
+
+/*
+.function-variable,
+.punctuation {}
+*/
