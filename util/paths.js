@@ -1,7 +1,6 @@
 const { resolve } = require('path');
-const { realpathSync } = require('fs');
 
-const root = realpathSync(process.cwd());
+const root = process.cwd();
 
 exports.rootResolve = (...path) => {
   return resolve(root, ...path);
