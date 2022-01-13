@@ -3,6 +3,7 @@ const posthtml = require('posthtml');
 const { parser } = require('posthtml-parser');
 const _isAbsolute = require('is-absolute-url').default;
 const miniClassNames = require('mini-css-class-name');
+const { getClassNames, isPrismeJsClass } = require('./markdown');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -37,7 +38,7 @@ const createId = (content) => {
   }
 };
 
-const transformer = posthtml().use((tree) => {
+const transformer = (classList) => posthtml().use((tree) => {
   const generate = miniClassNames();
 
   tree.walk((node) => {
@@ -47,14 +48,16 @@ const transformer = posthtml().use((tree) => {
 
     switch (node.tag) {
       case 'span': {
-        if (isString(node.attrs?.class)) {
-          if (node.attrs.class === 'token punctuation') {
+        if (isPrismeJsClass(node.attrs?.class)) {
+          const list = node.attrs.class
+            .split(' ')
+            .filter((i) => classList.has(i));
+
+          if (list.length < 1) {
             return node.content;
           }
 
-          if (node.attrs.class.startsWith('token ')) {
-            node.attrs.class = node.attrs.class.slice(6);
-          }
+          node.attrs.class = list.join(' ');
         }
 
         return node;
@@ -144,8 +147,12 @@ const transformer = posthtml().use((tree) => {
 });
 
 exports.transformHtml = async (source) => {
-  const minifiedSource = await minify(source, htmlMinifierOptions);
-  const { html } = await transformer.process(minifiedSource);
+  const [minifiedSource, classList] = await Promise.all([
+    minify(source, htmlMinifierOptions),
+    getClassNames(),
+  ]);
+
+  const { html } = await transformer(classList).process(minifiedSource);
 
   return html;
 };

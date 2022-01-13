@@ -32,6 +32,7 @@
     "is-absolute-url": "^4.0.1",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
+    "postcss-modules": "^4.3.0",
     "postcss-simple-vars": "^6.0.3",
     "posthtml": "^0.16.5",
     "posthtml-parser": "^0.10.1",
