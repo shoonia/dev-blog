@@ -16,8 +16,6 @@ image: 'https://shoonia.site/assets/images/radio-astronomy.jpg'
 <img
   src="/assets/images/radio-astronomy.jpg"
   alt="radio astronomy"
-  width="729"
-  height="254"
 />
 
 The Wix allows embedding the [HtmlComponent (iFrame)](https://www.wix.com/velo/reference/$w/htmlcomponent) to the page. It's one of the powerful tools for customization of your site when you need a very specific UI. The Velo provides the API for interactions with HtmlComponent, which are sent and listen to messages. Inside iFrame, we can use the native browser API represent in the global object `window` that provides the same functionality of sending and listening events.
@@ -146,8 +144,6 @@ I will use a very simple example with the counter. On the Main page, we have a h
   <img
     src="/assets/images/iframe-example.jpg"
     alt="Example of HTML embed Component"
-    width="770"
-    height="279"
     loading="lazy"
   />
 </figure>

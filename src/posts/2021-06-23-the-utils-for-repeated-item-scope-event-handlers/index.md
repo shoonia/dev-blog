@@ -24,8 +24,6 @@ Copying and pasting the snippet of code isn't comfortable. Therefore I moved the
   <img
     src="/assets/images/install-repeater-scope.jpeg"
     alt="Installing an npm package in Velo editor"
-    width="1486"
-    height="400"
   />
 </figure>
 

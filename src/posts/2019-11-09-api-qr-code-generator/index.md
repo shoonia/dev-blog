@@ -16,8 +16,6 @@ image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b984
 <img
   src="https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b98484~mv2.jpg/v2/fill/w_800,h_330/q.jpg"
   alt="QR-код арт"
-  width="700"
-  height="300"
 />
 
 ## Створюємо сайт

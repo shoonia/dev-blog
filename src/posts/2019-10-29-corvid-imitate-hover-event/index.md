@@ -16,8 +16,6 @@ image: 'https://shoonia.site/assets/images/repeater-small.png'
 <img
   src="/assets/images/coubs.jpeg"
   alt="Velo by Wix"
-  width="700"
-  height="338"
 />
 
 ## Motivation

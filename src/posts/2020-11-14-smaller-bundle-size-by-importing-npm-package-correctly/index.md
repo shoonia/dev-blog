@@ -16,8 +16,6 @@ image: 'https://shoonia.site/assets/images/node_modules500x500.jpeg'
 <img
   src="/assets/images/node_modules.jpeg"
   alt="node_modules"
-  width="777"
-  height="437"
 />
 
 Let's start with a small library [uuid](https://www.npmjs.com/package/uuid) that use for the creation of unique IDs. In the documentation, we can see how to use it with ES6 module syntax.

@@ -1,9 +1,11 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
+const imgAutosize = require('posthtml-img-autosize');
 const { parser } = require('posthtml-parser');
 const miniClassNames = require('mini-css-class-name');
 
 const { isPrismeJsClass } = require('./styles');
+const { resolve } = require('./resolve');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -40,7 +42,12 @@ const createId = (content) => {
   }
 };
 
-const transformer = (classCache, isProd) => posthtml().use((tree) => {
+const transformer = (classCache, isProd) => posthtml([
+  imgAutosize({
+    root: resolve('src'),
+    processEmptySize: true,
+  }),
+]).use((tree) => {
   const generate = miniClassNames();
 
   tree.walk((node) => {

@@ -16,8 +16,6 @@ image: 'https://shoonia.site/assets/images/load-editor.jpeg'
 <img
   src="/assets/images/december1994.jpg"
   alt="concept art by television serial - tales from the loop"
-  width="1024"
-  height="421"
 />
 
 Let's suppose we have a few containers with checkboxes in each of them. We don't know how many checkboxes will be in each container at the final design.
@@ -33,8 +31,6 @@ We want to provide a good abstract solution for avoiding hard coding of elements
   <img
     src="/assets/images/yellow-blue.jpg"
     alt="Wix Editor with two box groups"
-    width="1500"
-    height="600"
     loading="lazy"
     style="border:1px solid rgb(112 128 144 / 40%);border-radius:8px"
   />

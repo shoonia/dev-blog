@@ -15,8 +15,6 @@ image: 'https://shoonia.site/assets/images/side-effect500x500.jpeg'
 
 <img
   src="/assets/images/side-effect.jpeg"
-  width="775"
-  height="410"
   alt="a picture by motive to serials 'Tales From The Loop'"
 />
 

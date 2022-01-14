@@ -37,8 +37,6 @@ Start with a basic example.
   <img
     src="/assets/images/example-jsw.jpg"
     alt="Sidebar panel of Wix Editor for adding a new Web Module"
-    width="800"
-    height="280"
     loading="lazy"
   />
 </figure>

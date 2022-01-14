@@ -15,8 +15,6 @@ image: 'https://shoonia.site/assets/images/promise-hands-590x590.jpg'
 
 <img
   src="/assets/images/promise-hands.jpg"
-  width="750"
-  height="466"
   alt="find hand promise"
 />
 
