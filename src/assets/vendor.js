@@ -1,10 +1,4 @@
 requestIdleCallback(() => {
-  let prefetchCache = new Set();
-  let queue = [];
-
-  let run = () => queue.length > 0 && queue.shift()();
-  let add = (fn) => queue.push(fn) > 1 || run();
-
   let getId = () => {
     if (!localStorage.cid) {
       localStorage.cid = Math.random().toString(36);
@@ -23,19 +17,18 @@ requestIdleCallback(() => {
     return data.join('&');
   };
 
-  let prefetch = async (url) => {
-    if (!prefetchCache.has(url)) {
-      prefetchCache.add(url);
+  let prefetched = new Set();
 
-      await new Promise((res) => {
-        let link = document.createElement('link');
+  let prefetch = (url) => {
+    if (!prefetched.has(url) && prefetched.size < 25) {
+      prefetched.add(url);
 
-        link.rel = 'prefetch';
-        link.href = new URL(url, location.href).href;
-        link.onload = link.onerror = res;
+      let link = document.createElement('link');
 
-        document.head.append(link);
-      });
+      link.rel = 'prefetch';
+      link.href = new URL(url, location.href).href;
+
+      document.head.append(link);
     }
   };
 
@@ -43,7 +36,7 @@ requestIdleCallback(() => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        add(() => prefetch(entry.target.href).then(run));
+        prefetch(entry.target.href);
       }
     });
   }, {

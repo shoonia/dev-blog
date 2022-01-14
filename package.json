@@ -23,6 +23,7 @@
     "postcss": "^8.4.5",
     "postcss-modules": "^4.3.0",
     "posthtml": "^0.16.5",
+    "posthtml-img-autosize": "^0.1.6",
     "posthtml-parser": "^0.10.1",
     "sitemap": "^7.1.0",
     "terser": "^5.10.0"
