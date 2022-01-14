@@ -196,30 +196,6 @@ cite {
   font-style: italic;
 }
 
-pre {
-  border-radius: 8px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-light-gray-opacity) transparent;
-}
-
-pre::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-pre::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-pre::-webkit-scrollbar-thumb {
-  background-color: var(--color-light-gray-opacity);
-  border-radius: 10px;
-}
-
-pre::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-light-gray);
-}
-
 code,
 kbd,
 mark {
@@ -442,10 +418,6 @@ time {
   }
 }
 
-/**
- * PrimsJS
- */
-
 pre {
   color: rgb(255 255 255 / 80%);
   background-color: #282c34;
@@ -460,6 +432,27 @@ pre {
   padding: 1em;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-gray-opacity) transparent;
+}
+
+pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: var(--color-light-gray-opacity);
+  border-radius: 10px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-light-gray);
 }
 
 pre ::selection {
@@ -468,10 +461,14 @@ pre ::selection {
 }
 
 @media print {
-  pre  {
+  pre {
     text-shadow: none;
   }
 }
+
+/**
+ * PrimsJS
+ */
 
 .parameter {
   color: rgb(255 255 255 / 80%);
