@@ -90,13 +90,10 @@ const transformer = () => posthtml().use((tree) => {
           const [a] = parser('<a class="anchor"/>');
           const [span] = parser(`<span id="${generate()}"/>`);
 
-          if (node.attrs == null) {
-            node.attrs = {};
-          }
-
           a.attrs.href = `#${id}`;
           a.attrs['aria-labelledby'] = span.attrs.id;
           span.content = node.content;
+          node.attrs ??= {};
           node.attrs.id = id;
           node.content = [a, span];
         }
@@ -154,7 +151,7 @@ const transformer = () => posthtml().use((tree) => {
         });
 
         node.attrs = { datetime: iso, title: a11y };
-        node.content ||= [label];
+        node.content ??= [label];
 
         return node;
       }

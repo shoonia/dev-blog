@@ -1,7 +1,11 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const { transformHtml } = require('./util/html');
+const { sitemapAndRss } = require('./util/sitemapAndRss');
+const { getPosts, getAllPages } = require('./util/filters');
 const pkg = require('./package.json');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = (config) => {
   config.addPassthroughCopy('src/assets');
@@ -23,11 +27,17 @@ module.exports = (config) => {
   });
 
   config.addCollection('posts', (collection) => {
-    return collection.getAll()
-      .filter((i) => i.data.layout === 'posts.njk')
-      .map((i) => i.data)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    return getPosts(collection.getAll());
   });
+
+  if (isProd) {
+    config.addCollection('__build', async (collection) => {
+      const items = getAllPages(collection.getAll());
+      await sitemapAndRss(items);
+
+      return [];
+    });
+  }
 
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {

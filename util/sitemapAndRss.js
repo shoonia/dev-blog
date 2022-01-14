@@ -2,53 +2,17 @@ const { writeFile } = require('fs/promises');
 const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
 
-const { rootResolve } = require('../util/paths');
+const { resolve } = require('./resolve');
 const {
   title,
   description,
   author: metaAuthor,
   homepage,
-  createUrl,
-} = require('../util/meta');
+} = require('../package.json');
 
-exports.sitemapAndRss = async ({ graphql }) => {
-  const {
-    data: {
-      allMarkdownRemark: {
-        nodes,
-      },
-    },
-  } = await graphql(`
-  {
-    allMarkdownRemark(
-      sort: {
-        fields: [frontmatter___date]
-        order: DESC
-      }
-      filter: {
-        frontmatter: {
-          publish: {
-            eq: true
-          }
-          template: {
-            eq: "default"
-          }
-        }
-      }
-    ) {
-      nodes {
-        frontmatter {
-          title
-          description
-          path
-          date
-          modified
-          image
-        }
-      }
-    }
-  }`);
+const createUrl = (path) => new URL(path, homepage).href;
 
+exports.sitemapAndRss = async (nodes) => {
   const dateNow = new Date();
   const sitemapStream = new SitemapStream();
 
@@ -74,17 +38,16 @@ exports.sitemapAndRss = async ({ graphql }) => {
     updated: dateNow,
     // generator: '',
     author,
-    image: createUrl('icons/icon-256x256.png'),
+    image: createUrl('/assets/icons/icon-256x256.png'),
     favicon: createUrl('favicon-32x32.png'),
-    // copyright: 'All rights reserved 2013, John Doe',
     feedLinks: {
       json: createUrl('rss.json'),
       atom: createUrl('rss.xml'),
     },
   });
 
-  nodes.forEach(({ frontmatter: i }) => {
-    const url = createUrl(i.path);
+  nodes.forEach((i) => {
+    const url = createUrl(i.permalink);
 
     sitemapStream.write({
       url,
@@ -96,10 +59,11 @@ exports.sitemapAndRss = async ({ graphql }) => {
     feed.addItem({
       id: url,
       link: url,
-      title: i.title,
+      title: i.title ?? '',
       description: i.description,
       content: i.description,
-      date: new Date(i.date),
+      date: new Date(i.modified),
+      published: new Date(i.date),
       image: i.image,
       author: [
         author,
@@ -113,17 +77,17 @@ exports.sitemapAndRss = async ({ graphql }) => {
   await Promise.all([
     streamToPromise(sitemapStream).then(
       (buffer) => writeFile(
-        rootResolve('public/sitemap.xml'),
+        resolve('public/sitemap.xml'),
         buffer,
         'binary',
       ),
     ),
     writeFile(
-      rootResolve('public/rss.xml'),
+      resolve('public/rss.xml'),
       feed.atom1(),
     ),
     writeFile(
-      rootResolve('public/rss.json'),
+      resolve('public/rss.json'),
       feed.json1(),
     ),
   ]);
