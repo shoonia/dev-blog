@@ -130,15 +130,6 @@ const transformer = () => posthtml().use((tree) => {
         return node;
       }
 
-      case 'div': {
-        if (node.attrs?.class === 'gatsby-highlight') {
-          return node.content;
-        }
-
-        if (node.attrs?.id === 'gatsby-focus-wrapper') {
-          return node.content;
-        }
-      }
     }
 
     return node;
