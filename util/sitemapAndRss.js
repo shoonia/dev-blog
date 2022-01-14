@@ -88,7 +88,7 @@ exports.sitemapAndRss = async (nodes) => {
     ),
     writeFile(
       resolve('public/rss.json'),
-      feed.json1(),
+      JSON.stringify(JSON.parse(feed.json1())),
     ),
   ]);
 };

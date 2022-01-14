@@ -4,9 +4,12 @@ const { transformHtml } = require('./util/html');
 const { sitemapAndRss } = require('./util/sitemapAndRss');
 const { vendorScript, vendorStyles } = require('./util/assets');
 const { getPosts, getAllPages } = require('./util/filters');
+const { getClassNames } = require('./util/styles');
 const pkg = require('./package.json');
 
 const isProd = process.env.NODE_ENV === 'production';
+
+let classCache = null;
 
 module.exports = (config) => {
   config.addPassthroughCopy('src/assets');
@@ -33,7 +36,7 @@ module.exports = (config) => {
 
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {
-      return transformHtml(content, isProd);
+      return transformHtml(content, isProd, classCache);
     }
 
     return content;
@@ -44,6 +47,10 @@ module.exports = (config) => {
       const items = getAllPages(collection.getAll());
       await sitemapAndRss(items);
       return [];
+    });
+
+    config.on('eleventy.before', async () => {
+      classCache = await getClassNames();
     });
 
     config.on('eleventy.after', async () => {

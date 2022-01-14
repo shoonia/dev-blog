@@ -3,6 +3,8 @@ const posthtml = require('posthtml');
 const { parser } = require('posthtml-parser');
 const miniClassNames = require('mini-css-class-name');
 
+const { isPrismeJsClass } = require('./styles');
+
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
   collapseWhitespace: true,
@@ -11,7 +13,6 @@ const htmlMinifierOptions = {
   removeRedundantAttributes: true,
   removeEmptyAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  removeEmptyElements: true,
   minifyJS: true,
   minifyCSS: true,
 };
@@ -39,7 +40,7 @@ const createId = (content) => {
   }
 };
 
-const transformer = () => posthtml().use((tree) => {
+const transformer = (classCache, isProd) => posthtml().use((tree) => {
   const generate = miniClassNames();
 
   tree.walk((node) => {
@@ -48,21 +49,21 @@ const transformer = () => posthtml().use((tree) => {
     }
 
     switch (node.tag) {
-      // case 'span': {
-      //   if (isPrismeJsClass(node.attrs?.class)) {
-      //     const list = node.attrs.class
-      //       .split(' ')
-      //       .filter((i) => classList.has(i));
+      case 'span': {
+        if (isProd && isPrismeJsClass(node.attrs?.class)) {
+          const list = node.attrs.class
+            .split(' ')
+            .filter((i) => classCache.has(i));
 
-      //     if (list.length < 1) {
-      //       return node.content;
-      //     }
+          if (list.length < 1) {
+            return node.content;
+          }
 
-      //     node.attrs.class = list.join(' ');
-      //   }
+          node.attrs.class = list.join(' ');
+        }
 
-      //   return node;
-      // }
+        return node;
+      }
 
       case 'a': {
         if (isAbsoluteUrl(node.attrs?.href)) {
@@ -93,8 +94,7 @@ const transformer = () => posthtml().use((tree) => {
           a.attrs.href = `#${id}`;
           a.attrs['aria-labelledby'] = span.attrs.id;
           span.content = node.content;
-          node.attrs ??= {};
-          node.attrs.id = id;
+          node.attrs = { id, class: 'title' };
           node.content = [a, span];
         }
 
@@ -163,12 +163,12 @@ const transformer = () => posthtml().use((tree) => {
   return tree;
 });
 
-exports.transformHtml = async (source, isProd) => {
+exports.transformHtml = async (source, isProd, classCache) => {
   if (isProd) {
     source = await minify(source, htmlMinifierOptions);
   }
 
-  const { html } = await transformer().process(source);
+  const { html } = await transformer(classCache, isProd).process(source);
 
   return html;
 };

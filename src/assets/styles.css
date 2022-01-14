@@ -124,22 +124,11 @@ footer a {
   user-select: none;
 }
 
-h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-weight: normal;
   margin: 0;
-}
-
-h1::before,
-h2::before,
-h3::before {
-  content: " ";
-  display: block;
-  padding-top: 1em;
 }
 
 h1 {
@@ -153,6 +142,12 @@ h2 {
 
 h3 {
   font-size: 1.15em;
+}
+
+.title::before {
+  content: " ";
+  display: block;
+  padding-top: 1em;
 }
 
 .anchor {
@@ -170,12 +165,8 @@ h3 {
 
 .anchor:focus,
 .anchor:hover,
-h2:focus > .anchor,
-h2:hover > .anchor,
-h3:focus > .anchor,
-h3:hover > .anchor,
-h4:focus > .anchor,
-h4:hover > .anchor {
+.title:focus .anchor,
+.title:hover .anchor {
   opacity: 1;
 }
 
@@ -488,7 +479,6 @@ pre ::selection {
   color: #f16372;
 }
 
-.property,
 .boolean,
 .number,
 .constant,
@@ -543,8 +533,10 @@ pre ::selection {
 }
 
 /*
-.function-variable,
-.punctuation {}
+.function-variable
+.literal-property
+.property
+.punctuation
 */
 
 /**

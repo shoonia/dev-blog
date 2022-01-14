@@ -1,23 +1,25 @@
 const { readFile } = require('fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
-const { rootResolve } = require('./paths');
+
+const { resolve } = require('./resolve');
 
 exports.getClassNames = async () => {
-  const path = rootResolve('src/components/Markdown/one-dark.css');
-  const css = await readFile(path, 'utf8');
+  const path = resolve('src/assets/styles.css');
+
+  const source = await readFile(path, 'utf8');
 
   let jsonData;
 
   await postcss(
     postcssModules({
-      getJSON: (_, json) => {
+      getJSON(_, json) {
         jsonData = json;
       },
     }),
-  ).process(css);
+  ).process(source);
 
-  return Object.keys(jsonData).reduce((acc, key) => acc.add(key), new Set());
+  return new Set(Object.keys(jsonData));
 };
 
 exports.isPrismeJsClass = (val) => {
