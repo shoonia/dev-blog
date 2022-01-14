@@ -1,5 +1,5 @@
 ---
-permalink: '/side-effect-data-saving-methods.html'
+permalink: '/side-effect-data-saving-methods/'
 date: '2020-11-22T12:00:00.000Z'
 modified: '2022-01-08T12:00:00.000Z'
 lang: 'en'

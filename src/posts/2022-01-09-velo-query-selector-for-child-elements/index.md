@@ -1,5 +1,5 @@
 ---
-permalink: '/velo-query-selector-for-child-elements.html'
+permalink: '/velo-query-selector-for-child-elements/'
 date: '2022-01-08T12:00:00.000Z'
 modified: '2022-01-08T12:00:00.000Z'
 lang: 'en'

@@ -1,5 +1,5 @@
 ---
-permalink: '/wix-velo-editorx-short-links.html'
+permalink: '/wix-velo-editorx-short-links/'
 date: '2021-09-23T12:00:00.000Z'
 modified: '2021-09-23T12:00:00.000Z'
 lang: 'en'

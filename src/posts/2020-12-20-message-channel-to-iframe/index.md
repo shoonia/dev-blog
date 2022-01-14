@@ -1,5 +1,5 @@
 ---
-permalink: '/message-channel-to-iframe.html'
+permalink: '/message-channel-to-iframe/'
 date: '2020-12-20T12:00:00.000Z'
 modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'

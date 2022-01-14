@@ -1,5 +1,5 @@
 ---
-permalink: '/html-template-in-corvid.html'
+permalink: '/html-template-in-corvid/'
 date: '2019-11-03T12:00:00.000Z'
 modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'

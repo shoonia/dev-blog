@@ -1,5 +1,5 @@
 ---
-permalink: '/api-qr-code-generator.html'
+permalink: '/api-qr-code-generator/'
 date: '2019-11-09T12:00:00.000Z'
 modified: '2021-01-04T12:00:00.000Z'
 lang: 'uk'

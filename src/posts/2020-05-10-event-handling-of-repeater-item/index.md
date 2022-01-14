@@ -1,5 +1,5 @@
 ---
-permalink: '/event-handling-of-repeater-item.html'
+permalink: '/event-handling-of-repeater-item/'
 date: '2020-05-10T12:00:00.000Z'
 modified: '2021-04-19T12:00:00.000Z'
 lang: 'en'

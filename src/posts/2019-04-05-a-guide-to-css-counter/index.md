@@ -1,5 +1,5 @@
 ---
-permalink: '/a-guide-to-css-counter.html'
+permalink: '/a-guide-to-css-counter/'
 date: '2019-04-05T12:00:00.000Z'
 modified: '2021-04-25T12:00:00.000Z'
 lang: 'ru'

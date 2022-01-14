@@ -1,5 +1,5 @@
 ---
-permalink: '/corvid-storeon.html'
+permalink: '/corvid-storeon/'
 date: '2019-12-21T12:00:00.000Z'
 modified: '2021-04-25T12:00:00.000Z'
 lang: 'en'

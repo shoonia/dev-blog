@@ -1,5 +1,5 @@
 ---
-permalink: '/cache-for-the-jsw-functions.html'
+permalink: '/cache-for-the-jsw-functions/'
 date: '2021-01-07T12:00:00.000Z'
 modified: '2021-01-07T12:00:00.000Z'
 lang: 'en'

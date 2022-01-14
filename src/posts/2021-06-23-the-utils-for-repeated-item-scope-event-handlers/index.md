@@ -1,5 +1,5 @@
 ---
-permalink: '/the-utils-for-repeated-item-scope-event-handlers.html'
+permalink: '/the-utils-for-repeated-item-scope-event-handlers/'
 date: '2021-06-23T12:00:00.000Z'
 modified: '2021-09-02T12:00:00.000Z'
 lang: 'en'

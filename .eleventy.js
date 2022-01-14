@@ -14,7 +14,7 @@ module.exports = (config) => {
   });
 
   config.addFilter('siteUrl', (content) => {
-    return new URL(content.replace(/\.html$/, ''), pkg.homepage).href;
+    return new URL(content, pkg.homepage).href;
   });
 
   config.addPlugin(syntaxHighlight, {

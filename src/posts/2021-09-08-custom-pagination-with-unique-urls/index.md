@@ -1,5 +1,5 @@
 ---
-permalink: '/custom-pagination-with-unique-urls.html'
+permalink: '/custom-pagination-with-unique-urls/'
 date: '2021-09-08T12:00:00.000Z'
 modified: '2021-10-26T12:00:00.000Z'
 lang: 'en'
