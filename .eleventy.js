@@ -13,8 +13,8 @@ module.exports = (config) => {
     dir: {
       input: 'src',
       output: 'public',
-      // includes: 'includes',
-      // layouts: 'layouts',
+      includes: 'includes',
+      layouts: 'layouts',
       // data: 'data',
     },
     dataTemplateEngine: 'njk',
