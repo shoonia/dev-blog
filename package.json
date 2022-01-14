@@ -5,10 +5,8 @@
   "version": "0.1.0",
   "homepage": "https://shoonia.site",
   "scripts": {
-    "build": "eleventy",
-    "develop": "gatsby develop",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
+    "build": "NODE_ENV=production eleventy",
+    "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
     "lint": "eslint '**/*.{js,jsx}' && stylelint 'src/**/*.css'",
     "clean": "gatsby clean"
   },

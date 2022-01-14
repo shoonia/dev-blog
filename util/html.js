@@ -1,9 +1,7 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
 const { parser } = require('posthtml-parser');
-const _isAbsolute = require('is-absolute-url').default;
 const miniClassNames = require('mini-css-class-name');
-const { getClassNames, isPrismeJsClass } = require('./markdown');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -19,7 +17,10 @@ const htmlMinifierOptions = {
 };
 
 const isString = (val) => typeof val === 'string';
-const isAbsoluteUrl = (url) => isString(url) && _isAbsolute(url);
+
+const isAbsoluteUrl = (url) => {
+  return isString(url) && /^[a-zA-Z][a-zA-Z\d+\-.]*?:/.test(url);
+};
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
@@ -38,7 +39,7 @@ const createId = (content) => {
   }
 };
 
-const transformer = (classList) => posthtml().use((tree) => {
+const transformer = () => posthtml().use((tree) => {
   const generate = miniClassNames();
 
   tree.walk((node) => {
@@ -47,29 +48,21 @@ const transformer = (classList) => posthtml().use((tree) => {
     }
 
     switch (node.tag) {
-      case 'span': {
-        if (isPrismeJsClass(node.attrs?.class)) {
-          const list = node.attrs.class
-            .split(' ')
-            .filter((i) => classList.has(i));
+      // case 'span': {
+      //   if (isPrismeJsClass(node.attrs?.class)) {
+      //     const list = node.attrs.class
+      //       .split(' ')
+      //       .filter((i) => classList.has(i));
 
-          if (list.length < 1) {
-            return node.content;
-          }
+      //     if (list.length < 1) {
+      //       return node.content;
+      //     }
 
-          node.attrs.class = list.join(' ');
-        }
+      //     node.attrs.class = list.join(' ');
+      //   }
 
-        return node;
-      }
-
-      case 'code': {
-        if (isString(node.attrs?.class)) {
-          node.attrs.class = '_';
-        }
-
-        return node;
-      }
+      //   return node;
+      // }
 
       case 'a': {
         if (isAbsoluteUrl(node.attrs?.href)) {
@@ -147,12 +140,11 @@ const transformer = (classList) => posthtml().use((tree) => {
 });
 
 exports.transformHtml = async (source) => {
-  const [minifiedSource, classList] = await Promise.all([
-    minify(source, htmlMinifierOptions),
-    getClassNames(),
-  ]);
+  if (process.env.NODE_ENV === 'production') {
+    source = await minify(source, htmlMinifierOptions);
+  }
 
-  const { html } = await transformer(classList).process(minifiedSource);
+  const { html } = await transformer().process(source);
 
   return html;
 };
