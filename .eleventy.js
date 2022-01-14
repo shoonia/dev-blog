@@ -18,7 +18,7 @@ module.exports = (config) => {
     }
 
     return content;
-  })
+  });
 
   return {
     dir: {

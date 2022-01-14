@@ -73,6 +73,14 @@ const transformer = () => posthtml().use((tree) => {
         return node;
       }
 
+      case 'code': {
+        if (isString(node.attrs?.class)) {
+          node.attrs.class = '_';
+        }
+
+        return node;
+      }
+
       case 'h2':
       case 'h3':
       case 'h4': {
