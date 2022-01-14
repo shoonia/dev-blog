@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ lang }}">
-{% include 'head.njk' %}
-<body>
-
 {% include 'header.njk' %}
 
 <main>
+  <h1>Posts</h1>
   <ul class="posts">
 
   {% for post in collections.posts %}
@@ -27,7 +23,3 @@
 </main>
 
 {% include 'footer.njk' %}
-
-{# <script async type="module" src="/assets/vendor.js?v=2"></script> #}
-</body>
-</html>

@@ -10,6 +10,7 @@ module.exports = (config) => {
 
   config.addGlobalData('meta', {
     title: pkg.title,
+    description: pkg.description,
     homepage: pkg.homepage,
   });
 
