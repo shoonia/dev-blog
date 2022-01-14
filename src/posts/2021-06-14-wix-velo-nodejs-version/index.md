@@ -13,7 +13,7 @@ image: 'https://shoonia.site/assets/images/velo.png'
 
 Online checker of current Node.js version on Velo backend.
 
-<mark>Checked now: <time id="ts">Loading...</time></mark>
+<mark>Checked now: <span id="ts">Loading...</span></mark>
 <output id="error" style="color:red">&nbsp;</output>
 
 <table>
@@ -65,7 +65,6 @@ Online checker of current Node.js version on Velo backend.
         month: 'numeric',
         day: 'numeric',
       }),
-      dateTime: date.toISOString(),
     });
 
     h('#version', { textContent: data.version });

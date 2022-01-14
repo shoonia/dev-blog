@@ -130,6 +130,34 @@ const transformer = () => posthtml().use((tree) => {
         return node;
       }
 
+      case 'time': {
+        const t = new Date(node.attrs.datetime);
+        const lang = node.attrs.lang ?? 'en';
+
+        if (t.toString() === 'Invalid Date') {
+          throw new Error(node);
+        }
+
+        const iso = t.toISOString();
+
+        const a11y = t.toLocaleString(lang, {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+
+        const label = t.toLocaleString(lang, {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        });
+
+        node.attrs = { datetime: iso, title: a11y };
+        node.content ||= [label];
+
+        return node;
+      }
     }
 
     return node;

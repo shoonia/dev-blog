@@ -10,7 +10,7 @@ image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d
 ---
 
 <small>
-  <time datetime="2021-01-06T12:00:00.000Z">Update: Jan 6, 2021</time>
+  - <time lang="en" datetime="2021-01-06T12:00:00.000Z">(Update: Jan 6, 2021)</time>
   <a href="https://www.youtube.com/watch?v=iAWEOpkUz-U" target="_blank" rel="noopener noreferrer">
     Corvid changed name to Velo.
   </a>
