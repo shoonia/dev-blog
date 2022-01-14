@@ -1,9 +1,9 @@
 const { minify } = require('html-minifier-terser');
 const posthtml = require('posthtml');
 const { parser } = require('posthtml-parser');
-const _isAbsolute = require('is-absolute-url').default;
 const miniClassNames = require('mini-css-class-name');
-const { getClassNames, isPrismeJsClass } = require('./markdown');
+
+const { isPrismeJsClass } = require('./styles');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -13,13 +13,15 @@ const htmlMinifierOptions = {
   removeRedundantAttributes: true,
   removeEmptyAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  removeEmptyElements: true,
   minifyJS: true,
   minifyCSS: true,
 };
 
 const isString = (val) => typeof val === 'string';
-const isAbsoluteUrl = (url) => isString(url) && _isAbsolute(url);
+
+const isAbsoluteUrl = (url) => {
+  return isString(url) && /^[a-zA-Z][a-zA-Z\d+\-.]*?:/.test(url);
+};
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
@@ -38,7 +40,7 @@ const createId = (content) => {
   }
 };
 
-const transformer = (classList) => posthtml().use((tree) => {
+const transformer = (classCache, isProd) => posthtml().use((tree) => {
   const generate = miniClassNames();
 
   tree.walk((node) => {
@@ -48,24 +50,16 @@ const transformer = (classList) => posthtml().use((tree) => {
 
     switch (node.tag) {
       case 'span': {
-        if (isPrismeJsClass(node.attrs?.class)) {
+        if (isProd && isPrismeJsClass(node.attrs?.class)) {
           const list = node.attrs.class
             .split(' ')
-            .filter((i) => classList.has(i));
+            .filter((i) => classCache.has(i));
 
           if (list.length < 1) {
             return node.content;
           }
 
           node.attrs.class = list.join(' ');
-        }
-
-        return node;
-      }
-
-      case 'code': {
-        if (isString(node.attrs?.class)) {
-          node.attrs.class = '_';
         }
 
         return node;
@@ -80,6 +74,14 @@ const transformer = (classList) => posthtml().use((tree) => {
         return node;
       }
 
+      case 'code': {
+        if (isString(node.attrs?.class)) {
+          node.attrs.class = '_';
+        }
+
+        return node;
+      }
+
       case 'h2':
       case 'h3':
       case 'h4': {
@@ -89,14 +91,10 @@ const transformer = (classList) => posthtml().use((tree) => {
           const [a] = parser('<a class="anchor"/>');
           const [span] = parser(`<span id="${generate()}"/>`);
 
-          if (node.attrs == null) {
-            node.attrs = {};
-          }
-
           a.attrs.href = `#${id}`;
           a.attrs['aria-labelledby'] = span.attrs.id;
           span.content = node.content;
-          node.attrs.id = id;
+          node.attrs = { id, class: 'title' };
           node.content = [a, span];
         }
 
@@ -129,14 +127,33 @@ const transformer = (classList) => posthtml().use((tree) => {
         return node;
       }
 
-      case 'div': {
-        if (node.attrs?.class === 'gatsby-highlight') {
-          return node.content;
+      case 'time': {
+        const t = new Date(node.attrs.datetime);
+        const lang = node.attrs.lang ?? 'en';
+
+        if (t.toString() === 'Invalid Date') {
+          throw new Error(node);
         }
 
-        if (node.attrs?.id === 'gatsby-focus-wrapper') {
-          return node.content;
-        }
+        const iso = t.toISOString();
+
+        const a11y = t.toLocaleString(lang, {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+
+        const label = t.toLocaleString(lang, {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        });
+
+        node.attrs = { datetime: iso, title: a11y };
+        node.content ??= [label];
+
+        return node;
       }
     }
 
@@ -146,13 +163,12 @@ const transformer = (classList) => posthtml().use((tree) => {
   return tree;
 });
 
-exports.transformHtml = async (source) => {
-  const [minifiedSource, classList] = await Promise.all([
-    minify(source, htmlMinifierOptions),
-    getClassNames(),
-  ]);
+exports.transformHtml = async (source, isProd, classCache) => {
+  if (isProd) {
+    source = await minify(source, htmlMinifierOptions);
+  }
 
-  const { html } = await transformer(classList).process(minifiedSource);
+  const { html } = await transformer(classCache, isProd).process(source);
 
   return html;
 };

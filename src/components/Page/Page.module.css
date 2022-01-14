@@ -1,7 +1,0 @@
-@import "../../variables.css";
-
-.content {
-  max-width: $content-widht;
-  padding: 0 1.2em;
-  margin: 0 auto;
-}

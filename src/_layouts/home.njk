@@ -1,0 +1,25 @@
+{% include 'header.njk' %}
+
+<main>
+  <h1>Posts</h1>
+  <ul class="posts">
+
+  {% for post in collections.posts %}
+
+    <li class="post">
+      <article lang="{{ post.lang }}" itemscope>
+        <h2>
+          <a href="{{ post.permalink }}">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.description }}</p>
+        <time lang="{{ post.lang }}" datetime="{{ post.date }}"></time>
+        <span class="post-author"> - {{ post.author }}</span>
+      </article>
+    </li>
+
+  {% endfor %}
+
+  </ul>
+</main>
+
+{% include 'footer.njk' %}
