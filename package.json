@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "homepage": "https://shoonia.site",
   "scripts": {
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
+    "build": "eleventy",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -45,15 +45,13 @@
     "terser": "^5.10.0"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.3",
     "eslint": "^8.6.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react": "^7.28.0",
-    "simple-git-hooks": "^2.7.0",
     "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npm run lint"
   },
   "repository": {
     "type": "git",
