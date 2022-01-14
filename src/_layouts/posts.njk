@@ -1,29 +1,29 @@
----
-siteName: "Alexander Zaytsev | Web Development Blog"
----
-
 <!DOCTYPE html>
 <html lang="{{ lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="theme-color" content="#fff"/>
-  <meta name="description" content="{{ description }}"/>
-  <meta name="twitter:description" content="{{ description }}"/>
-  <meta name="twitter:title" content="{{ title }}"/>
-  <meta name="twitter:site" content="@_shoonia"/>
-  <meta name="twitter:card" content="summary"/>
-  <meta property="og:site_name" content="{{ siteName }}">
-  <meta property="og:image" content="{{ image }}"/>
-  {# <meta property="og:url" content=""> #}
-  {# <meta property="article:modified_time" content="2022-01-08T12:00:00.000Z"> #}
-  {# <meta property="article:published_time" content="2022-01-08T12:00:00.000Z"> #}
-  <meta property="og:type" content="article"/>
-  <meta property="og:description" content="{{ description }}"/>
-  <meta property="og:title" content="{{ title }}"/>
-  <meta itemprop="image" content="{{ image }}"/>
-  <meta itemprop="description" content="{{ description }}"/>
-  <meta itemprop="name" content="{{ title }}"/>
+  <meta name="theme-color" content="#fff">
+  <meta name="description" content="{{ description }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:site" content="@_shoonia">
+  <meta name="twitter:card" content="summary">
+  <meta property="og:site_name" content="{{ meta.title }}">
+
+  {% if image %}
+    <meta property="og:image" content="{{ image }}">
+    <meta itemprop="image" content="{{ image }}">
+  {% endif %}
+
+  <meta property="og:url" content="{{ permalink | siteUrl }}">
+  <meta property="article:modified_time" content="{{ modified }}">
+  <meta property="article:published_time" content="{{ date }}">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta itemprop="description" content="{{ description }}">
+  <meta itemprop="name" content="{{ title }}">
   <title>{{ title }}</title>
   <link rel="preload" href="/assets/firacode@5.2.0/firacode-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/styles.css">
@@ -32,10 +32,10 @@ siteName: "Alexander Zaytsev | Web Development Blog"
   <link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
   <link rel="webmention" href="https://webmention.io/shoonia.site/webmention">
   <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc">
-  {# <link rel="canonical" href=""> #}
-  {# <link rel="alternate" href="https://shoonia.site/rss.xml" type="application/rss+xml" title="{{ siteName }}"> #}
-  {# <link rel="alternate" href="https://shoonia.site/rss.json" type="application/json" title="{{ siteName }}"> #}
-  {# <link rel="sitemap" href="/sitemap.xml" type="application/xml" title="{{ siteName }}"> #}
+  <link rel="canonical" href="{{ permalink | siteUrl }}">
+  <link rel="alternate" href="{{ meta.homepage }}/rss.xml" type="application/rss+xml" title="{{ meta.title }}">
+  <link rel="alternate" href="{{ meta.homepage }}/rss.json" type="application/json" title="{{ meta.title }}">
+  <link rel="sitemap" href="/sitemap.xml" type="application/xml" title="{{ meta.title }}">
 </head>
 <body>
 

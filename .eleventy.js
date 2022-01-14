@@ -1,12 +1,21 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const { transformHtml } = require('./util/html');
 
-console.log(process.env.NODE_ENV)
+const { transformHtml } = require('./util/html');
+const pkg = require('./package.json');
 
 module.exports = (config) => {
   config.addPassthroughCopy('src/assets');
   config.addPassthroughCopy('src/*.!(md)');
-  config.addPassthroughCopy('src/_redirects')
+  config.addPassthroughCopy('src/_redirects');
+
+  config.addGlobalData('meta', {
+    title: pkg.title,
+    homepage: pkg.homepage,
+  });
+
+  config.addFilter('siteUrl', (content) => {
+    return new URL(content.replace(/\.html$/, ''), pkg.homepage).href;
+  });
 
   config.addPlugin(syntaxHighlight, {
     lineSeparator: '\n',
