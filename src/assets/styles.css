@@ -545,3 +545,20 @@ pre ::selection {
 .function-variable,
 .punctuation {}
 */
+
+/**
+ * Components
+ */
+
+.posts {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  list-style: none;
+}
+
+.post-author {
+  font-size: 14px;
+}

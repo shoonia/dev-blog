@@ -21,6 +21,13 @@ module.exports = (config) => {
     lineSeparator: '\n',
   });
 
+  config.addCollection('posts', (collection) => {
+    return collection.getAll()
+      .filter((i) => i.data.layout === 'posts.njk')
+      .map((i) => i.data)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  });
+
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {
       return transformHtml(content);

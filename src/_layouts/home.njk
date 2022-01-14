@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+{% include 'head.njk' %}
+<body>
+
+{% include 'header.njk' %}
+
+<main>
+  <ul class="posts">
+
+  {% for post in collections.posts %}
+
+    <li class="post">
+      <article lang="{{ post.lang }}" itemscope>
+        <h2>
+          <a href="{{ post.permalink }}">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.description }}</p>
+        <time lang="{{ post.lang }}" datetime="{{ post.date }}"></time>
+        <span class="post-author"> - {{ post.author }}</span>
+      </article>
+    </li>
+
+  {% endfor %}
+
+  </ul>
+</main>
+
+{% include 'footer.njk' %}
+
+{# <script async type="module" src="/assets/vendor.js?v=2"></script> #}
+</body>
+</html>
