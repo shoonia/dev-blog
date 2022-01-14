@@ -4,8 +4,7 @@
   ],
   "ignorePatterns": [
     "node_modules/",
-    "public/",
-    "static/"
+    "public/"
   ],
   "parserOptions": {
     "sourceType": "module",

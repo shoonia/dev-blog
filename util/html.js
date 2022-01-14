@@ -163,8 +163,8 @@ const transformer = () => posthtml().use((tree) => {
   return tree;
 });
 
-exports.transformHtml = async (source) => {
-  if (process.env.NODE_ENV === 'production') {
+exports.transformHtml = async (source, isProd) => {
+  if (isProd) {
     source = await minify(source, htmlMinifierOptions);
   }
 
