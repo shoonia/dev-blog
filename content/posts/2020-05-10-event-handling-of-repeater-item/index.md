@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/event-handling-of-repeater-item'
-template: 'default'
 date: '2020-05-10T12:00:00.000Z'
 modified: '2021-04-19T12:00:00.000Z'
 lang: 'en'

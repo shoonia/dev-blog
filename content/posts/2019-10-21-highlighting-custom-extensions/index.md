@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/highlighting-custom-extensions'
-template: 'default'
 date: '2019-10-21T12:00:00.000Z'
 modified: '2021-01-05T12:00:00.000Z'
 lang: 'ru'

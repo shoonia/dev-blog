@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/corvid-storeon'
-template: 'default'
 date: '2019-12-21T12:00:00.000Z'
 modified: '2021-04-25T12:00:00.000Z'
 lang: 'en'

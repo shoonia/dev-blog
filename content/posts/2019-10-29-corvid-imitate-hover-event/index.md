@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/corvid-imitate-hover-event'
-template: 'default'
 date: '2019-10-29T12:00:00.000Z'
 modified: '2022-01-03T12:00:00.000Z'
 lang: 'en'

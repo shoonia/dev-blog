@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/wix-velo-nodejs-version'
-template: 'default'
 date: '2021-06-14T12:00:00.000Z'
 modified: '2021-06-25T12:00:00.000Z'
 lang: 'en'

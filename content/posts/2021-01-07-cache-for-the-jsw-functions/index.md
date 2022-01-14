@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/cache-for-the-jsw-functions'
-template: 'default'
 date: '2021-01-07T12:00:00.000Z'
 modified: '2021-01-07T12:00:00.000Z'
 lang: 'en'

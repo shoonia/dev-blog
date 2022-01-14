@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/custom-pagination-with-unique-urls'
-template: 'default'
 date: '2021-09-08T12:00:00.000Z'
 modified: '2021-10-26T12:00:00.000Z'
 lang: 'en'

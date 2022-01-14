@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/promise-queue'
-template: 'default'
 date: '2021-09-27T12:00:00.000Z'
 modified: '2021-09-27T12:00:00.000Z'
 lang: 'en'

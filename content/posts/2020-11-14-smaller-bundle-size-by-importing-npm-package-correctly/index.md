@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/smaller-bundle-size-by-importing-npm-package-correctly'
-template: 'default'
 date: '2020-11-14T12:00:00.000Z'
 modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'

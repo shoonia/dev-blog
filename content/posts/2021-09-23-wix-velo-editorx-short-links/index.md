@@ -1,7 +1,5 @@
 ---
-publish: true
 path: '/wix-velo-editorx-short-links'
-template: 'default'
 date: '2021-09-23T12:00:00.000Z'
 modified: '2021-09-23T12:00:00.000Z'
 lang: 'en'
