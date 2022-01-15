@@ -10,13 +10,13 @@ const { resolve } = require('./resolve');
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
   collapseWhitespace: true,
-  keepClosingSlash: true,
   removeComments: true,
   removeRedundantAttributes: true,
   removeEmptyAttributes: true,
   removeStyleLinkTypeAttributes: true,
   minifyJS: true,
   minifyCSS: true,
+  sortAttributes: true,
 };
 
 const isString = (val) => typeof val === 'string';
