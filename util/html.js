@@ -4,7 +4,7 @@ const imgAutosize = require('posthtml-img-autosize');
 const { parser } = require('posthtml-parser');
 const miniClassNames = require('mini-css-class-name');
 
-const { isPrismeJsClass } = require('./styles');
+const { isPrismeJsToken } = require('./styles');
 const { resolve } = require('./resolve');
 
 /**@type {import('html-minifier-terser').Options} */
@@ -42,7 +42,7 @@ const createId = (content) => {
   }
 };
 
-const transformer = (classCache, isProd) => posthtml([
+const transformer = (classCache) => posthtml([
   imgAutosize({
     root: resolve('src'),
     processEmptySize: true,
@@ -56,22 +56,6 @@ const transformer = (classCache, isProd) => posthtml([
     }
 
     switch (node.tag) {
-      case 'span': {
-        if (isProd && isPrismeJsClass(node.attrs?.class)) {
-          const list = node.attrs.class
-            .split(' ')
-            .filter((i) => classCache.has(i));
-
-          if (list.length < 1) {
-            return node.content;
-          }
-
-          node.attrs.class = list.join(' ');
-        }
-
-        return node;
-      }
-
       case 'a': {
         if (isAbsoluteUrl(node.attrs?.href)) {
           node.attrs.target = '_blank';
@@ -95,11 +79,10 @@ const transformer = (classCache, isProd) => posthtml([
         const id = createId(node.content);
 
         if (isString(id)) {
-          const [a] = parser('<a class="anchor"/>');
-          const [span] = parser(`<span id="${generate()}"/>`);
+          const i = generate();
+          const [a] = parser(`<a href="#${id}" class="anchor" aria-labelledby="${i}"/>`);
+          const [span] = parser(`<span id="${i}"/>`);
 
-          a.attrs.href = `#${id}`;
-          a.attrs['aria-labelledby'] = span.attrs.id;
           span.content = node.content;
           node.attrs = { id, class: 'title' };
           node.content = [a, span];
@@ -168,14 +151,40 @@ const transformer = (classCache, isProd) => posthtml([
   });
 
   return tree;
+}).use((tree) => {
+  tree.match({ attrs: { class: true } }, (node) => {
+    const classList = node.attrs.class
+      .split(' ')
+      .reduce((acc, i) => {
+        if (classCache.has(i)) {
+          acc.push(classCache.get(i));
+        }
+
+        else if (i[0] === '_' ) {
+          acc.push(i);
+        }
+
+        return acc;
+      }, []);
+
+    if (classList.length < 1 && isPrismeJsToken(node)) {
+      return node.content;
+    }
+
+    node.attrs.class = classList.join(' ');
+
+    return node;
+  });
+
+  return tree;
 });
 
 exports.transformHtml = async (source, isProd, classCache) => {
-  if (isProd) {
-    source = await minify(source, htmlMinifierOptions);
-  }
+  const { html } = await transformer(classCache).process(source);
 
-  const { html } = await transformer(classCache, isProd).process(source);
+  if (isProd) {
+    return minify(html, htmlMinifierOptions);
+  }
 
   return html;
 };

@@ -2,16 +2,17 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const { transformHtml } = require('./util/html');
 const { sitemapAndRss } = require('./util/sitemapAndRss');
-const { vendorScript, vendorStyles } = require('./util/assets');
+const { compileAssets } = require('./util/assets');
 const { getPosts, getAllPages } = require('./util/filters');
 const { getClassNames } = require('./util/styles');
 const pkg = require('./package.json');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-let classCache = null;
-
 module.exports = (config) => {
+  let cssCache = undefined;
+  let classMap = undefined;
+
   config.addPassthroughCopy('src/assets');
   config.addPassthroughCopy('src/*.!(md)');
   config.addPassthroughCopy('src/_redirects');
@@ -30,7 +31,7 @@ module.exports = (config) => {
 
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {
-      return transformHtml(content, isProd, classCache);
+      return transformHtml(content, isProd, classMap);
     }
 
     return content;
@@ -42,15 +43,15 @@ module.exports = (config) => {
       await sitemapAndRss(items);
       return [];
     });
-
-    config.on('eleventy.before', async () => {
-      classCache = await getClassNames();
-    });
-
-    config.on('eleventy.after', async () => {
-      await Promise.all([vendorScript(), vendorStyles()]);
-    });
   }
+
+  config.on('eleventy.before', async () => {
+    [cssCache, classMap] = await getClassNames(isProd);
+  });
+
+  config.on('eleventy.after', async () => {
+    await compileAssets(isProd, cssCache);
+  });
 
   return {
     dir: {

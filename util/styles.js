@@ -1,27 +1,52 @@
 const { readFile } = require('fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const miniCssClassName = require('mini-css-class-name');
 
 const { resolve } = require('./resolve');
 
-exports.getClassNames = async () => {
-  const path = resolve('src/assets/styles.css');
+const miniClass = true;
 
-  const source = await readFile(path, 'utf8');
+exports.getClassNames = async (isProd) => {
+  const path = resolve('src/assets/styles.css');
+  const generate = miniCssClassName({ excludePattern: /_/ });
+  const cache = new Map();
 
   let jsonData;
 
-  await postcss(
-    postcssModules({
+  const source = await readFile(path, 'utf8');
+  const { css } = await postcss([
+    miniClass && postcssModules({
       getJSON(_, json) {
         jsonData = json;
       },
-    }),
-  ).process(source);
+      generateScopedName(name, filename) {
+        const key = filename + name;
 
-  return new Set(Object.keys(jsonData));
+        if (cache.has(key)) {
+          return cache.get(key);
+        }
+
+        const className = generate();
+
+        cache.set(key, className);
+
+        return className;
+      },
+    }),
+    isProd && cssnano(),
+    isProd && autoprefixer(),
+  ].filter(Boolean),
+  ).process(source, { map: false });
+
+  return [
+    css,
+    miniClass ? new Map(Object.entries(jsonData)) : { get: x => x, has: () => true },
+  ];
 };
 
-exports.isPrismeJsClass = (val) => {
-  return typeof val === 'string' && val.startsWith('token ');
+exports.isPrismeJsToken = (node) => {
+  return node.tag === 'span' && typeof node.attrs?.class === 'string' && node.attrs.class.startsWith('token ');
 };
