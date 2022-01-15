@@ -12,7 +12,7 @@ image: 'https://shoonia.site/assets/images/velo.png'
 <style>
   #run,
   #average {
-    font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 13px;
   }
 
@@ -72,13 +72,13 @@ image: 'https://shoonia.site/assets/images/velo.png'
     background-color: rgba(163,217,246,0.2);
   }
 
-  .tool-bar {
+  ._tool {
     display: flex;
     align-items: center;
     gap: 16px;
   }
 
-  .output_box {
+  ._output {
     margin-top: 16px;
   }
 </style>
@@ -87,7 +87,7 @@ image: 'https://shoonia.site/assets/images/velo.png'
 
 Online checker of performance benchmark for Velo [Secrets Manager](https://support.wix.com/en/article/velo-about-the-secrets-manager).
 
-<div class="tool-bar">
+<div class="_tool">
   <button type="button" id="run">
     Run
   </button>
@@ -96,7 +96,7 @@ Online checker of performance benchmark for Velo [Secrets Manager](https://suppo
   </output>
 </div>
 
-<div class="output_box">
+<div class="_output">
   <textarea
     id="output-area"
     spellcheck="false"

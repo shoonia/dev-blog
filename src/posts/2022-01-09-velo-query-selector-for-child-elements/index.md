@@ -67,12 +67,12 @@ For example, we want to apply styles for all `<span>` child elements into parent
 
 <div style="border:1px solid rgb(112 128 144/40%);border-left:6px solid rgb(112 128 144/40%);padding:0 1em">
   <style>
-  .content-box span {
+  ._box span {
     font-weight: bold;
     color: seagreen;
   }
   </style>
-  <p class="content-box">
+  <p class="_box">
     CSS selector work from <span>right</span> to <span>left</span>
   </p>
 </div>
