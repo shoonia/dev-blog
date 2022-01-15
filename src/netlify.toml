@@ -23,11 +23,6 @@
     Cache-Control = "public, max-age=31556952, immutable"
 
 [[headers]]
-  for = "*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31556952, immutable"
-
-[[headers]]
-  for = "*.css"
+  for = "/favicon.png"
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
