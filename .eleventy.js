@@ -16,12 +16,6 @@ module.exports = (config) => {
   config.addPassthroughCopy('src/*.!(md)');
   config.addPassthroughCopy('src/_redirects');
 
-  config.addGlobalData('meta', {
-    title: pkg.title,
-    description: pkg.description,
-    homepage: pkg.homepage,
-  });
-
   config.addFilter('siteUrl', (content) => {
     return new URL(content, pkg.homepage).href;
   });

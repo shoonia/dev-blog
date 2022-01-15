@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ lang }}">
 <head>
@@ -8,7 +7,7 @@
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:site" content="@_shoonia">
   <meta name="twitter:card" content="summary">
-  <meta property="og:site_name" content="{{ meta.title }}">
+  <meta property="og:site_name" content="{{ pkg.title }}">
   <meta property="og:url" content="{{ permalink | siteUrl }}">
   <meta property="og:type" content="article">
 
@@ -31,10 +30,10 @@
     <meta property="og:description" content="{{ description }}">
     <meta itemprop="description" content="{{ description }}">
   {% else %}
-    <meta name="description" content="{{ meta.description }}">
-    <meta name="twitter:description" content="{{ meta.description }}">
-    <meta property="og:description" content="{{ meta.description }}">
-    <meta itemprop="description" content="{{ meta.description }}">
+    <meta name="description" content="{{ pkg.description }}">
+    <meta name="twitter:description" content="{{ pkg.description }}">
+    <meta property="og:description" content="{{ pkg.description }}">
+    <meta itemprop="description" content="{{ pkg.description }}">
   {% endif %}
 
   {% if title %}
@@ -42,9 +41,9 @@
     <meta itemprop="name" content="{{ title }}">
     <title>{{ title }}</title>
   {% else %}
-    <meta property="og:title" content="{{ meta.title }}">
-    <meta itemprop="name" content="{{ meta.title  }}">
-    <title>{{ meta.title  }}</title>
+    <meta property="og:title" content="{{ pkg.title }}">
+    <meta itemprop="name" content="{{ pkg.title  }}">
+    <title>{{ pkg.title }}</title>
   {% endif %}
 
   <link rel="preload" href="/assets/firacode@5.2.0/firacode-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
@@ -55,10 +54,13 @@
   <link rel="webmention" href="https://webmention.io/shoonia.site/webmention">
   <link rel="pingback" href="https://webmention.io/shoonia.site/xmlrpc">
   <link rel="canonical" href="{{ permalink | siteUrl }}">
-  <link rel="alternate" href="{{ meta.homepage }}/rss.xml" type="application/rss+xml" title="{{ meta.title }}">
-  <link rel="alternate" href="{{ meta.homepage }}/rss.json" type="application/json" title="{{ meta.title }}">
-  <link rel="sitemap" href="/sitemap.xml" type="application/xml" title="{{ meta.title }}">
+  <link rel="alternate" href="{{ pkg.homepage }}/rss.xml" type="application/rss+xml" title="{{ pkg.title }}">
+  <link rel="alternate" href="{{ pkg.homepage }}/rss.json" type="application/json" title="{{ pkg.title }}">
+  <link rel="sitemap" href="/sitemap.xml" type="application/xml" title="{{ pkg.title }}">
   {{ head | safe }}
+  {% if jsonLd %}
+    <script type="application/ld+json">{{ jsonLd | safe }}</script>
+  {% endif %}
 </head>
 <body>
 <header>
