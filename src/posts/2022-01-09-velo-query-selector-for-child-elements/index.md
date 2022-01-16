@@ -49,7 +49,7 @@ For example, we want to apply styles for all `<span>` child elements into parent
 /* Find all <span> element in ".content-box" elements */
 .content-box span {
   font-weight: bold;
-  color: seagreen;
+  color: #2e7e8b;
 }
 </style>
 <!--
@@ -69,7 +69,7 @@ For example, we want to apply styles for all `<span>` child elements into parent
   <style>
   ._box span {
     font-weight: bold;
-    color: seagreen;
+    color: #2e7e8b;
   }
   </style>
   <p class="_box">

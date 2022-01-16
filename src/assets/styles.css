@@ -391,7 +391,7 @@ time {
 }
 
 pre {
-  color: rgb(255 255 255 / 80%);
+  color: #f8f8f2;
   background-color: #282c34;
   text-align: left;
   white-space: pre;
@@ -436,21 +436,22 @@ pre ::selection {
  * PrimsJS
  */
 
-.parameter {
-  color: rgb(255 255 255 / 80%);
-}
-
 .comment,
 .prolog,
 .doctype,
 .cdata {
-  color: #708090;
+  color: #7e93d4;
   text-shadow: 0 0 1px #000;
+  font-style: italic;
 }
 
 .selector,
 .tag {
   color: #f16372;
+}
+
+.language-css .property {
+  color: #e5c07b;
 }
 
 .boolean,
@@ -489,7 +490,7 @@ pre ::selection {
 .keyword,
 .important,
 .variable {
-  color: #d373e3;
+  color: #ff79c6;
 }
 
 .template-punctuation,
@@ -509,7 +510,7 @@ pre ::selection {
 /*
 .function-variable
 .literal-property
-.property
+.parameter
 .punctuation
 */
 
