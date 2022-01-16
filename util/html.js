@@ -1,4 +1,4 @@
-const { minify } = require('html-minifier-terser');
+const htmlnano = require('htmlnano');
 const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
 const { parser } = require('posthtml-parser');
@@ -7,18 +7,6 @@ const miniClassNames = require('mini-css-class-name');
 const { isPrismeJsToken } = require('./styles');
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
-
-/**@type {import('html-minifier-terser').Options} */
-const htmlMinifierOptions = {
-  collapseWhitespace: true,
-  removeComments: true,
-  removeRedundantAttributes: true,
-  removeEmptyAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  minifyJS: true,
-  minifyCSS: true,
-  sortAttributes: true,
-};
 
 const isString = (val) => typeof val === 'string';
 
@@ -122,6 +110,7 @@ const transformer = (classCache) => posthtml([
         node.attrs.width = '100%';
         node.attrs.loading = 'lazy';
         node.attrs.crossorigin = 'anonymous';
+        node.attrs.scrolling = 'no';
 
         return node;
       }
@@ -190,14 +179,49 @@ const transformer = (classCache) => posthtml([
   });
 
   return tree;
+}).use((tree) => {
+  if (!isProd) {
+    return tree;
+  }
+
+  return htmlnano({
+    collapseWhitespace: 'aggressive',
+    removeComments: 'aggressive',
+    removeEmptyAttributes: true,
+    collapseAttributeWhitespace: true,
+    deduplicateAttributeValues: true,
+    normalizeAttributeValues: true,
+    sortAttributes: true,
+    collapseBooleanAttributes: {
+      amphtml: true,
+    },
+    minifyJs: {
+      ecma: 2020,
+      module: true,
+      toplevel: true,
+      parse: {
+        ecma: 2020,
+      },
+      compress: {
+        ecma: 2020,
+        module: true,
+        comparisons: false,
+        inline: 2,
+        drop_console: true,
+        passes: 3,
+        toplevel: true,
+        pure_getters: true,
+      },
+      output: {
+        ecma: 2020,
+        comments: false,
+      },
+    },
+  })(tree);
 });
 
 exports.transformHtml = async (source, classCache) => {
   const { html } = await transformer(classCache).process(source);
-
-  if (isProd) {
-    return minify(html, htmlMinifierOptions);
-  }
 
   return html;
 };

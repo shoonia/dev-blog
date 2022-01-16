@@ -18,7 +18,7 @@
     "autoprefixer": "^10.4.2",
     "cssnano": "^5.0.15",
     "feed": "^4.2.2",
-    "html-minifier-terser": "^7.0.0-alpha.1",
+    "htmlnano": "^2.0.0",
     "mini-css-class-name": "^0.13.0",
     "postcss": "^8.4.5",
     "postcss-modules": "^4.3.0",

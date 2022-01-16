@@ -30,7 +30,7 @@ exports.getClassNames = async () => {
       generateScopedName: miniCssClassName({ excludePattern: /_/ }),
     }),
     isProd && cssnano(),
-    isProd && autoprefixer(),
+    isProd && autoprefixer({ flexbox: 'no-2009' }),
   ].filter(Boolean),
   ).process(source, { map: false, from });
 
@@ -41,5 +41,5 @@ exports.getClassNames = async () => {
 };
 
 exports.isPrismeJsToken = (node) => {
-  return !debug && node.tag === 'span' && typeof node.attrs?.class === 'string' && node.attrs.class.startsWith('token ');
+  return !debug && node.tag === 'span' && node.attrs?.class?.startsWith('token ');
 };
