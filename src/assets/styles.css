@@ -455,13 +455,14 @@ pre ::selection {
   color: #e5c07b;
 }
 
+.language-json .property,
 .boolean,
 .number,
 .constant,
 .symbol,
 .attr-name,
 .deleted {
-  color: #db975c;
+  color: #ffa657;
 }
 
 .regex,
