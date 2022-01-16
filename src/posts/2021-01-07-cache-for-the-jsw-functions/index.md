@@ -359,7 +359,6 @@ $w.onReady(() => {
     src="https://shoonia.wixsite.com/blog/cache"
     title="Embed Wix Site with the example of the cache the API calls"
     height="320"
-    scrolling="no"
   ></iframe>
 </figure>
 

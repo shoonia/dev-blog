@@ -342,7 +342,6 @@ $w.onReady(() => {
     src="https://shoonia.wixsite.com/blog/child-selector"
     title="Live Demo - child query selector for Velo elements"
     height="480"
-    scrolling="no"
   ></iframe>
 </figure>
 

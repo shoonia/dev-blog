@@ -328,7 +328,6 @@ export const createQueue = (maxLength = 1) => {
     src="https://alexanderz5.wixsite.com/promise-queue"
     title="Live Demo of Promise Queue in Velo"
     height="600"
-    scrolling="no"
   ></iframe>
 </figure>
 

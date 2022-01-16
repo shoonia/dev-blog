@@ -401,7 +401,6 @@ channel.on('@iframe/count', (count) => {
     src="https://shoonia.wixsite.com/blog/channel"
     title="Example of the Wix Site with the message channel to iFrame"
     height="250"
-    scrolling="no"
   ></iframe>
 </figure>
 
