@@ -39,7 +39,7 @@ exports.getClassNames = async (isProd) => {
     isProd && cssnano(),
     isProd && autoprefixer(),
   ].filter(Boolean),
-  ).process(source, { map: false });
+  ).process(source, { map: false, from: '' });
 
   return [
     css,
