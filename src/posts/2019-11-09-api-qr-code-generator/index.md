@@ -39,7 +39,7 @@ image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b984
 
 Залишилося тільки опублікувати сайт. В лівій верхній частині сайту тиснемо на кнопку **"Опублікувати" (Publish)**. Обираємо назву для сайту і отримуємо таке посилання:
 
-```
+```text
 https://<USER_NAME>.wixsite.com/<SITE_NAME>
 ```
 
@@ -71,7 +71,7 @@ export function get_qrcode(request) {
 
 Зараз ми можемо відправляти GET-запити на `_functions/qrcode`. Повна адреса буде такою:
 
-```
+```text
 https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 ```
 
@@ -96,7 +96,7 @@ export function get_qrcode(request) {
 
 Тепер необхідно опублікувати наші зміни, тиснемо на кнопку **"Опублікувати" (Publish)** і переходимо за адресою:
 
-```
+```text
 https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode
 ```
 
@@ -122,7 +122,7 @@ export function get_qrcode(request) {
 }
 ```
 
-```
+```text
 https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode?text=Hello
 ```
 
