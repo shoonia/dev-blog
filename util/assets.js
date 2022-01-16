@@ -1,23 +1,27 @@
 const { readFile, writeFile } = require('fs/promises');
 const { minify } = require('terser');
 
-const { resolve } = require('./resolve');
+const { isProd } = require('./env');
+const { rootResolve } = require('./halpers');
 
-const script = resolve('public/assets/vendor.js');
-const styles = resolve('public/assets/styles.css');
+const jsFrom = rootResolve('src/assets/vendor.js');
+const jsTo = rootResolve('public/assets/vendor.js');
+const cssTo = rootResolve('public/assets/styles.css');
 
-exports.compileAssets = async (isProd, css) => {
-  const tasks = [writeFile(styles, css)];
+const minifyJs = async () => {
+  const source = await readFile(jsFrom, 'utf8');
+  const { code } = await minify(source);
+
+  await writeFile(jsTo, code);
+};
+
+exports.compileAssets = async (css) => {
+  const tasks = [
+    writeFile(cssTo, css),
+  ];
 
   if (isProd) {
-    tasks.push(
-      (async () => {
-        const source = await readFile(script, 'utf8');
-        const { code } = await minify(source);
-
-        await writeFile(script, code);
-      })(),
-    );
+    tasks.push(minifyJs());
   }
 
   await Promise.all(tasks);

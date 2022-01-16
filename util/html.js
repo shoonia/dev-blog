@@ -5,7 +5,8 @@ const { parser } = require('posthtml-parser');
 const miniClassNames = require('mini-css-class-name');
 
 const { isPrismeJsToken } = require('./styles');
-const { resolve } = require('./resolve');
+const { rootResolve } = require('./halpers');
+const { isProd, debug } = require('./env');
 
 /**@type {import('html-minifier-terser').Options} */
 const htmlMinifierOptions = {
@@ -29,6 +30,14 @@ const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
 };
 
+class PostHtmlError extends Error {
+  constructor(node) {
+    super();
+    this.message = `PostHtmlError: <${node.tag}/>`;
+    this.node = node;
+  }
+}
+
 const createId = (content) => {
   if (Array.isArray(content)) {
     const title = content
@@ -44,7 +53,7 @@ const createId = (content) => {
 
 const transformer = (classCache) => posthtml([
   imgAutosize({
-    root: resolve('src'),
+    root: rootResolve('src'),
     processEmptySize: true,
   }),
 ]).use((tree) => {
@@ -93,7 +102,7 @@ const transformer = (classCache) => posthtml([
 
       case 'img': {
         if (!isString(node.attrs?.alt)) {
-          throw new Error(node);
+          throw new PostHtmlError(node);
         }
 
         if (isAnonymous(node.attrs.src)) {
@@ -122,26 +131,26 @@ const transformer = (classCache) => posthtml([
         const lang = node.attrs.lang ?? 'en';
 
         if (t.toString() === 'Invalid Date') {
-          throw new Error(node);
+          throw new PostHtmlError(node);
         }
 
-        const iso = t.toISOString();
+        node.attrs = {
+          datetime: t.toISOString(),
+          title: t.toLocaleString(lang, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }),
+        };
 
-        const a11y = t.toLocaleString(lang, {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
-
-        const label = t.toLocaleString(lang, {
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-        });
-
-        node.attrs = { datetime: iso, title: a11y };
-        node.content ??= [label];
+        node.content ??= [
+          t.toLocaleString(lang, {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          }),
+        ];
 
         return node;
       }
@@ -152,6 +161,10 @@ const transformer = (classCache) => posthtml([
 
   return tree;
 }).use((tree) => {
+  if (debug) {
+    return tree;
+  }
+
   tree.match({ attrs: { class: true } }, (node) => {
     const classList = node.attrs.class
       .split(' ')
@@ -160,7 +173,7 @@ const transformer = (classCache) => posthtml([
           acc.push(classCache.get(i));
         }
 
-        else if (i[0] === '_' ) {
+        else if (i[0] === '_') {
           acc.push(i);
         }
 
@@ -179,7 +192,7 @@ const transformer = (classCache) => posthtml([
   return tree;
 });
 
-exports.transformHtml = async (source, isProd, classCache) => {
+exports.transformHtml = async (source, classCache) => {
   const { html } = await transformer(classCache).process(source);
 
   if (isProd) {

@@ -3,23 +3,19 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const { transformHtml } = require('./util/html');
 const { sitemapAndRss } = require('./util/sitemapAndRss');
 const { compileAssets } = require('./util/assets');
-const { getPosts, getAllPages } = require('./util/filters');
+const { getPosts } = require('./util/filters');
 const { getClassNames } = require('./util/styles');
-const pkg = require('./package.json');
-
-const isProd = process.env.NODE_ENV === 'production';
+const { siteUrl } = require('./util/halpers');
+const { isProd } = require('./util/env');
 
 module.exports = (config) => {
-  let cssCache = undefined;
-  let classMap = undefined;
+  let cssCache;
+  let classMap;
 
   config.addPassthroughCopy('src/assets');
   config.addPassthroughCopy('src/*.!(md)');
   config.addPassthroughCopy('src/_redirects');
-
-  config.addFilter('siteUrl', (content) => {
-    return new URL(content, pkg.homepage).href;
-  });
+  config.addFilter('siteUrl', siteUrl);
 
   config.addPlugin(syntaxHighlight, {
     lineSeparator: '\n',
@@ -31,26 +27,25 @@ module.exports = (config) => {
 
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {
-      return transformHtml(content, isProd, classMap);
+      return transformHtml(content, classMap);
     }
 
     return content;
   });
 
   if (isProd) {
-    config.addCollection('__build', async (collection) => {
-      const items = getAllPages(collection.getAll());
-      await sitemapAndRss(items);
+    config.addCollection('__rss__sitemap', async (collection) => {
+      await sitemapAndRss(getPosts(collection.getAll()));
       return [];
     });
   }
 
   config.on('eleventy.before', async () => {
-    [cssCache, classMap] = await getClassNames(isProd);
+    [cssCache, classMap] = await getClassNames();
   });
 
   config.on('eleventy.after', async () => {
-    await compileAssets(isProd, cssCache);
+    await compileAssets(cssCache);
   });
 
   return {

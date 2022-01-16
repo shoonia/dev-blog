@@ -5,19 +5,25 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const miniCssClassName = require('mini-css-class-name/postcss-modules');
 
-const { resolve } = require('./resolve');
+const { rootResolve } = require('./halpers');
+const { isProd, debug } = require('./env');
 
-const miniClass = true;
+const from = rootResolve('src/assets/styles.css');
 
-exports.getClassNames = async (isProd) => {
-  const path = resolve('src/assets/styles.css');
+exports.getClassNames = async () => {
+  const source = await readFile(from, 'utf8');
+
+  if (debug) {
+    return [
+      source,
+      { get: x => x, has: () => true },
+    ];
+  }
 
   let jsonData;
 
-  const source = await readFile(path, 'utf8');
-
   const { css } = await postcss([
-    miniClass && postcssModules({
+    postcssModules({
       getJSON(_, json) {
         jsonData = json;
       },
@@ -26,14 +32,14 @@ exports.getClassNames = async (isProd) => {
     isProd && cssnano(),
     isProd && autoprefixer(),
   ].filter(Boolean),
-  ).process(source, { map: false, from: '' });
+  ).process(source, { map: false, from });
 
   return [
     css,
-    miniClass ? new Map(Object.entries(jsonData)) : { get: x => x, has: () => true },
+    new Map(Object.entries(jsonData)),
   ];
 };
 
 exports.isPrismeJsToken = (node) => {
-  return node.tag === 'span' && typeof node.attrs?.class === 'string' && node.attrs.class.startsWith('token ');
+  return !debug && node.tag === 'span' && typeof node.attrs?.class === 'string' && node.attrs.class.startsWith('token ');
 };

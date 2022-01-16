@@ -7,10 +7,3 @@ exports.getPosts = (items) => {
     .map(map)
     .sort(sort);
 };
-
-exports.getAllPages = (items) => {
-  return items
-    .filter((i) => i.data.layout !== 'empty.njk')
-    .map(map)
-    .sort(sort);
-};
