@@ -59,7 +59,7 @@ module.exports = (config) => {
       output: 'public',
       includes: '_includes',
       layouts: '_layouts',
-      // data: 'data',
+      data: '_data',
     },
     dataTemplateEngine: 'njk',
     markdownTemplateEngine: false,

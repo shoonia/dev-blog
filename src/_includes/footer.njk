@@ -18,6 +18,8 @@
   </span>
 </footer>
 
-<script async type="module" src="/assets/vendor.js?v=2"></script>
+{% if enviroment.nodeEnv != 'development' %}
+  <script async type="module" src="/assets/vendor.js?v={{ enviroment.jsHash }}"></script>
+{% endif %}
 </body>
 </html>
