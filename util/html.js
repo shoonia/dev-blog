@@ -1,7 +1,6 @@
 const htmlnano = require('htmlnano');
 const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
-const { parser } = require('posthtml-parser');
 const miniClassNames = require('mini-css-class-name');
 
 const { isPrismeJsToken } = require('./styles');
@@ -23,6 +22,14 @@ class PostHtmlError extends Error {
     super();
     this.message = `PostHtmlError: <${node.tag}/>`;
     this.node = node;
+  }
+}
+
+class Node {
+  constructor(tag, attrs, content) {
+    this.tag = tag;
+    this.attrs = attrs;
+    this.content = content;
   }
 }
 
@@ -77,10 +84,15 @@ const transformer = (classCache) => posthtml([
 
         if (isString(id)) {
           const i = generate();
-          const [a] = parser(`<a href="#${id}" class="anchor" aria-labelledby="${i}"/>`);
-          const [span] = parser(`<span id="${i}"/>`);
 
-          span.content = node.content;
+          const a = new Node('a', {
+            href: `#${id}`,
+            class: 'anchor',
+            'aria-labelledby': i,
+          });
+
+          const span = new Node('span', { id: i }, node.content);
+
           node.attrs = { id, class: 'title' };
           node.content = [a, span];
         }
@@ -148,8 +160,6 @@ const transformer = (classCache) => posthtml([
     return node;
   });
 
-  return tree;
-}).use((tree) => {
   if (debug) {
     return tree;
   }
@@ -178,8 +188,6 @@ const transformer = (classCache) => posthtml([
     return node;
   });
 
-  return tree;
-}).use((tree) => {
   if (!isProd) {
     return tree;
   }
