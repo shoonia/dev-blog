@@ -13,7 +13,6 @@
 
   {% if image %}
     <meta property="og:image" content="{{ image }}">
-    <meta itemprop="image" content="{{ image }}">
   {% endif %}
 
   {% if date %}
@@ -28,21 +27,17 @@
     <meta name="description" content="{{ description }}">
     <meta name="twitter:description" content="{{ description }}">
     <meta property="og:description" content="{{ description }}">
-    <meta itemprop="description" content="{{ description }}">
   {% else %}
     <meta name="description" content="{{ pkg.description }}">
     <meta name="twitter:description" content="{{ pkg.description }}">
     <meta property="og:description" content="{{ pkg.description }}">
-    <meta itemprop="description" content="{{ pkg.description }}">
   {% endif %}
 
   {% if title %}
     <meta property="og:title" content="{{ title }}">
-    <meta itemprop="name" content="{{ title }}">
     <title>{{ title }}</title>
   {% else %}
     <meta property="og:title" content="{{ pkg.title }}">
-    <meta itemprop="name" content="{{ pkg.title }}">
     <title>{{ pkg.title }}</title>
   {% endif %}
 
