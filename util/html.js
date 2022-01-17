@@ -18,14 +18,6 @@ const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
 };
 
-class PostHtmlError extends Error {
-  constructor(node) {
-    super();
-    this.message = `PostHtmlError: <${node.tag}/>`;
-    this.node = node;
-  }
-}
-
 class Node {
   constructor(tag, attrs, content) {
     this.tag = tag;
@@ -103,7 +95,7 @@ const transformer = (classCache) => posthtml([
 
       case 'img': {
         if (!isString(node.attrs?.alt)) {
-          throw new PostHtmlError(node);
+          throw new Error(node);
         }
 
         if (isAnonymous(node.attrs.src)) {
@@ -133,7 +125,7 @@ const transformer = (classCache) => posthtml([
         const lang = node.attrs.lang ?? 'en';
 
         if (t.toString() === 'Invalid Date') {
-          throw new PostHtmlError(node);
+          throw new Error(node);
         }
 
         node.attrs = {
