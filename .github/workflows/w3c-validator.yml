@@ -20,4 +20,4 @@ jobs:
       - run: npm ci
       - run: npm i node-w3c-validator --no-save
       - run: npm run prod:build
-      - run: node-w3c-validator -i ./public/**/*.html --exclude ./public/google*.html -f lint -evH
+      - run: npx node-w3c-validator -i ./public/**/*.html --exclude ./public/google*.html -f lint -evH
