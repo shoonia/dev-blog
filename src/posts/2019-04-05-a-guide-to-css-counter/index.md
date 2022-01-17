@@ -416,7 +416,7 @@ Vue — это прогрессивный фреймворк для создан
 - [Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)
 - [Like this on Instagram](https://www.instagram.com/p/BvXHR0phDFW/)
 
-**Спасибо за прочтение ❤**
+**Спасибо за прочтение ❤️**
 
 ---
 

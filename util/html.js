@@ -6,6 +6,7 @@ const miniClassNames = require('mini-css-class-name');
 const { isPrismeJsToken } = require('./styles');
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
+const { a11yEmoji } = require('./emoji');
 
 const isString = (val) => typeof val === 'string';
 
@@ -56,7 +57,7 @@ const transformer = (classCache) => posthtml([
 
   tree.walk((node) => {
     if (isString(node)) {
-      return node;
+      return a11yEmoji(node);
     }
 
     switch (node.tag) {
