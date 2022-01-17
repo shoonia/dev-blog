@@ -6,7 +6,7 @@
   "homepage": "https://shoonia.site",
   "scripts": {
     "build": "eleventy",
-    "local:build": "NODE_ENV=production eleventy",
+    "prod:build": "NODE_ENV=production eleventy",
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
     "lint": "eslint '**/*.js' && stylelint 'src/**/*.css'",
     "clean": "rm -rf public",
