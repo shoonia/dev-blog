@@ -41,7 +41,7 @@ Online checker of current Node.js version on Velo backend.
 
 ## Tools
 
-- [Secret Manager Benchmark](/secret-manager-benchmark)
+- [Secret Manager Benchmark](/secret-manager-benchmark/)
 - [Online generator and validator for Velo `jobs.config` scheduling file](https://shoonia.github.io/jobs.config/)
 
 <script>

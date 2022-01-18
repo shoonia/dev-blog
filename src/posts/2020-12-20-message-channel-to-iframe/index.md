@@ -640,6 +640,6 @@ on(type, cb) {
 
 ## Posts
 
-- [Side effect wix-data saving methods](/side-effect-data-saving-methods)
-- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly)
-- [Event handling of Repeater Item](/event-handling-of-repeater-item)
+- [Side effect wix-data saving methods](/side-effect-data-saving-methods/)
+- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly/)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item/)

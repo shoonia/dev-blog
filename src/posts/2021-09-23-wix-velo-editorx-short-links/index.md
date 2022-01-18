@@ -42,6 +42,6 @@ A set of short links for creating a new site on Wix, Velo, and <span class="_now
 
 ## Posts
 
-- [Custom pagination with unique URLs](/custom-pagination-with-unique-urls)
-- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers)
-- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions)
+- [Custom pagination with unique URLs](/custom-pagination-with-unique-urls/)
+- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
+- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions/)

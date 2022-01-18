@@ -452,6 +452,6 @@ export const memo = (func, maxAge = Infinity) => {
 
 ## Posts
 
-- [Message channel to iFrame](/message-channel-to-iframe)
-- [Side effect wix-data saving methods](/side-effect-data-saving-methods)
-- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly)
+- [Message channel to iFrame](/message-channel-to-iframe/)
+- [Side effect wix-data saving methods](/side-effect-data-saving-methods/)
+- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly/)

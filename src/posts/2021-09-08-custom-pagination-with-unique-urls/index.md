@@ -375,6 +375,6 @@ If you have a question then welcome to [discussion on Velo forum](https://www.wi
 
 ## Posts
 
-- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers)
-- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions)
-- [Message channel to iFrame](/message-channel-to-iframe)
+- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
+- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions/)
+- [Message channel to iFrame](/message-channel-to-iframe/)

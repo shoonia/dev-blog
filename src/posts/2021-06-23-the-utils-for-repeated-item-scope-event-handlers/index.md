@@ -13,7 +13,7 @@ image: 'https://shoonia.site/assets/images/velo.png'
 
 *npm library with utils for event handlers in Repeater*
 
-In the article ["Event handling of Repeater Item"](/event-handling-of-repeater-item), we considered how to handle events in the repeater items and why we shouldn't nest event handler inside the Repeater loop. There we created a code snippet that encapsulates the logic for receiving item selector and item data.
+In the article ["Event handling of Repeater Item"](/event-handling-of-repeater-item/), we considered how to handle events in the repeater items and why we shouldn't nest event handler inside the Repeater loop. There we created a code snippet that encapsulates the logic for receiving item selector and item data.
 
 Copying and pasting the snippet of code isn't comfortable. Therefore I moved these little helpers to npm package [repeater-scope](https://github.com/shoonia/repeater-scope). You can install this package using [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
 
@@ -121,6 +121,6 @@ I hope this small library will helpful in your projects too.
 
 ## Posts
 
-- [Event handling of Repeater Item](/event-handling-of-repeater-item)
-- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
-- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item/)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
+- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions/)

@@ -291,7 +291,7 @@ export const createScope = (getData) => (event) => {
 
 ## Posts
 
-- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers)
-- [A tiny event-based state manager Storeon for Velo](/corvid-storeon)
-- [Using HTML template to the better performance](/html-template-in-corvid)
-- [Imitating hover event on repeater container](/corvid-imitate-hover-event)
+- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
+- [A tiny event-based state manager Storeon for Velo](/corvid-storeon/)
+- [Using HTML template to the better performance](/html-template-in-corvid/)
+- [Imitating hover event on repeater container](/corvid-imitate-hover-event/)

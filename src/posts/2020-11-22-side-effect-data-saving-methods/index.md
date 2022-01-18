@@ -143,6 +143,6 @@ When the platform is not a black box for you, this saves more time than you have
 
 ## Posts
 
-- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly)
-- [Event handling of Repeater Item](/event-handling-of-repeater-item)
-- [A tiny event-based state manager Storeon for Velo](/corvid-storeon)
+- [Smaller bundle size by importing npm package correctly](/smaller-bundle-size-by-importing-npm-package-correctly/)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item/)
+- [A tiny event-based state manager Storeon for Velo](/corvid-storeon/)

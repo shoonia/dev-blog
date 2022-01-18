@@ -177,5 +177,5 @@ export async function getBenchmark() {
 
 ## Tools
 
-- [Current Node.js version on Velo by Wix](/wix-velo-nodejs-version)
+- [Current Node.js version on Velo by Wix](/wix-velo-nodejs-version/)
 - [Online generator and validator for Velo `jobs.config` scheduling file](https://shoonia.github.io/jobs.config/)
