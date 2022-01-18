@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: 16
           cache: npm
-        env:
-          NODE_ENV: production
 
       - name: Setup Java
         uses: actions/setup-java@v1
