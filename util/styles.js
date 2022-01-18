@@ -1,4 +1,4 @@
-const { readFile } = require('fs/promises');
+const { readFile, writeFile } = require('fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
 const autoprefixer = require('autoprefixer');
@@ -8,10 +8,11 @@ const miniCssClassName = require('mini-css-class-name/postcss-modules');
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
 
-const from = rootResolve('src/assets/styles.css');
+const cssFrom = rootResolve('src/assets/styles.css');
+const cssTo = rootResolve('public/assets/styles.css');
 
-exports.getClassNames = async () => {
-  const source = await readFile(from, 'utf8');
+exports.compileCss = async () => {
+  const source = await readFile(cssFrom, 'utf8');
 
   if (debug) {
     return [
@@ -32,7 +33,7 @@ exports.getClassNames = async () => {
     isProd && cssnano(),
     isProd && autoprefixer({ flexbox: 'no-2009' }),
   ].filter(Boolean),
-  ).process(source, { map: false, from });
+  ).process(source, { map: false, from: cssFrom });
 
   return [
     css,
@@ -40,6 +41,6 @@ exports.getClassNames = async () => {
   ];
 };
 
-exports.isPrismeJsToken = (node) => {
-  return !debug && node.tag === 'span' && node.attrs?.class?.startsWith('token ');
+exports.writeCss = async (css) => {
+  await writeFile(cssTo, css);
 };

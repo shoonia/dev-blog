@@ -3,7 +3,6 @@ const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
 const miniClassNames = require('mini-css-class-name');
 
-const { isPrismeJsToken } = require('./styles');
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
 const { a11yEmoji } = require('./emoji');
@@ -16,6 +15,10 @@ const isAbsoluteUrl = (url) => {
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
+};
+
+const isPrismeJsToken = (node) => {
+  return !debug && node.tag === 'span' && node.attrs?.class?.startsWith('token ');
 };
 
 class Node {

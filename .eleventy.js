@@ -2,9 +2,9 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const { transformHtml } = require('./util/html');
 const { sitemapAndRss } = require('./util/sitemapAndRss');
-const { compileAssets } = require('./util/assets');
 const { getPosts } = require('./util/filters');
-const { getClassNames } = require('./util/styles');
+const { compileCss, writeCss } = require('./util/styles');
+const { compileJs } = require('./util/scripts');
 const { siteUrl } = require('./util/halpers');
 const { isProd } = require('./util/env');
 
@@ -41,11 +41,11 @@ module.exports = (config) => {
   }
 
   config.on('eleventy.before', async () => {
-    [cssCache, classMap] = await getClassNames();
+    [cssCache, classMap] = await compileCss();
   });
 
   config.on('eleventy.after', async () => {
-    await compileAssets(cssCache);
+    await Promise.all([writeCss(cssCache), compileJs()]);
   });
 
   return {
