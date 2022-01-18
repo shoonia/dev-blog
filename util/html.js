@@ -5,12 +5,12 @@ const miniClassNames = require('mini-css-class-name');
 
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
-const { a11yEmoji } = require('./emoji');
+const { a11yEmoji, autoLink } = require('./stringParse');
 
 const isString = (val) => typeof val === 'string';
 
 const isAbsoluteUrl = (url) => {
-  return isString(url) && /^[a-zA-Z][a-zA-Z\d+\-.]*?:/.test(url);
+  return isString(url) && url.startsWith('https:');
 };
 
 const isAnonymous = (url) => {
@@ -19,6 +19,10 @@ const isAnonymous = (url) => {
 
 const isPrismeJsToken = (node) => {
   return !debug && node.tag === 'span' && node.attrs?.class?.startsWith('token ');
+};
+
+const isPrismeComment = (node) => {
+  return node.tag === 'span' && node.attrs?.class === 'token comment';
 };
 
 class Node {
@@ -53,6 +57,10 @@ const transformer = (classCache) => posthtml([
   tree.walk((node) => {
     if (isString(node)) {
       return a11yEmoji(node);
+    }
+
+    if (isPrismeComment(node)) {
+      node.content = node.content?.map((i) => autoLink(i));
     }
 
     switch (node.tag) {
@@ -98,7 +106,7 @@ const transformer = (classCache) => posthtml([
 
       case 'img': {
         if (!isString(node.attrs?.alt)) {
-          throw new Error(node);
+          throw new Error('\n\n<img /> must have an "alt" attribute\n\n' + JSON.stringify(node, null, 2));
         }
 
         if (isAnonymous(node.attrs.src)) {
@@ -124,11 +132,11 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'time': {
-        const t = new Date(node.attrs.datetime);
+        const t = new Date(node.attrs?.datetime ?? NaN);
         const lang = node.attrs.lang ?? 'en';
 
         if (t.toString() === 'Invalid Date') {
-          throw new Error(node);
+          throw new Error('\n\n<time /> have invalid "datetime" attribute\n\n' + JSON.stringify(node, null, 2));
         }
 
         node.attrs = {
