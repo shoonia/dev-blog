@@ -65,7 +65,7 @@ const transformer = (classCache) => posthtml([
 
     switch (node.tag) {
       case 'a': {
-        if (isAbsoluteUrl(node.attrs?.href)) {
+        if (isAbsoluteUrl(node.attrs?.href) && !isString(node.attrs.rel)) {
           node.attrs.target = '_blank';
           node.attrs.rel = 'noopener noreferrer';
         }
@@ -123,10 +123,12 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'iframe': {
-        node.attrs.width = '100%';
-        node.attrs.loading = 'lazy';
-        node.attrs.crossorigin = 'anonymous';
-        node.attrs.scrolling = 'no';
+        Object.assign(node.attrs, {
+          width: '100%',
+          loading: 'lazy',
+          crossorigin: 'anonymous',
+          scrolling: 'no',
+        });
 
         return node;
       }
@@ -219,7 +221,6 @@ const transformer = (classCache) => posthtml([
         module: true,
         comparisons: false,
         inline: 2,
-        drop_console: true,
         passes: 3,
         toplevel: true,
         pure_getters: true,
