@@ -464,3 +464,13 @@ If you have any questions, feel free to ask me on my <a href="https://twitter.co
 - [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
 - [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
 - [Short links to create a new Wix / Editor X site editor](/wix-velo-editorx-short-links/)
+
+<script>
+console.log(`%c
+         (__)
+         (oo)
+  /-------()  hello
+ / |     ||
+*  ||----||
+   ^^    ^^`, 'font-family:monospace;color:green');
+</script>
