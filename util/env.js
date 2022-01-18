@@ -1,5 +1,7 @@
 const { fileHashSync } = require('./halpers');
 
+console.log('\n Start:', process.env.NODE_ENV, '\n');
+
 module.exports = {
   nodeEnv: process.env.NODE_ENV,
   isProd: process.env.NODE_ENV === 'production',

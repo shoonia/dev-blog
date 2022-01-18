@@ -8,18 +8,24 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
       - uses: actions/setup-node@v2
         with:
           node-version: 16
           cache: npm
+        env:
+          NODE_ENV: production
 
+      - name: Setup Java
       - uses: actions/setup-java@v1
         with:
-          java-version: 8
+          java-version: 17
           architecture: x64
 
       - run: npm ci
       - run: npm i node-w3c-validator --no-save
-      - run: npm run prod:build
+      - run: npm run build
       - run: npx node-w3c-validator -i ./public/**/*.html --exclude ./public/google*.html -f lint -evH
