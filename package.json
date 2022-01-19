@@ -18,7 +18,7 @@
     "cssnano": "^5.0.15",
     "emoji-regex": "^10.0.0",
     "feed": "^4.2.2",
-    "gemoji": "^6.1.0",
+    "gemoji": "^7.1.0",
     "htmlnano": "^2.0.0",
     "mini-css-class-name": "^0.13.0",
     "postcss": "^8.4.5",
