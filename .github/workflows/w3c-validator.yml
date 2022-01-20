@@ -2,10 +2,9 @@ name: The W3C Markup Validation
 
 on:
   pull_request:
-  push:
 
 jobs:
-  validate:
+  validation:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
