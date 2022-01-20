@@ -6,7 +6,7 @@ lang: 'en'
 title: 'Velo by Wix: Utils for repeated item event handlers v2.0'
 description: "It's my third post about event handling in repeated items. I show you a way that always has been in the documentation. I'm surprised why I didn't notice it before"
 author: 'Alexander Zaytsev'
-image: ''
+image: '/assets/images/i300x300.jpg'
 ---
 
 <script type="cow/moo">
@@ -26,8 +26,16 @@ image: ''
 
 ![concept art by television serial - tales from the loop](/assets/images/a.jpg)
 
+Yes, and again the event handling in Repeater. For me, the event handling of the repeated items was maybe the first confusion in my Velo projects.
+
+I wrote two articles about it, you can find them in this blog:
+
 1. [Event handling of Repeater Item](/event-handling-of-repeater-item/) - here we considered how to handle events in the repeated items and we created a primitive helper function.
-2. [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/) - here we created a more smart code snippet that can automatically receive parent Repeater data from the event was fired from.
+2. [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/) - here we created a more smart code snippet that can automatically receive parent Repeater item data from the event.
+
+## Method forItems()
+
+The Repeater has the [`forItems()`](https://www.wix.com/velo/reference/$w/repeater/foritems) method that allows us to run specific repeated items with the given list of IDs. I have never use it before. Previously, if I wanted to rerender a Repeater I used the [`forEachItem()`](https://www.wix.com/velo/reference/$w/repeater/foreachitem) method.
 
 <figure>
   <figcaption>
@@ -37,6 +45,8 @@ image: ''
     Use the <code>forItems()</code> function to run a function on a specified list of repeated items. You can use the callback function to update or pull information from the specified repeated items
   </blockquote>
 </figure>
+
+In the documentation, we can see the next example.
 
 <figure>
   <figcaption>
@@ -74,22 +84,12 @@ image: ''
   $w.onReady(() => {
     $w('#repeatedButton').onClick((event) => {
       $w('#myRepeater').forItems([event.context.itemId], ($item, itemData, index) => {
+        // Update a target repeater item
         $item('#repeatedText').text = itemData.title;
       });
     });
   });
   ```
-</figure>
-
-<figure>
-  <figcaption>
-    <strong>Velo Package Manager</strong>
-  </figcaption>
-  <img
-    src="/assets/images/install-repeater-scope.jpeg"
-    alt="Installing an npm package in Velo editor"
-    loading="lazy"
-  />
 </figure>
 
 ## Resources
@@ -100,3 +100,8 @@ image: ''
 - [Retrieve Repeater Item Data When Clicked](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
 
 ## Posts
+
+- [Query selector for child elements](/velo-query-selector-for-child-elements/)
+- [Promise Queue](/promise-queue/)
+- [Event handling of Repeater Item](/event-handling-of-repeater-item/)
+- [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
