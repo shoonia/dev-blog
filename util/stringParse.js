@@ -15,7 +15,7 @@ exports.a11yEmoji = (val) => {
         throw new Error(`Unknown emoji - ${i}`);
       }
 
-      return `<span role="img" aria-label="${label}">${i}</span>`;
+      return `<span role="img" aria-label="${label.toLowerCase()}">${i}</span>`;
     });
   }
 
@@ -23,7 +23,7 @@ exports.a11yEmoji = (val) => {
 };
 
 exports.autoLink = (val) => {
-  if (val.indexOf('https:') > -1) {
+  if (val.indexOf('https://') > -1) {
     return val.replace(linkRx, (i) => {
       return `<a href="${i}" target="_blank" rel="noopener noreferrer">${i}</a>`;
     });

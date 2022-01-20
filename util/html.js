@@ -10,7 +10,7 @@ const { a11yEmoji, autoLink } = require('./stringParse');
 const isString = (val) => typeof val === 'string';
 
 const isAbsoluteUrl = (url) => {
-  return isString(url) && url.startsWith('https:');
+  return isString(url) && url.startsWith('https://');
 };
 
 const isAnonymous = (url) => {

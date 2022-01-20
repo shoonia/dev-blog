@@ -3,6 +3,10 @@ const { siteUrl } = require('../../util/halpers');
 module.exports = {
   layout: 'posts.njk',
   eleventyComputed: {
+    image: (data) => {
+      return data.image.startsWith('https://') ? data.image : siteUrl(data.image);
+    },
+
     jsonLd: (data) => {
       const url = siteUrl(data.permalink);
 
@@ -33,7 +37,7 @@ module.exports = {
         },
         image: {
           '@type': 'ImageObject',
-          url: data.image,
+          url: data.image.startsWith('https://') ? data.image : siteUrl(data.image),
         },
         mainEntityOfPage: {
           '@type': 'itemPage',
