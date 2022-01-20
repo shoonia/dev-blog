@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require('fs/promises');
+const { readFile, writeFile } = require('node:fs/promises');
 const { minify } = require('terser');
 
 const { isProd } = require('./env');

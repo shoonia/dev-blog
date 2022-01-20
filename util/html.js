@@ -1,7 +1,7 @@
 const htmlnano = require('htmlnano');
 const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
-const miniClassNames = require('mini-css-class-name');
+const miniCssClassName = require('mini-css-class-name');
 
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
@@ -52,7 +52,7 @@ const transformer = (classCache) => posthtml([
     processEmptySize: true,
   }),
 ]).use((tree) => {
-  const generate = miniClassNames();
+  const generate = miniCssClassName();
 
   tree.walk((node) => {
     if (isString(node)) {

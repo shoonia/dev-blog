@@ -1,4 +1,4 @@
-const { writeFile } = require('fs/promises');
+const { writeFile } = require('node:fs/promises');
 const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
 

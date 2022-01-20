@@ -1,8 +1,10 @@
+const { siteUrl } = require('../../util/halpers');
+
 module.exports = {
   layout: 'posts.njk',
   eleventyComputed: {
     jsonLd: (data) => {
-      const url = new URL(data.permalink, data.pkg.homepage).href;
+      const url = siteUrl(data.permalink);
 
       return JSON.stringify({
         '@context': 'https://schema.org',
@@ -26,7 +28,7 @@ module.exports = {
           sameAs: data.pkg.author.url,
           logo: {
             '@type': 'ImageObject',
-            url: new URL('assets/icons/icon-512x512.png', data.pkg.homepage),
+            url: siteUrl('assets/icons/icon-512x512.png'),
           },
         },
         image: {

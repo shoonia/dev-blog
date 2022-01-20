@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require('fs/promises');
+const { readFile, writeFile } = require('node:fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
 const autoprefixer = require('autoprefixer');
