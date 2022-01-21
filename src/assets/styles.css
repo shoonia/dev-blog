@@ -200,10 +200,6 @@ mark {
   font-weight: 400;
 }
 
-a code {
-  color: var(--color-link);
-}
-
 code:not(._),
 mark {
   padding: 0 0.5em;
@@ -275,6 +271,7 @@ p img {
   margin-right: auto;
 }
 
+cite,
 strong {
   font-weight: bold;
 }
