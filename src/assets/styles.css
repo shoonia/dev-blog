@@ -200,6 +200,10 @@ mark {
   font-weight: 400;
 }
 
+pre code {
+  margin-top: 2em;
+}
+
 code:not(._),
 mark {
   padding: 0 0.5em;
@@ -434,10 +438,6 @@ pre ::selection {
 pre a {
   color: #7e93d4;
   text-decoration: underline;
-}
-
-pre code {
-  margin-top: 2em;
 }
 
 .menu {
