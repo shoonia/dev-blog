@@ -466,8 +466,7 @@ pre a {
 .number,
 .constant,
 .symbol,
-.attr-name,
-.deleted {
+.attr-name {
   color: #ffa657;
 }
 
@@ -475,8 +474,7 @@ pre a {
 .string,
 .char,
 .attr-value,
-.builtin,
-.inserted {
+.builtin {
   color: #8cc570;
 }
 
@@ -509,6 +507,20 @@ pre a {
 
 .italic {
   font-style: italic;
+}
+
+.deleted {
+  background-color: #67060c;
+}
+
+.inserted {
+  color: #aff5b4;
+  background-color: #033a16;
+}
+
+.prefix.deleted,
+.prefix.inserted {
+  user-select: none;
 }
 
 .entity {
