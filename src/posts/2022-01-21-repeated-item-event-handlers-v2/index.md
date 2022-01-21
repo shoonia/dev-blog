@@ -93,7 +93,7 @@ The Repeater has the [`forItems()`](https://www.wix.com/velo/reference/$w/repeat
   </blockquote>
 </figure>
 
-In the documentation, we can see the next example, which runs changes for two IDs.
+In the documentation, we can see the next example, which runs changes for two items by IDs.
 
 <figure>
   <figcaption>
@@ -108,7 +108,7 @@ In the documentation, we can see the next example, which runs changes for two ID
   ```
 </figure>
 
-Really, it's a very cool opportunity. And it's always has been in the documentation. Why I hadn't noticed that before?
+Really, it's a very cool opportunity. It's always has been in the documentation. Why I hadn't noticed that before?
 
 For example, we can solve our current issue with receiving item data.
 
@@ -132,7 +132,7 @@ For example, we can solve our current issue with receiving item data.
   ```
 </figure>
 
-Magic. For me, it's a very expressive code. And good alternative of all existing method that I use before, [repeater-scope npm package](https://github.com/shoonia/repeater-scope).
+Magic. For me, it's a very expressive code. And it's a good alternative to all known methods that I use before, like: [repeater-scope npm package](https://github.com/shoonia/repeater-scope).
 
 ## Resources
 

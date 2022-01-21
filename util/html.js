@@ -81,6 +81,14 @@ const transformer = (classCache) => posthtml([
         return node;
       }
 
+      case 'pre': {
+        node.content.unshift(
+          new Node('div', { class: 'menu' }),
+        );
+
+        return node;
+      }
+
       case 'h2':
       case 'h3':
       case 'h4': {

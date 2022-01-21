@@ -436,6 +436,17 @@ pre a {
   text-decoration: underline;
 }
 
+pre code {
+  margin-top: 2em;
+}
+
+.menu {
+  background-image: url("/assets/images/menu.svg");
+  height: 14px;
+  width: 54px;
+  position: absolute;
+}
+
 /**
  * PrimsJS
  */
@@ -469,6 +480,7 @@ pre a {
 
 .regex,
 .string,
+.string-property,
 .char,
 .attr-value,
 .builtin {
