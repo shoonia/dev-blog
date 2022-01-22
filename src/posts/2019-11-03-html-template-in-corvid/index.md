@@ -5,7 +5,6 @@ modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Using HTML template to the better performance'
 description: "The $w.Repeater most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster."
-author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3dc~mv2.jpg'
 ---
 

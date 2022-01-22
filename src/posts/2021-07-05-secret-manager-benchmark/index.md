@@ -5,8 +5,7 @@ modified: '2021-07-05T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Secrets Manager Benchmark'
 description: 'Online checker of performance benchmark for Velo Secrets Manager'
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/velo.png'
+image: '/assets/images/velo.png'
 ---
 
 <style>

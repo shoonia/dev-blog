@@ -5,7 +5,6 @@ modified: '2021-09-27T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Promise Queue'
 description: "In this post, we look at concurrent hide/show animation behavior in Velo APIs. When one of the animation effects can't start because a previous one isn't finished yet."
-author: 'Alexander Zaytsev'
 image: 'https://shoonia.site/assets/images/promise-hands-590x590.jpg'
 ---
 

@@ -5,8 +5,7 @@ modified: '2021-09-23T12:00:00.000Z'
 lang: 'en'
 title: 'Short links to create a new Wix / Editor X site editor'
 description: 'A set of short links for creating a new site on Wix, Velo, and Editor X'
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/load-editor.jpeg'
+image: '/assets/images/load-editor.jpeg'
 ---
 
 <style>

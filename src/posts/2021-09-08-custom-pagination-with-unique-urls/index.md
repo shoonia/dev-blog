@@ -5,8 +5,7 @@ modified: '2021-10-26T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
 description: 'Creating a custom pagination element with Velo'
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/pagination.png'
+image: '/assets/images/pagination.png'
 ---
 
 # Velo by Wix: Custom pagination with unique URLs

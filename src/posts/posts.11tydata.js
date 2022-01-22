@@ -1,5 +1,7 @@
 const { siteUrl } = require('../../util/halpers');
 
+const getAutorName = (data) => typeof data.author?.name === 'string' ? data.author.name : data.pkg.author.name;
+
 module.exports = {
   layout: 'posts.njk',
   eleventyComputed: {
@@ -7,8 +9,11 @@ module.exports = {
       return data.image.startsWith('https://') ? data.image : siteUrl(data.image);
     },
 
+    authorName: (data) => getAutorName(data),
+
     jsonLd: (data) => {
       const url = siteUrl(data.permalink);
+      const autorName = getAutorName(data);
 
       return JSON.stringify({
         '@context': 'https://schema.org',
@@ -22,8 +27,8 @@ module.exports = {
         dateModified: data.modified || undefined,
         author: {
           '@type': 'Person',
-          name: data.author,
-          url: data.author === data.pkg.author.name ? data.pkg.author.url : undefined,
+          name: autorName,
+          url: autorName === data.pkg.author.name ? data.pkg.author.url : data.author?.url,
         },
         publisher: {
           '@type': 'Organization',
