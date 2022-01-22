@@ -1,5 +1,5 @@
-const { resolve } = require('path');
-const { readFileSync } = require('fs');
+const { resolve } = require('node:path');
+const { readFileSync } = require('node:fs');
 const stringHash = require('string-hash');
 const { homepage } = require('../package.json');
 

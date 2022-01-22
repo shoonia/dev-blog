@@ -6,7 +6,7 @@ lang: 'en'
 title: 'Velo by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
 author: 'Alexander Zaytsev'
-image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg/v2/fill/w_300,h_300/i.jpg'
+image: '/assets/images/i300x300.jpg'
 ---
 
 # Velo by Wix: Event handling of Repeater Item
@@ -14,10 +14,8 @@ image: 'https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e30
 *In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it.*
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_15f0ef95e2d84ebf8542a488260e3001~mv2.jpg"
-  alt="poster of tales from the loop"
-  width="733"
-  height="453"
+  src="/assets/images/i.jpg"
+  alt="poster from the serial - tales from the loop"
 />
 
 At first sight, the adding event handling for repeated items looks easy.

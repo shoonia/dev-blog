@@ -1,7 +1,7 @@
 const htmlnano = require('htmlnano');
 const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
-const miniClassNames = require('mini-css-class-name');
+const miniCssClassName = require('mini-css-class-name');
 
 const { rootResolve } = require('./halpers');
 const { isProd, debug } = require('./env');
@@ -10,7 +10,7 @@ const { a11yEmoji, autoLink } = require('./stringParse');
 const isString = (val) => typeof val === 'string';
 
 const isAbsoluteUrl = (url) => {
-  return isString(url) && url.startsWith('https:');
+  return isString(url) && url.startsWith('https://');
 };
 
 const isAnonymous = (url) => {
@@ -52,7 +52,7 @@ const transformer = (classCache) => posthtml([
     processEmptySize: true,
   }),
 ]).use((tree) => {
-  const generate = miniClassNames();
+  const generate = miniCssClassName();
 
   tree.walk((node) => {
     if (isString(node)) {
@@ -77,6 +77,14 @@ const transformer = (classCache) => posthtml([
         if (isString(node.attrs?.class)) {
           node.attrs.class = '_';
         }
+
+        return node;
+      }
+
+      case 'pre': {
+        node.content.unshift(
+          new Node('div', { class: 'menu' }),
+        );
 
         return node;
       }
