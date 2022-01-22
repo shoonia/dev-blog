@@ -5,7 +5,6 @@ modified: '2021-01-05T12:00:00.000Z'
 lang: 'ru'
 title: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
 description: 'Подсветка кастомных файлов/расширений в редакторе VS Code'
-author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png/v2/fill/w_300,h_300/i.jpg'
 ---
 

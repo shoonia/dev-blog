@@ -5,7 +5,6 @@ modified: '2021-04-19T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Event handling of Repeater Item'
 description: "In this post, we consider why we shouldn't nest event handler inside the Repeater loop and how we can escape it"
-author: 'Alexander Zaytsev'
 image: '/assets/images/i300x300.jpg'
 ---
 

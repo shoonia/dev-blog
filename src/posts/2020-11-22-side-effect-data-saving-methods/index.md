@@ -5,8 +5,7 @@ modified: '2022-01-08T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Side effect wix-data saving methods'
 description: 'The wix-data methods for saving data has a side effect that I have spent a few hours debugging. In this post, I share how it goes'
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/side-effect500x500.jpeg'
+image: '/images/side-effect500x500.jpeg'
 ---
 
 # Velo by Wix: Side effect wix-data saving methods

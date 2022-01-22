@@ -5,8 +5,7 @@ modified: '2022-01-03T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Imitating hover event on repeater container'
 description: "Velo API doesn't provide a hover event on the repeater container. In this post, we look at one way how we can imitate the hover event."
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/repeater-small.png'
+image: '/assets/images/repeater-small.png'
 ---
 
 # Velo by Wix: Imitating hover event on repeater container

@@ -5,7 +5,6 @@ modified: '2021-01-07T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Reduce server-side calls using a caching mechanism'
 description: "In this article, we create a cache mechanism for backend (jsw) functions"
-author: 'Alexander Zaytsev'
 image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png/v2/fill/w_300,h_300/i.jpg'
 ---
 

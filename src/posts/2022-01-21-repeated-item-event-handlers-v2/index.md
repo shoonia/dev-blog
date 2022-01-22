@@ -5,7 +5,6 @@ modified: '2022-01-21T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Repeated item event handlers v2.0'
 description: "It's my third post about event handling in repeated items. I show you a way that always has been in the documentation. I'm surprised why I hadn't noticed that before?"
-author: 'Alexander Zaytsev'
 image: '/assets/images/i300x300.jpg'
 ---
 

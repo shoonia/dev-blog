@@ -5,8 +5,7 @@ modified: '2021-01-04T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one'
-author: 'Alexander Zaytsev'
-image: 'https://shoonia.site/assets/images/node_modules500x500.jpeg'
+image: '/assets/images/node_modules500x500.jpeg'
 ---
 
 # Velo by Wix: Smaller bundle size by importing npm package correctly

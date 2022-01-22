@@ -5,7 +5,9 @@ modified: '2021-04-25T12:00:00.000Z'
 lang: 'ru'
 title: 'Руководство по CSS-счетчикам'
 description: 'Перевод статьи, Samantha Ming: "A Guide to CSS counter"'
-author: 'Samantha Ming'
+author:
+  name: 'Samantha Ming'
+  url: https://twitter.com/samantha_ming
 image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377d6~mv2.png'
 head: '<link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">'
 ---
