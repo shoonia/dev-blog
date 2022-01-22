@@ -1,11 +1,11 @@
-const { siteUrl } = require('../../util/halpers');
+const { siteUrl, isString, isAbsoluteUrl } = require('../../util/halpers');
 
 const getAuthorName = (data) => {
-  return typeof data.author?.name === 'string' ? data.author.name : data.pkg.author.name;
+  return isString(data.author?.name) ? data.author.name : data.pkg.author.name;
 };
 
 const getImageUrl = (data) => {
-  return data.image.startsWith('https://') ? data.image : siteUrl(data.image);
+  return isAbsoluteUrl(data.image) ? data.image : siteUrl(data.image);
 };
 
 module.exports = {

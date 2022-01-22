@@ -1,5 +1,6 @@
 const gemoji = require('gemoji');
 const emojiRegex = require('emoji-regex');
+const { isString } = require('./halpers');
 
 const emojiRx = emojiRegex();
 const linkRx = /https:\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])/;
@@ -11,11 +12,11 @@ exports.a11yEmoji = (val) => {
     return val.replace(emojiRx, (i) => {
       const label = map.get(i);
 
-      if (typeof label !== 'string') {
-        throw new Error(`Unknown emoji - ${i}`);
+      if (isString(label)) {
+        return `<span role="img" aria-label="${label.toLowerCase()}">${i}</span>`;
       }
 
-      return `<span role="img" aria-label="${label.toLowerCase()}">${i}</span>`;
+      throw new Error(`Unknown emoji - ${i}`);
     });
   }
 
