@@ -3,15 +3,9 @@ const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
 const miniCssClassName = require('mini-css-class-name');
 
-const { rootResolve } = require('./halpers');
+const { rootResolve, isString, isAbsoluteUrl } = require('./halpers');
 const { isProd, debug } = require('./env');
 const { a11yEmoji, autoLink } = require('./stringParse');
-
-const isString = (val) => typeof val === 'string';
-
-const isAbsoluteUrl = (url) => {
-  return isString(url) && url.startsWith('https://');
-};
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';

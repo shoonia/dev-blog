@@ -1,34 +1,37 @@
-const { siteUrl } = require('../../util/halpers');
+const { siteUrl, isString, isAbsoluteUrl } = require('../../util/halpers');
 
-const getAutorName = (data) => typeof data.author?.name === 'string' ? data.author.name : data.pkg.author.name;
+const getAuthorName = (data) => {
+  return isString(data.author?.name) ? data.author.name : data.pkg.author.name;
+};
+
+const getImageUrl = (data) => {
+  return isAbsoluteUrl(data.image) ? data.image : siteUrl(data.image);
+};
 
 module.exports = {
   layout: 'posts.njk',
   eleventyComputed: {
-    image: (data) => {
-      return data.image.startsWith('https://') ? data.image : siteUrl(data.image);
-    },
-
-    authorName: (data) => getAutorName(data),
+    image: (data) => getImageUrl(data),
+    authorName: (data) => getAuthorName(data),
 
     jsonLd: (data) => {
       const url = siteUrl(data.permalink);
-      const autorName = getAutorName(data);
+      const authorName = getAuthorName(data);
 
       return JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
         name: data.title,
         headline: data.title,
-        description: data.description ?? data.pkg.description,
+        description: data.description || data.pkg.description,
         inLanguage: data.lang,
         url,
         datePublished: data.date,
         dateModified: data.modified || undefined,
         author: {
           '@type': 'Person',
-          name: autorName,
-          url: autorName === data.pkg.author.name ? data.pkg.author.url : data.author?.url,
+          name: authorName,
+          url: authorName === data.pkg.author.name ? data.pkg.author.url : data.author?.url,
         },
         publisher: {
           '@type': 'Organization',
@@ -42,7 +45,7 @@ module.exports = {
         },
         image: {
           '@type': 'ImageObject',
-          url: data.image.startsWith('https://') ? data.image : siteUrl(data.image),
+          url: getImageUrl(data),
         },
         mainEntityOfPage: {
           '@type': 'itemPage',
