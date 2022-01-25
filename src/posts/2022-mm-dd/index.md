@@ -5,7 +5,7 @@ modified: '2022-01-23T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
 description: ''
-image: '/assets/images/velo.png'
+image: '/assets/images/ins.jpg'
 ---
 
 # Velo by Wix: Type safety your code with JSDoc
