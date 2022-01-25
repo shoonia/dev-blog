@@ -12,8 +12,90 @@ image: '/assets/images/ins.jpg'
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
-[Velo currently uses a TypeScript compiler for autocomplete and code validations.](https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error)
+From time to time, I can see in the big Velo project how part of the page code moves to the public files. In most, it's the projects with a few thousand lines of code. I understand why we do it. Also, sometimes we want to reuse some part of the code for a few site pages.
 
+The main problem with this pattern is that doesn't work autocomplete and ID checking for `$w()` selector in the public files. For example, I want to move a button handler to the public file. In the page code, I just init it.
+
+**Page code**
+
+```js
+import { initPage } from 'public/initPage.js';
+
+$w.onReady(() => {
+  initPage();
+});
+```
+
+In the public files, we can see that don't work all hints for `$w()` selector and page elements.
+
+**public/initPage.js**
+
+```js
+// Filename: public/initPage.js
+
+export const initPage = () => {
+  // 1. Autocomplete for ID suggestions doesn't work
+  // 2. The checking of an element ID doesn't work.
+  // 3. If the element with this ID doesn't exist on the page
+  //    we don't have any error messages in editor.
+  // 4. button mark as `any` type
+  const button = $w('#button1');
+
+  // 1. Autocomplete doesn't work.
+  // 2. Type checking doesn't work.
+  button.onClick(() => {});
+}
+```
+
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, but we don't have any editor hints, errors, or warnings to catch it. Only runtime errors.
+
+However, this pattern is very commonly used. So, let's do it a little bit safer.
+
+## Why does it happen?
+
+Firstly, the public files don't design for using the `$w()` selector. The Velo editor autocomplete mechanism doesn't know how we plan to use your public file. Because you can import public files to any kind of files, to any pages, and also you can import a public file to the backend files.
+
+Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocomplete and code validations. Each page code has built-in types for autocomplete and validations of the editor elements.
+
+<aside>
+<a href="https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error">Velo currently uses a TypeScript compiler for autocomplete and code validations</a>
+</aside>
+
+It happens automatically, when we add/remove any element to the page, Velo adds/removes a property for the `PageElementsMap` interface. The `PageElementsMap` interface is unique for each page. We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation.
+
+For example, I will use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for type annotation in the next code snippet.
+
+**HOME Page**
+
+```js
+/**
+ * @template {keyof PageElementsMap} T
+ *
+ * @param {T} selector
+ * @param {$w.EventHandler} eventHandler
+ * @returns {PageElementsMap[T]}
+ */
+const clickHandler = (selector, eventHandler) => {
+  const element = $w(selector);
+
+  element.onClick(eventHandler);
+
+  return element;
+}
+
+// You can see this function has all autocomplete for params
+clickHandler('#button1', (event) => {
+  console.log(event);
+});
+```
+
+If you try to use this function on any page code files, you can see that it has all type checking and autocomplete for arguments. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface exists only on the page code files.
+
+## How can we use a JSDoc on public files?
+
+As we can see above, the autocomplete of the `$w()` selector doesn't work on the public files because TypeScript doesn't know about the context of the public file use. It can be any page, and also we can import a public file to the backend code.
+
+So, we should describe for TypeScript the types that we want to use.
 
 **public/initPage.js**
 
