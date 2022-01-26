@@ -39,7 +39,7 @@ $w.onReady(() => {
 });
 ```
 
-In the public files, we can see a bunch of type problems. There don't work hints for `$w()` selector and page elements.
+In the public files, we can see a missing type inference. There don't work hints for `$w()` selector and don't work page elements autocomplete.
 
 **public/initPage.js**
 
@@ -60,7 +60,7 @@ export const initPage = () => {
 }
 ```
 
-For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, but we don't have any editor hints, errors, or warnings to catch it. Only runtime errors.
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, but we don't have any editor hints, errors, or warnings to catch it. Only runtime errors and debug with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
 
 However, this pattern is very commonly used. So, let's do it a little bit safer.
 
