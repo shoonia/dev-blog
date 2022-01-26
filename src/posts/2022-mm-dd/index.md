@@ -366,3 +366,49 @@ export function initPage({
 
 - [Official documentation for JSDoc 3](https://jsdoc.app/)
 - [TypeScript: Documentation - JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+
+<!-- secret joke -->
+
+<style>
+#_dance {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 1000px) {
+  #_dance {
+    display: none;
+  }
+}
+</style><button type="button" id="_dance" aria-label="let's dance"></button>
+<script>
+{
+  let btn = document.querySelector('#_dance');
+
+  if (/Version\/[\d.]+.*Safari/.test(navigator.userAgent)) {
+    btn.remove();
+  } else {
+    let f = [`(>'-')>`, `^('-')^`, `<('-'<)`, `^('-')^`];
+    let x = 0;
+
+    btn.addEventListener('click', (event) => {
+      if (x === 0) {
+        let r = f.length * 3;
+        let i = 0;
+
+        let t = setInterval(() => {
+          if (x === r) {
+            clearInterval(t);
+            history.pushState('', '', location.pathname);
+            x = 0;
+          } else {
+            x++;
+            location.hash = `${i < f.length - 1 ? f[i++] : f[i = 0]}`;
+          }
+        }, 300);
+      }
+    });
+  }
+}
+</script>
