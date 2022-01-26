@@ -97,9 +97,9 @@ As we can see above, the autocomplete of the `$w()` selector doesn't work on the
 
 So, we should describe for TypeScript the types that we want to use.
 
-### @type tag
+### Variable annotations with @type tag
 
-Let's start with the simple use case, it's a `@type` tag.
+Let's start with the simple use case, Add variable annotations with the `@type` tag.
 
 The syntax of JSDoc it's a block comment that starts with `/**` and ends with `*/`. Inside block comment, we use a tag keyword that starts with `@` symbol after the tag inside curly braces `{type}` we write a type.
 
@@ -224,7 +224,7 @@ declare namespace $w {
 ```
 </details>
 
-The main benefits of the element types, we can use it on the public files. In the simple use case, we just add a type annotation to all elements that we want to use in the public file.
+The main benefits of the element types, we can use it on the public files. In the simple use case, we add the type annotations to all elements that we start to use in a public file.
 
 **public/initPage.js**
 
@@ -245,13 +245,19 @@ export function initPage() {
 }
 ```
 
-Here, we solve a problem with autocomplete suggestions for elements methods in the public files. But in this approach, we don't solve the issue when an element is removed from the page.
+Now, TypeScript understands what kind of elements we want to use. But TS still can check it.
 
-We just say to TypeScript - *"Hey TS, I know it is the button. Just trust me and work with this element as the button"*.
+Here, we just say to TypeScript - *"Hey TS, I know it is the button. Just trust me and work with this element as the button"*.
 
-It's not the best solution. But it's doing our dev experience better, than working without any types.
+We solve a problem with autocomplete suggestions for elements methods and properties in the public files. But if we use this approach, we don't solve the issue when an element is removed or renamed from the page. TypeScript compiler can check `$w()` selectors only on the page code files.
 
-### @param tag
+### Arguments annotation with @param tag
+
+So, if we want to get autocomplete for elements and validation for `$w()` selectors, we should pass the elements explicitly from the page code to the public file.
+
+Using the `@param` tag, we can describe function arguments like: `@param {argumentType} argumentName`.
+
+Let's update `initPage()` function for two arguments:
 
 **public/initPage.js**
 
@@ -271,6 +277,8 @@ export function initPage(button, input) {
 }
 ```
 
+Now, when we start using the X function on the page code file, we can see autocomplete list.
+
 <figure>
   <figcaption>
     <strong>Velo: autocomplete suggestion list</strong>
@@ -282,11 +290,13 @@ export function initPage(button, input) {
   />
 </figure>
 
-<kbd>↑</kbd> <kbd>↓</kbd> <kbd>↵ Enter</kbd>
+After typing the first `$` symbol, we see a list of the suggestions. We can move on the list with <kbd>↑</kbd> <kbd>↓</kbd> keys and select one with <kbd>↵ Enter</kbd> key.
+
+Also, we can see the `initPage()` function has the validation of arguments.
 
 <figure>
   <figcaption>
-    <strong>Velo: type error, a function expect an <code>$w.TextInput</code> element</strong>
+    <strong>Velo: type error, a function expect an <code>$w.TextInput</code> type instead <code>$w.Page</code></strong>
   </figcaption>
   <img
     src="/assets/images/jsdoc2.jpg"
@@ -294,6 +304,8 @@ export function initPage(button, input) {
     loading="lazy"
   />
 </figure>
+
+It's very cool!
 
 **public/initPage.js**
 
