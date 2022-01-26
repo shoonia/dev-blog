@@ -12,9 +12,21 @@ image: '/assets/images/ins.jpg'
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
-From time to time, I can see in the big Velo project how part of the page code moves to the public files. In most, it's the projects with a few thousand lines of code. I understand why we do it. Also, sometimes we want to reuse some part of the code for a few site pages.
+From time to time, I can see in the big Velo project how part of the page code moves to the public files. In most, it's the projects with a few thousand lines of code per page. I understand why we do it. Also, sometimes we want to reuse some part of the code for a few site pages.
 
-The main problem with this pattern is that doesn't work autocomplete and ID checking for `$w()` selector in the public files. For example, I want to move a button handler to the public file. In the page code, I just init it.
+The main problem with this pattern is that doesn't work autocomplete and ID validation of `$w()` selectors in the public files. For example, we want to move a button handler to the public file. And init it on the page code.
+
+**public/initPage.js**
+
+```js
+// Filename: public/initPage.js
+
+export const initPage = () => {
+  const button = $w('#button1');
+
+  button.onClick(() => { /* ... */ });
+}
+```
 
 **Page code**
 
@@ -22,11 +34,12 @@ The main problem with this pattern is that doesn't work autocomplete and ID chec
 import { initPage } from 'public/initPage.js';
 
 $w.onReady(() => {
+  // Init page code from the public file.
   initPage();
 });
 ```
 
-In the public files, we can see that don't work all hints for `$w()` selector and page elements.
+In the public files, we can see a bunch of type problems. There don't work hints for `$w()` selector and page elements.
 
 **public/initPage.js**
 
@@ -43,7 +56,7 @@ export const initPage = () => {
 
   // 1. Autocomplete doesn't work.
   // 2. Type checking doesn't work.
-  button.onClick(() => {});
+  button.onClick(() => { /* ... */ });
 }
 ```
 
@@ -336,7 +349,7 @@ export function initPage({
 
 <figure>
   <figcaption>
-    <strong>Video</strong>
+    <strong>Velo: autocomplete and type validation</strong>
   </figcaption>
   <video
     src="/assets/videos/jsdoc1.mp4"
