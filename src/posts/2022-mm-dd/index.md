@@ -12,7 +12,7 @@ image: '/assets/images/ins.jpg'
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
-From time to time, I can see in the big Velo project how part of the page code moves to the public files. In most, it's the projects with a few thousand lines of code per page. I understand why we do it. Also, sometimes we want to reuse some part of the code for a few site pages.
+From time to time, I can see in the big Velo projects how a part of the page code moves to the public files. In most, it's the projects with a few hundred/thousand lines of code per page. I understand why developers do it. Also, sometimes we want to reuse some part of the code for a few site pages. It looks like a good idea to move repeated code to a public file, and reuse it.
 
 The main problem with this pattern is that doesn't work autocomplete and ID validation of `$w()` selectors in the public files. For example, we want to move a button handler to the public file. And init it on the page code.
 
@@ -54,29 +54,31 @@ export const initPage = () => {
   // 4. button mark as `any` type
   const button = $w('#button1');
 
-  // 1. Autocomplete doesn't work.
+  // 1. Autocomplete for button's method/properties doesn't work
   // 2. Type checking doesn't work.
   button.onClick(() => { /* ... */ });
 }
 ```
 
-For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, but we don't have any editor hints, errors, or warnings to catch it. Only runtime errors and debug with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. Only runtime errors and debug with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
 
 However, this pattern is very commonly used. So, let's do it a little bit safer.
 
 ## Why does it happen?
 
-Firstly, the public files don't design for using the `$w()` selector. The Velo editor autocomplete mechanism doesn't know how we plan to use your public file. Because you can import public files to any kind of files, to any pages, and also you can import a public file to the backend files.
+Firstly, the public files don't design for using the `$w()` selector. The Velo editor autocomplete mechanism doesn't know how we plan to use a public file. Because we can import public files to any kind of files, to any pages, and also we can import a public file to the backend files too.
 
-Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocomplete and code validations. Each page code has built-in types for autocomplete and validations of the editor elements.
+### How Velo autocomplete works?
+
+Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocomplete and code validations. Each page code file has built-in types of all elements on the current page.
 
 <aside>
 <a href="https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error">Velo currently uses a TypeScript compiler for autocomplete and code validations</a>
 </aside>
 
-The types of page elements are generated automatically, when we add/remove any element to the page, Velo adds/removes a property for the `PageElementsMap` interface. The `PageElementsMap` interface is unique for each page. We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation.
+The types of page elements are generated automatically, when we add/remove any element to the page, Velo adds/removes a property for the `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
 
-For example, I will use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for type annotation in the next code snippet.
+We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for type annotation.
 
 **HOME Page**
 
@@ -102,7 +104,7 @@ clickHandler('#button1', (event) => {
 });
 ```
 
-If you try to use this code snippet on any page code files, you can see that it has all type checking and autocomplete for arguments. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface exists only on the page code files.
+If you try to use this code snippet on a page code file, you can see that it has all type checking and autocompletion for arguments. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface exists only on the page code files.
 
 ## How can we use a JSDoc on public files?
 
