@@ -1,14 +1,16 @@
 ---
-permalink: '/xyz/'
+permalink: '/type-safety-your-code-with-jsdoc/'
 date: '2022-01-23T12:00:00.000Z'
 modified: '2022-01-23T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
-description: ''
+description: 'Built-in code checker, JSDoc annotations, and TypeScript in Velo'
 image: '/assets/images/ins.jpg'
 ---
 
 # Velo by Wix: Type safety your code with JSDoc
+
+*Built-in code checker, JSDoc annotations, and TypeScript in Velo*
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
@@ -60,13 +62,13 @@ export const initPage = () => {
 }
 ```
 
-For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. Only runtime errors and debug with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. We can get errors only in runtime and debug it with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
 
 However, this pattern is very commonly used. So, let's do it a little bit safer.
 
 ## Why does it happen?
 
-Firstly, the public files don't design for using the `$w()` selector. The Velo editor autocomplete mechanism doesn't know how we plan to use a public file. Because we can import public files to any kind of files, to any pages, and also we can import a public file to the backend files too.
+Firstly, the public files don't design for using the `$w()` selector. Velo code checker doesn't know how we plan to use a public file. Because we can import public files to any files on any pages, and also we can import a public file to the backend files too.
 
 ### How Velo autocomplete works?
 
@@ -76,9 +78,9 @@ Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocompl
 <a href="https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error">Velo currently uses a TypeScript compiler for autocomplete and code validations</a>
 </aside>
 
-The types of page elements are generated automatically, when we add/remove any element to the page, Velo adds/removes a property for the `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
+Page element types are generated automatically, when we add/remove any element on the page, Velo adds/removes a property for this element in `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
 
-We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for type annotation.
+We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) to describe types.
 
 **HOME Page**
 
@@ -98,27 +100,25 @@ const clickHandler = (selector, eventHandler) => {
   return element;
 }
 
-// You can see this function has all autocomplete for params
+// You can see this function has type checking for arguments and return value
 clickHandler('#button1', (event) => {
   console.log(event);
 });
 ```
 
-If you try to use this code snippet on a page code file, you can see that it has all type checking and autocompletion for arguments. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface exists only on the page code files.
+If you try to use the code snippet above on your page code file, you can see that it has all type checking and autocompletion for arguments and a returned value. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface available only on the page code files.
 
 ## How can we use a JSDoc on public files?
 
-As we can see above, the autocomplete of the `$w()` selector doesn't work on the public files because TypeScript doesn't know about the context of the public file use. It can be any page, and also we can import a public file to the backend code.
-
-So, we should describe for TypeScript the types that we want to use.
+As we can see above, the autocomplete of the `$w()` selector doesn't work on the public files because TypeScript doesn't know about the context of the public file use. So, we should describe the types.
 
 ### Variable annotations with @type tag
 
-Let's start with the simple use case, Add variable annotations with the `@type` tag.
+Let's start with the simple use case. We can add variable annotations with the `@type` tag.
 
-The syntax of JSDoc it's a block comment that starts with `/**` and ends with `*/`. Inside block comment, we use a tag keyword that starts with `@` symbol after the tag inside curly braces `{type}` we write a type.
+The syntax of JSDoc it's a block comment that starts with `/**` and ends with `*/`. Inside block comment, we use a tag keyword that starts with `@` symbol after the tag inside curly braces `{type}` we put a type.
 
-Just try to write the next snippet code in Velo editor without copy-pasting. You can ensure, the Velo provides autocomplete and syntax validation for JSDoc too.
+Velo provides autocomplete and syntax validation for JSDoc too. Just try to write the next snippet code in Velo editor without copy-pasting.
 
 **Velo: simple example of @type tag**
 
@@ -127,7 +127,7 @@ Just try to write the next snippet code in Velo editor without copy-pasting. You
 const button = $w('#button1');
 ```
 
-`$w.Button` it's a built-in type. Velo has built-in types for all page elements.
+`$w.Button` it's a built-in type. Velo has built-in types for all page elements. You can find it here:
 
 <details>
   <summary>
@@ -268,9 +268,19 @@ We solve a problem with autocomplete suggestions for elements methods and proper
 
 ### Arguments annotation with @param tag
 
-So, if we want to get autocomplete for elements and validation for `$w()` selectors, we should pass the elements explicitly from the page code to the public file.
+So, if we want to get autocomplete for elements and validation for `$w()` selectors, we should pass the elements explicitly from the page code to the public file as function arguments.
 
-Using the `@param` tag, we can describe function arguments like: `@param {argumentType} argumentName`.
+<figure>
+  <figcaption>
+    <strong>Syntax:</strong> JSDoc function arguments
+  </figcaption>
+
+```js
+/**
+ * @param {argumentType} argumentName
+ */
+```
+</figure>
 
 Let's update `initPage()` function for two arguments:
 
@@ -292,7 +302,7 @@ export function initPage(button, input) {
 }
 ```
 
-Now, when we start using the X function on the page code file, we can see autocomplete list.
+Now, when we start using the `initPage()` function on the page code file, we can see autocomplete list.
 
 <figure>
   <figcaption>
@@ -307,7 +317,7 @@ Now, when we start using the X function on the page code file, we can see autoco
 
 After typing the first `$` symbol, we see a list of the suggestions. We can move on the list with <kbd>↑</kbd> <kbd>↓</kbd> keys and select one with <kbd>↵ Enter</kbd> key.
 
-Also, we can see the `initPage()` function has the validation of arguments.
+Also, we can see the `initPage()` function has arguments types validation.
 
 <figure>
   <figcaption>
@@ -320,7 +330,13 @@ Also, we can see the `initPage()` function has the validation of arguments.
   />
 </figure>
 
-It's very cool!
+It's very cool! Now, I can sleep calmly 😀
+
+### Interface as a function param
+
+Suppose, we want to use more than 2 arguments in the `initPage()` function. In this case, I guess better to use an object as an argument and put elements to object property. With object argument, we don't depend on the order of params. An object has more flexibility if we want to add or remove a new element.
+
+Here we can use an interface syntax. It's similar to CSS syntax, where we describe a key name and types inside curly braces `@param { { key1: type; key2: type; … } } argumentName`
 
 **public/initPage.js**
 
@@ -333,7 +349,7 @@ It's very cool!
  * input: $w.TextInput;
  * text: $w.Text;
  * box: $w.Box;
- * }} options
+ * }} elements
  */
 export function initPage({
   button,
@@ -348,6 +364,8 @@ export function initPage({
   input.onInput(() => { /*...*/ });
 }
 ```
+
+We have the autocomplete for keys and values. Very useful.
 
 <figure>
   <figcaption>
@@ -368,6 +386,13 @@ export function initPage({
 
 - [Official documentation for JSDoc 3](https://jsdoc.app/)
 - [TypeScript: Documentation - JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+- [JSDoc Cheatsheet and Type Safety Tricks](https://docs.joshuatz.com/cheatsheets/js/jsdoc/)
+
+## Posts
+
+- [Repeated item event handlers v2.0](/repeated-item-event-handlers-v2/)
+- [Query selector for child elements](/velo-query-selector-for-child-elements/)
+- [Promise Queue](/promise-queue/)
 
 <!-- secret joke -->
 
@@ -376,6 +401,7 @@ export function initPage({
   position: fixed;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
 @media (max-width: 1000px) {
@@ -406,7 +432,7 @@ export function initPage({
             x = 0;
           } else {
             x++;
-            location.hash = `${i < f.length - 1 ? f[i++] : f[i = 0]}`;
+            location.hash = `---${i < f.length - 1 ? f[i++] : f[i = 0]}`.repeat(7);
           }
         }, 300);
       }

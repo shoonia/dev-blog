@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.2.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "autoprefixer": "^10.4.2",
     "cssnano": "^5.0.16",
     "emoji-regex": "^10.0.0",
