@@ -1,7 +1,7 @@
 ---
 permalink: '/type-safety-your-code-with-jsdoc/'
-date: '2022-01-23T12:00:00.000Z'
-modified: '2022-01-23T12:00:00.000Z'
+date: '2022-01-28T12:00:00.000Z'
+modified: '2022-01-28T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
 description: 'Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo'
