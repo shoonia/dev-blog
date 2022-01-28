@@ -4,13 +4,13 @@ date: '2022-01-23T12:00:00.000Z'
 modified: '2022-01-23T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
-description: 'Built-in code checker, JSDoc annotations, and TypeScript in Velo'
+description: 'Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo'
 image: '/assets/images/ins.jpg'
 ---
 
 # Velo by Wix: Type safety your code with JSDoc
 
-*Built-in code checker, JSDoc annotations, and TypeScript in Velo*
+*Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo*
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
@@ -62,13 +62,13 @@ export const initPage = () => {
 }
 ```
 
-For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. We can get errors only in runtime and debug it with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. We could get a runtime error and, we should debug it with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
 
 However, this pattern is very commonly used. So, let's do it a little bit safer.
 
 ## Why does it happen?
 
-Firstly, the public files don't design for using the `$w()` selector. Velo code checker doesn't know how we plan to use a public file. Because we can import public files to any files on any pages, and also we can import a public file to the backend files too.
+Firstly, the public files don't design for using the `$w()` selector. Velo code checker doesn't know how we plan to use a public file. Because we can import public files to any files on any pages, also we can import a public file to the backend files, other public files, or custom web-component code.
 
 ### How Velo autocomplete works?
 
@@ -78,11 +78,11 @@ Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocompl
 <a href="https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error">Velo currently uses a TypeScript compiler for autocomplete and code validations</a>
 </aside>
 
-Page element types are generated automatically, when we add/remove any element on the page, Velo adds/removes a property for this element in `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
+Page element types are generated automatically, when we add/remove any element on the page, Velo adds/removes a property for this target element in `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
 
 We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) to describe types.
 
-**HOME Page**
+**Page code**
 
 ```js
 /**
@@ -106,19 +106,26 @@ clickHandler('#button1', (event) => {
 });
 ```
 
-If you try to use the code snippet above on your page code file, you can see that it has all type checking and autocompletion for arguments and a returned value. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface available only on the page code files.
+If you try to use the code snippet above on your page code file, you can see that it has all type checking and autocomplete for arguments and a returned value. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface available only on the page code files.
 
 ## How can we use a JSDoc on public files?
 
-As we can see above, the autocomplete of the `$w()` selector doesn't work on the public files because TypeScript doesn't know about the context of the public file use. So, we should describe the types.
+As we can see above, the autocomplete of the `$w()` selector doesn't work on the public files because TypeScript doesn't know about the context of the public file use. We can import public files anywhere in the code. So, we should describe the types.
 
 ### Variable annotations with @type tag
 
-Let's start with the simple use case. We can add variable annotations with the `@type` tag.
+Let's start with the simple use case. We can add variable annotations with the [`@type` tag](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#type).
 
-The syntax of JSDoc it's a block comment that starts with `/**` and ends with `*/`. Inside block comment, we use a tag keyword that starts with `@` symbol after the tag inside curly braces `{type}` we put a type.
+<aside>
 
-Velo provides autocomplete and syntax validation for JSDoc too. Just try to write the next snippet code in Velo editor without copy-pasting.
+### Syntax
+
+JSDoc it's a block comment that starts with `/**` and ends with `*/`. Inside block comment, we use a tag keyword that starts with `@` symbol after tag keyword inside curly braces `{}` we put a type.
+
+`/** @tag {type} */`
+</aside>
+
+Velo provides autocomplete and syntax validation for JSDoc annotations. Just try to write the next snippet code in Velo editor without copy-pasting.
 
 **Velo: simple example of @type tag**
 
@@ -140,63 +147,61 @@ const button = $w('#button1');
 
 ```ts
 declare type TypeNameToSdkType = {
-    AccountNavBar: $w.AccountNavBar;
-    Anchor: $w.Anchor;
-    Box: $w.Box;
-    Button: $w.Button;
-    Checkbox: $w.Checkbox;
-    CheckboxGroup: $w.CheckboxGroup;
-    Column: $w.Column;
-    ColumnStrip: $w.ColumnStrip;
-    Container: $w.Container;
-    DatePicker: $w.DatePicker;
-    Document: $w.Document;
-    Dropdown: $w.Dropdown;
-    Footer: $w.Footer;
-    Gallery: $w.Gallery;
-    GoogleMap: $w.GoogleMap;
-    Header: $w.Header;
-    HtmlComponent: $w.HtmlComponent;
-    IFrame: $w.IFrame;
-    Image: $w.Image;
-    MediaBox: $w.MediaBox;
-    Menu: $w.Menu;
-    MenuContainer: $w.MenuContainer;
-    Page: $w.Page;
-    QuickActionBar: $w.QuickActionBar;
-    RadioButtonGroup: $w.RadioButtonGroup;
-    Repeater: $w.Repeater;
-    Slide: $w.Slide;
-    Slideshow: $w.Slideshow;
-    Table: $w.Table;
-    Text: $w.Text;
-    TextBox: $w.TextBox;
-    TextInput: $w.TextInput;
-    UploadButton: $w.UploadButton;
-    VectorImage: $w.VectorImage;
-    Video: $w.Video;
-    VideoBox: $w.VideoBox;
-    AddressInput: $w.AddressInput;
-    AudioPlayer: $w.AudioPlayer;
-    Captcha: $w.Captcha;
-    Pagination: $w.Pagination;
-    ProgressBar: $w.ProgressBar;
-    RatingsDisplay: $w.RatingsDisplay;
-    RatingsInput: $w.RatingsInput;
-    RichTextBox: $w.RichTextBox;
-    Slider: $w.Slider;
-    Switch: $w.Switch;
-    TimePicker: $w.TimePicker;
-    VideoPlayer: $w.VideoPlayer;
+  AccountNavBar: $w.AccountNavBar;
+  Anchor: $w.Anchor;
+  Box: $w.Box;
+  Button: $w.Button;
+  Checkbox: $w.Checkbox;
+  CheckboxGroup: $w.CheckboxGroup;
+  Column: $w.Column;
+  ColumnStrip: $w.ColumnStrip;
+  Container: $w.Container;
+  DatePicker: $w.DatePicker;
+  Document: $w.Document;
+  Dropdown: $w.Dropdown;
+  Footer: $w.Footer;
+  Gallery: $w.Gallery;
+  GoogleMap: $w.GoogleMap;
+  Header: $w.Header;
+  HtmlComponent: $w.HtmlComponent;
+  IFrame: $w.IFrame;
+  Image: $w.Image;
+  MediaBox: $w.MediaBox;
+  Menu: $w.Menu;
+  MenuContainer: $w.MenuContainer;
+  Page: $w.Page;
+  QuickActionBar: $w.QuickActionBar;
+  RadioButtonGroup: $w.RadioButtonGroup;
+  Repeater: $w.Repeater;
+  Slide: $w.Slide;
+  Slideshow: $w.Slideshow;
+  Table: $w.Table;
+  Text: $w.Text;
+  TextBox: $w.TextBox;
+  TextInput: $w.TextInput;
+  UploadButton: $w.UploadButton;
+  VectorImage: $w.VectorImage;
+  Video: $w.Video;
+  VideoBox: $w.VideoBox;
+  AddressInput: $w.AddressInput;
+  AudioPlayer: $w.AudioPlayer;
+  Captcha: $w.Captcha;
+  Pagination: $w.Pagination;
+  ProgressBar: $w.ProgressBar;
+  RatingsDisplay: $w.RatingsDisplay;
+  RatingsInput: $w.RatingsInput;
+  RichTextBox: $w.RichTextBox;
+  Slider: $w.Slider;
+  Switch: $w.Switch;
+  TimePicker: $w.TimePicker;
+  VideoPlayer: $w.VideoPlayer;
 };
-
 
 // the first part of this file is being generated by => scripts/selector-declaration-builder.js
 // Run `npm run generate-dts` to generate it
 declare type IntersectionArrayAndBase<T, P> = {
-    [K in keyof T]: K extends P ? T[K] : T[K] & T[K][];
+  [K in keyof T]: K extends P ? T[K] : T[K] & T[K][];
 };
-
 
 declare type TypeSelectorMap = IntersectionArrayAndBase<TypeNameToSdkType, 'Document'>;
 declare type WixElements = PageElementsMap & TypeSelectorMap
@@ -205,36 +210,36 @@ declare type TypeSelector = keyof TypeSelectorMap
 
 declare type WixElementSelector = NicknameSelector | TypeSelector
 declare type IsWixElementSelector<S> = S extends WixElementSelector ? WixElements[S] : never;
+
 /**
  * Selects and returns elements from a page.
  */
 declare function $w<T extends WixElementSelector, S extends string>(selector: T | S & IsWixElementSelector<S>):
-    S extends keyof WixElements
-        ? WixElements[S]
-        : any
+  S extends keyof WixElements
+    ? WixElements[S]
+    : any
+
 /**
- * The `$w` namespace contains everything you need in order to work
- with your site's components.
+ * The `$w` namespace contains everything you need in order to work with your site's components.
  */
 declare namespace $w {
-    /**
-	 * Gets a selector function for a specific context.
-	 */
-	 function at(context: $w.Event.EventContext): $w.$w;
+  /**
+   * Gets a selector function for a specific context.
+   */
+  function at(context: $w.Event.EventContext): $w.$w;
 
-	/**
-	 * Sets the function that runs when all the page elements have finished loading.
-	 */
-	 function onReady(initFunction: $w.ReadyHandler): void;
+  /**
+   * Sets the function that runs when all the page elements have finished loading.
+   */
+  function onReady(initFunction: $w.ReadyHandler): void;
 
-
-    /**
-     * Selects and returns elements from a page.
-     */
-    type $w = <T extends WixElementSelector, S extends string>(selector: T | S & IsWixElementSelector<S>) =>
-        S extends keyof WixElements
-            ? WixElements[S]
-            : any
+  /**
+   * Selects and returns elements from a page.
+   */
+  type $w = <T extends WixElementSelector, S extends string>(selector: T | S & IsWixElementSelector<S>) =>
+    S extends keyof WixElements
+      ? WixElements[S]
+      : any
 }
 ```
 </details>
@@ -264,11 +269,13 @@ Now, TypeScript understands what kind of elements we want to use. But TS still c
 
 Here, we just say to TypeScript - *"Hey TS, I know it is the button. Just trust me and work with this element as the button"*.
 
-We solve a problem with autocomplete suggestions for elements methods and properties in the public files. But if we use this approach, we don't solve the issue when an element is removed or renamed from the page. TypeScript compiler can check `$w()` selectors only on the page code files.
+We solve a problem with autocomplete suggestions for elements methods and properties in the public files. But we don't solve the issue when an element is removed or renamed from the page. TypeScript compiler can check `$w()` selectors only on the page code files.
 
 ### Arguments annotation with @param tag
 
 So, if we want to get autocomplete for elements and validation for `$w()` selectors, we should pass the elements explicitly from the page code to the public file as function arguments.
+
+[`@param` tag](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#param-and-returns) uses the same type syntax as `@type`, but adds a parameter name.
 
 <figure>
   <figcaption>
@@ -365,7 +372,7 @@ export function initPage({
 }
 ```
 
-We have the autocomplete for keys and values. Very useful.
+We have the autocomplete for the object keys and values. Very useful.
 
 <figure>
   <figcaption>
