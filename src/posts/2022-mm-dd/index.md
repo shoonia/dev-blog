@@ -132,7 +132,7 @@ export const createValidator = (schema) => {
   return new Ajv({
     allErrors: true,
   })
-    .addKeyword({
+  .addKeyword({
     keyword: 'kind',
     compile(name) {
       return (data) => {
@@ -212,6 +212,8 @@ export function users_beforeUpdate(item, context) {
 }
 ```
 
+**View Function Output**
+
 <style>
   ._error {
     color: #e52f25;
@@ -228,9 +230,6 @@ export function users_beforeUpdate(item, context) {
     vertical-align: text-top;
   }
 </style>
-
-**View Function Output**
-
 <div class="_error">
   <svg width="16" height="16">
     <path fill="none" d="M0 0h16v16H0z"/>
@@ -287,10 +286,50 @@ import isEmail from 'validator/lib/isEmail';
 import isUUID from 'validator/lib/isUUID';
 
 export const createValidator = (schema) => {
+  return new Ajv({
+    allErrors: true,
+  })
+  .addKeyword({
+    keyword: 'kind',
+    compile(name) {
+      return (data) => {
+        switch (name) {
+          case 'email':
+            return isEmail(data);
+
+          case 'uuid':
+            return isUUID(data);
+
+          case 'date':
+            return data && data instanceof Date;
+
+          default:
+            return false;
+        }
+      };
+    },
+  })
+  .compile(schema);
+};
+```
+
+## Code Snippets
+
+<details>
+  <summary>
+    <strong>backend/schemas/index.js</strong>
+  </summary>
+
+  ```js
+  import Ajv from 'ajv';
+  import isUUID from 'validator/lib/isUUID';
+  import isEmail from 'validator/lib/isEmail';
+
+  export const createValidator = (schema) => {
     return new Ajv({
       allErrors: true,
     })
-     .addKeyword({
+    .addKeyword({
       keyword: 'kind',
       compile(name) {
         return (data) => {
@@ -302,7 +341,7 @@ export const createValidator = (schema) => {
               return isUUID(data);
 
             case 'date':
-             return data && data instanceof Date;
+            return data && data instanceof Date;
 
             default:
               return false;
@@ -311,5 +350,110 @@ export const createValidator = (schema) => {
       },
     })
     .compile(schema);
-};
-```
+  };
+  ```
+</details>
+
+<details>
+  <summary>
+    <strong>backend/schemas/userSchema.json</strong>
+  </summary>
+
+  ```json
+  {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 30
+      },
+      "age": {
+        "type": "number"
+      },
+      "email": {
+        "type": "string",
+        "kind": "email"
+      },
+      "title": {
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "kind": "uuid"
+      },
+      "_owner": {
+        "type": "string",
+        "kind": "uuid"
+      },
+      "_createdDate": {
+        "kind": "date"
+      },
+      "_updatedDate": {
+        "kind": "date"
+      }
+    },
+    "required": [
+      "name",
+      "age",
+      "email"
+    ],
+    "additionalProperties": false
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    <strong>backend/schemas/test.js</strong>
+  </summary>
+
+  ```js
+  import { createValidator } from 'backend/schemas';
+  import userSchema from 'backend/schemas/userSchema.json';
+
+  export const test = () => {
+    const validator = createValidator(userSchema);
+
+    const isValid = validator({
+      name: 'Bob',
+      age: 100,
+      email: 'bob@mail.com'
+    });
+
+    console.log(isValid);
+    console.log(validator.errors);
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    <strong>backend/data.js</strong>
+  </summary>
+
+  ```js
+  import { createValidator } from 'backend/schemas';
+  import userSchema from 'backend/schemas/userSchema.json';
+
+  const validaton = (item) => {
+    const validator = createValidator(userSchema);
+
+    if (validator(item)) {
+      return item;
+    }
+
+    return Promise.reject(
+      validator.errors.map((i) => i.message).join('\n'),
+    );
+  };
+
+  export function users_beforeInsert(item, context) {
+    return validaton(item)
+  }
+
+  export function users_beforeUpdate(item, context) {
+    return validaton(item)
+  }
+  ```
+</details>
