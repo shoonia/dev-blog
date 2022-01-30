@@ -1,7 +1,7 @@
 ---
 permalink: '/type-safety-your-code-with-jsdoc/'
 date: '2022-01-28T12:00:00.000Z'
-modified: '2022-01-28T12:00:00.000Z'
+modified: '2022-01-30T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
 description: 'Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo'
@@ -78,9 +78,9 @@ Velo uses a [TypeScript](https://www.typescriptlang.org/) compiler for autocompl
 <a href="https://www.wix.com/velo/forum/tips-tutorials-examples/cannot-redeclare-block-scoped-variable-validation-error">Velo currently uses a TypeScript compiler for autocomplete and code validations</a>
 </aside>
 
-Page element types are generated automatically, when we add/remove any element on the page, Velo adds/removes a property for this target element in `PageElementsMap` interface. The `PageElementsMap` interface is unique on each page. So, each page code file has its own map of elements for autocompletion.
+Page element types are generated automatically, when we add/remove any element on the page, Velo adds/removes a property for this target element in `PageElementsMap` type. The `PageElementsMap` type is unique on each page. So, each page code file has its own map of elements for autocompletion.
 
-We to able to use this interface with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) to describe types.
+We to able to use this type with [JSDoc](https://jsdoc.app/) types annotation. For example, we can use a [TypeScript JSDoc syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) to describe types.
 
 **Page code**
 
@@ -106,7 +106,7 @@ clickHandler('#button1', (event) => {
 });
 ```
 
-If you try to use the code snippet above on your page code file, you can see that it has all type checking and autocomplete for arguments and a returned value. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` interface available only on the page code files.
+If you try to use the code snippet above on your page code file, you can see that it has all type checking and autocomplete for arguments and a returned value. It's amazing, but we still can't use it on the public files, because the `PageElementsMap` type available only on the page code files.
 
 ## How can we use a JSDoc on public files?
 
@@ -284,7 +284,7 @@ So, if we want to get autocomplete for elements and validation for `$w()` select
 
 ```js
 /**
- * @param {argumentType} argumentName
+ * @param {type} name
  */
 ```
 </figure>
@@ -343,7 +343,7 @@ It's very cool! Now, I can sleep calmly 😀
 
 Suppose, we want to use more than 2 arguments in the `initPage()` function. In this case, I guess better to use an object as an argument and put elements to object property. With object argument, we don't depend on the order of params. An object has more flexibility if we want to add or remove a new element.
 
-Here we can use an interface syntax. It's similar to CSS syntax, where we describe a key name and types inside curly braces `@param { { key1: type; key2: type; … } } argumentName`
+Here we can use an interface syntax. It's similar to CSS syntax, where we describe a key name and types inside curly braces `@param { { name1: type; name2: type; … } } paramName`
 
 **public/initPage.js**
 
