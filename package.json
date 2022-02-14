@@ -32,7 +32,7 @@
   "devDependencies": {
     "eslint": "^8.8.0",
     "stylelint": "^14.3.0",
-    "stylelint-config-standard": "^24.0.0"
+    "stylelint-config-standard": "^25.0.0"
   },
   "repository": {
     "type": "git",
