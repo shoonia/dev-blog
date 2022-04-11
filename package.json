@@ -19,7 +19,7 @@
     "emoji-regex": "^10.0.1",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
-    "htmlnano": "^2.0.0",
+    "htmlnano": "^2.0.2",
     "mini-css-class-name": "^0.13.0",
     "postcss": "^8.4.12",
     "postcss-modules": "^4.3.1",
