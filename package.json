@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^8.14.0",
-    "stylelint": "^14.8.1",
+    "stylelint": "^14.8.5",
     "stylelint-config-standard": "^25.0.0"
   },
   "repository": {
