@@ -71,7 +71,7 @@ header {
   height: 80px;
   line-height: 80px;
   border-bottom: 1px solid rgb(0 0 0 / 10%);
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 
 nav,
@@ -573,10 +573,6 @@ pre a {
 }
 
 @media (max-width: 700px) {
-  header {
-    margin-bottom: 1.5em;
-  }
-
   h1 {
     font-size: 1.8em;
     line-height: 1.2;
