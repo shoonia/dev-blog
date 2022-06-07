@@ -1,7 +1,7 @@
 ---
 permalink: '/custom-pagination-with-unique-urls/'
 date: '2021-09-08T12:00:00.000Z'
-modified: '2021-10-26T12:00:00.000Z'
+modified: '2022-06-07T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Custom pagination with unique URLs'
 description: 'Creating a custom pagination element with Velo'
@@ -140,7 +140,7 @@ const getParams = async (path) => {
 /**
  * Router hook
  *
- * @param {wix_router.WixRouterRequest} request
+ * @param {import('wix-router').WixRouterRequest} request
  */
 export async function custom_blog_Router({ path, baseUrl, prefix }) {
   const params = await getParams(path);
@@ -175,10 +175,10 @@ export async function custom_blog_Router({ path, baseUrl, prefix }) {
  * Generate sitemaps
  * https://www.wix.com/velo/reference/wix-router/sitemap
  *
- * @param {wix_router.WixRouterSitemapRequest} sitemapRequest
- * @returns {Promise<wix_router.WixRouterSitemapEntry[]>}
+ * @param {import('wix-router').WixRouterSitemapRequest} request
+ * @returns {Promise<import('wix-router').WixRouterSitemapEntry[]>}
  */
-export async function custom_blog_SiteMap(sitemapRequest) {
+export async function custom_blog_SiteMap({ prefix }) {
   const categories = await getCategories();
 
   return categories.map((i) => {
@@ -187,7 +187,7 @@ export async function custom_blog_SiteMap(sitemapRequest) {
     return Object.assign(entry, {
       title: i.label,
       pageName: i.label,
-      url: urlJoin('/', sitemapRequest.prefix, i.label),
+      url: urlJoin('/', prefix, i.label),
     });
   });
 }
@@ -210,7 +210,12 @@ import urlJoin from 'url-join';
 
 import { paginate } from 'public/paginate';
 
-// Join paths to URL prefix
+/**
+ * Join paths to URL prefix
+ *
+ * @param {...string} paths
+ * @returns {string}
+ */
 const join = (...paths) => urlJoin('/', prefix, ...paths);
 
 $w.onReady(function () {
