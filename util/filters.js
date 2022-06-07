@@ -1,9 +1,6 @@
-const map = (i) => i.data;
-const sort = (a, b) => new Date(b.date) - new Date(a.date);
-
 exports.getPosts = (items) => {
   return items
     .filter((i) => i.data.layout === 'posts.njk')
-    .map(map)
-    .sort(sort);
+    .map((i) => i.data)
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 };

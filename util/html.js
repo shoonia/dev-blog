@@ -136,7 +136,7 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'time': {
-        const t = new Date(node.attrs?.datetime ?? NaN);
+        const t = new Date(node.attrs?.datetime);
         const lang = node.attrs.lang ?? 'en';
 
         if (t.toString() === 'Invalid Date') {
