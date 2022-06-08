@@ -232,6 +232,13 @@ const transformer = (classCache) => posthtml([
         comments: false,
       },
     },
+    minifySvg: {
+      plugins: [
+        {
+          name: 'preset-default',
+        },
+      ],
+    },
   })(tree);
 });
 
