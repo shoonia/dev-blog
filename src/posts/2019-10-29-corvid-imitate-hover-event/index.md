@@ -52,7 +52,7 @@ const imitateHover = (event) => {
 }
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover); // set handlers
+  $w('#container1').onMouseIn(imitateHover).onMouseOut(imitateHover); // set handlers
 });
 ```
 
@@ -65,8 +65,8 @@ $w.onReady(function () {
   ```js
   // ❌ In this way, each time when onItemReady starts
   // may set a new handler for containers
-  $w("#repeater1").onItemReady(($item, itemData, index) => {
-    $item("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
+  $w('#repeater1').onItemReady(($item, itemData, index) => {
+    $item('#container1').onMouseIn(imitateHover).onMouseOut(imitateHover);
   });
   ```
   We set globally our handler on all `#container1` with `$w()` selector. And it works well!
@@ -79,8 +79,8 @@ $w.onReady(function () {
 
 We use one function for two events, therefore we need to listen to which type of event is going.  We're expecting two event types:
 
-- `event.type === "mouseenter"` when `onMouseIn()` is running.
-- `event.type === "mouseleave"` when `onMouseOut()` is running.
+- `event.type === 'mouseenter'` when `onMouseIn()` is running.
+- `event.type === 'mouseleave'` when `onMouseOut()` is running.
 
 Let's see the code:
 
@@ -89,17 +89,17 @@ Let's see the code:
  * @param {$w.MouseEvent} event
  */
 const imitateHover = (event) => {
-  if (event.type === "mouseenter") {
-    console.log("we have mouseenter if onMouseIn() is running");
+  if (event.type === 'mouseenter') {
+    console.log('we have mouseenter if onMouseIn() is running');
   }
 
-  if (event.type === "mouseleave") {
-    console.log("we have mouseleave if onMouseOut() is running");
+  if (event.type === 'mouseleave') {
+    console.log('we have mouseleave if onMouseOut() is running');
   }
 };
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
+  $w('#container1').onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
@@ -107,25 +107,25 @@ The object `event` always will be consistent with the current container item, wh
 
 ```js
 // link to one pixel image
-const HOVER_PNG = "https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png";
+const HOVER_PNG = 'https://static.wixstatic.com/media/e3b156_df544ca8daff4e66bc7714ebc7bf95f1~mv2.png';
 
 /**
  * @param {$w.MouseEvent} event
  */
-function imitateHover(event) {
+const imitateHover = (event) => {
   // when the cursor over container then set image.
-  if (event.type === "mouseenter") {
+  if (event.type === 'mouseenter') {
     event.target.background.src = HOVER_PNG;
   }
 
-  if (event.type === "mouseleave") {
+  if (event.type === 'mouseleave') {
     // when the cursor is gone then remove the pixel image.
-    event.target.background.src = "";
+    event.target.background.src = '';
   }
 }
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
+  $w('#container1').onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
@@ -149,17 +149,17 @@ const HOVER_PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAA
  * @param {$w.MouseEvent} event
  */
 const imitateHover = (event) => {
-  if (event.type === "mouseenter") {
+  if (event.type === 'mouseenter') {
     event.target.background.src = HOVER_PNG;
   }
 
-  if (event.type === "mouseleave") {
-    event.target.background.src = "";
+  if (event.type === 'mouseleave') {
+    event.target.background.src = '';
   }
 };
 
 $w.onReady(function () {
-  $w("#container1").onMouseIn(imitateHover).onMouseOut(imitateHover);
+  $w('#container1').onMouseIn(imitateHover).onMouseOut(imitateHover);
 });
 ```
 
