@@ -9,7 +9,8 @@
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
     "lint": "eslint '**/*.js' && stylelint 'src/**/*.css'",
     "clean": "rm -rf public",
-    "serve": "python3 -m http.server -d public"
+    "serve": "python3 -m http.server -d public",
+    "test": "node --experimental-fetch node_modules/uvu/bin.js tests"
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
@@ -31,8 +32,9 @@
   },
   "devDependencies": {
     "eslint": "^8.17.0",
-    "stylelint": "^14.9.0",
-    "stylelint-config-standard": "^26.0.0"
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard": "^26.0.0",
+    "uvu": "^0.5.3"
   },
   "repository": {
     "type": "git",
