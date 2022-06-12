@@ -1,0 +1,35 @@
+._filetree {
+  font-size: 0.8em;
+  border: 1px solid #dfe5eb;
+  user-select: none;
+  margin: 1em 0;
+}
+
+._filetree img {
+  background: none;
+}
+
+._filetree_section {
+  background-color: #f7f8f8;
+  border-bottom: 1px solid #dfe5eb;
+  padding: 0.8em;
+}
+
+._filetree_line {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+._filetree_folder {
+  padding: 0.8em;
+}
+
+._filetree_list {
+  margin: 0.5em;
+}
+
+._filetree_item {
+  list-style: none;
+  margin: 0.5em;
+}

@@ -6,6 +6,9 @@ lang: 'en'
 title: 'Velo by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'
 image: '/assets/images/radio-astronomy.jpg'
+head: '
+<link rel="stylesheet" href="/assets/styles/file-tree.css"/>
+'
 ---
 
 # Velo by Wix: Message channel to iFrame
@@ -213,10 +216,16 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-```text
-public/
-└── channel.js
-```
+<div class="_filetree">
+  <div class="_filetree_section _filetree_line">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    Public
+  </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    channel.js
+  </div>
+</div>
 
 Method `channel.on()` accepts the event type and a callback function. We need to save callbacks in the associate group and run the callback functions whenever the subscribe event is coming.
 

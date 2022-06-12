@@ -6,6 +6,9 @@ lang: 'en'
 title: 'A tiny event-based state manager Storeon for Velo'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
 image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d39~mv2.png/v2/fill/w_300,h_300/cs.png'
+head: '
+<link rel="stylesheet" href="/assets/styles/file-tree.css"/>
+'
 ---
 
 <small>
@@ -50,10 +53,16 @@ At first, we need to install the library from [Package Manager](https://support.
 
 and create one more file for store initialization in the **public** folder.
 
-```text
-public
-└── store.js
-```
+<div class="_filetree">
+  <div class="_filetree_section _filetree_line">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    Public
+  </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    store.js
+  </div>
+</div>
 
 We will write our business logic in `public/store.js`.
 

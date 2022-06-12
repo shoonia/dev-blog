@@ -6,6 +6,9 @@ lang: 'en'
 title: 'Velo by Wix: Reduce server-side calls using a caching mechanism'
 description: "In this article, we create a cache mechanism for backend (jsw) functions"
 image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d1b~mv2.png/v2/fill/w_300,h_300/i.jpg'
+head: '
+<link rel="stylesheet" href="/assets/styles/file-tree.css"/>
+'
 ---
 
 # Velo by Wix: Reduce server-side calls using a caching mechanism
@@ -73,10 +76,16 @@ Our cache mechanism will depend on the passed arguments. If the backend function
 
 For the implementation of the cache, we create a js file in the public section.
 
-```text
-public
-└── memo.js
-```
+<div class="_filetree">
+  <div class="_filetree_section _filetree_line">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    Public
+  </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    memo.js
+  </div>
+</div>
 
 ### Cache
 
