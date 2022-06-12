@@ -1,7 +1,8 @@
 ._filetree {
-  font-size: 14px;
+  font-size: 0.8em;
   border: 1px solid #dfe5eb;
   user-select: none;
+  margin: 1em 0;
 }
 
 ._filetree img {
@@ -11,17 +12,17 @@
 ._filetree_section {
   background-color: #f7f8f8;
   border-bottom: 1px solid #dfe5eb;
-  padding: 10px;
+  padding: 0.8em;
 }
 
 ._filetree_line {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5em;
 }
 
 ._filetree_folder {
-  padding: 10px;
+  padding: 0.8em;
 }
 
 ._filetree_list {
