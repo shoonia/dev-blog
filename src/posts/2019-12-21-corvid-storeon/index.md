@@ -58,11 +58,9 @@ and create one more file for store initialization in the **public** folder.
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder">
-    <div class="_filetree_line">
-      <img src="/assets/images/i/js.svg" alt=""/>
-      store.js
-    </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    store.js
   </div>
 </div>
 

@@ -221,11 +221,9 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder">
-    <div class="_filetree_line">
-      <img src="/assets/images/i/js.svg" alt=""/>
-      channel.js
-    </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    channel.js
   </div>
 </div>
 

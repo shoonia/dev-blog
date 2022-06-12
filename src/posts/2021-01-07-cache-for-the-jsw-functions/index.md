@@ -81,11 +81,9 @@ For the implementation of the cache, we create a js file in the public section.
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder">
-    <div class="_filetree_line">
-      <img src="/assets/images/i/js.svg" alt=""/>
-      memo.js
-    </div>
+  <div class="_filetree_folder _filetree_line">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    memo.js
   </div>
 </div>
 
