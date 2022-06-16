@@ -5,7 +5,7 @@ modified: '2022-06-15T12:00:00.000Z'
 lang: 'en'
 title: 'Download your Velo code files to your computer'
 description: 'Chrome extensions for downloading Velo code directly from the web editor to your computer'
-image: '/assets/images/velo.png'
+image: '/assets/images/chrome-extension.png'
 ---
 
 # Download your Velo code files to your computer
@@ -14,7 +14,7 @@ image: '/assets/images/velo.png'
 
 <img
   src="/assets/images/chrome-extension.png"
-  alt="concept art by television serial - tales from the loop"
+  alt="chrome extensions"
 />
 
 Here is a Chrome Browser extension that provides a way to download Velo files from the web editor. You can install it in Chrome Web Store:
