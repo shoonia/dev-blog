@@ -1,6 +1,6 @@
 const { join } = require('path');
 const { test } = require('uvu');
-const { ok, type  } = require('uvu/assert');
+const { ok, type } = require('uvu/assert');
 
 const baseUrl = (path) => join('https://shoonia.wixsite.com', path);
 const getJson = (path) => fetch(baseUrl(path)).then((i) => i.json());
