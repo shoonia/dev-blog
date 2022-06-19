@@ -64,6 +64,28 @@ requestIdleCallback(() => {
       vp: visualViewport.width + 'x' + visualViewport.height,
     }),
   );
+
+  // Copy Code
+  let copyCodeHandler = async (event) => {
+    let button = event.target;
+    let code = button.closest('pre')?.querySelector('code');
+
+    if (code) {
+      let selection = window.getSelection();
+      let range = document.createRange();
+
+      navigator.clipboard.writeText(code.innerText);
+      range.selectNodeContents(code);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      button.textContent = 'Copied!';
+      setTimeout(() => button.textContent = 'Copy Code', 2000);
+    }
+  };
+
+  document.querySelectorAll('[data-copy]').forEach((button) =>
+    button.addEventListener('click', copyCodeHandler),
+  );
 }, {
   timeout: 2000,
 });

@@ -80,6 +80,18 @@ const transformer = (classCache) => posthtml([
           new Node('div', { class: 'menu' }),
         );
 
+        node.content.push(
+          new Node(
+            'button',
+            {
+              type: 'button',
+              class: 'copy-code',
+              'data-copy': true,
+            },
+            ['Copy Code'],
+          ),
+        );
+
         return node;
       }
 
