@@ -21,6 +21,7 @@ jobs:
         with:
           java-version: 17
           architecture: x64
+          distribution: 'temurin'
 
       - run: npm ci
       - run: npm i node-w3c-validator --no-save
