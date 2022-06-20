@@ -12,7 +12,9 @@
 ._filetree_section {
   background-color: #f7f8f8;
   border-bottom: 1px solid #dfe5eb;
+  border-top: 1px solid #dfe5eb;
   padding: 0.8em;
+  margin-top: -1px;
 }
 
 ._filetree_line {
@@ -22,7 +24,7 @@
 }
 
 ._filetree_folder {
-  padding: 0.8em;
+  margin: 0.8em;
 }
 
 ._filetree_list {

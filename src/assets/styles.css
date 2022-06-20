@@ -603,6 +603,7 @@ pre a {
   padding: 0.4em 1em;
   cursor: pointer;
   border: 1px solid var(--color-light-gray);
+  user-select: none;
 }
 
 @media print {
