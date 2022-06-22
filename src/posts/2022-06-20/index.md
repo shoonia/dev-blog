@@ -3,7 +3,7 @@ permalink: '/TODO/'
 date: '2022-06-20T12:00:00.000Z'
 modified: '2022-06-20T12:00:00.000Z'
 lang: 'en'
-title: 'TODO'
+title: 'Velo Server Side Rendering and Warmup Data APIs'
 description: 'TODO'
 image: '/assets/images/velo.png'
 head: '
@@ -11,7 +11,9 @@ head: '
 '
 ---
 
-# TODO
+# Velo Server Side Rendering and Warmup Data APIs
+
+![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
 
 <figure>
   <figcaption>
@@ -36,7 +38,7 @@ Throttling the network in Chrome DevTools
 
 <figure>
   <figcaption>
-    <strong>TODO</strong>
+    <strong>A site without server-side render for dynamic data</strong>
   </figcaption>
   <video
     src="/assets/posts/1/no-ssr.mp4"
@@ -61,7 +63,7 @@ $w.onReady(async function () {
 
 <figure>
   <figcaption>
-    <strong>TODO</strong>
+    <strong>A site with server-side render for dynamic data</strong>
   </figcaption>
   <video
     src="/assets/posts/1/with-ssr.mp4"
@@ -157,7 +159,7 @@ $w.onReady(async function () {
 });
 ```
 
-<aside>
+## Parallel execution for a few async tasks
 
 ```js
 // ❌ wrong approach!!
@@ -184,7 +186,6 @@ $w.onReady(async function () {
   $w('#text1').text = JSON.stringify({ one, two, three });
 });
 ```
-</aside>
 
 ## Code Snippets
 
@@ -222,7 +223,14 @@ export const warmupUtil = async (key, func) => {
 ```
 </details>
 
-## Posts
+## Resources
 
 - [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
 - [Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
+
+## Posts
+
+- [Reduce server-side calls using a caching mechanism](/cache-for-the-jsw-functions/)
+- [Type safety your code with JSDoc](/type-safety-your-code-with-jsdoc/)
+- [Repeated item event handlers v2.0](/repeated-item-event-handlers-v2/)
+- [Query selector for child elements](/velo-query-selector-for-child-elements/)
