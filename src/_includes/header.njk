@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#fff">
-  <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:site" content="@_shoonia">
   <meta name="twitter:card" content="summary">
   <meta property="og:site_name" content="{{ pkg.title }}">
@@ -25,11 +24,9 @@
 
   {% if description %}
     <meta name="description" content="{{ description }}">
-    <meta name="twitter:description" content="{{ description }}">
     <meta property="og:description" content="{{ description }}">
   {% else %}
     <meta name="description" content="{{ pkg.description }}">
-    <meta name="twitter:description" content="{{ pkg.description }}">
     <meta property="og:description" content="{{ pkg.description }}">
   {% endif %}
 
