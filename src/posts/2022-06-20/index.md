@@ -32,6 +32,8 @@ $w.onReady(function () {
 });
 ```
 
+Throttling the network in Chrome DevTools
+
 <figure>
   <figcaption>
     <strong>TODO</strong>
@@ -72,8 +74,9 @@ $w.onReady(async function () {
   />
 </figure>
 
-
-
+<aside>
+❗ don't forget to turn off the throttling of the network after testing 😉
+</aside>
 
 <figure>
   <figcaption>
@@ -91,33 +94,6 @@ $w.onReady(async function () {
 
 The `env` property returns <mark>"backend"</mark> when rendering on the server and <mark>"browser"</mark> when rendering on the client.
 
-```js
-import { warmupData, rendering } from 'wix-window';
-import wixData from 'wix-data';
-
-const getGoodsItems = async () => {
-  const key = 'goods-items';
-
-  if (rendering.env === 'backend') {
-    const { items } = await wixData.query('goods').find();
-
-    // Set the warmup data on the server
-    warmupData.set(key, items);
-
-    return items;
-  }
-
-  // Get the warmup data on the client-side
-  return warmupData.get(key);
-};
-
-$w.onReady(async function () {
-  const items = await getGoodsItems();
-
-  $w('#text1').text = JSON.stringify(items);
-});
-```
-
 <div class="_filetree">
   <div class="_filetree_folder _filetree_line">
     <strong>Public & Backend</strong>
@@ -130,27 +106,7 @@ $w.onReady(async function () {
     <img src="/assets/images/i/js.svg" alt=""/>
     warmupUtil.js
   </div>
-  <div class="_filetree_section _filetree_line">
-    <img src="/assets/images/i/open.svg" alt=""/>
-    Backend
-  </div>
-  <div class="_filetree_folder _filetree_line">
-    <img src="/assets/images/i/jsw.svg" alt=""/>
-    database.jsw
-  </div>
 </div>
-
-**backend/database.jsw**
-
-```js
-import wixData from 'wix-data';
-
-export const getGoodsItems = async () => {
-  const { items } = await wixData.query('goods').find();
-
-  return items;
-};
-```
 
 **public/warmupUtil.js**
 
@@ -158,32 +114,44 @@ export const getGoodsItems = async () => {
 import { warmupData, rendering } from 'wix-window';
 
 export const warmupUtil = async (key, func) => {
+  // On the server-side render step
   if (rendering.env === 'backend') {
+    // get data
     const data = await func();
 
+    // Set the warmup data on the server
     warmupData.set(key, data);
 
     return data;
   }
 
+  // On client-side render step
+
+  // Get the warmup data on the client-side
   const data = warmupData.get(key);
 
+  // Checking a cached data exist
   if (data == null) {
-	  return data;
+    return data;
   }
 
+  // If we don't have cache data from the server,
+  // then we do a backup call on the client
   return func();
 };
 ```
 
-**public/warmupUtil.js**
+**Page Code Tab**
 
 ```js
-import { getGoodsItems } from 'backend/database';
 import { warmupUtil } from 'public/warmupUtil';
 
+const getGoods = async () => {
+   return wixData.query('goods').find().then((data) => data.items);
+};
+
 $w.onReady(async function () {
-  const items = await warmupUtil('goods-items', getGoodsItems);
+  const items = await warmupUtil('goods-items', getGoods);
 
   $w('#text1').text = JSON.stringify(items);
 });
@@ -192,27 +160,19 @@ $w.onReady(async function () {
 <aside>
 
 ```js
-import { oneAsyncFunc, twoAsyncFunc, threeAsyncFunc } from 'backend/database';
-import { warmupUtil } from 'public/warmupUtil';
-
 // ❌ wrong approach!!
 $w.onReady(async function () {
   const one = await warmupUtil('one-async-func', oneAsyncFunc);
   const two = await warmupUtil('two-async-func', twoAsyncFunc);
   const three = await warmupUtil('three-async-func', threeAsyncFunc);
 
-  $w('#text1').text = JSON.stringify(one);
-  $w('#text2').text = JSON.stringify(two);
-  $w('#text3').text = JSON.stringify(three);
+  $w('#text1').text = JSON.stringify({ one, two, three });
 });
 ```
 
 [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
 ```js
-import { oneAsyncFunc, twoAsyncFunc, threeAsyncFunc } from 'backend/database';
-import { warmupUtil } from 'public/warmupUtil';
-
 // ✅ parallel asynchronous execution
 $w.onReady(async function () {
   const [one, two, three] = await Promise.all([
@@ -221,9 +181,7 @@ $w.onReady(async function () {
     warmupUtil('three-async-func', threeAsyncFunc),
   ]);
 
-  $w('#text1').text = JSON.stringify(one);
-  $w('#text2').text = JSON.stringify(two);
-  $w('#text3').text = JSON.stringify(three);
+  $w('#text1').text = JSON.stringify({ one, two, three });
 });
 ```
 </aside>
