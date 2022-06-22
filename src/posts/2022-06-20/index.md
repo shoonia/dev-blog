@@ -1,17 +1,17 @@
 ---
-permalink: '/TODO/'
+permalink: '/ssr-and-warmup-data/'
 date: '2022-06-20T12:00:00.000Z'
 modified: '2022-06-20T12:00:00.000Z'
 lang: 'en'
-title: 'Velo Server Side Rendering and Warmup Data APIs'
+title: 'Velo: Server Side Rendering and Warmup Data APIs'
 description: 'TODO'
-image: '/assets/images/velo.png'
+image: '/assets/images/ne.jpg'
 head: '
 <link rel="stylesheet" href="/assets/styles/file-tree.css?v=1"/>
 '
 ---
 
-# Velo Server Side Rendering and Warmup Data APIs
+# Velo: Server Side Rendering and Warmup Data APIs
 
 ![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
 
@@ -227,6 +227,7 @@ export const warmupUtil = async (key, func) => {
 
 - [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
 - [Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
+- [Velo: About the Page Rendering Process](https://support.wix.com/en/article/velo-about-the-page-rendering-process)
 
 ## Posts
 
