@@ -15,6 +15,8 @@ head: '
 
 ![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
 
+In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for work with Wix elements.
+
 <figure>
   <figcaption>
     <cite>Velo API Reference:</cite>
@@ -55,9 +57,9 @@ Throttling the network in Chrome DevTools
 import wixData from 'wix-data';
 
 $w.onReady(async function () {
-  await wixData.query('goods').find().then((data) => {
-    $w('#text1').text = JSON.stringify(data.items);
-  });
+  const data = await wixData.query('goods').find();
+
+  $w('#text1').text = JSON.stringify(data.items);
 });
 ```
 
@@ -94,6 +96,26 @@ $w.onReady(async function () {
   />
 </figure>
 
+[The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
+
+```js
+import { warmupData } from 'wix-window';
+
+// Set data
+warmupData.set('my-key', 'value');
+
+// Get data
+const data = warmupData.get('my-key');
+```
+
+```html
+<!-- warmup data start -->
+<script type="application/json" id="wix-warmup-data">
+  { }
+</script>
+<!-- warmup data end -->
+```
+
 The `env` property returns <mark>"backend"</mark> when rendering on the server and <mark>"browser"</mark> when rendering on the client.
 
 <div class="_filetree">
@@ -118,22 +140,22 @@ import { warmupData, rendering } from 'wix-window';
 export const warmupUtil = async (key, func) => {
   // On the server-side render step
   if (rendering.env === 'backend') {
-    // get data
+    // Get data
     const data = await func();
 
-    // Set the warmup data on the server
+    // Set the warmup data on the server-side
     warmupData.set(key, data);
 
     return data;
   }
 
-  // On client-side render step
+  // On the client-side
 
   // Get the warmup data on the client-side
   const data = warmupData.get(key);
 
   // Checking a cached data exist
-  if (data == null) {
+  if (data) {
     return data;
   }
 
@@ -148,7 +170,7 @@ export const warmupUtil = async (key, func) => {
 ```js
 import { warmupUtil } from 'public/warmupUtil';
 
-const getGoods = async () => {
+const getGoods = () => {
    return wixData.query('goods').find().then((data) => data.items);
 };
 
@@ -214,7 +236,7 @@ export const warmupUtil = async (key, func) => {
 
   const data = warmupData.get(key);
 
-  if (data == null) {
+  if (data) {
     return data;
   }
 
