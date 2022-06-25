@@ -3,10 +3,10 @@ const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
 
 const { rootResolve, siteUrl } = require('./halpers');
+const { dateNow } = require('./env');
 const pkg = require('../package.json');
 
 exports.sitemapAndRss = async (nodes) => {
-  const dateNow = new Date();
   const sitemapStream = new SitemapStream();
 
   const author = {

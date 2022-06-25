@@ -8,4 +8,5 @@ module.exports = {
   debug: Boolean(process.env.DEBUG),
   cssHash: fileHashSync('src/assets/styles.css'),
   jsHash: fileHashSync('src/assets/vendor.js'),
+  dateNow: new Date(),
 };

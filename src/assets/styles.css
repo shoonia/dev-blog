@@ -5,11 +5,11 @@
 }
 
 :root {
-  --color-link: #1a72e8;
-  --color-light-link: #eaf8ff;
-  --color-gray: rgb(0 0 0 / 64%);
-  --color-light-gray: rgb(112 128 144);
-  --color-gray-opacity: rgb(112 128 144 / 40%);
+  --c-link: #1a72e8;
+  --c-light-link: #eaf8ff;
+  --c-gray: rgb(0 0 0 / 64%);
+  --c-light-gray: rgb(112 128 144);
+  --c-gray-opacity: rgb(112 128 144 / 40%);
   --content-widht: 750px;
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
@@ -73,21 +73,19 @@ header {
   border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 
-nav,
-footer {
+nav {
   font-size: 1.2em;
 }
 
 footer {
-  margin-top: 80px;
-  height: 100px;
+  margin-top: 5em;
+  padding: 2em 0;
   text-align: center;
-  background-color: #f9f9f9;
-  line-height: 100px;
+  border-top: 1px solid rgb(0 0 0 / 10%);
 }
 
 a {
-  color: var(--color-link);
+  color: var(--c-link);
   text-decoration: none;
   position: relative;
   outline: none;
@@ -120,10 +118,15 @@ a:focus::before {
 }
 
 footer a {
-  color: #1353a9;
+  color: var(--c-light-gray);
   display: inline-block;
   margin: 0 1em;
   user-select: none;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #1353a9;
 }
 
 h2,
@@ -186,7 +189,7 @@ figcaption {
 
 em,
 cite {
-  color: var(--color-gray);
+  color: var(--c-gray);
   font-style: italic;
 }
 
@@ -231,8 +234,8 @@ kbd {
 
 hr {
   border: none;
-  color: var(--color-gray-opacity);
-  background-color: var(--color-gray-opacity);
+  color: var(--c-gray-opacity);
+  background-color: var(--c-gray-opacity);
   height: 2px;
 }
 
@@ -246,12 +249,12 @@ table {
 table th,
 table td {
   padding: 0.3em 0.7em;
-  border: 1px solid var(--color-gray-opacity);
+  border: 1px solid var(--c-gray-opacity);
 }
 
 table tr {
   background-color: #fff;
-  border-top: 1px solid var(--color-gray-opacity);
+  border-top: 1px solid var(--c-gray-opacity);
 }
 
 img {
@@ -309,7 +312,7 @@ summary::after {
   position: absolute;
   right: 0.5em;
   font-size: 16px;
-  color: var(--color-link);
+  color: var(--c-link);
 }
 
 details {
@@ -321,7 +324,7 @@ details summary::before {
   content: "+";
   font-family: var(--font-mono);
   font-weight: bold;
-  color: var(--color-link);
+  color: var(--c-link);
   display: inline-block;
   margin-right: 8px;
 }
@@ -345,7 +348,7 @@ iframe {
 details,
 iframe,
 video {
-  border: 1px solid var(--color-gray-opacity);
+  border: 1px solid var(--c-gray-opacity);
   border-radius: 8px;
   width: 100%;
 }
@@ -369,7 +372,7 @@ blockquote {
 
 blockquote::before,
 blockquote::after {
-  color: var(--color-light-gray);
+  color: var(--c-light-gray);
   font-family: var(--font-serif);
   font-size: 2em;
   line-height: 0.1em;
@@ -387,7 +390,7 @@ blockquote::after {
 }
 
 time {
-  color: var(--color-gray);
+  color: var(--c-gray);
   font-size: 14px;
   font-family: Courier, monospace;
 }
@@ -408,7 +411,7 @@ pre {
   -webkit-overflow-scrolling: touch;
   border-radius: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-gray-opacity) transparent;
+  scrollbar-color: var(--c-gray-opacity) transparent;
 }
 
 pre::-webkit-scrollbar {
@@ -421,12 +424,12 @@ pre::-webkit-scrollbar-track {
 }
 
 pre::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-opacity);
+  background-color: var(--c-gray-opacity);
   border-radius: 10px;
 }
 
 pre::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-light-gray);
+  background-color: var(--c-light-gray);
 }
 
 pre ::selection {
@@ -570,7 +573,7 @@ pre a {
   gap: 1em;
   padding: 1em;
   margin-bottom: 1em;
-  background-color: var(--color-light-link);
+  background-color: var(--c-light-link);
 }
 
 .comeback-alive {
@@ -578,13 +581,13 @@ pre a {
   justify-content: center;
   margin-top: 2em;
   padding: 2em 1em;
-  border: 1px solid var(--color-gray-opacity);
+  border: 1px solid var(--c-gray-opacity);
   border-radius: 8px;
 }
 
 .comeback-alive:hover,
 .comeback-alive:focus {
-  background-color: var(--color-light-link);
+  background-color: var(--c-light-link);
 }
 
 .comeback-alive::before {
@@ -602,7 +605,7 @@ pre a {
   color: inherit;
   padding: 0.4em 1em;
   cursor: pointer;
-  border: 1px solid var(--color-light-gray);
+  border: 1px solid var(--c-light-gray);
   user-select: none;
 }
 

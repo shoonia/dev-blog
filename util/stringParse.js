@@ -10,6 +10,10 @@ const map = new Map(gemoji.map((i) => [i.emoji, i.description]));
 exports.a11yEmoji = (val) => {
   if (emojiRx.test(val)) {
     return val.replace(emojiRx, (i) => {
+      if  (i === '©') {
+        return i;
+      }
+
       const label = map.get(i);
 
       if (isString(label)) {
