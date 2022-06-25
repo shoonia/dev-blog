@@ -19,14 +19,6 @@ const isPrismeComment = (node) => {
   return node.tag === 'span' && node.attrs?.class === 'token comment';
 };
 
-class Node {
-  constructor(tag, attrs, content) {
-    this.tag = tag;
-    this.attrs = attrs;
-    this.content = content;
-  }
-}
-
 const createId = (content) => {
   if (Array.isArray(content)) {
     const title = content
@@ -76,21 +68,24 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'pre': {
-        node.content.unshift(
-          new Node('div', { class: 'menu' }),
-        );
-
-        node.content.push(
-          new Node(
-            'button',
-            {
+        node.content = [
+          {
+            tag: 'div',
+            attrs: {
+              class: 'menu',
+            },
+          },
+          ...node.content,
+          {
+            tag: 'button',
+            attrs: {
               type: 'button',
               class: 'copy-code',
               'data-copy': true,
             },
-            ['Copy Code'],
-          ),
-        );
+            content: ['Copy Code'],
+          },
+        ];
 
         return node;
       }
@@ -103,16 +98,28 @@ const transformer = (classCache) => posthtml([
         if (isString(id)) {
           const i = generate();
 
-          const a = new Node('a', {
-            href: `#${id}`,
-            class: 'anchor',
-            'aria-labelledby': i,
-          });
+          node.attrs = {
+            id,
+            class: 'title',
+          };
 
-          const span = new Node('span', { id: i }, node.content);
-
-          node.attrs = { id, class: 'title' };
-          node.content = [a, span];
+          node.content = [
+            {
+              tag: 'a',
+              attrs: {
+                href: `#${id}`,
+                class: 'anchor',
+                'aria-labelledby': i,
+              },
+            },
+            {
+              tag: 'span',
+              attrs: {
+                id: i,
+              },
+              content: node.content,
+            },
+          ];
         }
 
         return node;
