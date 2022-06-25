@@ -34,7 +34,7 @@
     "eslint": "^8.18.0",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
-    "uvu": "^0.5.3"
+    "uvu": "^0.5.4"
   },
   "repository": {
     "type": "git",
