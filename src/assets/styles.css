@@ -117,6 +117,11 @@ a:focus::before {
   transform-origin: bottom left;
 }
 
+pre a {
+  color: #7e93d4;
+  text-decoration: underline;
+}
+
 footer a {
   color: var(--c-light-gray);
   display: inline-block;
@@ -435,11 +440,6 @@ pre::-webkit-scrollbar-thumb:hover {
 pre ::selection {
   text-shadow: none;
   background-color: rgb(154 162 177 / 20%);
-}
-
-pre a {
-  color: #7e93d4;
-  text-decoration: underline;
 }
 
 .menu {
