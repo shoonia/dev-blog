@@ -15,7 +15,7 @@ head: '
 
 ![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
 
-In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for work with Wix elements.
+In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
 
 <figure>
   <figcaption>
@@ -25,6 +25,12 @@ In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onrea
     When possible, the rendering process is split in two in order to improve performance. The first cycle in the process happens in the server-side code and the second cycle happens in the client-side code. If not possible on the server-side, all rendering happens client-side.
   </blockquote>
 </figure>
+
+```js
+$w.onReady(function () {
+  $w('#text1').text = 'Hello!';
+});
+```
 
 ```js
 import wixData from 'wix-data';
@@ -95,6 +101,8 @@ $w.onReady(async function () {
     loading="lazy"
   />
 </figure>
+
+## The Warmup Data API
 
 [The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
 
