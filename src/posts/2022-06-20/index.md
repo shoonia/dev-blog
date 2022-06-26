@@ -15,7 +15,11 @@ head: '
 
 ![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
 
-In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
+In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensure that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
+
+The first run of `$w.onReady()` happening on the server-side when server build HTML page. The server is running the code and put result into HTML (if it's possible).
+
+The second run is happening on the client-side in browser. when page is loaded.
 
 <figure>
   <figcaption>
@@ -26,11 +30,44 @@ In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onrea
   </blockquote>
 </figure>
 
+Let's playing with <abbr title="Server-side rendering">SSR</abbr> for understanding how it works.
+
+For example, we write the next code.
+
 ```js
 $w.onReady(function () {
   $w('#text1').text = 'Hello!';
 });
 ```
+
+On the server this code will be executed and result is putting to the HTML page.
+
+The `env` property returns <mark>"backend"</mark> when rendering on the server and <mark>"browser"</mark> when rendering on the client.
+
+```js
+import { rendering } from 'wix-window';
+
+$w.onReady(async function () {
+  $w('#text1').text = `${rendering.env}: ${Date.now()}`;
+});
+```
+
+<figure>
+  <figcaption>
+    <strong>SSR & browser runtime</strong>
+  </figcaption>
+  <video
+    src="/assets/posts/1/ssr.mp4"
+    type="video/mp4"
+    preload="metadata"
+    width="1728 "
+    height="1080"
+    controls
+    loop
+  />
+</figure>
+
+## Asynchronous operation
 
 ```js
 import wixData from 'wix-data';
@@ -123,8 +160,6 @@ const data = warmupData.get('my-key');
 </script>
 <!-- warmup data end -->
 ```
-
-The `env` property returns <mark>"backend"</mark> when rendering on the server and <mark>"browser"</mark> when rendering on the client.
 
 <div class="_filetree">
   <div class="_filetree_folder _filetree_line">
