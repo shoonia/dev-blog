@@ -17,9 +17,9 @@ head: '
 
 In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensure that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
 
-The first run of `$w.onReady()` happening on the server-side when server build HTML page. The server is running the code and put result into HTML (if it's possible).
+The first run of `$w.onReady()` callback happening on the server-side when server build HTML page. The server is running the code and put result into HTML (if it's possible).
 
-The second run is happening on the client-side in browser. when page is loaded.
+The second run is happening on the client-side in browser when page is loaded.
 
 <figure>
   <figcaption>
@@ -32,7 +32,7 @@ The second run is happening on the client-side in browser. when page is loaded.
 
 Let's playing with <abbr title="Server-side rendering">SSR</abbr> for understanding how it works.
 
-For example, we write the next code.
+For example, we have the next code.
 
 ```js
 $w.onReady(function () {
@@ -40,17 +40,23 @@ $w.onReady(function () {
 });
 ```
 
-On the server this code will be executed and result is putting to the HTML page.
+On the server this code will be executed and result will put to the HTML page. It doesn't matter what the text `'#text1'` component has in editor. It always will be `'Hello!'`
+
+We can control the step of cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env).
 
 The `env` property returns <mark>"backend"</mark> when rendering on the server and <mark>"browser"</mark> when rendering on the client.
+
+Let's update the code for see it. We create a string with env value and timestamp.
 
 ```js
 import { rendering } from 'wix-window';
 
-$w.onReady(async function () {
+$w.onReady(function () {
   $w('#text1').text = `${rendering.env}: ${Date.now()}`;
 });
 ```
+
+Now, when we reload the page we can see that HTML content has <mark>backend</mark> value. And when the page finished loading then we see the <mark>browser</mark> value (the second cycle).
 
 <figure>
   <figcaption>
@@ -60,7 +66,7 @@ $w.onReady(async function () {
     src="/assets/posts/1/ssr.mp4"
     type="video/mp4"
     preload="metadata"
-    width="1728 "
+    width="1728"
     height="1080"
     controls
     loop
@@ -68,6 +74,10 @@ $w.onReady(async function () {
 </figure>
 
 ## Asynchronous operation
+
+What about async operations, promises?
+
+So, let's do a query request to a database and print result as a string.
 
 ```js
 import wixData from 'wix-data';
@@ -79,7 +89,7 @@ $w.onReady(function () {
 });
 ```
 
-Throttling the network in Chrome DevTools
+When we reload the page then we see a default text that contain in editor element.
 
 <figure>
   <figcaption>
@@ -89,7 +99,7 @@ Throttling the network in Chrome DevTools
     src="/assets/posts/1/no-ssr.mp4"
     type="video/mp4"
     preload="metadata"
-    width="1728 "
+    width="1728"
     height="1080"
     controls
     loop
@@ -114,7 +124,7 @@ $w.onReady(async function () {
     src="/assets/posts/1/with-ssr.mp4"
     type="video/mp4"
     preload="metadata"
-    width="1728 "
+    width="1728"
     height="1080"
     controls
     loop
