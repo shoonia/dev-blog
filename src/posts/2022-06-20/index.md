@@ -13,7 +13,7 @@ head: '
 
 # Velo: Server Side Rendering and Warmup Data APIs
 
-![art by Vitaliy Ostaschenko](/assets/images/ne.jpg)
+![The Three-Body Problem by Li chunlei on ArtStation](/assets/images/ne.jpg)
 
 In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensure that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
 
@@ -40,7 +40,7 @@ $w.onReady(function () {
 });
 ```
 
-On the server this code will be executed and result will put to the HTML page. It doesn't matter what the text `'#text1'` component has in editor. It always will be `'Hello!'`
+On the server this code will be executed and result will put to the HTML page. It doesn't matter what the text `'#text1'` component has in the editor. It always will be `'Hello!'`
 
 We can control the step of cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env).
 
@@ -89,7 +89,7 @@ $w.onReady(function () {
 });
 ```
 
-When we reload the page then we see a default text that contain in editor element.
+As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work with any async operations. When we reload the page then we see a default text that the Text element contains in the editor.
 
 <figure>
   <figcaption>
@@ -105,6 +105,10 @@ When we reload the page then we see a default text that contain in editor elemen
     loop
   />
 </figure>
+
+It happened because `$w.onReady()` doesn't wait for a promise fulfilled on the server-side. In the code, we don't have any instructions for that. The server sends the HTML page with default content. Our database query is fulfilled only in the client browser.
+
+The `$w.onReady()` supports the async callback functions. Let's update the code with [`async/await`](https://javascript.info/async-await) operators.
 
 ```js
 import wixData from 'wix-data';
@@ -135,41 +139,40 @@ $w.onReady(async function () {
 ❗ don't forget to turn off the throttling of the network after testing 😉
 </aside>
 
+## The Warmup Data API
+
 <figure>
   <figcaption>
 
-  **View source code:**
-
-  Press <kbd>Ctrl</kbd>+<kbd>U</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Option</kbd>+<kbd>U</kbd> (Mac).
+  Velo: [The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
   </figcaption>
-  <img
-    src="/assets/posts/1/view-source.jpg"
-    alt="view source code"
-    loading="lazy"
-  />
+
+  ```js
+  import { warmupData } from 'wix-window';
+
+  // Set data
+  warmupData.set('my-key', 'value');
+
+  // Get data
+  const data = warmupData.get('my-key');
+  ```
 </figure>
 
-## The Warmup Data API
+<figure>
+  <figcaption>
+    <strong>SSR data injection in Wix site</strong>
+  </figcaption>
 
-[The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
+  ```html
+  <!-- warmup data start -->
+  <script type="application/json" id="wix-warmup-data">
+    { … }
+  </script>
+  <!-- warmup data end -->
+  ```
+</figure>
 
-```js
-import { warmupData } from 'wix-window';
-
-// Set data
-warmupData.set('my-key', 'value');
-
-// Get data
-const data = warmupData.get('my-key');
-```
-
-```html
-<!-- warmup data start -->
-<script type="application/json" id="wix-warmup-data">
-  { }
-</script>
-<!-- warmup data end -->
-```
+## Issues and solution
 
 <div class="_filetree">
   <div class="_filetree_folder _filetree_line">
@@ -233,6 +236,20 @@ $w.onReady(async function () {
   $w('#text1').text = JSON.stringify(items);
 });
 ```
+
+<figure>
+  <figcaption>
+
+  **View source code:**
+
+  Press <kbd>Ctrl</kbd>+<kbd>U</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Option</kbd>+<kbd>U</kbd> (Mac).
+  </figcaption>
+  <img
+    src="/assets/posts/1/view-source.jpg"
+    alt="view source code"
+    loading="lazy"
+  />
+</figure>
 
 ## Parallel execution for a few async tasks
 
