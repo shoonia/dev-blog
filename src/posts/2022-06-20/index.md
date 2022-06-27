@@ -77,7 +77,7 @@ Now, when we reload the page we can see that HTML content has <mark>backend</mar
 
 What about async operations, promises?
 
-So, let's do a query request to a database and print result as a string.
+The main problem starts when we use async operation in our code. So, let's try to do a query request to a database and print result as a string.
 
 ```js
 import wixData from 'wix-data';
@@ -93,7 +93,9 @@ As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work w
 
 <figure>
   <figcaption>
-    <strong>A site without server-side render for dynamic data</strong>
+  I'm using the throttling of the network in Chrome DevTools for reduce Internet speed. It may be helpful for debug.
+
+  <strong>A site without server-side render for dynamic data</strong>
   </figcaption>
   <video
     src="/assets/posts/1/no-ssr.mp4"
@@ -108,7 +110,7 @@ As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work w
 
 It happened because `$w.onReady()` doesn't wait for a promise fulfilled on the server-side. In the code, we don't have any instructions for that. The server sends the HTML page with default content. Our database query is fulfilled only in the client browser.
 
-The `$w.onReady()` supports the async callback functions. Let's update the code with [`async/await`](https://javascript.info/async-await) operators.
+The fix is very simple, we should wait a promise result. The `$w.onReady()` supports the async callback functions. Let's update the code with [`async/await`](https://javascript.info/async-await) operators.
 
 ```js
 import wixData from 'wix-data';
@@ -119,6 +121,8 @@ $w.onReady(async function () {
   $w('#text1').text = JSON.stringify(data.items);
 });
 ```
+
+Now, we can see that the SSR starts to work and HTML page is render with data.
 
 <figure>
   <figcaption>
@@ -138,6 +142,21 @@ $w.onReady(async function () {
 <aside>
 ❗ don't forget to turn off the throttling of the network after testing 😉
 </aside>
+
+### Long async calls are skipped in the server-side
+
+```js
+import wixData from 'wix-data';
+
+const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+
+$w.onReady(async function () {
+  // an async delay for 5 seconds
+  await delay(5000);
+
+  $w('#text1').text = Date.now().toString();
+});
+```
 
 ## The Warmup Data API
 
