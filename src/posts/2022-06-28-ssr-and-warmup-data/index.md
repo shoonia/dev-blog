@@ -4,7 +4,7 @@ date: '2022-06-20T12:00:00.000Z'
 modified: '2022-06-20T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Server Side Rendering and Warmup Data APIs'
-description: 'Optimizing data fetching and decrease of the time a Wix site loading'
+description: 'Optimizing data fetching and reducing the time of Wix site loading'
 image: '/assets/images/ne.jpg'
 head: '
 <link rel="stylesheet" href="/assets/styles/file-tree.css?v=1"/>
@@ -13,7 +13,7 @@ head: '
 
 # Velo: Server Side Rendering and Warmup Data APIs
 
-*Optimizing data fetching and decrease of the time a Wix site loading*
+*Optimizing data fetching and reducing the time of Wix site loading*
 
 ![The Three-Body Problem by Li chunlei on ArtStation](/assets/images/ne.jpg)
 
@@ -149,7 +149,7 @@ Now, we can see that the SSR starts to work. And the server has rendered the HTM
 
 We should be careful if we use an async callback in the `$w.onReady()` event handler. Long async tasks slow down the render of the page.
 
-We can test it. In the below code, we add a delay of 5 seconds and see what happens.
+Let's test it. In the code below, we add a delay of 5 seconds and see what happens.
 
 ```js
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -179,7 +179,7 @@ Just think about it. Maybe you don't need the SSR if your API works slow.
 
 ## The Warmup Data API
 
-We know that the life cycle `$w.onReady()` runs two times.
+The APIs of the `warmupData` are very similar to the [storage APIs](https://www.wix.com/velo/reference/wix-storage). It has two methods. We can set data by key in the server. And we can get the stored data by key on the client.
 
 <figure>
   <figcaption>
@@ -190,7 +190,7 @@ We know that the life cycle `$w.onReady()` runs two times.
   </blockquote>
 </figure>
 
-The APIs of the `warmupData` are very similar to the storage APIs. It has two methods. We can set data by key in the server. And get the data by key on the client.
+We can use it to reduce the request count to a database. We know that `$w.onReady()` life cycle runs two times. There we save the query response to `warmupData` and read it on the client without additional database request.
 
 <figure>
   <figcaption>
@@ -231,7 +231,9 @@ Under the hood, the `warmupData` injects the data into the script tag on the ser
 
 ## Issues and solution
 
-Alright, we want to optimize page loading using SSR with dynamic data.
+We want to optimize the page loading.
+
+1. Use <abbr title="Server-side rendering">SSR</abbr>
 
 <div class="_filetree">
   <div class="_filetree_folder _filetree_line">
