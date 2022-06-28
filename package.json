@@ -3,7 +3,7 @@
   "title": "Alexander Zaytsev | Web Development Blog",
   "description": "Web Development Blog",
   "version": "0.1.0",
-  "homepage": "https://shoonia.site",
+  "homepage": "https://shoonia.site/",
   "scripts": {
     "build": "NODE_ENV=production eleventy",
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
