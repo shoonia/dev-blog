@@ -1,11 +1,5 @@
 requestIdleCallback(() => {
-  let getId = () => {
-    if (!localStorage.cid) {
-      localStorage.cid = Math.random().toString(36);
-    }
-
-    return localStorage.cid;
-  };
+  let prefetched = new Set();
 
   let serialize = (ops) => {
     let data = [], key;
@@ -16,8 +10,6 @@ requestIdleCallback(() => {
 
     return data.join('&');
   };
-
-  let prefetched = new Set();
 
   let prefetch = (url) => {
     if (!prefetched.has(url) && prefetched.size < 25) {
@@ -43,29 +35,6 @@ requestIdleCallback(() => {
     threshold: 0,
   });
 
-  document.querySelectorAll('a').forEach((a) => {
-    if (a.hostname === location.hostname && !~a.href.indexOf('#')) {
-      observer.observe(a);
-    }
-  });
-
-  navigator.sendBeacon('https://www.google-analytics.com/collect',
-    serialize({
-      v: '1',
-      ds: 'web',
-      tid: 'UA-137813864-1',
-      cid: getId(),
-      t: 'pageview',
-      dr: document.referrer,
-      dt: document.title,
-      dl: location.origin + location.pathname,
-      ul: navigator.language.toLowerCase(),
-      sr: screen.width + 'x' + screen.height,
-      vp: visualViewport.width + 'x' + visualViewport.height,
-    }),
-  );
-
-  // Copy Code
   let copyCodeHandler = async (event) => {
     let button = event.target;
     let code = button.closest('pre')?.querySelector('code');
@@ -83,8 +52,30 @@ requestIdleCallback(() => {
     }
   };
 
+  document.querySelectorAll('a').forEach((a) => {
+    if (a.hostname === location.hostname && !~a.href.indexOf('#')) {
+      observer.observe(a);
+    }
+  });
+
   document.querySelectorAll('[data-copy]').forEach((button) =>
     button.addEventListener('click', copyCodeHandler),
+  );
+
+  navigator.sendBeacon('https://www.google-analytics.com/collect',
+    serialize({
+      v: '1',
+      ds: 'web',
+      tid: 'UA-137813864-1',
+      cid: localStorage.cid || (localStorage.cid = Math.random().toString(36)),
+      t: 'pageview',
+      dr: document.referrer,
+      dt: document.title,
+      dl: location.origin + location.pathname,
+      ul: navigator.language.toLowerCase(),
+      sr: screen.width + 'x' + screen.height,
+      vp: visualViewport.width + 'x' + visualViewport.height,
+    }),
   );
 }, {
   timeout: 2000,
