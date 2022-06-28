@@ -1,7 +1,7 @@
 ---
 permalink: '/smaller-bundle-size-by-importing-npm-package-correctly/'
 date: '2020-11-14T12:00:00.000Z'
-modified: '2021-01-04T12:00:00.000Z'
+modified: '2021-01-04T12:00:03.000Z'
 lang: 'en'
 title: 'Velo by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one'

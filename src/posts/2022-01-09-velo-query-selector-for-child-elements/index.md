@@ -1,7 +1,7 @@
 ---
 permalink: '/velo-query-selector-for-child-elements/'
 date: '2022-01-08T12:00:00.000Z'
-modified: '2022-01-08T12:00:00.000Z'
+modified: '2022-01-08T12:00:01.000Z'
 lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
 description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node'

@@ -1,7 +1,7 @@
 ---
 permalink: '/api-qr-code-generator/'
 date: '2019-11-09T12:00:00.000Z'
-modified: '2021-01-04T12:00:00.000Z'
+modified: '2021-01-04T12:00:05.000Z'
 lang: 'uk'
 title: 'Створюємо API для генерації QR Code зображень'
 description: 'В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.'

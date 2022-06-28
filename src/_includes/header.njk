@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#fff">
   <meta name="twitter:site" content="@_shoonia">
+  <meta name="twitter:creator" content="@_shoonia">
   <meta name="twitter:card" content="summary">
   <meta property="og:site_name" content="{{ pkg.title }}">
   <meta property="og:url" content="{{ permalink | siteUrl }}">
@@ -22,21 +23,11 @@
     <meta property="article:modified_time" content="{{ modified }}">
   {% endif %}
 
-  {% if description %}
-    <meta name="description" content="{{ description }}">
-    <meta property="og:description" content="{{ description }}">
-  {% else %}
-    <meta name="description" content="{{ pkg.description }}">
-    <meta property="og:description" content="{{ pkg.description }}">
-  {% endif %}
+  <meta name="description" content="{{ description if description else pkg.description }}">
+  <meta property="og:description" content="{{ description if description else pkg.description }}">
 
-  {% if title %}
-    <meta property="og:title" content="{{ title }}">
-    <title>{{ title }}</title>
-  {% else %}
-    <meta property="og:title" content="{{ pkg.title }}">
-    <title>{{ pkg.title }}</title>
-  {% endif %}
+  <meta property="og:title" content="{{ title if title else pkg.title }}">
+  <title>{{ title if title else pkg.title }}</title>
 
   <link rel="preload" href="/assets/firacode@5.2.0/firacode-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/styles.css?v={{ enviroment.cssHash  }}">
@@ -57,7 +48,7 @@
 <body>
 <header>
   <nav class="content">
-    <a href="/">
+    <a href="/" {{ 'aria-current=page' if permalink == '/' }}>
       Home
     </a>
   </nav>

@@ -1,6 +1,7 @@
 const { writeFile } = require('node:fs/promises');
 const { Feed } = require('feed');
 const { SitemapStream, streamToPromise } = require('sitemap');
+const { minify } = require('minify-xml');
 
 const { rootResolve, siteUrl } = require('./halpers');
 const { dateNow } = require('./env');
@@ -78,7 +79,7 @@ exports.sitemapAndRss = async (nodes) => {
     ),
     writeFile(
       rootResolve('public/rss.xml'),
-      feed.atom1(),
+      minify(feed.atom1()),
     ),
     writeFile(
       rootResolve('public/rss.json'),
