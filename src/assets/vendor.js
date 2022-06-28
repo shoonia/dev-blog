@@ -40,7 +40,7 @@ requestIdleCallback(() => {
     let code = button.closest('pre')?.querySelector('code');
 
     if (code) {
-      let selection = window.getSelection();
+      let selection = getSelection();
       let range = document.createRange();
 
       navigator.clipboard.writeText(code.innerText);
