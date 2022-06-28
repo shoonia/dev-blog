@@ -2,5 +2,5 @@
 layout: home.njk
 permalink: '/'
 lang: 'en'
-image: '/assets/images/icon.png'
+image: 'https://shoonia.site/assets/images/icon.png'
 ---
