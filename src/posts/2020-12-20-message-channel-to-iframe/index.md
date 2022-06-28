@@ -1,7 +1,7 @@
 ---
 permalink: '/message-channel-to-iframe/'
 date: '2020-12-20T12:00:00.000Z'
-modified: '2021-01-04T12:00:00.000Z'
+modified: '2021-01-04T12:00:04.000Z'
 lang: 'en'
 title: 'Velo by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'

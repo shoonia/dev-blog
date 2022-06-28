@@ -1,7 +1,7 @@
 ---
 permalink: '/html-template-in-corvid/'
 date: '2019-11-03T12:00:00.000Z'
-modified: '2021-01-04T12:00:00.000Z'
+modified: '2021-01-04T12:00:02.000Z'
 lang: 'en'
 title: 'Velo by Wix: Using HTML template to the better performance'
 description: "The $w.Repeater most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster."
