@@ -17,9 +17,9 @@ head: '
 
 ![The Three-Body Problem by Li chunlei on ArtStation](/assets/images/ne.jpg)
 
-In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensure that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
+In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensures that all the page elements have finished loading and we can interact with them. The life cycle of the Velo site includes two runs of the `$w.onReady()` method.
 
-The first run of `$w.onReady()` callback happening on the server-side when server build HTML page. The server is running the code and put result into HTML (if it's possible).
+The first run of the `$w.onReady()` callback happens on the server-side when the server builds the HTML page. The server executes a Velo code and puts a result into HTML (if it's possible).
 
 The second run is happening on the client-side in the browser when a site page has loaded.
 
