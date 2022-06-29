@@ -6,6 +6,9 @@ lang: 'en'
 title: 'Velo: Secrets Manager Benchmark'
 description: 'Online checker of performance benchmark for Velo Secrets Manager'
 image: '/assets/images/velo.png'
+linkPreload: '
+<link href="https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark" rel="preload" as="fetch" crossorigin="anonymous">
+'
 ---
 
 <style>
@@ -94,7 +97,6 @@ Online checker of performance benchmark for Velo [Secrets Manager](https://suppo
     Average (0): 0 milliseconds
   </output>
 </div>
-
 <div class="_output">
   <textarea
     id="output-area"
@@ -144,7 +146,7 @@ export async function getBenchmark() {
 
   const reject = () => {};
 
-  const run = () => {
+  one('#run').addEventListener('click', () => {
     fetch('https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark', {
       mode: 'cors',
       cache: 'no-cache',
@@ -160,9 +162,7 @@ export async function getBenchmark() {
       })
       .then(resolve)
       .catch(reject);
-  };
-
-  one('#run').addEventListener('click', run);
+  });
 
   outputArea.value = '';
   run();
