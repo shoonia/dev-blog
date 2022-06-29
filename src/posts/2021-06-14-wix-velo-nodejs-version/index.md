@@ -52,12 +52,7 @@ Online checker of current Node.js version on Velo backend.
     return Object.assign(document.querySelector(selector), props);
   };
 
-  fetch('https://shoonia.wixsite.com/blog/_functions/nodejs_version', {
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'omit',
-    referrerPolicy: 'no-referrer',
-  })
+  fetch('https://shoonia.wixsite.com/blog/_functions/nodejs_version')
     .then((response) => {
       if (response.ok) {
         return response.json();

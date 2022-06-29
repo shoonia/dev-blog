@@ -147,12 +147,7 @@ export async function getBenchmark() {
   const reject = () => {};
 
   one('#run').addEventListener('click', () => {
-    fetch('https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark', {
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'omit',
-      referrerPolicy: 'no-referrer',
-    })
+    fetch('https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark')
       .then((response) => {
         if (response.ok) {
           return response.json();
