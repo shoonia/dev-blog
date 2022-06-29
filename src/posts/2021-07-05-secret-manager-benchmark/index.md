@@ -135,29 +135,23 @@ export async function getBenchmark() {
   const outputArea = one('#output-area');
   const average = one('#average');
 
-  const resolve = (data) => {
-    all.push(data.ts);
-
-    const i = all.length;
-
-    outputArea.value = `#${i}: ${data.ts}\n${outputArea.value}`;
-    average.value = `Average (${i}): ${Math.round( all.reduce((a, b) => a + b, 0) / i )} milliseconds`;
-  };
-
-  const reject = () => {};
-
-  one('#run').addEventListener('click', () => {
+  const run = () => {
     fetch('https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark')
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
+      }).then((data) => {
+        all.push(data.ts);
 
-        return Promise.reject(response.statusText);
-      })
-      .then(resolve)
-      .catch(reject);
-  });
+        const i = all.length;
+
+        outputArea.value = `#${i}: ${data.ts}\n${outputArea.value}`;
+        average.value = `Average (${i}): ${Math.round( all.reduce((a, b) => a + b, 0) / i )} milliseconds`;
+      }).catch(() => {});
+  };
+
+  one('#run').addEventListener('click', run);
 
   outputArea.value = '';
   run();
