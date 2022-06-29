@@ -179,7 +179,7 @@ Just think about it. Maybe you don't need the SSR if your API works slow.
 
 ## The Warmup Data API
 
-The APIs of the `warmupData` are very similar to the [storage APIs](https://www.wix.com/velo/reference/wix-storage). It has two methods. We can set data by key in the server. And we can get the stored data by key on the client.
+[The `warmupData` APIs](https://www.wix.com/velo/reference/wix-window/warmupdata-obj) are very similar to the [storage APIs](https://www.wix.com/velo/reference/wix-storage). It has two methods. We can set data by key in the server. And we can get the stored data by key on the client.
 
 <figure>
   <figcaption>
@@ -190,7 +190,7 @@ The APIs of the `warmupData` are very similar to the [storage APIs](https://www.
   </blockquote>
 </figure>
 
-We can use this Warmup Data API to reduce the requests to a database. We know the `$w.onReady()` life cycle runs two times. There we save the query response to `warmupData` and read it on the client without additional database request.
+We can use this Warmup Data API to reduce the requests to a database. We know the `$w.onReady()` life cycle runs two times. There we save the query response to `warmupData` on the server-side and read it on the client-side without additional database request.
 
 <figure>
   <figcaption>
@@ -213,11 +213,11 @@ We can use this Warmup Data API to reduce the requests to a database. We know th
   ```
 </figure>
 
-Under the hood, the `warmupData` injects data into the script tag on the server-side. And parse this data on the client-side.
+Under the hood, the `warmupData` inject data into the script tag on the server-side. And parse the saved data on the client-side.
 
 <figure>
   <figcaption>
-    <strong>Example of SSR data injection in Wix site</strong>
+    <strong>Example of SSR data injection into site HTML</strong>
   </figcaption>
 
 ```html
@@ -255,7 +255,7 @@ We want to optimize the page loading.
 import { warmupData, rendering } from 'wix-window';
 
 export const warmupUtil = async (key, func) => {
-  // On the server-side render step
+  // On the server-side
   if (rendering.env === 'backend') {
     // Get data
     const data = await func();
@@ -282,6 +282,8 @@ export const warmupUtil = async (key, func) => {
 };
 ```
 
+Example of using:
+
 **Page Code Tab**
 
 ```js
@@ -300,7 +302,7 @@ $w.onReady(async function () {
 
 ## Parallel execution for a few async tasks
 
-We should remember the `$w.onReady()` impact of page loading. If we want to use a few async functions then we should avoid using them one by one. For example, if each of these async functions executes at 100 milliseconds, the `$w.onReady()` will need 300 milliseconds for complete execution.
+We should remember the `$w.onReady()` impact of page loading. If we want to use a few async functions in `$w.onReady()` callback then we should avoid using them in queue one by one. For example, if each of these async functions executes at 100 milliseconds, the `$w.onReady()` will need to wait for 300 milliseconds for complete execution.
 
 ```js
 // ❌ wrong approach!!
@@ -373,6 +375,7 @@ export const warmupUtil = async (key, func) => {
 - [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
 - [Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
 - [Velo: About the Page Rendering Process](https://support.wix.com/en/article/velo-about-the-page-rendering-process)
+- [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
 ## Posts
 
