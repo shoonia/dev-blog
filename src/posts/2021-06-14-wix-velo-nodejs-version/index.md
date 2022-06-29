@@ -6,6 +6,9 @@ lang: 'en'
 title: 'Current Node.js version on Velo by Wix'
 description: 'Online checker of current Node.js version on Velo backend'
 image: '/assets/images/velo.png'
+linkPreload: '
+<link href="https://shoonia.wixsite.com/blog/_functions/nodejs_version" rel="preload" as="fetch" crossorigin="anonymous">
+'
 ---
 
 # Current Node.js version on Velo by Wix
@@ -49,32 +52,6 @@ Online checker of current Node.js version on Velo backend.
     return Object.assign(document.querySelector(selector), props);
   };
 
-  const resolve = (data) => {
-    const date = new Date(data.ts);
-
-    h('#ts', {
-      title: date.toLocaleString([], {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }),
-      textContent: date.toLocaleString([], {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-      }),
-    });
-
-    h('#version', { textContent: data.version });
-    h('#arch', { textContent: data.arch });
-    h('#platform', { textContent: data.platform });
-  };
-
-  const reject = (error) => {
-    h('#error', { textContent: String(error) });
-  };
-
   fetch('https://shoonia.wixsite.com/blog/_functions/nodejs_version', {
     mode: 'cors',
     cache: 'no-cache',
@@ -88,7 +65,29 @@ Online checker of current Node.js version on Velo backend.
 
       return Promise.reject(response.statusText);
     })
-    .then(resolve)
-    .catch(reject);
-};
+    .then((data) => {
+      const date = new Date(data.ts);
+
+      h('#ts', {
+        title: date.toLocaleString([], {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+        textContent: date.toLocaleString([], {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        }),
+      });
+
+      h('#version', { textContent: data.version });
+      h('#arch', { textContent: data.arch });
+      h('#platform', { textContent: data.platform });
+    })
+    .catch((error) => {
+      h('#error', { textContent: String(error) });
+    });
+}
 </script>
