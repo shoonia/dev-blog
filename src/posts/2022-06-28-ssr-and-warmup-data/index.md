@@ -190,7 +190,7 @@ The APIs of the `warmupData` are very similar to the [storage APIs](https://www.
   </blockquote>
 </figure>
 
-We can use it to reduce the request count to a database. We know that `$w.onReady()` life cycle runs two times. There we save the query response to `warmupData` and read it on the client without additional database request.
+We can use this Warmup Data API to reduce the requests to a database. We know the `$w.onReady()` life cycle runs two times. There we save the query response to `warmupData` and read it on the client without additional database request.
 
 <figure>
   <figcaption>
@@ -213,20 +213,20 @@ We can use it to reduce the request count to a database. We know that `$w.onRead
   ```
 </figure>
 
-Under the hood, the `warmupData` injects the data into the script tag on the server-side. And parse this data on the client-side.
+Under the hood, the `warmupData` injects data into the script tag on the server-side. And parse this data on the client-side.
 
 <figure>
   <figcaption>
-    <strong>SSR data injection in Wix site</strong>
+    <strong>Example of SSR data injection in Wix site</strong>
   </figcaption>
 
-  ```html
-  <!-- warmup data start -->
-  <script type="application/json" id="wix-warmup-data">
-    { … }
-  </script>
-  <!-- warmup data end -->
-  ```
+```html
+<!-- warmup data start -->
+<script type="application/json" id="wix-warmup-data">
+  { … }
+</script>
+<!-- warmup data end -->
+```
 </figure>
 
 ## Issues and solution
@@ -298,34 +298,24 @@ $w.onReady(async function () {
 });
 ```
 
-<figure>
-  <figcaption>
-
-  **View source code:**
-
-  Press <kbd>Ctrl</kbd>+<kbd>U</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Option</kbd>+<kbd>U</kbd> (Mac).
-  </figcaption>
-  <img
-    src="/assets/posts/1/view-source.jpg"
-    alt="view source code"
-    loading="lazy"
-  />
-</figure>
-
 ## Parallel execution for a few async tasks
+
+We should remember the `$w.onReady()` impact of page loading. If we want to use a few async functions then we should avoid using them one by one. For example, if each of these async functions executes at 100 milliseconds, the `$w.onReady()` will need 300 milliseconds for complete execution.
 
 ```js
 // ❌ wrong approach!!
 $w.onReady(async function () {
-  const one = await warmupUtil('one-async-func', oneAsyncFunc);
-  const two = await warmupUtil('two-async-func', twoAsyncFunc);
-  const three = await warmupUtil('three-async-func', threeAsyncFunc);
+  const one = await warmupUtil('one-async-func', oneAsyncFunc); // ~ 100 ms
+  const two = await warmupUtil('two-async-func', twoAsyncFunc); // ~ 100 ms
+  const three = await warmupUtil('three-async-func', threeAsyncFunc); // ~ 100 ms
+
+  // wait one by one (100 ms * 3) = 300 ms
 
   $w('#text1').text = JSON.stringify({ one, two, three });
 });
 ```
 
-[`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+We are able to aggregate a bunch of promises with [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) and execute them in parallel and wait until all of them are ready.
 
 ```js
 // ✅ parallel asynchronous execution
@@ -335,6 +325,8 @@ $w.onReady(async function () {
     warmupUtil('two-async-func', twoAsyncFunc),
     warmupUtil('three-async-func', threeAsyncFunc),
   ]);
+
+  // wait ~ 100 ms. Parallel execution of all promises
 
   $w('#text1').text = JSON.stringify({ one, two, three });
 });
