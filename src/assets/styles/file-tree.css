@@ -13,7 +13,7 @@
   background-color: #f7f8f8;
   border-bottom: 1px solid #dfe5eb;
   border-top: 1px solid #dfe5eb;
-  padding: 0.8em;
+  padding: 1em;
   margin-top: -1px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 ._filetree_folder {
-  margin: 0.8em;
+  margin: 1em;
 }
 
 ._filetree_list {
