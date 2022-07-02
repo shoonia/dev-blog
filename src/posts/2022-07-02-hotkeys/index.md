@@ -7,7 +7,7 @@ title: 'Hotkeys'
 description: 'TODO'
 image: '/assets/images/velo.png'
 head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=1"/>
+<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
 '
 ---
 

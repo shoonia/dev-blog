@@ -7,7 +7,7 @@ title: 'A tiny event-based state manager Storeon for Velo'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
 image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d39~mv2.png/v2/fill/w_300,h_300/cs.png'
 head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=1"/>
+<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
 '
 ---
 

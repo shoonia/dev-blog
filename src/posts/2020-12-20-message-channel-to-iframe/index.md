@@ -7,7 +7,7 @@ title: 'Velo by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'
 image: '/assets/images/radio-astronomy.jpg'
 head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=1"/>
+<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
 '
 ---
 
