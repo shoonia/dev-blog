@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
     "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.12",
     "emoji-regex": "^10.1.0",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
     "htmlnano": "^2.0.2",
-    "mini-css-class-name": "^0.13.0",
+    "mini-css-class-name": "^0.13.1",
     "minify-xml": "^3.4.0",
     "postcss": "^8.4.14",
     "postcss-modules": "^4.3.1",
@@ -32,7 +32,7 @@
     "terser": "^5.14.1"
   },
   "devDependencies": {
-    "eslint": "^8.18.0",
+    "eslint": "^8.19.0",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "uvu": "^0.5.4"
