@@ -13,6 +13,103 @@ head: '
 
 # Hotkeys
 
+[tinykeys](https://github.com/jamiebuilds/tinykeys)
+
+[Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+
+**public/custom-elements/tiny-keys.js**
+
+```js
+class TinyKeys extends HTMLElement {
+  // Invoked when
+  // the custom element is first connected to the document's DOM.
+  connectedCallback() {
+    // ...
+  }
+
+  // Invoked when
+  // the custom element is disconnected from the document's DOM.
+  disconnectedCallback() {
+    // ...
+  }
+}
+
+// Register a new custom element
+customElements.define('tiny-keys', TinyKeys);
+```
+
+tinykeys [Keybinding Syntax](https://github.com/jamiebuilds/tinykeys#keybinding-sequences)
+
+<kbd>Shift</kbd>+<kbd>D</kbd>
+
+**public/custom-elements/tiny-keys.js**
+
+```js
+import tinykeys from 'tinykeys';
+
+class TinyKeys extends HTMLElement {
+  connectedCallback() {
+    this._unsubscribe = tinykeys(window, {
+      'Shift+D': () => {
+        alert("The 'Shift' and 'd' keys were pressed at the same time");
+      },
+    });
+  }
+
+  disconnectedCallback() {
+    this._unsubscribe?.();
+  }
+}
+
+customElements.define('tiny-keys', TinyKeys);
+```
+
+```js
+this.dispatchEvent(new CustomEvent('event-name'));
+```
+
+```js
+$w('#customElement1').on('event-name', () => {
+  // ...
+});
+```
+
+**public/custom-elements/tiny-keys.js**
+
+```js
+import tinykeys from 'tinykeys';
+
+class TinyKeys extends HTMLElement {
+  connectedCallback() {
+    this._unsubscribe = tinykeys(window, {
+      'Shift+D': () => {
+        this.dispatchEvent(new CustomEvent('Shift+D'));
+      },
+    });
+  }
+
+  disconnectedCallback() {
+    this._unsubscribe?.();
+  }
+}
+
+customElements.define('tiny-keys', TinyKeys);
+```
+
+**Page Code Tab**
+
+```js
+$w.onReady(function () {
+  let i = 0;
+
+  $w('#text1').text = `${i}`;
+
+  $w('#customElement1').on('Shift+D', () => {
+    $w('#text1').text = `${++i}`;
+  });
+});
+```
+
 ## Code Snippet
 
 <div class="_filetree" role="presentation" aria-label="velo sidebar">
@@ -110,5 +207,7 @@ $w.onReady(function () {
 
 - [Wix Editor: Adding a Custom Element to Your Site](https://support.wix.com/en/article/wix-editor-adding-a-custom-element-to-your-site#adding-the-custom-element)
 - [Velo APIs: CustomElement](https://www.wix.com/velo/reference/$w/customelement)
-- [MDN: Using custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
 - [Web components: An introduction to writing raw Web Components](https://github.com/thepassle/webcomponents-from-zero-to-hero/tree/master/part-one)
+- [MDN: Using custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+- [MDN: `Window.customElements`](https://developer.mozilla.org/en-US/docs/Web/API/Window/customElements)
+- [MDN: `CustomEvent()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent)
