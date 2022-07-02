@@ -77,11 +77,11 @@ Our cache mechanism will depend on the passed arguments. If the backend function
 For the implementation of the cache, we create a js file in the public section.
 
 <div class="_filetree">
-  <div class="_filetree_section _filetree_line">
+  <div class="_filetree_title _filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder _filetree_line">
+  <div class="_filetree_tab _filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     memo.js
   </div>

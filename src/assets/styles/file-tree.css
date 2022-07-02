@@ -9,7 +9,7 @@
   background: none;
 }
 
-._filetree_section {
+._filetree_title {
   background-color: #f7f8f8;
   border-bottom: 1px solid #dfe5eb;
   border-top: 1px solid #dfe5eb;
@@ -17,21 +17,12 @@
   margin-top: -1px;
 }
 
-._filetree_line {
+._filetree_row {
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
 
-._filetree_folder {
+._filetree_tab {
   margin: 1em;
-}
-
-._filetree_list {
-  margin: 0.5em;
-}
-
-._filetree_item {
-  list-style: none;
-  margin: 0.5em;
 }

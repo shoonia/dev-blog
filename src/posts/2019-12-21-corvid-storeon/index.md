@@ -54,11 +54,11 @@ At first, we need to install the library from [Package Manager](https://support.
 and create one more file for store initialization in the **public** folder.
 
 <div class="_filetree">
-  <div class="_filetree_section _filetree_line">
+  <div class="_filetree_title _filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder _filetree_line">
+  <div class="_filetree_tab _filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     store.js
   </div>

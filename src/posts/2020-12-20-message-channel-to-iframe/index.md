@@ -217,11 +217,11 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 **Create a `channel.js` in public folder:**
 
 <div class="_filetree">
-  <div class="_filetree_section _filetree_line">
+  <div class="_filetree_title _filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder _filetree_line">
+  <div class="_filetree_tab _filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     channel.js
   </div>

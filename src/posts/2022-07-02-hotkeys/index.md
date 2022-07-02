@@ -16,25 +16,25 @@ head: '
 ## Code Snippet
 
 <div class="_filetree" role="presentation" aria-label="velo sidebar">
-  <div class="_filetree_folder _filetree_line">
+  <div class="_filetree_tab _filetree_row">
     <strong>Public & Backend</strong>
   </div>
-  <div class="_filetree_section _filetree_line">
+  <div class="_filetree_title _filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_folder">
-    <div class="_filetree_line">
+  <div class="_filetree_tab">
+    <div class="_filetree_row">
       <img src="/assets/images/i/open.svg" alt=""/>
       <img src="/assets/images/i/folder.svg" alt=""/>
       custom-elements
     </div>
-    <div class="_filetree_folder _filetree_line">
+    <div class="_filetree_tab _filetree_row">
       <img src="/assets/images/i/js.svg" alt=""/>
       tiny-keys.js
     </div>
   </div>
-   <div class="_filetree_folder _filetree_line">
+   <div class="_filetree_tab _filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     keys.js
   </div>
