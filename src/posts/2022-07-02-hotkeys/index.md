@@ -40,7 +40,7 @@ customElements.define('tiny-keys', TinyKeys);
 
 tinykeys [Keybinding Syntax](https://github.com/jamiebuilds/tinykeys#keybinding-sequences)
 
-<kbd>Shift</kbd>+<kbd>D</kbd>
+<kbd>Shift</kbd>+<kbd>A</kbd>
 
 **public/custom-elements/tiny-keys.js**
 
@@ -50,8 +50,8 @@ import tinykeys from 'tinykeys';
 class TinyKeys extends HTMLElement {
   connectedCallback() {
     this._unsubscribe = tinykeys(window, {
-      'Shift+D': () => {
-        alert("The 'Shift' and 'd' keys were pressed at the same time");
+      'Shift+A': () => {
+        alert("The 'Shift' and 'a' keys were pressed at the same time");
       },
     });
   }
@@ -82,8 +82,8 @@ import tinykeys from 'tinykeys';
 class TinyKeys extends HTMLElement {
   connectedCallback() {
     this._unsubscribe = tinykeys(window, {
-      'Shift+D': () => {
-        this.dispatchEvent(new CustomEvent('Shift+D'));
+      'Shift+A': () => {
+        this.dispatchEvent(new CustomEvent('Shift+A'));
       },
     });
   }
@@ -104,8 +104,70 @@ $w.onReady(function () {
 
   $w('#text1').text = `${i}`;
 
-  $w('#customElement1').on('Shift+D', () => {
+  $w('#customElement1').on('Shift+A', () => {
     $w('#text1').text = `${++i}`;
+  });
+});
+```
+
+## Configuring hotkeys
+
+- Counter increase: <kbd>Shift</kbd>+<kbd>A</kbd>
+- Counter decrease: <kbd>Shift</kbd>+<kbd>D</kbd>
+
+**public/keys.js**
+
+```js
+/** @enum {string} */
+export const Keys = {
+  shiftA: 'Shift+A',
+  shiftD: 'Shift+D',
+};
+```
+
+**public/custom-elements/tiny-keys.js**
+
+```js
+import tinykeys from 'tinykeys';
+import { Keys } from 'public/keys';
+
+class TinyKeys extends HTMLElement {
+  connectedCallback() {
+    const options = {};
+
+    Object.values(Keys).forEach((type) => {
+      options[type] = () => {
+        this.dispatchEvent(new CustomEvent(type));
+      };
+    });
+
+    this._unsubscribe = tinykeys(window, options);
+  }
+
+  disconnectedCallback() {
+    this._unsubscribe?.();
+  }
+}
+
+customElements.define('tiny-keys', TinyKeys);
+```
+
+**Page Code Tab**
+
+```js
+import { Keys } from 'public/keys';
+
+$w.onReady(function () {
+  let i = 0;
+
+  $w('#text1').text = `${i}`;
+
+  $w('#customElement1').on(Keys.shiftA, () => {
+    $w('#text1').text = `${++i}`;
+  });
+
+  $w('#customElement1').on(Keys.shiftD, () => {
+    $w('#text1').text = `${--i}`;
   });
 });
 ```
@@ -206,8 +268,19 @@ $w.onReady(function () {
 ## Resources
 
 - [Wix Editor: Adding a Custom Element to Your Site](https://support.wix.com/en/article/wix-editor-adding-a-custom-element-to-your-site#adding-the-custom-element)
+- [Velo: About Custom Elements](https://support.wix.com/en/article/velo-about-custom-elements)
 - [Velo APIs: CustomElement](https://www.wix.com/velo/reference/$w/customelement)
-- [Web components: An introduction to writing raw Web Components](https://github.com/thepassle/webcomponents-from-zero-to-hero/tree/master/part-one)
-- [MDN: Using custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
-- [MDN: `Window.customElements`](https://developer.mozilla.org/en-US/docs/Web/API/Window/customElements)
-- [MDN: `CustomEvent()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent)
+
+### Web components
+
+- [An introduction to writing raw Web Components](https://github.com/thepassle/webcomponents-from-zero-to-hero/tree/master/part-one)
+- [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+- [`Window.customElements`](https://developer.mozilla.org/en-US/docs/Web/API/Window/customElements)
+- [`CustomEvent()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent)
+
+## Posts
+
+- [Type safety your code with JSDoc](/type-safety-your-code-with-jsdoc/)
+- [Repeated item event handlers v2.0](/repeated-item-event-handlers-v2/)
+- [Query selector for child elements](/velo-query-selector-for-child-elements/)
+- [Promise Queue](/promise-queue/)
