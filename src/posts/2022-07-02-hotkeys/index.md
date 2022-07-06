@@ -1,17 +1,28 @@
 ---
-permalink: '/TODO/'
+permalink: '/hotkeys-custom-element/'
 date: '2022-07-02T12:00:00.000Z'
 modified: '2022-07-02T12:00:00.000Z'
 lang: 'en'
-title: 'Hotkeys'
-description: 'TODO'
-image: '/assets/images/velo.png'
+title: 'Velo by Wix: Add hotkeys to Wix site'
+description: 'In this article, we look to how add hotkeys to your Wix site with the Custom Element'
+image: '/assets/images/domus-tales-from-the-loop.jpg'
 head: '
 <link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
 '
 ---
 
-# Hotkeys
+# Velo by Wix: Add hotkeys to Wix site
+
+*In this article, we look to how add hotkeys to your Wix site with the Custom Element*
+
+![concept art by television serial - tales from the loop](/assets/images/domus-tales-from-the-loop.jpg)
+
+I had a small task to add some hotkey combinations to the Wix site. The Velo doesn't have an API for this. But we are able to solve this problem with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement).
+
+<aside>
+
+**Important**: Only premium Wix users on sites with their [own domain and Wix ads removed](https://manage.wix.com/account/domains) can work with custom elements.
+</aside>
 
 [tinykeys](https://github.com/jamiebuilds/tinykeys)
 
