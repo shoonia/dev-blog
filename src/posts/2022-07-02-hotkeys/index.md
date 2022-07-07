@@ -4,7 +4,7 @@ date: '2022-07-02T12:00:00.000Z'
 modified: '2022-07-02T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Add hotkeys to Wix site'
-description: 'In this article, we look to how add hotkeys to your Wix site with the Custom Element'
+description: 'In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library'
 image: '/assets/images/domus-tales-from-the-loop.jpg'
 head: '
 <link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
@@ -13,25 +13,51 @@ head: '
 
 # Velo by Wix: Add hotkeys to Wix site
 
-*In this article, we look to how add hotkeys to your Wix site with the Custom Element*
+*In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library*
 
 ![concept art by television serial - tales from the loop](/assets/images/domus-tales-from-the-loop.jpg)
 
-I had a small task to add some hotkey combinations to the Wix site. The Velo doesn't have an API for this. But we are able to solve this problem with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement).
+I had a small task to add some hotkey combinations to the Wix site. The Velo doesn't have an API for this. But we are able to solve this issue with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement).
 
 <aside>
 
-**Important**: Only premium Wix users on sites with their [own domain and Wix ads removed](https://manage.wix.com/account/domains) can work with custom elements.
+❗ **Important**
+
+Only premium Wix users on sites with their [own domain and Wix ads removed](https://manage.wix.com/account/domains) can work with custom elements.
 </aside>
 
-[tinykeys](https://github.com/jamiebuilds/tinykeys)
+## Create Custom Element
 
-[Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+<div class="_filetree" role="presentation" aria-label="velo sidebar">
+  <div class="_filetree_tab _filetree_row">
+    <strong>Public & Backend</strong>
+  </div>
+  <div class="_filetree_title _filetree_row">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    Public
+  </div>
+  <div class="_filetree_tab">
+    <div class="_filetree_row">
+      <img src="/assets/images/i/open.svg" alt=""/>
+      <img src="/assets/images/i/folder.svg" alt=""/>
+      custom-elements
+    </div>
+    <div class="_filetree_tab _filetree_row">
+      <img src="/assets/images/i/js.svg" alt=""/>
+      hot-keys.js
+    </div>
+  </div>
+</div>
 
-**public/custom-elements/tiny-keys.js**
+For our component, we are needed two [component element lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks):
+
+- `connectedCallback()`: Invoked each time the custom element is appended into a document-connected element.
+- `disconnectedCallback()`: Invoked each time the custom element is disconnected from the document's DOM.
+
+**public/custom-elements/hot-keys.js**
 
 ```js
-class TinyKeys extends HTMLElement {
+class HotKeys extends HTMLElement {
   // Invoked when
   // the custom element is first connected to the document's DOM.
   connectedCallback() {
@@ -46,19 +72,33 @@ class TinyKeys extends HTMLElement {
 }
 
 // Register a new custom element
-customElements.define('tiny-keys', TinyKeys);
+customElements.define('hot-keys', HotKeys);
 ```
 
-tinykeys [Keybinding Syntax](https://github.com/jamiebuilds/tinykeys#keybinding-sequences)
+## Adding the custom element
+
+1. Click **Add** <svg width="1em" height="1em"><path d="M9.5 1A7.5 7.5 0 0 1 17 8.5 7.5 7.5 0 0 1 9.5 16 7.5 7.5 0 0 1 2 8.5 7.5 7.5 0 0 1 9.5 1zm0 1A6.508 6.508 0 0 0 3 8.5C3 12.084 5.916 15 9.5 15S16 12.084 16 8.5 13.084 2 9.5 2zm.5 3v3h3v1h-3v3H9V9H6V8h3V5h1z"/></svg> on the left side of the Editor.
+1. Click **Embed Code**.
+1. Click the Custom Element to add it to your page.
+1. Click **Velo File** and select the `hot-keys.js` file
+1. Enter the tag name `hot-keys` that defined in `customElements.define()`
+
+## Installing a Package
+
+[tinykeys](https://github.com/jamiebuilds/tinykeys)
+
+[Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+
+tinykeys [Keybinding Syntax](https://github.com/jamiebuilds/tinykeys#keybinding-syntax)
 
 <kbd>Shift</kbd>+<kbd>A</kbd>
 
-**public/custom-elements/tiny-keys.js**
+**public/custom-elements/hot-keys.js**
 
 ```js
 import tinykeys from 'tinykeys';
 
-class TinyKeys extends HTMLElement {
+class HotKeys extends HTMLElement {
   connectedCallback() {
     this._unsubscribe = tinykeys(window, {
       'Shift+A': () => {
@@ -72,8 +112,10 @@ class TinyKeys extends HTMLElement {
   }
 }
 
-customElements.define('tiny-keys', TinyKeys);
+customElements.define('hot-keys', HotKeys);
 ```
+
+## Custom Events
 
 ```js
 this.dispatchEvent(new CustomEvent('event-name'));
@@ -85,12 +127,12 @@ $w('#customElement1').on('event-name', () => {
 });
 ```
 
-**public/custom-elements/tiny-keys.js**
+**public/custom-elements/hot-keys.js**
 
 ```js
 import tinykeys from 'tinykeys';
 
-class TinyKeys extends HTMLElement {
+class HotKeys extends HTMLElement {
   connectedCallback() {
     this._unsubscribe = tinykeys(window, {
       'Shift+A': () => {
@@ -104,7 +146,7 @@ class TinyKeys extends HTMLElement {
   }
 }
 
-customElements.define('tiny-keys', TinyKeys);
+customElements.define('hot-keys', HotKeys);
 ```
 
 **Page Code Tab**
@@ -136,13 +178,13 @@ export const Keys = {
 };
 ```
 
-**public/custom-elements/tiny-keys.js**
+**public/custom-elements/hot-keys.js**
 
 ```js
 import tinykeys from 'tinykeys';
 import { Keys } from 'public/keys';
 
-class TinyKeys extends HTMLElement {
+class HotKeys extends HTMLElement {
   connectedCallback() {
     const options = {};
 
@@ -160,7 +202,7 @@ class TinyKeys extends HTMLElement {
   }
 }
 
-customElements.define('tiny-keys', TinyKeys);
+customElements.define('hot-keys', HotKeys);
 ```
 
 **Page Code Tab**
@@ -201,7 +243,7 @@ $w.onReady(function () {
     </div>
     <div class="_filetree_tab _filetree_row">
       <img src="/assets/images/i/js.svg" alt=""/>
-      tiny-keys.js
+      hot-keys.js
     </div>
   </div>
    <div class="_filetree_tab _filetree_row">
@@ -211,14 +253,14 @@ $w.onReady(function () {
 </div>
 <details>
   <summary>
-    <strong>public/custom-elements/tiny-keys.js</strong>
+    <strong>public/custom-elements/hot-keys.js</strong>
   </summary>
 
 ```js
 import tinykeys from 'tinykeys';
 import { Keys } from 'public/keys';
 
-class TinyKeys extends HTMLElement {
+class HotKeys extends HTMLElement {
   connectedCallback() {
     const options = {};
 
@@ -236,7 +278,7 @@ class TinyKeys extends HTMLElement {
   }
 }
 
-customElements.define('tiny-keys', TinyKeys);
+customElements.define('hot-keys', HotKeys);
 ```
 </details>
 <details>
