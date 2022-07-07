@@ -28,6 +28,8 @@ Only premium Wix users on sites with their [own domain and Wix ads removed](http
 
 ## Create Custom Element
 
+Let's start by creating a custom element. We should create a folder `custom-elements` in the `public` sidebar section. It's a required folder structure. In the `custom-elements` folder, I create a JavaScript file `hot-keys.js`
+
 <div class="_filetree" role="presentation" aria-label="velo sidebar">
   <div class="_filetree_tab _filetree_row">
     <strong>Public & Backend</strong>
@@ -49,10 +51,10 @@ Only premium Wix users on sites with their [own domain and Wix ads removed](http
   </div>
 </div>
 
-For our component, we are needed two [component element lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks):
+Create a [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) for the custom element. For our element, we need to write the next [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks):
 
-- `connectedCallback()`: Invoked each time the custom element is appended into a document-connected element.
-- `disconnectedCallback()`: Invoked each time the custom element is disconnected from the document's DOM.
+- `connectedCallback()` for adding the keyboard event listener
+- `disconnectedCallback()` for clean up of the listeners
 
 **public/custom-elements/hot-keys.js**
 
@@ -61,21 +63,23 @@ class HotKeys extends HTMLElement {
   // Invoked when
   // the custom element is first connected to the document's DOM.
   connectedCallback() {
-    // ...
+    // add event listeners here ...
   }
 
   // Invoked when
   // the custom element is disconnected from the document's DOM.
   disconnectedCallback() {
-    // ...
+    // remove event listeners here ...
   }
 }
 
 // Register a new custom element
 customElements.define('hot-keys', HotKeys);
+// The name you used when registering the element.
+// You will need it when defining the tag name while adding the element in the Editor.
 ```
 
-## Adding the custom element
+## Adding the Custom Element to a site page
 
 1. Click **Add** <svg width="1em" height="1em"><path d="M9.5 1A7.5 7.5 0 0 1 17 8.5 7.5 7.5 0 0 1 9.5 16 7.5 7.5 0 0 1 2 8.5 7.5 7.5 0 0 1 9.5 1zm0 1A6.508 6.508 0 0 0 3 8.5C3 12.084 5.916 15 9.5 15S16 12.084 16 8.5 13.084 2 9.5 2zm.5 3v3h3v1h-3v3H9V9H6V8h3V5h1z"/></svg> on the left side of the Editor.
 1. Click **Embed Code**.
