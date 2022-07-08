@@ -1,6 +1,6 @@
 ._filetree {
   font-size: 0.8em;
-  border: 1px solid #dfe5eb;
+  border: var(--border);
   user-select: none;
   margin: 1em 0;
 }
@@ -9,29 +9,19 @@
   background: none;
 }
 
-._filetree_section {
+._filetree_title {
   background-color: #f7f8f8;
-  border-bottom: 1px solid #dfe5eb;
-  border-top: 1px solid #dfe5eb;
-  padding: 0.8em;
-  margin-top: -1px;
+  border-bottom: var(--border);
+  border-top: var(--border);
+  padding: 1em;
 }
 
-._filetree_line {
+._filetree_row {
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
 
-._filetree_folder {
-  margin: 0.8em;
-}
-
-._filetree_list {
-  margin: 0.5em;
-}
-
-._filetree_item {
-  list-style: none;
-  margin: 0.5em;
+._filetree_tab {
+  margin: 1em;
 }

@@ -10,6 +10,7 @@
   --c-gray: rgb(0 0 0 / 64%);
   --c-light-gray: rgb(112 128 144);
   --c-gray-opacity: rgb(112 128 144 / 40%);
+  --border: 1px solid var(--c-gray-opacity);
   --content-widht: 750px;
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
@@ -254,12 +255,12 @@ table {
 table th,
 table td {
   padding: 0.3em 0.7em;
-  border: 1px solid var(--c-gray-opacity);
+  border: var(--border);
 }
 
 table tr {
   background-color: #fff;
-  border-top: 1px solid var(--c-gray-opacity);
+  border-top: var(--border);
 }
 
 img {
@@ -353,7 +354,7 @@ iframe {
 details,
 iframe,
 video {
-  border: 1px solid var(--c-gray-opacity);
+  border: var(--border);
   border-radius: 8px;
   width: 100%;
 }
@@ -581,7 +582,7 @@ pre ::selection {
   justify-content: center;
   margin-top: 2em;
   padding: 2em 1em;
-  border: 1px solid var(--c-gray-opacity);
+  border: var(--border);
   border-radius: 8px;
 }
 
