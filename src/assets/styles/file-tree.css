@@ -1,6 +1,6 @@
 ._filetree {
   font-size: 0.8em;
-  border: 1px solid #dfe5eb;
+  border: var(--border);
   user-select: none;
   margin: 1em 0;
 }
@@ -11,10 +11,9 @@
 
 ._filetree_title {
   background-color: #f7f8f8;
-  border-bottom: 1px solid #dfe5eb;
-  border-top: 1px solid #dfe5eb;
+  border-bottom: var(--border);
+  border-top: var(--border);
   padding: 1em;
-  margin-top: -1px;
 }
 
 ._filetree_row {
