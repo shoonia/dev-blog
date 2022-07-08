@@ -53,7 +53,10 @@ At first, we need to install the library from [Package Manager](https://support.
 
 and create one more file for store initialization in the **public** folder.
 
-<div class="_filetree">
+<div class="_filetree" role="presentation" aria-label="velo sidebar">
+  <div class="_filetree_tab _filetree_row">
+    <strong>Public & Backend</strong>
+  </div>
   <div class="_filetree_title _filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
