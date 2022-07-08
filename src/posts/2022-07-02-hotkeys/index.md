@@ -54,7 +54,7 @@ Let's start by creating a custom element. We should create a folder `custom-elem
 Create a [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) for the custom element. For our element, we need to write the next [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks):
 
 - `connectedCallback()` for adding the keyboard event listener
-- `disconnectedCallback()` for clean up of the listeners
+- `disconnectedCallback()` for cleaning the listeners
 
 **public/custom-elements/hot-keys.js**
 
@@ -89,7 +89,7 @@ customElements.define('hot-keys', HotKeys);
 
 ## Installing a Package
 
-[tinykeys](https://github.com/jamiebuilds/tinykeys)
+For keybinding, we will use a small library [tinykeys](https://github.com/jamiebuilds/tinykeys).
 
 [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
 
