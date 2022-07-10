@@ -91,7 +91,6 @@ Now, the `TUser` type is available globally on the project. In the **Page Code T
 **Page Code Tab**
 
 ```js
-import wixData from 'wix-data';
 import { openLightbox } from 'wix-window';
 import { currentMember } from 'wix-members';
 
