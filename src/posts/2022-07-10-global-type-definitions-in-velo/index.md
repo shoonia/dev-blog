@@ -1,7 +1,7 @@
 ---
 permalink: '/global-type-definitions-in-velo/'
-date: '2022-07-08T12:00:00.000Z'
-modified: '2022-07-08T12:00:00.000Z'
+date: '2022-07-10T12:00:00.000Z'
+modified: '2022-07-10T12:00:00.000Z'
 lang: 'en'
 title: 'Velo By Wix: Global type definitions'
 description: 'How to add a global JSDoc types definition in Velo'
@@ -21,7 +21,7 @@ In one of my previous posts, [Type safety your code with JSDoc](/type-safety-you
 
 ## Global type definitions file
 
-In Velo, we also are able to describe global types annotations. The global types will be available on any JS/JSW files on the editor. It could be helpful if you use the same entity in separate files.
+In Velo, we also are able to use global types annotations. The global types will be available on any JS/JSW files on the editor. It could be helpful if you use the same entity in separate files.
 
 To declare global types in Velo, we should create a `*.d.js` file in the public section. For example, I always use `types.d.js` file. The end of the file with `.d.js` is required.
 
@@ -56,11 +56,11 @@ We can use JSDoc syntax or TypeScript syntax inside JSDoc.
 
 ## Use case examples
 
-For example, we want to send a user data object to the [lightbox](https://www.wix.com/velo/reference/wix-window/lightbox) when it opens. And use this data in the lightbox. Using global typedef, we can share types info across pages and lightbox pages.
+For example, we want to send a user data object to the [lightbox](https://www.wix.com/velo/reference/wix-window/lightbox) when it opens. And use this data in the lightbox. Using global typedef, we can share types info across a page tab and lightbox page tab.
 
 My user object will have three properties:
 
-**User Data Object**
+**Example of User Data Object**
 
 ```json
 {
@@ -129,7 +129,7 @@ $w.onReady(function () {
 });
 ```
 
-Typed code provides a good developer experience. It's helpful for automatization your development process. You don't need to keep in mind the data structure. And types analysis improves your code safety.
+Typed code provides a good developer experience. It's helpful for automatization your development process. You don't need to keep in mind the data structure. And auto types analysis improves your code safety.
 
 ## Resources
 
