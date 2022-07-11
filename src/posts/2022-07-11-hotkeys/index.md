@@ -5,7 +5,7 @@ modified: '2022-07-11T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Add hotkeys to Wix site'
 description: 'In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library'
-image: '/assets/images/velo.png'
+image: '/assets/images/domus-tales-from-the-loop.jpg'
 head: '
 <link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
 '
@@ -14,6 +14,8 @@ head: '
 # Velo by Wix: Add hotkeys to Wix site
 
 *In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library*
+
+![poster from the serial - tales from the loop](/assets/images/domus-tales-from-the-loop.jpg)
 
 We have a task to add some hotkey combinations to the Wix site. The Velo doesn't have an API for keyboards binding. But we are able to solve this issue with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement) and small npm library [tinykeys](https://github.com/jamiebuilds/tinykeys).
 
@@ -89,13 +91,96 @@ customElements.define('hot-keys', HotKeys);
 
 <img
   src="/assets/images/add-custom-element.jpg"
-  alt="add custom element"
+  alt="add custom element in wix editor"
   loading="lazy"
 />
 
-## Installing a Package
+Our custom element won't have any <abbr title="User interface">UI</abbr>. We only need its functionality. You can move it anywhere in the Editor.
 
-[Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+## Installing npm package
+
+In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/tinykeys) with Package Manager.
+
+<figure>
+  <figcaption>
+
+  [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+  </figcaption>
+  <img
+    src="/assets/images/tinykeys-install.jpg"
+    alt="velo package manager popup"
+    loading="lazy"
+  />
+</figure>
+
+## Configuring hotkeys
+
+For example, we need to add a listener to a few hotkey combinations.
+
+You can learn more about [keybinding syntax in the documentation](https://github.com/jamiebuilds/tinykeys#keybinding-syntax).
+
+Let's suppose we want to listen <span style="white-space:nowrap"><kbd>Shift</kbd>+<kbd>A</kbd></span> and <span style="white-space:nowrap"><kbd>Shift</kbd>+<kbd>D</kbd></span> combinations. To config, we create an additional `keys.js` file in the public section.
+
+**public/keys.js**
+
+```js
+/** @enum {string} */
+export const Keys = {
+  shiftA: 'Shift+A',
+  shiftD: 'Shift+D',
+};
+```
+
+With `Keys` enum, we'll map the keybinding to the options listeners. Each listener will dispatch their own event type as a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent).
+
+**public/custom-elements/hot-keys.js**
+
+```js
+import tinykeys from 'tinykeys';
+import { Keys } from 'public/keys';
+
+class HotKeys extends HTMLElement {
+  connectedCallback() {
+    const options = {};
+
+    Object.values(Keys).forEach((type) => {
+      options[type] = () => {
+        this.dispatchEvent(new CustomEvent(type));
+      };
+    });
+
+    this._unsubscribe = tinykeys(window, options);
+  }
+
+  disconnectedCallback() {
+    this._unsubscribe?.();
+  }
+}
+
+customElements.define('hot-keys', HotKeys);
+```
+
+We can [listen to triggered custom events from the custom element](https://www.wix.com/velo/reference/$w/customelement/on) on the Velo code tab. We also use the `Keys` enum to subscribe to the events in Velo.
+
+**Page Code Tab**
+
+```js
+import { Keys } from 'public/keys';
+
+$w.onReady(function () {
+  let i = 0;
+
+  $w('#text1').text = `${i}`;
+
+  $w('#customElement1').on(Keys.shiftA, () => {
+    $w('#text1').text = `${++i}`;
+  });
+
+  $w('#customElement1').on(Keys.shiftD, () => {
+    $w('#text1').text = `${--i}`;
+  });
+});
+```
 
 ## Code Snippet
 
