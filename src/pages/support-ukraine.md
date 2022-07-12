@@ -78,7 +78,7 @@ The National Bank of Ukraine has decided to open a special fundraising account t
 
 ## Let's buy Bayraktar for Ukrainians!
 
-<iframe style="margin-top:1em;" width="400" height="444" src="https://zrzutka.pl/en/busr8u/widget/13"></iframe>
+<iframe title="Bayraktar for Ukrainians" style="margin-top:1em;" width="400" height="444" src="https://zrzutka.pl/en/busr8u/widget/13"></iframe>
 
 ## Please share
 
