@@ -6,9 +6,6 @@ lang: 'en'
 title: 'Velo by Wix: Message channel to iFrame'
 description: 'In this post, we consider building a scalable message channel for large numbers of events between Velo and iFrame using the Event and Listener model.'
 image: '/assets/images/radio-astronomy.jpg'
-head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
-'
 ---
 
 # Velo by Wix: Message channel to iFrame
@@ -216,15 +213,15 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-<div class="_filetree" role="presentation" aria-label="velo sidebar">
-  <div class="_filetree_tab _filetree_row">
+<div class="filetree" role="presentation" aria-label="velo sidebar">
+  <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
-  <div class="_filetree_title _filetree_row">
+  <div class="filetree_title filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_tab _filetree_row">
+  <div class="filetree_tab filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     channel.js
   </div>

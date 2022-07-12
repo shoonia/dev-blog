@@ -6,9 +6,6 @@ lang: 'en'
 title: 'Velo by Wix: Add hotkeys to Wix site'
 description: 'In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library'
 image: '/assets/images/domus-tales-from-the-loop.jpg'
-head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
-'
 ---
 
 # Velo by Wix: Add hotkeys to Wix site
@@ -34,21 +31,21 @@ Only premium Wix users on sites with their [own domain and Wix ads removed](http
 
 Let's start by creating a custom element. We should create a folder `custom-elements` in the `public` sidebar section. It's a required folder structure. In the `custom-elements` folder, we create `hot-keys.js` file.
 
-<div class="_filetree" role="presentation" aria-label="velo sidebar">
-  <div class="_filetree_tab _filetree_row">
+<div class="filetree" role="presentation" aria-label="velo sidebar">
+  <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
-  <div class="_filetree_title _filetree_row">
+  <div class="filetree_title filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_tab">
-    <div class="_filetree_row">
+  <div class="filetree_tab">
+    <div class="filetree_row">
       <img src="/assets/images/i/open.svg" alt=""/>
       <img src="/assets/images/i/folder.svg" alt=""/>
       custom-elements
     </div>
-    <div class="_filetree_tab _filetree_row">
+    <div class="filetree_tab filetree_row">
       <img src="/assets/images/i/js.svg" alt=""/>
       hot-keys.js
     </div>
@@ -188,26 +185,26 @@ $w.onReady(function () {
 
 We create a hotkeys listener on the Wix site with the Custom Elements component and Package Manager. Here are the full code snippets:
 
-<div class="_filetree" role="presentation" aria-label="velo sidebar">
-  <div class="_filetree_tab _filetree_row">
+<div class="filetree" role="presentation" aria-label="velo sidebar">
+  <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
-  <div class="_filetree_title _filetree_row">
+  <div class="filetree_title filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_tab">
-    <div class="_filetree_row">
+  <div class="filetree_tab">
+    <div class="filetree_row">
       <img src="/assets/images/i/open.svg" alt=""/>
       <img src="/assets/images/i/folder.svg" alt=""/>
       custom-elements
     </div>
-    <div class="_filetree_tab _filetree_row">
+    <div class="filetree_tab filetree_row">
       <img src="/assets/images/i/js.svg" alt=""/>
       hot-keys.js
     </div>
   </div>
-   <div class="_filetree_tab _filetree_row">
+   <div class="filetree_tab filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     keys.js
   </div>

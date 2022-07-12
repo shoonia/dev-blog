@@ -6,9 +6,6 @@ lang: 'en'
 title: 'Velo By Wix: Global type definitions'
 description: 'How to add a global JSDoc types definition in Velo'
 image: '/assets/images/velo.png'
-head: '
-<link rel="stylesheet" href="/assets/styles/file-tree.css?v=2"/>
-'
 ---
 
 # Velo By Wix: Global type definitions
@@ -25,15 +22,15 @@ In Velo, we also are able to use global types annotations. The global types will
 
 To declare global types in Velo, we should create a `*.d.js` file in the public section. For example, I always use `types.d.js` file. The end of the file with `.d.js` is required.
 
-<div class="_filetree" role="presentation" aria-label="velo sidebar">
-  <div class="_filetree_tab _filetree_row">
+<div class="filetree" role="presentation" aria-label="velo sidebar">
+  <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
-  <div class="_filetree_title _filetree_row">
+  <div class="filetree_title filetree_row">
     <img src="/assets/images/i/open.svg" alt=""/>
     Public
   </div>
-  <div class="_filetree_tab _filetree_row">
+  <div class="filetree_tab filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     types.d.js
   </div>
