@@ -1,6 +1,8 @@
 ---
 layout: empty.njk
 permalink: '/support-ukraine/'
+title: 'Support Ukraine'
+description: 'Let’s support the people of Ukraine, together'
 lang: 'en'
 image: 'https://static.wixstatic.com/media/0784b1_be31851fd21049929b4b0514786d5c94~mv2.jpg'
 head: '
@@ -14,6 +16,7 @@ head: '
   const list = [
     "1497294840110977024",
     "1544304847494815746",
+    "1539534316186783744",
     "1499068631795347462",
   ];
 
@@ -79,4 +82,4 @@ The National Bank of Ukraine has decided to open a special fundraising account t
 
 ## Please share
 
-<div id="_twitter" style="margin-top: 2em;"></div>
+<div id="_twitter" style="margin-top:1em;"></div>
