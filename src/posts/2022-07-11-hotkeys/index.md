@@ -17,11 +17,11 @@ head: '
 
 ![poster from the serial - tales from the loop](/assets/images/domus-tales-from-the-loop.jpg)
 
-We have a task to add some hotkey combinations to the Wix site. The Velo doesn't have an API for keyboards binding. But we are able to solve this issue with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement) and small npm library [tinykeys](https://github.com/jamiebuilds/tinykeys).
+We have a task to add some hotkey combinations to the Wix site. The Velo doesn't have any API for keyboard bindings. But we are able to solve this issue with the [Custom Element](https://www.wix.com/velo/reference/$w/customelement) and small npm library [tinykeys](https://github.com/jamiebuilds/tinykeys).
 
 ## Custom Element
 
-The custom element is a build-in browser set of JavaScript APIs that allow you to define your own custom elements and their behavior, which can then be used in your user interface. Velo has integration with Custom Component APIs. We can use this technology on Wix Site. [About Custom Elements](https://support.wix.com/en/article/velo-about-custom-elements)
+The custom element is a build-in browser set of JavaScript APIs that allow you to define your own custom elements and their behavior, which can then be used in your user interface. Velo has integration with Custom Elements APIs. We can use this technology on Wix Site. [About Custom Elements](https://support.wix.com/en/article/velo-about-custom-elements)
 
 The Custom Element is available only on the Wix Site with its own domain (*not a free Wix domain like [user.wixsite.com/sitename](https://shoonia.wixsite.com/blog)*) it's a security reason.
 
@@ -83,6 +83,8 @@ customElements.define('hot-keys', HotKeys);
 
 ## Add the Custom Element to a site page
 
+We should add Custom Element to the site page where we want to use it.
+
 1. Click **Add** <svg width="1em" height="1em"><path d="M9.5 1A7.5 7.5 0 0 1 17 8.5 7.5 7.5 0 0 1 9.5 16 7.5 7.5 0 0 1 2 8.5 7.5 7.5 0 0 1 9.5 1zm0 1A6.508 6.508 0 0 0 3 8.5C3 12.084 5.916 15 9.5 15S16 12.084 16 8.5 13.084 2 9.5 2zm.5 3v3h3v1h-3v3H9V9H6V8h3V5h1z"/></svg> on the left side of the Editor.
 1. Click **Embed Code**.
 1. Click the Custom Element to add it to your page.
@@ -99,7 +101,7 @@ Our custom element won't have any <abbr title="User interface">UI</abbr>. We onl
 
 ## Installing npm package
 
-In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/tinykeys) with Package Manager.
+In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/tinykeys) with Package Manager. This library covers all nuances of keybinding. It has a small size and good documentation.
 
 <figure>
   <figcaption>
@@ -115,11 +117,11 @@ In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/t
 
 ## Configuring hotkeys
 
-For example, we need to add a listener to a few hotkey combinations.
-
-You can learn more about [keybinding syntax in the documentation](https://github.com/jamiebuilds/tinykeys#keybinding-syntax).
+Here we create a config file. Each keybinding will look like adding a new property to the config.
 
 Let's suppose we want to listen <span style="white-space:nowrap"><kbd>Shift</kbd>+<kbd>A</kbd></span> and <span style="white-space:nowrap"><kbd>Shift</kbd>+<kbd>D</kbd></span> combinations. To config, we create an additional `keys.js` file in the public section.
+
+Learn more about [keybinding syntax in the documentation](https://github.com/jamiebuilds/tinykeys#keybinding-syntax).
 
 **public/keys.js**
 
@@ -131,7 +133,7 @@ export const Keys = {
 };
 ```
 
-With `Keys` enum, we'll map the keybinding to the options listeners. Each listener will dispatch their own event type as a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent).
+With `Keys` enum, we map the keybinding to the options object. Each listener is a function that will dispatch its own event type with [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent).
 
 **public/custom-elements/hot-keys.js**
 
@@ -160,7 +162,7 @@ class HotKeys extends HTMLElement {
 customElements.define('hot-keys', HotKeys);
 ```
 
-We can [listen to triggered custom events from the custom element](https://www.wix.com/velo/reference/$w/customelement/on) on the Velo code tab. We also use the `Keys` enum to subscribe to the events in Velo.
+We can [listen to triggered custom events from the custom element](https://www.wix.com/velo/reference/$w/customelement/on) on the Velo code. We also use the `Keys` enum to subscribe to the events in Velo.
 
 **Page Code Tab**
 
@@ -183,6 +185,8 @@ $w.onReady(function () {
 ```
 
 ## Code Snippet
+
+We create a hotkeys listener on the Wix site with the Custom Elements component and Package Manager. Here are the full code snippets:
 
 <div class="_filetree" role="presentation" aria-label="velo sidebar">
   <div class="_filetree_tab _filetree_row">
@@ -274,6 +278,8 @@ $w.onReady(function () {
 });
 ```
 </details>
+
+Do you have any questions? 🐦 [I'm on Twitter](https://twitter.com/_shoonia) ✍️
 
 ## Resources
 
