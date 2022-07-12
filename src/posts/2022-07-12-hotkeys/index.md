@@ -1,7 +1,7 @@
 ---
 permalink: '/hotkeys-custom-element/'
-date: '2022-07-11T12:00:00.000Z'
-modified: '2022-07-11T12:00:00.000Z'
+date: '2022-07-12T12:00:00.000Z'
+modified: '2022-07-12T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Add hotkeys to Wix site'
 description: 'In this article, we look at how to add hotkeys to your Wix site with the Custom Element and tiny npm library'
