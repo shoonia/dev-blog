@@ -596,6 +596,38 @@ pre ::selection {
   user-select: none;
 }
 
+/**
+ * Filetree
+ */
+
+.filetree {
+  font-size: 0.8em;
+  border: var(--border);
+  user-select: none;
+  margin: 1em 0;
+}
+
+.filetree img {
+  background: none;
+}
+
+.filetree_title {
+  background-color: #f7f8f8;
+  border-bottom: var(--border);
+  border-top: var(--border);
+  padding: 1em;
+}
+
+.filetree_row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.filetree_tab {
+  margin: 1em;
+}
+
 @media print {
   pre {
     text-shadow: none;
