@@ -581,24 +581,6 @@ pre ::selection {
   background-color: var(--c-light-link);
 }
 
-.comeback-alive {
-  display: flex;
-  justify-content: center;
-  margin-top: 2em;
-  padding: 2em 1em;
-  border: var(--border);
-  border-radius: 8px;
-}
-
-.comeback-alive:hover,
-.comeback-alive:focus {
-  background-color: var(--c-light-link);
-}
-
-.comeback-alive::before {
-  display: none;
-}
-
 /**
  * Copy Code
  */
