@@ -12,10 +12,7 @@ image: '/assets/images/chrome-extension.png'
 
 *Chrome extensions for downloading Velo code directly from the web editor to your computer.*
 
-<img
-  src="/assets/images/chrome-extension.png"
-  alt="chrome extensions"
-/>
+![chrome extensions](/assets/images/chrome-extension.png)
 
 Here is a Chrome Browser extension that provides a way to download Velo files from the web editor. You can install it in Chrome Web Store:
 
