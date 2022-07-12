@@ -61,11 +61,8 @@ body {
   height: fill-available;
 }
 
-.content {
-  max-width: var(--content-widht);
-  width: 100%;
-  padding: 0 1.2em;
-  margin: 0 auto;
+main {
+  margin-top: 1em;
 }
 
 header {
@@ -153,6 +150,14 @@ h2 {
 
 h3 {
   font-size: 1.15em;
+}
+
+.content {
+  max-width: var(--content-widht);
+  width: 100%;
+  padding: 0 1.2em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title::before {
@@ -573,7 +578,6 @@ pre ::selection {
   align-items: center;
   gap: 1em;
   padding: 1em;
-  margin-bottom: 1em;
   background-color: var(--c-light-link);
 }
 
