@@ -14,8 +14,11 @@ head: '
 </style>
 <script>
   const list = [
+    "1496834115831742472",
     "1497294840110977024",
+    "1544018868427014147",
     "1544304847494815746",
+    "1544314949496872960",
     "1539534316186783744",
     "1499068631795347462",
   ];
@@ -40,41 +43,45 @@ head: '
 
 # Support Ukraine
 
-## Wix stands with Ukraine
-
-Join us with some meaningful ways to help.
-
-👉 [https://www.wix.com/stands-with-ukraine](https://www.wix.com/stands-with-ukraine)
-
 ## Come Back Alive: Save lives in Ukraine
 
 Russia has invaded Ukraine – the Shield of Europe. As we are protecting the World against the tyranny, it’s high time to demonstrate your support of peace and democracy in Ukraine and around the world.
 
-👉 [https://www.comebackalive.in.ua/donate](https://www.comebackalive.in.ua/donate)
+👉 [Donate](https://www.comebackalive.in.ua/donate)<br/>
+🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1544018868427014147)
 
 ## Ukraine is assembling an Army of Drones
 
 To make our army stronger and protect our defenders, together with the General Staff of the Ukrainian Armed Forces, we are assembling an army of drones
 
-👉 [https://u24.gov.ua/dronation](https://u24.gov.ua/dronation)
+👉 [Donate](https://u24.gov.ua/dronation)<br/>
+🐦 [@U24_gov_ua](https://twitter.com/U24_gov_ua/status/1544304847494815746)
 
 ## Serhiy Prytula Foundation
 
 Serhiy Prytula has been helping the Ukrainian Army as a private volunteer since Russia occupied Crimea and Donbas in 2014. At first, he helped with the uniforms, armor, and food supplies, later, when these needs started to be covered by the Ministry of Defense, he switched to high-tech technology, drones, and equipment for command posts.
 
-👉 [https://prytulafoundation.org/en/home/support_page](https://prytulafoundation.org/en/home/support_page)
-
-## The Hospitallers Battalion
-
-The Hospitallers Battalion is a voluntary organization of paramedics founded at the beginning of hostilities in Ukraine in 2014. Donations for the battalion are spent on medicines and medical supplies for wounded Ukrainian defenders.
-
-👉 [https://www.hospitallers.life/needs-hospitallers](https://www.hospitallers.life/needs-hospitallers)
+👉 [Donate](https://prytulafoundation.org/en/home/support_page)<br/>
+🐦 [@serhiyprytula](https://twitter.com/serhiyprytula/status/1539534316186783744)
 
 ## Raise Funds for Ukraine's Armed Forces
 
 The National Bank of Ukraine has decided to open a special fundraising account to support the Armed Forces of Ukraine.
 
-👉 [https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi](https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi)
+👉 [Donate](https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi)<br/>
+🐦 [@NBUkraine](https://twitter.com/NBUkraine/status/1496834115831742472)
+
+## The Hospitallers Battalion
+
+The Hospitallers Battalion is a voluntary organization of paramedics founded at the beginning of hostilities in Ukraine in 2014. Donations for the battalion are spent on medicines and medical supplies for wounded Ukrainian defenders.
+
+👉 [Donate](https://www.hospitallers.life/needs-hospitallers)
+
+## Wix stands with Ukraine
+
+Join us with some meaningful ways to help.
+
+👉 [Show Your Support](https://www.wix.com/stands-with-ukraine)
 
 ## Let's buy Bayraktar for Ukrainians!
 
