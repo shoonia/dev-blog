@@ -6,12 +6,12 @@ description: 'Let’s support the people of Ukraine, together'
 lang: 'en'
 image: 'https://static.wixstatic.com/media/0784b1_be31851fd21049929b4b0514786d5c94~mv2.jpg'
 head: '
-<script defer id="_widgets" src="https://platform.twitter.com/widgets.js"></script>
 <style>
   iframe {
     border: none;
   }
 </style>
+<script async defer id="_widgets" src="https://platform.twitter.com/widgets.js"></script>
 <script>
   const list = [
     "1496834115831742472",
@@ -28,14 +28,15 @@ head: '
     cards: "hidden",
     conversation: "none",
     dnt: true,
+    width: 550,
   };
 
-  document.getElementById("_widgets").addEventListener("load", () => {
+  document.getElementById("_widgets").addEventListener("load", async () => {
     const t = document.getElementById("_twitter");
 
-    list.forEach((id) =>
-      twttr.widgets.createTweet(id, t, options),
-    );
+    for (let id of list) {
+      await twttr.widgets.createTweet(id, t, options);
+    }
   });
 </script>
 '
