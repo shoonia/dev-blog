@@ -6,6 +6,7 @@ const miniCssClassName = require('mini-css-class-name');
 const { rootResolve, isString, isAbsoluteUrl } = require('./halpers');
 const { isProd, debug } = require('./env');
 const { a11yEmoji, autoLink } = require('./stringParse');
+const { minifyJs } = require('./configs');
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
@@ -230,27 +231,7 @@ const transformer = (classCache) => posthtml([
     collapseBooleanAttributes: {
       amphtml: true,
     },
-    minifyJs: {
-      ecma: 2020,
-      module: true,
-      toplevel: true,
-      parse: {
-        ecma: 2020,
-      },
-      compress: {
-        ecma: 2020,
-        module: true,
-        comparisons: false,
-        inline: 2,
-        passes: 3,
-        toplevel: true,
-        pure_getters: true,
-      },
-      output: {
-        ecma: 2020,
-        comments: false,
-      },
-    },
+    minifyJs,
     minifySvg: {
       plugins: [
         {
