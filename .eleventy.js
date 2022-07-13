@@ -21,8 +21,14 @@ module.exports = (config) => {
     lineSeparator: '\n',
   });
 
-  config.addCollection('posts', (collection) => {
-    return getPosts(collection.getAll());
+  config.addCollection('posts', async (collection) => {
+    const posts = getPosts(collection.getAll());
+
+    if (isProd) {
+      await sitemapAndRss(posts);
+    }
+
+    return posts;
   });
 
   config.addTransform('html', async (content, outputPath) => {
@@ -32,13 +38,6 @@ module.exports = (config) => {
 
     return content;
   });
-
-  if (isProd) {
-    config.addCollection('__rss__sitemap', async (collection) => {
-      await sitemapAndRss(getPosts(collection.getAll()));
-      return [];
-    });
-  }
 
   config.on('eleventy.before', async () => {
     [cssCache, classMap] = await compileCss();

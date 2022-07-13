@@ -31,7 +31,7 @@ exports.compileCss = async () => {
       generateScopedName: miniCssClassName({ excludePattern: /_/ }),
     }),
     isProd && cssnano(),
-    isProd && autoprefixer({ flexbox: 'no-2009' }),
+    isProd && autoprefixer(),
   ].filter(Boolean),
   ).process(source, { map: false, from: cssFrom });
 
