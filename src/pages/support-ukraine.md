@@ -15,11 +15,12 @@ head: '
 <script>
   const list = [
     "1496834115831742472",
-    "1497294840110977024",
-    "1544018868427014147",
-    "1544304847494815746",
-    "1544314949496872960",
+    "1536403861224792065",
+    "1547321021610573825",
+    "1542814528060235778",
     "1539534316186783744",
+    "1544304847494815746",
+    "1522143035781525511",
     "1499068631795347462",
   ];
 
@@ -49,7 +50,7 @@ head: '
 Russia has invaded Ukraine – the Shield of Europe. As we are protecting the World against the tyranny, it’s high time to demonstrate your support of peace and democracy in Ukraine and around the world.
 
 👉 [Donate](https://www.comebackalive.in.ua/donate)<br/>
-🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1544018868427014147)
+🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1547321021610573825)
 
 ## Ukraine is assembling an Army of Drones
 
@@ -63,7 +64,7 @@ To make our army stronger and protect our defenders, together with the General S
 Serhiy Prytula has been helping the Ukrainian Army as a private volunteer since Russia occupied Crimea and Donbas in 2014. At first, he helped with the uniforms, armor, and food supplies, later, when these needs started to be covered by the Ministry of Defense, he switched to high-tech technology, drones, and equipment for command posts.
 
 👉 [Donate](https://prytulafoundation.org/en/home/support_page)<br/>
-🐦 [@serhiyprytula](https://twitter.com/serhiyprytula/status/1539534316186783744)
+🐦 [@serhiyprytula](https://twitter.com/serhiyprytula/status/1511958078262022144)
 
 ## Raise Funds for Ukraine's Armed Forces
 
