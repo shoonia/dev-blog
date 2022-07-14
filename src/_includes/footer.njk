@@ -28,5 +28,6 @@
 {% if enviroment.nodeEnv != 'development' %}
   <script async type="module" src="/assets/vendor.js?v={{ enviroment.jsHash }}"></script>
 {% endif %}
+{{ postBody | safe }}
 </body>
 </html>

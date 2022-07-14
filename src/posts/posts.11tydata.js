@@ -1,7 +1,7 @@
-const { siteUrl, isString, isAbsoluteUrl } = require('../../util/halpers');
+const { siteUrl, isAbsoluteUrl } = require('../../util/halpers');
 
 const getAuthorName = (data) => {
-  return isString(data.author?.name) ? data.author.name : data.pkg.author.name;
+  return data.author?.name ?? data.pkg.author.name;
 };
 
 const getImageUrl = (data) => {
@@ -16,7 +16,6 @@ module.exports = {
 
     jsonLd: (data) => {
       const url = siteUrl(data.permalink);
-      const authorName = getAuthorName(data);
 
       return JSON.stringify({
         '@context': 'https://schema.org',
@@ -30,8 +29,8 @@ module.exports = {
         dateModified: data.modified || undefined,
         author: {
           '@type': 'Person',
-          name: authorName,
-          url: authorName === data.pkg.author.name ? data.pkg.author.url : data.author?.url,
+          name: getAuthorName(data),
+          url: data.author?.url ?? data.pkg.author.url,
         },
         publisher: {
           '@type': 'Organization',

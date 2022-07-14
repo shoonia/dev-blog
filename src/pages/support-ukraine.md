@@ -37,9 +37,13 @@ head: '
     color: #1353a9;
   }
 </style>
-<script async defer id="_widgets" src="https://platform.twitter.com/widgets.js"></script>
+'
+postBody: '
+<script async id="_widgets" src="https://platform.twitter.com/widgets.js"></script>
 <script>
-  const list = [
+document.getElementById("_widgets").addEventListener("load", async () => {
+  let t = document.getElementById("_twitter");
+  let list = [
     "1496834115831742472",
     "1536403861224792065",
     "1547321021610573825",
@@ -50,21 +54,16 @@ head: '
     "1499068631795347462",
   ];
 
-  const options = {
-    lang: "en",
-    cards: "hidden",
-    conversation: "none",
-    dnt: true,
-    width: 550,
-  };
-
-  document.getElementById("_widgets").addEventListener("load", async () => {
-    const t = document.getElementById("_twitter");
-
-    for (let id of list) {
-      await twttr.widgets.createTweet(id, t, options);
-    }
-  });
+  for (let id of list) {
+    await twttr.widgets.createTweet(id, t, {
+      lang: "en",
+      cards: "hidden",
+      conversation: "none",
+      dnt: true,
+      width: 550,
+    });
+  }
+});
 </script>
 '
 ---
