@@ -19,6 +19,7 @@ head: '
     margin-bottom: 1em;
     padding: 1em;
     background-color: var(--c-light-link);
+    text-align: center;
   }
 
   ._icons-link {
