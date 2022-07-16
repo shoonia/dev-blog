@@ -23,6 +23,13 @@ exports.sitemapAndRss = async (nodes) => {
     priority: 1,
   });
 
+  sitemapStream.write({
+    url: siteUrl('/support-ukraine/'),
+    lastmod: dateNow,
+    changefreq: 'weekly',
+    priority: 0.8,
+  });
+
   const feed = new Feed({
     title: pkg.title,
     description: pkg.description,
