@@ -76,7 +76,7 @@ document.getElementById("_widgets").addEventListener("load", async () => {
 
 The Foundation purchases equipment that helps saving the lives of the military, including thermal imaging optics, quadcopters, cars, security, and intelligence systems. Our instructors train sappers, drone operators, artillerymen, and snipers, as well as teach pre-medical aid and facilitate secret missions, which we will be sure to talk about after the victory.
 
-👉 [Donate](https://www.comebackalive.in.ua/donate)<br/>
+👉 [Donate](https://www.comebackalive.in.ua/donate)\
 🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1547321021610573825)
 
 ## Serhiy Prytula Foundation
@@ -93,14 +93,36 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   </video>
 </figure>
 
-👉 [Donate](https://prytulafoundation.org/en/home/support_page)<br/>
-🐦 [@serhiyprytula](https://twitter.com/serhiyprytula/status/1511958078262022144)<br/>
+👉 [Military aid](https://prytulafoundation.org/en/home/support_page)\
+👉 [Humanitarian aid](https://aid.prytulafoundation.org/en/)\
+🐦 [@serhiyprytula](https://twitter.com/serhiyprytula/status/1511958078262022144)
+
+## UNITED24: The initiative of the President of Ukraine
+
+<figure>
+  <figcaption>
+    UNITED24 was launched by the President of Ukraine Volodymyr Zelenskyy as the main venue for collecting charitable donations in support of Ukraine. Funds will be transferred to the official accounts of the National Bank of Ukraine and allocated by assigned ministries to cover the most pressing needs.
+  </figcaption>
+  <video
+    preload="metadata"
+    oncanplay="this.currentTime=1.2;this.oncanplay=null;"
+    controls
+  >
+    <source
+      src="https://video.wixstatic.com/video/fd206f_2875d683cd534cc69b89f50ad83bfeb2/1080p/mp4/file.mp4"
+      type="video/mp4"
+    />
+  </video>
+</figure>
+
+👉 [Donate](https://u24.gov.ua/)\
+🐦 [@ZelenskyyUa](https://twitter.com/ZelenskyyUa/status/1522143153473601536)
 
 ## Ukraine is assembling an Army of Drones
 
 <figure>
   <figcaption>
-    To make our army stronger and protect our defenders, together with the General Staff of the Ukrainian Armed Forces, we are assembling an army of drones
+    The UNITED24 fundraising platform, together with the General Staff of the Armed Forces of Ukraine and the Ministry of Digital Information, has announced the launch of the "Army of Drones" project. This is a program that includes the systematic purchase of drones, their repair and prompt replacement, as well as a pilot training course.
   </figcaption>
   <video preload="metadata" controls>
     <source
@@ -110,14 +132,14 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   </video>
 </figure>
 
-👉 [Donate money / drone](https://u24.gov.ua/dronation)<br/>
+👉 [Donate money / drone](https://u24.gov.ua/dronation)\
 🐦 [@U24_gov_ua](https://twitter.com/U24_gov_ua/status/1544304847494815746), [@FedorovMykhailo](https://twitter.com/FedorovMykhailo/status/1542814528060235778)
 
 ## Raise Funds for Ukraine's Armed Forces
 
 The National Bank of Ukraine has decided to open a special fundraising account to support the Armed Forces of Ukraine.
 
-👉 [Donate](https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi)<br/>
+👉 [Donate](https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi)\
 🐦 [@NBUkraine](https://twitter.com/NBUkraine/status/1496834115831742472)
 
 ## The Hospitallers Battalion
