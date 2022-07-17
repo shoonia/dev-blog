@@ -577,7 +577,7 @@ pre ::selection {
   justify-content: center;
   align-items: center;
   gap: 1em;
-  height: 3em;
+  padding: 1em;
   background-color: var(--c-light-link);
 }
 
