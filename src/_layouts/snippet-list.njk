@@ -1,0 +1,17 @@
+{% include 'header.njk' %}
+{% include 'support.njk' %}
+
+<main class="content">
+  <h1>Velo Code Snippets</h1>
+  <ul class="posts">
+
+  {% for s in collections.snippets %}
+    <li class="post">
+      <a href="{{ s.permalink }}">{{ s.title }}</a>
+    </li>
+  {% endfor %}
+
+  </ul>
+</main>
+
+{% include 'footer.njk' %}

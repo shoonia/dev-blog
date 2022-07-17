@@ -26,6 +26,10 @@ module.exports = (config) => {
     return getPosts(collection.getAll());
   });
 
+  config.addCollection('snippets', (collection) => {
+    return getSnippets(collection.getAll());
+  });
+
   config.addTransform('html', async (content, outputPath) => {
     if (outputPath.endsWith('.html')) {
       return transformHtml(content, classMap);
