@@ -1,7 +1,8 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const { transformHtml } = require('./util/html');
-const { sitemapAndRss } = require('./util/sitemapAndRss');
+const { creaeSitemap } = require('./util/sitemap');
+const { createRss } = require('./util/rss');
 const { getPosts } = require('./util/filters');
 const { compileCss, writeCss } = require('./util/styles');
 const { compileJs } = require('./util/scripts');
@@ -25,7 +26,10 @@ module.exports = (config) => {
     const posts = getPosts(collection.getAll());
 
     if (isProd) {
-      await sitemapAndRss(posts);
+      await Promise.all([
+        creaeSitemap(posts),
+        createRss(posts)
+      ]);
     }
 
     return posts;
