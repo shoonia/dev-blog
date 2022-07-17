@@ -22,6 +22,13 @@ exports.creaeSitemap = async (nodes) => {
     priority: 0.8,
   });
 
+  sitemapStream.write({
+    url: siteUrl('/snippets/'),
+    lastmod: dateNow,
+    changefreq: 'weekly',
+    priority: 0.8,
+  });
+
   nodes.forEach((i) => {
     sitemapStream.write({
       url: siteUrl(i.permalink),
