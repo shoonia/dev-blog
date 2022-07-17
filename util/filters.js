@@ -14,4 +14,9 @@ module.exports = {
       .map(map)
       .sort(sort);
   },
+  getSnippets: (items) => {
+    return items
+      .filter((i) => i.data.kind === Kind.snippet)
+      .map(map);
+  },
 };

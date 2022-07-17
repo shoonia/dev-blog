@@ -3,7 +3,7 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const { transformHtml } = require('./util/html');
 const { creaeSitemap } = require('./util/sitemap');
 const { createRss } = require('./util/rss');
-const { getPosts } = require('./util/filters');
+const { getPosts, getSnippets } = require('./util/filters');
 const { compileCss, writeCss } = require('./util/styles');
 const { compileJs } = require('./util/scripts');
 const { siteUrl } = require('./util/halpers');
@@ -22,17 +22,8 @@ module.exports = (config) => {
     lineSeparator: '\n',
   });
 
-  config.addCollection('posts', async (collection) => {
-    const posts = getPosts(collection.getAll());
-
-    if (isProd) {
-      await Promise.all([
-        creaeSitemap(posts),
-        createRss(posts)
-      ]);
-    }
-
-    return posts;
+  config.addCollection('posts', (collection) => {
+    return getPosts(collection.getAll());
   });
 
   config.addTransform('html', async (content, outputPath) => {
@@ -50,6 +41,23 @@ module.exports = (config) => {
   config.on('eleventy.after', async () => {
     await Promise.all([writeCss(cssCache), compileJs()]);
   });
+
+  if (isProd) {
+    config.addCollection('__items__', async (collection) => {
+      const items = collection.getAll();
+      const pages = [
+        ...getPosts(items),
+        ...getSnippets(items),
+      ];
+
+      await Promise.all([
+        createRss(pages),
+        creaeSitemap(pages),
+      ]);
+
+      return [];
+    });
+  }
 
   return {
     dir: {
