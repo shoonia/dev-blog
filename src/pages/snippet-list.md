@@ -2,6 +2,6 @@
 layout: snippet-list.njk
 permalink: '/snippets/'
 lang: 'en'
-title: 'Velo Code Snippets'
+title: 'Velo Snippets'
 image: 'https://shoonia.site/assets/images/icon.png'
 ---
