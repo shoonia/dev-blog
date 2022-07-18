@@ -7,6 +7,7 @@ const urls = [
   ['Reduce server-side calls using a caching mechanism', 'https://shoonia.wixsite.com/blog/cache'],
   ['Message channel to iFrame', 'https://shoonia.wixsite.com/blog/channel'],
   ['Imitating hover event on repeater container', 'https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid'],
+  ['Rotate animation', 'https://shoonia.wixsite.com/blog/rotate-animation'],
 ];
 
 urls.forEach(([title, url]) => {
