@@ -17,6 +17,7 @@ module.exports = (config) => {
   config.addPassthroughCopy('src/*.!(md)');
   config.addPassthroughCopy('src/_redirects');
   config.addFilter('siteUrl', siteUrl);
+  config.addFilter('encodeURIComponent', encodeURIComponent);
 
   config.addPlugin(syntaxHighlight, {
     lineSeparator: '\n',

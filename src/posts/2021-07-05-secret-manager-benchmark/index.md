@@ -9,13 +9,12 @@ image: '/assets/images/velo.png'
 linkPreload: '
 <link href="https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark" rel="preload" as="fetch" crossorigin="anonymous">
 '
----
-
+head: '
 <style>
   #run,
   #average {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
   }
 
   #run {
@@ -34,8 +33,6 @@ linkPreload: '
     outline: none;
     padding: .3em 1.3em;
     transition: all .2s ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     user-select: none;
     white-space: nowrap;
   }
@@ -62,7 +59,7 @@ linkPreload: '
   }
 
   #output-area {
-    border: 1px solid #b6c1cd;
+    border: var(--border);
     border-radius: 8px;
     height: auto;
     min-height: 30vh;
@@ -77,18 +74,51 @@ linkPreload: '
   ._tool {
     display: flex;
     align-items: center;
-    gap: 16px;
-  }
-
-  ._output {
-    margin-top: 16px;
+    gap: 1em;
+    margin: 1em 0;
   }
 </style>
+'
+postBody: '
+<script>
+{
+  let $ = (selector) => document.querySelector(selector);
+
+  let all = [];
+  let outputArea = $("#output-area");
+  let average = $("#average");
+
+  let run = async () => {
+    let response = await fetch("https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark");
+    let data = await response.json();
+
+    all.push(data.ts);
+
+    let i = all.length;
+
+    outputArea.value = `#${i}: ${data.ts}\n${outputArea.value}`;
+    average.value = `Average (${i}): ${Math.round( all.reduce((a, b) => a + b, 0) / i )} milliseconds`;
+  };
+
+  $("#run").addEventListener("click", run);
+
+  run();
+}
+</script>
+'
+---
 
 # Velo: Secret Manager Benchmark
 
 Online checker of performance benchmark for Velo [Secrets Manager](https://support.wix.com/en/article/velo-about-the-secrets-manager).
 
+<textarea
+  id="output-area"
+  spellcheck="false"
+  placeholder="0"
+  autocomplete="off"
+  readonly
+></textarea>
 <div class="_tool">
   <button type="button" id="run">
     Run
@@ -96,15 +126,6 @@ Online checker of performance benchmark for Velo [Secrets Manager](https://suppo
   <output id="average">
     Average (0): 0 milliseconds
   </output>
-</div>
-<div class="_output">
-  <textarea
-    id="output-area"
-    spellcheck="false"
-    placeholder="0"
-    autocomplete="off"
-    readonly
-  ></textarea>
 </div>
 
 ## How it works
@@ -126,37 +147,6 @@ export async function getBenchmark() {
   return end - start;
 }
 ```
-
-<script>
-{
-  const one = (selector) => document.querySelector(selector);
-
-  const all = [];
-  const outputArea = one('#output-area');
-  const average = one('#average');
-
-  const run = () => {
-    fetch('https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark')
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      }).then((data) => {
-        all.push(data.ts);
-
-        const i = all.length;
-
-        outputArea.value = `#${i}: ${data.ts}\n${outputArea.value}`;
-        average.value = `Average (${i}): ${Math.round( all.reduce((a, b) => a + b, 0) / i )} milliseconds`;
-      }).catch(() => {});
-  };
-
-  one('#run').addEventListener('click', run);
-
-  outputArea.value = '';
-  run();
-}
-</script>
 
 ## Resources
 
