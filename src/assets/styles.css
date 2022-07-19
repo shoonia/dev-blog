@@ -104,8 +104,8 @@ a::before {
   transform-origin: bottom right;
 }
 
-pre a::before,
-footer a::before {
+.blank::before,
+pre a::before {
   display: none;
 }
 
@@ -620,6 +620,29 @@ pre ::selection {
 
 .filetree_tab {
   margin: 1em;
+}
+
+/**
+ * Topbar
+ */
+.topbar {
+  position: relative;
+}
+
+.topbar-share {
+  position: absolute;
+  right: 0;
+}
+
+.topbar-link {
+  border: var(--border);
+  margin-left: 0.2em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media print {
