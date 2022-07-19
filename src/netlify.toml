@@ -15,7 +15,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31556952; preload"
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=1800"
 
 [[headers]]
   for = "/assets/*"
@@ -23,6 +23,6 @@
     Cache-Control = "public, max-age=31556952, immutable"
 
 [[headers]]
-  for = "/favicon.png"
+  for = "*.png"
   [headers.values]
     Cache-Control = "public, max-age=31556952, immutable"
