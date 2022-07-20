@@ -342,10 +342,6 @@ details[open] summary::after {
   content: "close";
 }
 
-video {
-  height: auto;
-}
-
 iframe {
   overflow: hidden;
 }
@@ -356,6 +352,7 @@ video {
   border: var(--border);
   border-radius: 8px;
   width: 100%;
+  display: block;
 }
 
 aside,
