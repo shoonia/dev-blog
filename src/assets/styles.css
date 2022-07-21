@@ -183,6 +183,7 @@ h3 {
 p,
 ul,
 ol,
+dl,
 table,
 aside,
 blockquote,
@@ -276,10 +277,11 @@ img[decoding="async"] {
   content-visibility: auto;
 }
 
-p img {
-  display: block;
+p > img,
+figure > img {
   margin-left: auto;
   margin-right: auto;
+  display: block;
 }
 
 cite,
@@ -342,10 +344,6 @@ details[open] summary::after {
   content: "close";
 }
 
-video {
-  height: auto;
-}
-
 iframe {
   overflow: hidden;
 }
@@ -356,6 +354,7 @@ video {
   border: var(--border);
   border-radius: 8px;
   width: 100%;
+  display: block;
 }
 
 aside,
@@ -440,6 +439,10 @@ pre::-webkit-scrollbar-thumb:hover {
 pre ::selection {
   text-shadow: none;
   background-color: rgb(154 162 177 / 20%);
+}
+
+dd {
+  margin: 0 1em;
 }
 
 .menu {
