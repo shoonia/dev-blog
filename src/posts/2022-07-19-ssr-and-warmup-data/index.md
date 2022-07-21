@@ -40,13 +40,15 @@ $w.onReady(function () {
 });
 ```
 
-Code will be executed on the server-side then a result will be added to the HTML page.
+Code will be executed on the server-side then a result will be added to the HTML page. And the page will send to the client-side with inserted data.
+
+## Rendering API
 
 We can control the step of the render cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env).
 
-`env` property returns <mark>backend</mark> when rendering on the server side and <mark>browser</mark> when rendering on the client side.
+`env` property returns <mark>backend</mark> when rendering on the server-side and <mark>browser</mark> when rendering on the client-side.
 
-Let's update the code to see it. We create a string with env value and timestamp.
+Let's update the code to see it. It's a string with env value and timestamp.
 
 ```js
 import { rendering } from 'wix-window';
@@ -56,7 +58,7 @@ $w.onReady(function () {
 });
 ```
 
-Now, when we reload the page we can see that HTML content has <mark>backend</mark> value. When the page finished loading then we see the <mark>browser</mark> value, it's the second run of `$w.onReady()` on the client side.
+Now, when we reload the page we can see that HTML content has <mark>backend</mark> value. When the page finished loading then we see the <mark>browser</mark> value, it's the second run of `$w.onReady()` on the client-side updates a value of text.
 
 <figure>
   <figcaption>
@@ -72,9 +74,13 @@ Now, when we reload the page we can see that HTML content has <mark>backend</mar
   />
 </figure>
 
+It looks easy.
+
 ## Asynchronous operation
 
-If we want to add <abbr title="Server-side rendering">SSR</abbr> with some async operation, we should wait for the promise to be fulfilled.
+What about async operations?
+
+If we want to add <abbr title="Server-side rendering">SSR</abbr> with some async operation, we should wait for the promise to be [fulfilled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#:~:text=A%20Promise%20is%20in,that%20the%20operation%20failed.).
 
 Let's have a look at an example. Creates a query for retrieving items from a database and prints them as a string.
 
@@ -90,7 +96,7 @@ $w.onReady(function () {
 });
 ```
 
-As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work with any async operations. When we reload the page, we see a default text that the Text element contains in the editor.
+As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work with any async operations. When we reload the page, we see a default text that the Text element contains in the editor. And after a while we see a database items, it's the second run of the `$w.onReady()` callback on the client-side.
 
 **A site without server-side render with dynamic data**
 
@@ -123,7 +129,7 @@ $w.onReady(async function () {
 });
 ```
 
-Now, we can see the <abbr title="Server-side rendering">SSR</abbr> is starting to work. And the server has rendered the HTML page with the database items.
+Now, we can see the <abbr title="Server-side rendering">SSR</abbr> starts to work. And the server has rendered the HTML page with the database items.
 
 <figure>
   <figcaption>
@@ -176,13 +182,143 @@ We wait twice for the promise to be fulfilled on the server and on the client.
 
 ## The Warmup Data API
 
+Using the Warmup Data API, we are able to insert data to a page code on the server and read this data on the client.
+
+<figure>
+  <figcaption>
+    <cite>Velo API Reference:</cite>
+  </figcaption>
+  <blockquote cite="https://www.wix.com/velo/reference/wix-window/warmupdata-obj">
+    The Warmup Data API is used to optimize data loading for sites that render both on the server and in the browser, allowing costly data fetching operations to be done only once.
+  </blockquote>
+</figure>
+
+<figure>
+  <figcaption>
+
+  Velo: [The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj) example
+  </figcaption>
+
+  ```js
+  import { warmupData, rendering } from 'wix-window';
+
+  // Set data on the server-side
+  if (rendering.env === 'backend') {
+    warmupData.set('my-key', 'server data');
+  }
+
+  // Get data on the client-side
+  if (rendering.env === 'browser') {
+    const data = warmupData.get('my-key');
+
+    console.log(data); // -> "server data"
+  }
+  ```
+</figure>
+
+We can use the Warmup Data to reduce the requests to a database. There we save the query response to `warmupData` on the server-side and read it on the client-side without additional database request.
+
+### Implement Warmup Data util function
+
+We'll implement a feature that will enable server-side rendering and use the Warmup Data to prevent second data request on the client-side, it reduces a time of waiting.
+
+Create a file for util function.
+
+**Add file to public section on the sidebar**
+
+<div class="filetree">
+  <div class="filetree_tab filetree_row" role="presentation" aria-label="velo sidebar">
+    <strong>Public & Backend</strong>
+  </div>
+  <div class="filetree_title filetree_row">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    Public
+  </div>
+  <div class="filetree_tab filetree_row">
+    <img src="/assets/images/i/js.svg" alt=""/>
+    warmupUtil.js
+  </div>
+</div>
+
+
+**public/warmupUtil.js**
+
+```js
+import { warmupData, rendering } from 'wix-window';
+
+export const warmupUtil = async (key, func) => {
+  // On the server-side
+  if (rendering.env === 'backend') {
+    // Get data
+    const data = await func();
+
+    // Set the warmup data on the server-side
+    warmupData.set(key, data);
+
+    return data;
+  }
+
+  // On the client-side
+
+  // Get the warmup data on the client-side
+  const data = warmupData.get(key);
+
+  // Checking a cached data exist
+  if (data) {
+    return data;
+  }
+
+  // If we don't have cache data from the server,
+  // then we do a backup call on the client
+  return func();
+};
+```
+
 ## Parallel execution for a few async tasks
+
+We should remember the `$w.onReady()` effect of page loading. If we want to use a few async functions in `$w.onReady()` callback then we should avoid using them in queue one by one.
+
+For example, if each of these async functions executes at 100 milliseconds, the `$w.onReady()` will need to wait for 300 milliseconds for complete execution all of them.
+
+```js
+// ❌ wrong approach!!
+$w.onReady(async function () {
+  const one = await warmupUtil('one-async-func', oneAsyncFunc); // ⌛ 100 ms
+  const two = await warmupUtil('two-async-func', twoAsyncFunc); // ⌛ 100 ms
+  const three = await warmupUtil('three-async-func', threeAsyncFunc); // ⌛ 100 ms
+
+  // ⌛ wait one by one (100 ms * 3) = 300 ms
+
+  $w('#text1').text = JSON.stringify({ one, two, three });
+});
+```
+
+We are able to aggregate a bunch of promises with [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) and execute them in parallel and wait until all of them are ready.
+
+```js
+// ✅ parallel asynchronous execution
+$w.onReady(async function () {
+  const [one, two, three] = await Promise.all([
+    warmupUtil('one-async-func', oneAsyncFunc),
+    warmupUtil('two-async-func', twoAsyncFunc),
+    warmupUtil('three-async-func', threeAsyncFunc),
+  ]);
+
+  // ⌛ wait 100 ms. Parallel execution of all promises
+
+  $w('#text1').text = JSON.stringify({ one, two, three });
+});
+```
+
+It's very simple rule: all that we can to parallel we should parallel.
 
 ## Code Snippets
 
+Here is a code snippet with JSDoc annotation. And an example of use.
+
 <details>
   <summary>
-    <strong>warmupUtil.js</strong>
+    <strong>public/warmupUtil.js</strong>
   </summary>
 
 ```js
