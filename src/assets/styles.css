@@ -276,10 +276,11 @@ img[decoding="async"] {
   content-visibility: auto;
 }
 
-p img {
-  display: block;
+p > img,
+figure > img {
   margin-left: auto;
   margin-right: auto;
+  display: block;
 }
 
 cite,
