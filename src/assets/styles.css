@@ -183,6 +183,7 @@ h3 {
 p,
 ul,
 ol,
+dl,
 table,
 aside,
 blockquote,
@@ -438,6 +439,10 @@ pre::-webkit-scrollbar-thumb:hover {
 pre ::selection {
   text-shadow: none;
   background-color: rgb(154 162 177 / 20%);
+}
+
+dd {
+  margin: 0 1em;
 }
 
 .menu {
