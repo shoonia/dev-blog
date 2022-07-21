@@ -1,7 +1,7 @@
 ---
 permalink: '/ssr-and-warmup-data/'
-date: '2022-07-19T12:00:00.000Z'
-modified: '2022-07-19T12:00:00.000Z'
+date: '2022-07-22T12:00:00.000Z'
+modified: '2022-07-22T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Server Side Rendering and Warmup Data APIs'
 description: 'Learn how to optimize data receiving and reduce the Wix site load time'
