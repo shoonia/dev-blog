@@ -146,14 +146,94 @@ Now, we can see the <abbr title="Server-side rendering">SSR</abbr> is starting t
 
 We should be careful using `$w.onReady()` with an async callback. Long async tasks slow down the render of the page.
 
+For example, we add a promise with a delay of 5 seconds into the callback.
+
 ```js
 $w.onReady(async function () {
-  // an async delay for 5 seconds
+  // a delay for 5 seconds
   await new Promise((r) => setTimeout(r, 5000));
 
   $w('#text1').text = Date.now().toString();
 });
 ```
+
+If we run this code, we will see that the server will wait for 5 seconds to complete. And after the HTML page has loaded on the client, we again wait for 5 seconds before seeing the result.
+
+We wait twice for the promise to be fulfilled on the server and on the client.
+
+<figure>
+  <img
+    src="/assets/images/network-inspector.jpg"
+    alt="chrome network inspector"
+    loading="lazy"
+  />
+  <figcaption>
+    <em>
+      Network inspector, time to load the HTML page from the server with a delay of 5 seconds
+    </em>
+  </figcaption>
+</figure>
+
+## The Warmup Data API
+
+## Parallel execution for a few async tasks
+
+## Code Snippets
+
+<details>
+  <summary>
+    <strong>warmupUtil.js</strong>
+  </summary>
+
+```js
+import { warmupData, rendering } from 'wix-window';
+
+/**
+ * @template T
+ * @param {string} key
+ * @param {() => Promise<T>} func
+ * @returns {Promise<T>}
+ */
+export const warmupUtil = async (key, func) => {
+  if (rendering.env === 'backend') {
+    const data = await func();
+
+    warmupData.set(key, data);
+
+    return data;
+  }
+
+  const data = warmupData.get(key);
+
+  if (data) {
+    return data;
+  }
+
+  return func();
+};
+```
+</details>
+<details>
+  <summary>
+    <strong>Page Code Tab</strong>
+  </summary>
+
+```js
+import { warmupUtil } from 'public/warmupUtil';
+
+const getGoods = async () => {
+   const { items } = await wixData.query('goods').find();
+
+   return items;
+};
+
+$w.onReady(async function () {
+  const items = await warmupUtil('goods-items', getGoods);
+
+  $w('#text1').text = JSON.stringify(items);
+});
+```
+</details>
 
 ## Resources
 
