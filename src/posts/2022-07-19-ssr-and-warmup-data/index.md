@@ -32,7 +32,7 @@ The second run goes on the client-side in the browser when a site page has loade
 
 Let's playing with <abbr title="Server-side rendering">SSR</abbr> for understanding how it works.
 
-For example, we have a below code:
+For example, we have the below code:
 
 ```js
 $w.onReady(function () {
@@ -98,7 +98,7 @@ $w.onReady(function () {
 });
 ```
 
-As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work with any async operations. When we reload the page, we see a default text that the Text element contains in the editor. And after a while we see a database items, it's the second run of the `$w.onReady()` callback on the client-side.
+As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work with any async operations. When we reload the page, we see a default text that the Text element contains in the editor. And after a while, we see database items. It's the second run of the `$w.onReady()` callback on the client-side.
 
 **A site without server-side render with dynamic data**
 
@@ -188,7 +188,7 @@ We wait twice for the promise to be fulfilled on the server and on the client.
 
 ## The Warmup Data API
 
-Using the Warmup Data API, we are able to insert data to a page code on the server and read this data on the client.
+Using the Warmup Data API, we are able to transfer data with a page code from the server and read this data on the client.
 
 <figure>
   <figcaption>
@@ -222,7 +222,7 @@ Using the Warmup Data API, we are able to insert data to a page code on the serv
   ```
 </figure>
 
-We can use the Warmup Data to reduce the requests to a database. There we save the query response to `warmupData` on the server-side and read it on the client-side without additional database request.
+We can use the Warmup Data to reduce requests to a database. There we save the query response to `warmupData` on the server and read it on the client without additional database request.
 
 ### Implement Warmup Data util function
 
@@ -246,6 +246,18 @@ Create a file for util function.
   </div>
 </div>
 
+It is a wrapper function. It has two arguments:
+
+<dl>
+  <dt>
+    First argument - <em>key</em>
+  </dt>
+  <dd>It's a unique key corresponding to data for the Warmup Data</dd>
+  <dt>
+    Second argument - <em>func</em>
+ </dt>
+  <dd>It's an async function which result we want to use with the Warmup Data..</dd>
+</dl>
 
 **public/warmupUtil.js**
 
@@ -280,6 +292,10 @@ export const warmupUtil = async (key, func) => {
 };
 ```
 
+On the server, it waits for the async function result and sets it to the Warmup Data.
+
+On the client, it uses data from the Warmup Data. If it has no data (some glitch on the server), it will call *func* on the client.
+
 ## Parallel execution for a few async tasks
 
 We should remember the `$w.onReady()` effect of page loading. If we want to use a few async functions in `$w.onReady()` callback then we should avoid using them in queue one by one.
@@ -299,7 +315,7 @@ $w.onReady(async function () {
 });
 ```
 
-We are able to aggregate a bunch of promises with [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) and execute them in parallel and wait until all of them are ready.
+We are able to aggregate a bunch of promises with [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), execute them in parallel, and wait until all of them are ready.
 
 ```js
 // ✅ parallel asynchronous execution
@@ -315,8 +331,6 @@ $w.onReady(async function () {
   $w('#text1').text = JSON.stringify({ one, two, three });
 });
 ```
-
-It's very simple rule: all that we can to parallel we should parallel.
 
 ## Code Snippets
 
