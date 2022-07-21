@@ -382,6 +382,8 @@ We have the autocomplete for the object keys and values. Very useful.
     src="/assets/videos/jsdoc1.mp4"
     type="video/mp4"
     preload="metadata"
+    width="1280"
+    height="576"
     controls
     loop
   />

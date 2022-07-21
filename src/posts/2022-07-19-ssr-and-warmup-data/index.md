@@ -68,6 +68,8 @@ Now, when we reload the page we can see that HTML content has <mark>backend</mar
     src="/assets/videos/ssr.mp4"
     type="video/mp4"
     preload="metadata"
+    width="1728"
+    height="1080"
     oncanplay="_this.playbackRate = 0.5; this.oncanplay = null_"
     controls
     loop
@@ -105,6 +107,8 @@ As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work w
     src="/assets/videos/no-ssr.mp4"
     type="video/mp4"
     preload="metadata"
+    width="1728"
+    height="1080"
     controls
     loop
   ></video>
@@ -139,6 +143,8 @@ Now, we can see the <abbr title="Server-side rendering">SSR</abbr> starts to wor
     src="/assets/videos/with-ssr.mp4"
     type="video/mp4"
     preload="metadata"
+    width="1728"
+    height="1080"
     controls
     loop
   />
@@ -283,11 +289,11 @@ For example, if each of these async functions executes at 100 milliseconds, the 
 ```js
 // ❌ wrong approach!!
 $w.onReady(async function () {
-  const one = await warmupUtil('one-async-func', oneAsyncFunc); // ⌛ 100 ms
-  const two = await warmupUtil('two-async-func', twoAsyncFunc); // ⌛ 100 ms
-  const three = await warmupUtil('three-async-func', threeAsyncFunc); // ⌛ 100 ms
+  const one = await warmupUtil('one-async-func', oneAsyncFunc); // ⏳ 100 ms
+  const two = await warmupUtil('two-async-func', twoAsyncFunc); // ⏳ 100 ms
+  const three = await warmupUtil('three-async-func', threeAsyncFunc); // ⏳ 100 ms
 
-  // ⌛ wait one by one (100 ms * 3) = 300 ms
+  // ⏳ wait one by one (100 ms * 3) = 300 ms
 
   $w('#text1').text = JSON.stringify({ one, two, three });
 });
@@ -304,7 +310,7 @@ $w.onReady(async function () {
     warmupUtil('three-async-func', threeAsyncFunc),
   ]);
 
-  // ⌛ wait 100 ms. Parallel execution of all promises
+  // ⏳ wait 100 ms. Parallel execution of all promises
 
   $w('#text1').text = JSON.stringify({ one, two, three });
 });

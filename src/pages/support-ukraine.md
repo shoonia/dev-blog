@@ -89,7 +89,12 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   <figcaption>
     Serhiy Prytula has been helping the Ukrainian Army as a private volunteer since Russia occupied Crimea and Donbas in 2014. At first, he helped with the uniforms, armor, and food supplies, later, when these needs started to be covered by the Ministry of Defense, he switched to high-tech technology, drones, and equipment for command posts.
   </figcaption>
-  <video preload="metadata" controls>
+  <video
+    preload="metadata"
+    width="720"
+    height="406"
+    controls
+  >
     <source
       src="https://video.wixstatic.com/video/fd206f_35eba96b78ef4d2eb52aef59541406bd/360p/mp4/file.mp4"
       type="video/mp4"

@@ -29,6 +29,8 @@ Let's suppose that we have to animate an image by mouse event. For example, we w
     src="/assets/videos/promise-queue-2.mp4"
     type="video/mp4"
     preload="metadata"
+    width="720"
+    height="368"
     controls
     loop
   />
@@ -70,6 +72,8 @@ As you can see above, the animation has a duration of 300 ms. What happens if we
     src="/assets/videos/promise-queue-3.mp4"
     type="video/mp4"
     preload="metadata"
+    width="720"
+    height="368"
     controls
     loop
   />
@@ -259,6 +263,8 @@ The last thing we need is control of the queue length. We can create a lot of an
     src="/assets/videos/promise-queue-1.mp4"
     type="video/mp4"
     preload="metadata"
+    width="720"
+    height="368"
     controls
     loop
   />

@@ -33,6 +33,14 @@ const createId = (content) => {
   }
 };
 
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
+
+const aspectRatio = (width, height)  => {
+  const divisor = gcd(width, height);
+
+  return `aspect-ratio:${width / divisor}/${height / divisor}`;
+};
+
 const transformer = (classCache) => posthtml([
   imgAutosize({
     root: rootResolve('src'),
@@ -180,6 +188,22 @@ const transformer = (classCache) => posthtml([
             day: 'numeric',
           }),
         ];
+
+        return node;
+      }
+
+      case 'video': {
+        const width = ~~node.attrs.width;
+        const height = ~~node.attrs.height;
+
+        if (width && height) {
+          const style = node.attrs.style ?? '';
+
+          node.attrs.style = style + aspectRatio(width, height);
+
+          delete node.attrs.width;
+          delete node.attrs.height;
+        }
 
         return node;
       }

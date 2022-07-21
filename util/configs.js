@@ -3,9 +3,6 @@ exports.minifyJs = {
   ecma: 2020,
   module: true,
   toplevel: true,
-  parse: {
-    ecma: 2020,
-  },
   compress: {
     ecma: 2020,
     module: true,
@@ -14,9 +11,5 @@ exports.minifyJs = {
     passes: 3,
     toplevel: true,
     pure_getters: true,
-  },
-  output: {
-    ecma: 2020,
-    comments: false,
   },
 };
