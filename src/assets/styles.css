@@ -126,6 +126,10 @@ footer a {
   user-select: none;
 }
 
+abbr:hover {
+  cursor: help;
+}
+
 h2,
 h3,
 h4 {
