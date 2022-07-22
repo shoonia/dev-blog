@@ -256,7 +256,7 @@ It is a wrapper function. It has two arguments:
   <dt>
     Second argument - <em>func</em>
  </dt>
-  <dd>It's an async function which result we want to use with the Warmup Data..</dd>
+  <dd>It's an async function which result we want to use with the Warmup Data.</dd>
 </dl>
 
 **public/warmupUtil.js**

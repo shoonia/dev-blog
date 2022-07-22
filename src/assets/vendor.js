@@ -1,5 +1,6 @@
 requestIdleCallback(() => {
   let prefetched = new Set();
+  let $$ = (selector) => document.querySelectorAll(selector);
 
   let serialize = (ops) => {
     let data = [], key;
@@ -52,15 +53,23 @@ requestIdleCallback(() => {
     }
   };
 
-  document.querySelectorAll('a').forEach((a) => {
+  let toggleAttribute = (event) => {
+    event.target.toggleAttribute('data-open');
+  };
+
+  $$('a').forEach((a) => {
     if (a.hostname === location.hostname && !~a.href.indexOf('#')) {
       observer.observe(a);
     }
   });
 
-  document.querySelectorAll('[data-copy]').forEach((button) =>
+  $$('[data-copy]').forEach((button) =>
     button.addEventListener('click', copyCodeHandler),
   );
+
+  $$('abbr[title]').forEach((abbr) => {
+    abbr.addEventListener('click', toggleAttribute);
+  });
 
   navigator.sendBeacon('https://www.google-analytics.com/collect',
     serialize({
