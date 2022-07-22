@@ -4,6 +4,7 @@
   "description": "Web Development Blog",
   "version": "0.1.0",
   "homepage": "https://shoonia.site/",
+  "packageManager": "^npm@8.13.0",
   "scripts": {
     "build": "NODE_ENV=production eleventy",
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
