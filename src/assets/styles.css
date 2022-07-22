@@ -130,6 +130,10 @@ abbr:hover {
   cursor: help;
 }
 
+abbr[data-open]::after {
+  content: ' (' attr(title) ')';
+}
+
 h2,
 h3,
 h4 {
