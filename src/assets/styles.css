@@ -131,7 +131,7 @@ abbr:hover {
 }
 
 abbr[data-open]::after {
-  content: ' (' attr(title) ')';
+  content: " (" attr(title) ")";
 }
 
 h2,
