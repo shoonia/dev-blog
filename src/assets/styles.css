@@ -528,13 +528,29 @@ dd {
 }
 
 .inserted {
-  color: #aff5b4;
   background-color: #033a16;
 }
 
 .prefix.deleted,
 .prefix.inserted {
   user-select: none;
+  padding: 0 3px;
+  margin-right: 5px;
+}
+
+.prefix.deleted {
+  color: #e5c07b;
+  background-color: hsl(350deg 100% 88% / 20%);
+}
+
+.prefix.inserted {
+  color: #aff5b4;
+  background-color: hsl(120deg 73% 75% / 20%);
+}
+
+.deleted:not(.prefix),
+.inserted:not(.prefix) {
+  display: block;
 }
 
 .entity {
