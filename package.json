@@ -10,7 +10,7 @@
     "lint": "eslint '**/*.js' && stylelint 'src/**/*.css'",
     "clean": "rm -rf public",
     "serve": "python3 -m http.server -d public",
-    "test": "node --experimental-fetch node_modules/uvu/bin.js tests"
+    "test": "uvu tests"
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
