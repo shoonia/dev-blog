@@ -232,8 +232,8 @@ Create a file for util function.
 
 **Add file to public section on the sidebar**
 
-<div class="filetree">
-  <div class="filetree_tab filetree_row" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="presentation" aria-label="velo sidebar">
+  <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
   <div class="filetree_title filetree_row">
