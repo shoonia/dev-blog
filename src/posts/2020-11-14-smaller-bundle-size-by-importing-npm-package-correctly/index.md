@@ -1,7 +1,7 @@
 ---
 permalink: '/smaller-bundle-size-by-importing-npm-package-correctly/'
 date: '2020-11-14T12:00:00.000Z'
-modified: '2021-01-04T12:00:03.000Z'
+modified: '2022-07-22T12:00:03.000Z'
 lang: 'en'
 title: 'Velo by Wix: Smaller bundle size by importing npm package correctly'
 description: 'If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one'
@@ -12,10 +12,7 @@ image: '/assets/images/node_modules500x500.jpeg'
 
 *If using npm dependencies in the project, then the way of importing code from the package may influence the bundle size. In this note, we consider a few ways of importing modules and try to find the best one*
 
-<img
-  src="/assets/images/node_modules.jpeg"
-  alt="node_modules"
-/>
+![node modules](/assets/images/node_modules.jpeg)
 
 Let's start with a small library [uuid](https://www.npmjs.com/package/uuid) that use for the creation of unique IDs. In the documentation, we can see how to use it with ES6 module syntax.
 
@@ -78,7 +75,7 @@ import _get from 'lodash/get';
 
   ### Attention!
 
-  For using this approach, you should understand how is work the package. This approach is grad for libraries that is a collection of independent utility (like: [uuid](https://github.com/uuidjs/uuid), [lodash](https://lodash.com/), [validator](https://github.com/validatorjs/validator.js), [ramda](https://ramdajs.com/), [underscore](https://underscorejs.org/), etc) when each method has an atomic functional.
+  For using this approach, you should understand how the package works. This approach is grad for libraries that is a collection of independent utility (like: [uuid](https://github.com/uuidjs/uuid), [lodash](https://lodash.com/), [validator](https://github.com/validatorjs/validator.js), [ramda](https://ramdajs.com/), [underscore](https://underscorejs.org/), etc) when each method has an atomic functional.
 
   If you support the legacy browser, pay attention to JS syntax in the file (ES5, ES2015).
 </aside>
@@ -89,7 +86,21 @@ A few questions to yourself:
 
 Is my favorite package still good enough? Learn the npm packages that you use most often, and don't forget to look at the alternative. With time, even the best solutions are to become old. [The Moment.js docs have a great example](https://momentjs.com/docs/#/-project-status/recommendations/) where authors recommend using some modern packages instead of Moment.js.
 
-Am I need this package? The Velo supports JavaScript until of ES2017 version. Maybe your issue may solve by new JavaScript features without three-party libraries?
+Am I need this package? The Velo supports JavaScript until [ES2020](https://tc39.es/ecma262/2020/) version. Maybe your issue may solve by new JavaScript features without three-party libraries?
+
+<figure>
+
+```diff-js
+-import _get from 'lodash/get';
+
+-const lang = _get(customer, 'language.code', 'en');
++const lang = customer?.language?.code ?? 'en';
+```
+  <figcaption>
+
+  _**Example:** Using [the optional chaining operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [the nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) instead [lodash get](https://lodash.com/docs/4.17.15#get)_
+  </figcaption>
+<figure>
 
 ## Resources
 
