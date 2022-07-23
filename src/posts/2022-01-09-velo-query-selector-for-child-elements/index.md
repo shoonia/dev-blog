@@ -31,11 +31,11 @@ We want to provide a good abstract solution for avoiding hard coding of elements
     src="/assets/images/yellow-blue.jpg"
     alt="Wix Editor with two box groups"
     loading="lazy"
-    style="border:1px solid rgb(112 128 144 / 40%);border-radius:8px"
+    style="border:var(--border);border-radius:8px"
   />
 </figure>
 
-In general, we need to find a way to query select all child elements into a specific parent node. There are exist similar selectors in DOM and CSS.
+In general, we need to find a way to query select all child elements into a specific parent node. There are exist similar selectors in <abbr title="Document Object Model">DOM</abbr> and CSS.
 
 ## CSS selector work from right to left
 

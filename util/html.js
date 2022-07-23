@@ -79,9 +79,21 @@ const transformer = (classCache) => posthtml([
       case 'pre': {
         node.content = [
           {
-            tag: 'div',
+            tag: 'button',
             attrs: {
-              class: 'menu',
+              type: 'button',
+              class: 'menu menu-left',
+              'data-expand': true,
+              'aria-label': 'toggle full screen',
+            },
+          },
+          {
+            tag: 'button',
+            attrs: {
+              type: 'button',
+              class: 'menu menu-right',
+              'data-expand': true,
+              'aria-label': 'toggle full screen',
             },
           },
           ...node.content,
