@@ -82,7 +82,16 @@ const transformer = (classCache) => posthtml([
             tag: 'button',
             attrs: {
               type: 'button',
-              class: 'menu',
+              class: 'menu menu-left',
+              'data-expand': true,
+              'aria-label': 'toggle full screen',
+            },
+          },
+          {
+            tag: 'button',
+            attrs: {
+              type: 'button',
+              class: 'menu menu-right',
               'data-expand': true,
               'aria-label': 'toggle full screen',
             },
