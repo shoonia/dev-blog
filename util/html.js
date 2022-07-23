@@ -84,6 +84,7 @@ const transformer = (classCache) => posthtml([
               type: 'button',
               class: 'menu',
               'data-expand': true,
+              'aria-label': 'toggle full screen',
             },
           },
           ...node.content,
