@@ -235,6 +235,7 @@ mark {
 pre > code {
   display: block;
   padding: 3em 1em 4em;
+  min-width: 100%;
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--c-gray-opacity) transparent;
@@ -472,7 +473,8 @@ dd {
 }
 
 .menu {
-  background-color: transparent;
+  outline: 3px solid var(--code-bg);
+  background-color: var(--code-bg);
   background-repeat: no-repeat;
   background-position: center;
   padding: 0;
