@@ -28,6 +28,21 @@
   font-display: swap;
 }
 
+[data-noscroll] {
+  overflow: hidden;
+}
+
+[data-fullscreen] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+}
+
 body {
   font-family:
     system-ui,
@@ -455,9 +470,15 @@ dd {
 
 .menu {
   background-image: url("/assets/images/menu.svg");
+  background-color: transparent;
   height: 14px;
   width: 54px;
+  padding: 0;
+  margin: 0;
   position: absolute;
+  border: none;
+  display: block;
+  cursor: pointer;
 }
 
 /**
