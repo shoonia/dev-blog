@@ -11,7 +11,7 @@
   --c-light-gray: rgb(112 128 144);
   --c-gray-opacity: rgb(112 128 144 / 40%);
   --border: 1px solid var(--c-gray-opacity);
-  --content-widht: 750px;
+  --content-w: 750px;
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
   --code-bg: #282c34;
@@ -40,6 +40,7 @@
   z-index: 1;
   width: 100%;
   height: 100vh;
+  height: fill-available;
   margin: 0;
   border-radius: 0;
 }
@@ -171,7 +172,7 @@ h3 {
 }
 
 .content {
-  max-width: var(--content-widht);
+  max-width: var(--content-w);
   width: 100%;
   padding: 0 1.2em;
   margin-left: auto;
@@ -667,6 +668,10 @@ pre:hover > .menu-right {
   border: 1px solid var(--c-light-gray);
   outline: 3px solid var(--code-bg);
   user-select: none;
+}
+
+[data-fullscreen] .copy-code {
+  position: fixed;
 }
 
 /**
