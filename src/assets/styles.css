@@ -11,7 +11,6 @@
   --c-light-gray: rgb(112 128 144);
   --c-gray-opacity: rgb(112 128 144 / 40%);
   --border: 1px solid var(--c-gray-opacity);
-  --content-w: 750px;
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
   --code-bg: #282c34;
@@ -176,7 +175,7 @@ h3 {
 }
 
 .content {
-  max-width: var(--content-w);
+  max-width: 765px;
   width: 100%;
   padding: 0 1.2em;
   margin-left: auto;
