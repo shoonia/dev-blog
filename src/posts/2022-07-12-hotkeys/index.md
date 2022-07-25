@@ -31,7 +31,7 @@ Only premium Wix users on sites with their [own domain and Wix ads removed](http
 
 Let's start by creating a custom element. We should create a folder `custom-elements` in the `public` sidebar section. It's a required folder structure. In the `custom-elements` folder, we create `hot-keys.js` file.
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
@@ -185,7 +185,7 @@ $w.onReady(function () {
 
 We create a hotkeys listener on the Wix site with the Custom Elements component and Package Manager. Here are the full code snippets:
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>

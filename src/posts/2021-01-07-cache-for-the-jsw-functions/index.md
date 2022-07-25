@@ -73,7 +73,7 @@ Our cache mechanism will depend on the passed arguments. If the backend function
 
 For the implementation of the cache, we create a js file in the public section.
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
