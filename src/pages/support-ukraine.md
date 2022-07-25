@@ -157,14 +157,6 @@ The Hospitallers Battalion is a voluntary organization of paramedics founded at 
 
 👉 [Donate](https://www.hospitallers.life/needs-hospitallers)
 
-## Poles raise money to buy drones for Ukraine
-
-<iframe title="Polish Bayraktar" class="_mrgn" height="444" src="https://zrzutka.pl/en/busr8u/widget/13"></iframe>
-
-Polish Warmate drone for the defense of Ukraine!
-
-<iframe title="Polish Warmate" class="_mrgn" height="444" src="https://zrzutka.pl/en/2e2khr/widget/13"></iframe>
-
 ## Please share
 
 <div id="_twitter" class="_mrgn"></div>
