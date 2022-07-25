@@ -22,7 +22,7 @@ In Velo, we also are able to use global types annotations. The global types will
 
 To declare global types in Velo, we should create a `*.d.js` file in the public section. For example, I always use `types.d.js` file. The end of the file with `.d.js` is required.
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>

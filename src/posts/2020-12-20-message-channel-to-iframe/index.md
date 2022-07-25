@@ -213,7 +213,7 @@ The channel on Main page will create in the same way as we do it on iFrame. But 
 
 **Create a `channel.js` in public folder:**
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>

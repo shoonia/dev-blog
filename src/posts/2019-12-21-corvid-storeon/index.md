@@ -45,7 +45,7 @@ At first, we need to install the library from [Package Manager](https://support.
 
 and create one more file for store initialization in the **public** folder.
 
-<div class="filetree" role="presentation" aria-label="velo sidebar">
+<div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
     <strong>Public & Backend</strong>
   </div>
