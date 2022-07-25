@@ -1,7 +1,7 @@
 ---
 permalink: '/velo-query-selector-for-child-elements/'
 date: '2022-01-08T12:00:00.000Z'
-modified: '2022-01-08T12:00:01.000Z'
+modified: '2022-07-25T12:00:01.000Z'
 lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
 description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node'
@@ -12,10 +12,7 @@ image: '/assets/images/load-editor.jpeg'
 
 *Get the child elements inside a parent node. In this post, we take a look deeper at `$w()` selector and try to filter children elements by the specific parent node*
 
-<img
-  src="/assets/images/december1994.jpg"
-  alt="concept art by television serial - tales from the loop"
-/>
+![concept art by television serial - tales from the loop](/assets/images/december1994.jpg)
 
 Let's suppose we have a few containers with checkboxes in each of them. We don't know how many checkboxes will be in each container at the final design.
 
@@ -237,20 +234,21 @@ First, we get all child elements:
 ```js
 export const findIn = (selector) => {
   return {
-    all(type) {
-      /** @type {*} */
-      const elements = $w(type);
+    all(...type) {
+      /** @type {$w.Node[]} */
+      const elements = $w(type.join());
     },
   };
 };
 ```
-The `$w(type)` selector returns an array of elements. We transform this array to an array with ID's. Then we create a new multiple select from a joined list of IDs.
+The `$w(type.join())` selector returns an array of elements. We transform this array to an array with ID's. Then we create a new multiple select from a joined list of IDs.
+
 ```js
 export const findIn = (selector) => {
   return {
-    all(type) {
-      /** @type {any} */
-      const elements = $w(type);
+    all(...type) {
+      /** @type {$w.Node[]} */
+      const elements = $w(type.join());
 
       // Gets an array with elements ID
       // ids === [ "#checkbox1", "#checkbox2", …]
@@ -262,7 +260,7 @@ export const findIn = (selector) => {
       }, []);
 
       // Creates a new multiple select from list of IDs
-      return $w(ids.join(',')); // $w("#checkbox1,#checkbox2,…")
+      return $w(ids.join()); // $w("#checkbox1,#checkbox2,…")
     },
   };
 };
@@ -296,9 +294,9 @@ export const findIn = (selector) => {
   const parentId = selector.replace(/^#/, '');
 
   return {
-    all(type) {
-      /** @type {any} */
-      const elements = $w(type);
+    all(...type) {
+      /** @type {$w.Node[]} */
+      const elements = $w(type.join());
 
       const ids = elements.reduce((acc, element) => {
         // Add condition:
@@ -311,7 +309,7 @@ export const findIn = (selector) => {
         return acc;
       }, []);
 
-      return $w(ids.join(','));
+      return $w(ids.join());
     },
   };
 };
@@ -348,14 +346,14 @@ $w.onReady(() => {
 
 Finally, I want to add the [JSDoc](https://jsdoc.app/) to provide autocomplete and type checking. For this, we have a built-in types annotation in Velo editor.
 
-- `WixElementSelector` - it's a [union type](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html) of all IDs on the current site page. Unfortunately, we can't use this union on the public files. Only on the page files.
-- `TypeNameToSdkType` - it's an [interface](https://www.typescriptlang.org/docs/handbook/interfaces.html) for all elements type.
+- `PageElementsMap` - it's a [object types](https://www.typescriptlang.org/docs/handbook/2/objects.html) of all elements on the current site page. Unfortunately, we can't use this type on the public files. Only on the page files.
+- `TypeNameToSdkType` - it's an object types for all elements type.
 
 **Add types annotation:**
 
 ```js
 /**
- * @param {WixElementSelector} selector
+ * @param {keyof PageElementsMap} selector
  */
 export const findIn = (selector) => {
   const parentId = selector.replace(/^#/, '');
@@ -363,10 +361,10 @@ export const findIn = (selector) => {
   return {
     /**
      * @template {keyof TypeNameToSdkType} T
-     * @param {T} type
+     * @param {...T} type
      * @returns {TypeNameToSdkType[T]}
      */
-    all(type) {…},
+    all(...type) {…},
   };
 };
 ```
@@ -393,7 +391,7 @@ Here is a full snippet of the child query selector function with JSDoc types.
 
 <details>
   <summary>
-    <strong>HOME Page (code)</strong>
+    <strong>findIn(selector).all(...type)</strong>
   </summary>
 
 ```js
@@ -415,7 +413,7 @@ const hasParent = (element, parentId) => {
 };
 
 /**
- * @param {WixElementSelector} selector
+ * @param {keyof PageElementsMap} selector
  */
 export const findIn = (selector) => {
   const parentId = selector.replace(/^#/, '');
@@ -423,12 +421,12 @@ export const findIn = (selector) => {
   return {
     /**
      * @template {keyof TypeNameToSdkType} T
-     * @param {T} type
+     * @param {...T} type
      * @returns {TypeNameToSdkType[T]}
      */
-    all(type) {
-      /** @type {any} */
-      const elements = $w(type);
+    all(...type) {
+      /** @type {$w.Node[]} */
+      const elements = $w(type.join());
 
       const ids = elements.reduce((acc, element) => {
         if (hasParent(element, parentId)) {
@@ -438,11 +436,18 @@ export const findIn = (selector) => {
         return acc;
       }, []);
 
-      return $w(ids.join(','));
+      return $w(ids.join());
     },
   };
 };
+```
+</details>
+<details>
+  <summary>
+    <em>Example of use</em>
+  </summary>
 
+```js
 $w.onReady(() => {
   $w('#checkboxAllYellow').onChange((event) => {
     findIn('#boxYellow').all('Checkbox').checked = event.target.checked;
@@ -463,13 +468,3 @@ If you have any questions, feel free to ask me on my <a href="https://twitter.co
 - [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
 - [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
 - [Short links to create a new Wix / Editor X site editor](/wix-velo-editorx-short-links/)
-
-<script>
-console.log(`%c
-         (__)
-         (oo)
-  /-------()  hello
- / |     ||
-*  ||----||
-   ^^    ^^`, 'font-family:monospace;color:green');
-</script>
