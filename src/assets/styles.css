@@ -5,7 +5,7 @@
 }
 
 :root {
-  --c-link: #1a72e8;
+  --c-link: #0069c2;
   --c-light-link: #eaf8ff;
   --c-gray: rgb(0 0 0 / 64%);
   --c-light-gray: rgb(112 128 144);
@@ -114,11 +114,15 @@ a::before {
   left: 0;
   top: 105%;
   height: 2px;
-  background-color: rgb(26 114 232 / 70%);
+  background-color: var(--c-link);
   border-radius: 5px;
   transform: scaleX(0);
   transition: transform 0.3s ease;
   transform-origin: bottom right;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .blank::before,
