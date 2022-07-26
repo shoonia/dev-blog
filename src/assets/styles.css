@@ -28,6 +28,16 @@
   font-display: swap;
 }
 
+@keyframes to-up {
+  0% {
+    transform: translateY(0.5em) scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 [data-noscroll] {
   overflow: hidden;
 }
@@ -42,6 +52,15 @@
   height: fill-available;
   margin: 0;
   border-radius: 0;
+}
+
+[data-popup]::after {
+  display: inline-block;
+  content: attr(data-popup);
+  position: absolute;
+  top: -60%;
+  font-size: 0.8em;
+  animation: to-up 500ms;
 }
 
 body {
@@ -92,8 +111,8 @@ nav {
 }
 
 footer {
-  margin-top: 5em;
-  padding: 2em 0;
+  margin-top: 8em;
+  padding: 4em 0;
   text-align: center;
   border-top: 1px solid rgb(0 0 0 / 10%);
 }
@@ -103,6 +122,17 @@ a {
   text-decoration: none;
   position: relative;
   outline: none;
+}
+
+pre a {
+  color: #7e93d4;
+  text-decoration: underline;
+}
+
+footer a {
+  display: inline-block;
+  margin: 0 1em;
+  user-select: none;
 }
 
 a::before {
@@ -124,7 +154,7 @@ a:hover {
   text-decoration: none;
 }
 
-.blank::before,
+.no-animation::before,
 pre a::before {
   display: none;
 }
@@ -133,17 +163,6 @@ a:hover::before,
 a:focus::before {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-pre a {
-  color: #7e93d4;
-  text-decoration: underline;
-}
-
-footer a {
-  display: inline-block;
-  margin: 0 1em;
-  user-select: none;
 }
 
 abbr:hover {
@@ -369,7 +388,7 @@ summary::after {
   content: "open";
   position: absolute;
   right: 0.5em;
-  font-size: 16px;
+  font-size: 0.9em;
   color: var(--c-link);
 }
 
@@ -446,7 +465,7 @@ blockquote::after {
 
 time {
   color: var(--c-gray);
-  font-size: 14px;
+  font-size: 0.8em;
   font-family: Courier, monospace;
 }
 
@@ -639,7 +658,7 @@ pre:hover > .menu-right {
 }
 
 .post-author {
-  font-size: 14px;
+  font-size: 0.8em;
 }
 
 /**
@@ -722,14 +741,19 @@ pre:hover > .menu-right {
 }
 
 .topbar-link {
+  font-size: 1em;
+  color: var(--c-link);
   border: var(--border);
-  margin-left: 0.2em;
+  margin: 0 0 0 0.3em;
+  padding: 0;
   width: 2em;
   height: 2em;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 @media print {
@@ -741,6 +765,10 @@ pre:hover > .menu-right {
 @media (prefers-reduced-motion: reduce) {
   a::before {
     transition: none;
+  }
+
+  [data-popup]::after {
+    animation: none;
   }
 }
 
