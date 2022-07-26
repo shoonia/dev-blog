@@ -9,8 +9,9 @@
   --c-light-link: #eaf8ff;
   --c-gray: rgb(0 0 0 / 64%);
   --c-light-gray: rgb(112 128 144);
-  --c-gray-opacity: rgb(112 128 144 / 40%);
-  --border: 1px solid var(--c-gray-opacity);
+  --c-gray-o: rgb(112 128 144 / 40%);
+  --border: 1px solid var(--c-gray-o);
+  --line: 1px solid rgb(0 0 0 / 10%);
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
   --code-bg: #282c34;
@@ -101,7 +102,7 @@ main {
 }
 
 header {
-  border-bottom: 1px solid rgb(0 0 0 / 10%);
+  border-bottom: var(--line);
 }
 
 nav {
@@ -114,7 +115,7 @@ footer {
   margin-top: 8em;
   padding: 4em 0;
   text-align: center;
-  border-top: 1px solid rgb(0 0 0 / 10%);
+  border-top: var(--line);
 }
 
 a {
@@ -208,16 +209,15 @@ h3 {
 }
 
 .anchor {
-  float: left;
-  margin-left: -1em;
-  width: 1em;
-  height: 1em;
-  background: 50% no-repeat url("/assets/images/link.svg");
   opacity: 0;
 }
 
-.anchor::before {
-  content: none;
+.anchor::after {
+  content: "\00B6";
+  position: absolute;
+  width: 1em;
+  left: -1em;
+  color: var(--c-light-gray);
 }
 
 .anchor:focus,
@@ -261,7 +261,7 @@ pre > code {
   min-width: 100%;
   overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--c-gray-opacity) transparent;
+  scrollbar-color: var(--c-gray-o) transparent;
 }
 
 pre > code::-webkit-scrollbar {
@@ -274,7 +274,7 @@ pre > code::-webkit-scrollbar-track {
 }
 
 pre > code::-webkit-scrollbar-thumb {
-  background-color: var(--c-gray-opacity);
+  background-color: var(--c-gray-o);
   border-radius: 10px;
 }
 
@@ -310,8 +310,8 @@ kbd {
 
 hr {
   border: none;
-  color: var(--c-gray-opacity);
-  background-color: var(--c-gray-opacity);
+  color: var(--c-gray-o);
+  background-color: var(--c-gray-o);
   height: 2px;
 }
 
