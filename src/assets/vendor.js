@@ -28,6 +28,16 @@
     }
   };
 
+  let clipboard = (event) => {
+    const el = event.target?.closest('[data-clipboard]');
+
+    if (el) {
+      navigator.clipboard.writeText(el.dataset.clipboard);
+      el.setAttribute('data-popup', 'Copied!');
+      setTimeout(() => el.removeAttribute('data-popup'), 2000);
+    }
+  };
+
   let showHint = (event) => {
     event.target.toggleAttribute('data-open');
   };
@@ -60,6 +70,10 @@
 
   $$('[data-expand]').forEach((button) => {
     button.addEventListener('click', fullscreenHandler);
+  });
+
+  $$('[data-clipboard]').forEach((i) => {
+    i.addEventListener('click', clipboard);
   });
 
   requestIdleCallback(() => {
