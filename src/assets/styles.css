@@ -668,6 +668,8 @@ pre:hover > .menu-right {
 
 .post {
   list-style: none;
+  padding: 1em 0;
+  border-bottom: var(--border);
 }
 
 .post-author {
