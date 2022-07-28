@@ -4,15 +4,17 @@ date: '2022-07-29T12:00:00.000Z'
 modified: '2022-07-29T12:00:00.000Z'
 lang: 'en'
 title: 'Velo By Wix: Types definitions for Custom Components'
-description: 'How to add support type checking for DOM elements using TypeScript Triple-Slash Directives in Velo?'
-image: '/assets/images/velo.png'
+description: 'How to add support type checking for DOM elements in Velo using TypeScript Triple-Slash Directives'
+image: '/assets/images/johnny-mnemonic.jpeg'
 ---
 
 # Velo By Wix: Types definitions for Custom Components
 
-*How to add support type checking for DOM elements using TypeScript Triple-Slash Directives in Velo?*
+*How to add support type checking for DOM elements in Velo using TypeScript Triple-Slash Directives*
 
-Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compiler for type checking and code auto-completion.
+![computer scene in the 'johnny mnemonic' movie](/assets/images/johnny-mnemonic.jpeg)
+
+Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compiler for type checking and code auto-completion. In the previous two posts, we looked at how to use [JSDoc](https://jsdoc.app/) types annotation for Velo elements. And how to create global custom types.
 
 - [Type safety your code with JSDoc](/type-safety-your-code-with-jsdoc/)
 - [Global type definitions](/global-type-definitions-in-velo/)
@@ -24,7 +26,7 @@ Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compi
     loading="lazy"
   />
   <figcaption>
-    <em>Example of autocomplete in Velo</em>
+    <em>Example of code autocomplete</em>
   <figcaption>
 </figure>
 
@@ -40,6 +42,7 @@ Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compi
   </blockquote>
 </figure>
 
+**Add DOM types checking in Velo editor**
 
 ```ts
 /// <reference lib="dom" />
