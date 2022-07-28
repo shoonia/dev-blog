@@ -101,7 +101,7 @@ const transformer = (classCache) => posthtml([
             tag: 'button',
             attrs: {
               type: 'button',
-              class: 'copy-code',
+              class: 'menu menu-copy',
               'data-copy': true,
             },
             content: ['Copy Code'],

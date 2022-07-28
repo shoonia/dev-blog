@@ -216,8 +216,9 @@ h3 {
   content: "\00B6";
   position: absolute;
   width: 1em;
-  left: -1em;
+  left: -0.8em;
   color: var(--c-light-gray);
+  font-family: var(--font-serif);
 }
 
 .anchor:focus,
@@ -497,35 +498,47 @@ dd {
 
 .menu {
   outline: 3px solid var(--code-bg);
-  background-color: var(--code-bg);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: var(--code-bg) no-repeat center / cover;
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 1em;
   border: none;
   display: block;
   cursor: pointer;
+  user-select: none;
 }
 
 .menu-left {
   background-image: url("/assets/images/i/menu.svg");
   height: 14px;
   width: 54px;
+  top: 1em;
   left: 1em;
 }
 
 .menu-right {
   background-image: url("/assets/images/i/fullscreen-enter.svg");
-  height: 1.4em;
-  width: 1.4em;
+  height: 1.5em;
+  width: 1.5em;
+  top: 1em;
   right: 1em;
   visibility: hidden;
 }
 
-[data-fullscreen] > .menu-right {
+.menu-copy {
+  bottom: 1em;
+  right: 1em;
+  color: inherit;
+  padding: 0.4em 1em;
+  border: 1px solid var(--c-light-gray);
+}
+
+[data-fullscreen] .menu-right {
   background-image: url("/assets/images/i/fullscreen-exit.svg");
+}
+
+[data-fullscreen] .menu-copy {
+  position: fixed;
 }
 
 pre:hover > .menu-right {
@@ -672,28 +685,6 @@ pre:hover > .menu-right {
   gap: 1em;
   padding: 1em;
   background-color: var(--c-light-link);
-}
-
-/**
- * Copy Code
- */
-
-.copy-code {
-  display: block;
-  position: absolute;
-  bottom: 1em;
-  right: 1em;
-  background-color: var(--code-bg);
-  color: inherit;
-  padding: 0.4em 1em;
-  cursor: pointer;
-  border: 1px solid var(--c-light-gray);
-  outline: 3px solid var(--code-bg);
-  user-select: none;
-}
-
-[data-fullscreen] .copy-code {
-  position: fixed;
 }
 
 /**
