@@ -1,11 +1,11 @@
 ---
 permalink: '/html-template-in-corvid/'
 date: '2019-11-03T12:00:00.000Z'
-modified: '2021-01-04T12:00:02.000Z'
+modified: '2022-07-29T12:00:02.000Z'
 lang: 'en'
 title: 'Velo by Wix: Using HTML template to the better performance'
 description: "The $w.Repeater most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster."
-image: 'https://static.wixstatic.com/media/fd206f_3f9056525647471085f98284dde0d3dc~mv2.jpg'
+image: 'https://static.wixstatic.com/media/e3b156_68a5d808d23c4167bbda3f55e72726e9~mv2.jpg'
 ---
 
 # Velo by Wix: Using HTML template to the better performance
@@ -34,11 +34,11 @@ $w("#repeater1").onItemReady( ($item, itemData, index) => {
 });
 ```
 
-We need to control the number of elements and trying to use fewer elements that we can. For this, we consider using templates. This way has a restriction, we can't use it with the [database collections UI](https://support.wix.com/en/article/velo-working-with-wix-data) we can use it only with code.
+We need to control the number of elements and try to use fewer elements than we can. For this, we consider using templates. But this approach has a restriction. We can't use it with the [database collections UI](https://support.wix.com/en/article/velo-working-with-wix-data). We can use it only with code.
 
 ## Install Lodash
 
-We would be using the function `_.template()` from library [Lodash](https://lodash.com/docs/4.17.15#template). The first we need to install Lodash with [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages).
+We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages).
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
@@ -48,7 +48,7 @@ We would be using the function `_.template()` from library [Lodash](https://loda
   loading="lazy"
 />
 
-After installation, we can use Lodash just import to your code.
+After installation, we can use Lodash. Just import it to your code.
 
 ```js
 import _ from "lodash";
@@ -56,7 +56,7 @@ import _ from "lodash";
 
 ## Text templates
 
-Now we look at a simple example to understand how to work template.
+Now we look at a simple example to understand how the template works.
 
 ```js
 // #1 install and import
@@ -120,7 +120,7 @@ In the repeater container, we keep only two elements `#image1` and `#text1`.
   loading="lazy"
 />
 
-There's only we need to change HTML of `#text1` elements in repeater containers to HTML of the `#textTemplate` pattern element.
+There's only we need to change HTML of `#text1` elements in the repeater containers to HTML of the `#textTemplate` pattern element.
 
 ```js
 import _ from "lodash";
@@ -141,7 +141,7 @@ $w.onReady(function () {
 });
 ```
 
-It works faster now because we have only two elements in repeater one image and one text element. [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
+It works faster now because we have only two elements in the repeater one image and one text element. [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
 
 ## Resources
 
