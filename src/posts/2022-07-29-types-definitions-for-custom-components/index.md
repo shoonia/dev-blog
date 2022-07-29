@@ -98,7 +98,7 @@ It's open to us to write part of the Custom Component code in public files. Just
   </div>
 </div>
 
-**util.js**
+**public/util.js**
 
 ```js
 /// <reference lib="dom" />
