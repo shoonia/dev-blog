@@ -14,7 +14,7 @@ image: '/assets/images/johnny-mnemonic.jpeg'
 
 ![computer scene in the 'johnny mnemonic' movie](/assets/images/johnny-mnemonic.jpeg)
 
-Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compiler for type checking and code auto-completion. In the previous two posts, we looked at how to use [JSDoc](https://jsdoc.app/) types annotation for Velo elements. And how to create global types.
+Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compiler for type checking and code auto-completion. In the previous two posts, we looked at how to use [JSDoc](https://jsdoc.app/) types annotations for Velo elements. And how to create global types.
 
 1. [Type safety your code with JSDoc](/type-safety-your-code-with-jsdoc/)
 1. [Global type definitions](/global-type-definitions-in-velo/)
@@ -71,7 +71,13 @@ With this directive, TypeScript starts to use DOM types. 🙌
   />
 </figure>
 
-It's open to us to write part of the Custom Component code in public files. Just try the next code in your project:
+It provides a better development experience and saves a lot of time.
+
+## Example of use
+
+TypeScript directives are open to us writing the Custom Component code in public files. We can move part of the code to a public file and reuse it for a few Custom Components.
+
+Just try the next code in your project:
 
 <div class="filetree" role="img" aria-label="velo sidebar">
   <div class="filetree_tab filetree_row">
@@ -94,11 +100,13 @@ It's open to us to write part of the Custom Component code in public files. Just
   </div>
    <div class="filetree_tab filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
-    util.js
+    domUtils.js
   </div>
 </div>
 
-**public/util.js**
+There is a util file with a function for creating a new HTML element. We can add DOM types annotations to provide type information about function signature.
+
+**public/domUtils.js**
 
 ```js
 /// <reference lib="dom" />
@@ -109,10 +117,13 @@ It's open to us to write part of the Custom Component code in public files. Just
  * @param {Partial<HTMLElementTagNameMap[T]>} [attrs]
  * @returns {HTMLElementTagNameMap[T]}
  */
-const createElement = (tagName, attrs) => {
+export const createElement = (tagName, attrs) => {
   return Object.assign(document.createElement(tagName), attrs);
 }
 ```
+
+We can ensure that the util function covers DOM types.
+
 **public/custom-elements/my-button.js**
 
 ```js
@@ -137,7 +148,10 @@ class MyButton extends HTMLElement {
     const button = createElement('button', {
       type: 'button',
       textContent: 'Click Me',
-      className: 'my-button'
+      className: 'my-button',
+      onclick: () => {
+        this.dispatchEvent(new CustomEvent('click'));
+      },
     });
 
     this.attachShadow({ mode: 'open' }).append(style, button);
@@ -146,3 +160,10 @@ class MyButton extends HTMLElement {
 
 customElements.define('my-button', MyButton);
 ```
+
+## Posts
+
+- [Server Side Rendering and Warmup Data APIs](/ssr-and-warmup-data/)
+- [Add hotkeys to Wix site](/hotkeys-custom-element/)
+- [Download your Velo code files to your computer](/velo-filesystem-chrome-extension/)
+- [Repeated item event handlers v2.0](/repeated-item-event-handlers-v2/)
