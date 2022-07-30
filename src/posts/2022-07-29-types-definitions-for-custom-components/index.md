@@ -127,7 +127,7 @@ We can ensure that the util function covers DOM types.
 **public/custom-elements/my-button.js**
 
 ```js
-import { createElement } from 'public/dom';
+import { createElement } from 'public/domUtils';
 
 const css = `
 .my-button {
