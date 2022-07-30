@@ -1,15 +1,16 @@
-const { resolve } = require('node:path');
+const { join } = require('node:path');
 const { readFileSync } = require('node:fs');
 const stringHash = require('string-hash');
 const { homepage } = require('../package.json');
 
 const root = process.cwd();
 
-const rootResolve = (...path) => resolve(root, ...path);
+const rootResolve = (...path) => join(root, ...path);
 const siteUrl = (path) => new URL(path, homepage).href;
 
-const fileHashSync = (path) => {
-  return stringHash(readFileSync(rootResolve(path), 'utf8')).toString(36).substring(0, 5);
+const fileHash = (...path) => {
+  const content = readFileSync(join(root, ...path), 'utf8');
+  return stringHash(content, 'utf8').toString(36).slice(0, 5);
 };
 
 const isString = (val) => typeof val === 'string';
@@ -21,7 +22,7 @@ const isAbsoluteUrl = (url) => {
 module.exports = {
   rootResolve,
   siteUrl,
-  fileHashSync,
+  fileHash,
   isString,
   isAbsoluteUrl,
 };

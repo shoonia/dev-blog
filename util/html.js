@@ -3,7 +3,7 @@ const posthtml = require('posthtml');
 const imgAutosize = require('posthtml-img-autosize');
 const miniCssClassName = require('mini-css-class-name');
 
-const { rootResolve, isString, isAbsoluteUrl } = require('./halpers');
+const { rootResolve, isString, isAbsoluteUrl, fileHash } = require('./halpers');
 const { isProd, debug } = require('./env');
 const { a11yEmoji, autoLink } = require('./stringParse');
 const { minifyJs } = require('./configs');
@@ -39,6 +39,20 @@ const aspectRatio = (width, height)  => {
   const divisor = gcd(width, height);
 
   return `aspect-ratio:${width / divisor}/${height / divisor}`;
+};
+
+const map = new Map();
+
+const withHashVersion = (path) => {
+  if (map.has(path)) {
+    return map.get(path);
+  }
+
+  const src = `${path}?v=${fileHash('src', path)}`;
+
+  map.set(path, src);
+
+  return src;
 };
 
 const transformer = (classCache) => posthtml([
@@ -215,6 +229,22 @@ const transformer = (classCache) => posthtml([
 
           delete node.attrs.width;
           delete node.attrs.height;
+        }
+
+        return node;
+      }
+
+      case 'script': {
+        if (isString(node.attrs?.src) && node.attrs.src.startsWith('/')) {
+          node.attrs.src = withHashVersion(node.attrs.src);
+        }
+
+        return node;
+      }
+
+      case 'link': {
+        if (node.attrs?.rel === 'stylesheet') {
+          node.attrs.href = withHashVersion(node.attrs.href);
         }
 
         return node;
