@@ -702,6 +702,8 @@ pre:hover > .menu-right {
 
 .filetree img {
   background: none;
+  height: 1.1em;
+  object-fit: none;
 }
 
 .filetree_title {
@@ -715,6 +717,7 @@ pre:hover > .menu-right {
   display: flex;
   align-items: center;
   gap: 0.5em;
+  line-height: 1em;
 }
 
 .filetree_tab {

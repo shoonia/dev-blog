@@ -105,11 +105,19 @@ In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/t
 
   [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
   </figcaption>
-  <img
-    src="/assets/images/tinykeys-install.jpg"
-    alt="velo package manager popup"
-    loading="lazy"
-  />
+  <div class="filetree" role="img" aria-label="package manager sidebar">
+    <div class="filetree_tab filetree_row">
+      <strong>Code Packages</strong>
+    </div>
+    <div class="filetree_title filetree_row">
+      <img src="/assets/images/i/open.svg" alt=""/>
+      npm
+    </div>
+    <div class="filetree_tab filetree_row">
+      <img src="/assets/images/i/npm.svg" alt=""/>
+      tinykeys (v.1.2.0)
+    </div>
+  </div>
 </figure>
 
 ## Configuring hotkeys
@@ -207,6 +215,19 @@ We create a hotkeys listener on the Wix site with the Custom Elements component 
    <div class="filetree_tab filetree_row">
     <img src="/assets/images/i/js.svg" alt=""/>
     keys.js
+  </div>
+</div>
+<div class="filetree" role="img" aria-label="package manager sidebar">
+  <div class="filetree_tab filetree_row">
+    <strong>Code Packages</strong>
+  </div>
+  <div class="filetree_title filetree_row">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    npm
+  </div>
+  <div class="filetree_tab filetree_row">
+    <img src="/assets/images/i/npm.svg" alt=""/>
+    tinykeys (v.1.2.0)
   </div>
 </div>
 <details>
