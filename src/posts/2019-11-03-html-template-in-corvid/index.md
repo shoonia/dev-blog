@@ -1,25 +1,25 @@
 ---
 permalink: '/html-template-in-corvid/'
 date: '2019-11-03T12:00:00.000Z'
-modified: '2022-07-29T12:00:02.000Z'
+modified: '2022-07-31T12:00:02.000Z'
 lang: 'en'
-title: 'Velo by Wix: Using HTML template to the better performance'
-description: "The $w.Repeater most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster."
+title: 'Velo by Wix: Using HTML template for the better performance'
+description: "The $w.Repeater most popular element on Wix sites and it's the first killer of performance. In this article, we look at how we can do the repeater faster"
 image: 'https://static.wixstatic.com/media/e3b156_68a5d808d23c4167bbda3f55e72726e9~mv2.jpg'
 ---
 
-# Velo by Wix: Using HTML template to the better performance
+# Velo by Wix: Using HTML template for the better performance
 
-*The `$w.Repeater` most popular element on Wix sites and it the first killer of performance. In this article, we look at how we can do the repeater faster.*
+*The `$w.Repeater` most popular element on Wix sites and it's the first killer of performance. In this article, we look at how we can do the repeater faster*
 
 <img
   src="https://static.wixstatic.com/media/e3b156_68a5d808d23c4167bbda3f55e72726e9~mv2.jpg"
-  alt="fragment of Wix promo video"
+  alt="fragment from Wix promo video"
   width="800"
   height="361"
 />
 
-I have been working with the Velo platform for more than a year. The `$w.Repeater` element most popular in our projects, it's a great element it has very flexibility potential. We really use it very often.
+I have been working with the Velo platform for more than a year. The `$w.Repeater` element most popular in our projects, it's a great element it has very flexible potential. We really use it very often.
 
 But repeater has a problem with performance. The more we use elements in repeater containers, the slower it works. For example user cards with contact info:
 
@@ -38,7 +38,7 @@ We need to control the number of elements and try to use fewer elements than we 
 
 ## Install Lodash
 
-We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages).
+We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with the [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages).
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
@@ -47,6 +47,20 @@ We would be using the `_.template()` function from library [Lodash](https://loda
   height="214"
   loading="lazy"
 />
+
+<div class="filetree" role="img" aria-label="package manager sidebar">
+  <div class="filetree_tab filetree_row">
+    <strong>Code Packages</strong>
+  </div>
+  <div class="filetree_title filetree_row">
+    <img src="/assets/images/i/open.svg" alt=""/>
+    npm
+  </div>
+  <div class="filetree_tab filetree_row">
+    <img src="/assets/images/i/npm.svg" alt=""/>
+    lodash (v4.17.21)
+  </div>
+</div>
 
 After installation, we can use Lodash. Just import it to your code.
 
@@ -60,16 +74,17 @@ Now we look at a simple example to understand how the template works.
 
 ```js
 // #1 install and import
-import _ from "lodash";
+import templateSettings from 'lodash/templateSettings';
+import template from 'lodash/template';
 
 // #2 Use custom template delimiters.
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 // #3 Pattern string with two keys
 const pattern = "Hello, {{firstName}} {{lastName}}!";
 
 // #4 Create a compiled template.
-const compiled = _.template(pattern);
+const compiled = template(pattern);
 
 $w.onReady(function () {
 
@@ -78,16 +93,15 @@ $w.onReady(function () {
     firstName: "John",
     lastName: "Doe"
   });
-
 });
 ```
 
 **How it works:**
 
-1. Importing Lodash library. The first you have to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+1. Import Lodash library. The first you have to install the library from the [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
 2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default. [more](https://lodash.com/docs/4.17.15#template)
 3. Pattern string with two keys `{{firstName}}` and `{{lastName}}`.
-4. Creating a compiled template, it returns a function `compiled()` which will be passed an object with properties. `{ firstName: "John", lastName: "Doe" }`.
+4. Creating a compiled template, that returns a function `compiled()` that will accept an object with properties. `{ firstName: "John", lastName: "Doe" }`.
 5. The `compiled()` function gets an object and returns the string with replaced keys to the object properties value. Result `"Hello, John Doe!"`.
 
 ## HTML templates
@@ -123,13 +137,14 @@ In the repeater container, we keep only two elements `#image1` and `#text1`.
 There's only we need to change HTML of `#text1` elements in the repeater containers to HTML of the `#textTemplate` pattern element.
 
 ```js
-import _ from "lodash";
+import templateSettings from 'lodash/templateSettings';
+import template from 'lodash/template';
 
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 $w.onReady(function () {
     // Create a compiled template
-    const compiled = _.template( $w("#textTemplate").html );
+    const compiled = template( $w("#textTemplate").html );
 
     $w("#repeater1").onItemReady( ($item, itemData, index) => {
         $item("#image1").src = itemData.avatar;
