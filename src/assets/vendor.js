@@ -11,6 +11,11 @@
     return data.join('&');
   };
 
+  let dataPopup = (el) => {
+    el.setAttribute('data-popup', 'Copied!');
+    setTimeout(() => el.removeAttribute('data-popup'), 2000);
+  };
+
   let copyCodeHandler = async (event) => {
     let button = event.target;
     let code = button.closest('pre')?.querySelector('code');
@@ -23,8 +28,7 @@
       range.selectNodeContents(code);
       selection.removeAllRanges();
       selection.addRange(range);
-      button.textContent = 'Copied!';
-      setTimeout(() => button.textContent = 'Copy Code', 2000);
+      dataPopup(button);
     }
   };
 
@@ -33,8 +37,7 @@
 
     if (el) {
       navigator.clipboard.writeText(el.dataset.clipboard);
-      el.setAttribute('data-popup', 'Copied!');
-      setTimeout(() => el.removeAttribute('data-popup'), 2000);
+      dataPopup(el);
     }
   };
 

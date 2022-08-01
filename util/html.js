@@ -117,8 +117,8 @@ const transformer = (classCache) => posthtml([
               type: 'button',
               class: 'menu menu-copy',
               'data-copy': true,
+              'aria-label': 'copy code',
             },
-            content: ['Copy Code'],
           },
         ];
 

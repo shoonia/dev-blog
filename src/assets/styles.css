@@ -31,11 +31,11 @@
 
 @keyframes to-up {
   0% {
-    transform: translateY(0.5em) scale(0.9);
+    transform: translate(-50%, 0.5em) scale(0.9);
   }
 
   100% {
-    transform: scale(1);
+    transform: translate(-50%, 0) scale(1);
   }
 }
 
@@ -59,7 +59,9 @@
   display: inline-block;
   content: attr(data-popup);
   position: absolute;
-  top: -60%;
+  top: -2em;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 0.8em;
   animation: to-up 500ms;
 }
@@ -526,11 +528,12 @@ dd {
 }
 
 .menu-copy {
+  background-image: url("/assets/images/i/copyboard.svg");
+  height: 1.5em;
+  width: 1.5em;
   bottom: 1em;
   right: 1em;
   color: inherit;
-  padding: 0.4em 1em;
-  border: 1px solid var(--c-light-gray);
 }
 
 [data-fullscreen] .menu-right {
@@ -746,6 +749,7 @@ pre:hover > .menu-right {
   height: 2em;
   border-radius: 50%;
   display: inline-flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   background-color: transparent;
