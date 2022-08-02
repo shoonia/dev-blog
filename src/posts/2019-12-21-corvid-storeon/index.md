@@ -8,12 +8,14 @@ description: 'In this article, we explain how to manage an state in Velo with a 
 image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d39~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
 
-<small>
-  <time datetime="2021-01-06T12:00:00.000Z">Update: Jan 6, 2021</time>
-  <a href="https://www.youtube.com/watch?v=iAWEOpkUz-U">
-    Corvid changed name to Velo.
-  </a>
-</small>
+<p>
+  <small>
+    <time datetime="2021-01-06T12:00:00.000Z">Update: Jan 6, 2021</time>
+    <a href="https://www.youtube.com/watch?v=iAWEOpkUz-U">
+      Corvid changed name to Velo.
+    </a>
+  </small>
+</p>
 
 # A tiny event-based state manager Storeon for Velo
 
@@ -33,15 +35,25 @@ In this article, I share my solution — a very tiny library called [Storeon](ht
 
 We will create a traditional study app with counters. I will use two counters to help provide a better demonstration.
 
-At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+<figure>
+  <figcaption>
 
-<img
-  src="https://static.wixstatic.com/media/e3b156_5ae2f75f6f564611adb4dc8a2a53a661~mv2.jpg"
-  alt="Package Manager panel in Wix editor, installing storeon-velo"
-  width="751"
-  height="304"
-  loading="lazy"
-/>
+  At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+  <figcaption>
+  <div class="filetree" role="img" aria-label="Package Manager panel in Wix editor, installing storeon-velo">
+    <div class="filetree_tab filetree_row">
+      <strong>Code Packages</strong>
+    </div>
+    <div class="filetree_title filetree_row">
+      <img src="/assets/images/i/open.svg" alt=""/>
+      npm
+    </div>
+    <div class="filetree_tab filetree_row">
+      <img src="/assets/images/i/npm.svg" alt=""/>
+      storeon-velo (v.2.1.0)
+    </div>
+  </div>
+</figure>
 
 and create one more file for store initialization in the **public** folder.
 
