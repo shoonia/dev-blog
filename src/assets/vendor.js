@@ -24,7 +24,7 @@
       let selection = getSelection();
       let range = document.createRange();
 
-      navigator.clipboard.writeText(code.innerText);
+      navigator.clipboard.writeText(code.textContent);
       range.selectNodeContents(code);
       selection.removeAllRanges();
       selection.addRange(range);

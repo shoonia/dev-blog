@@ -158,7 +158,9 @@ a:hover {
 }
 
 .no-animation::before,
-pre a::before {
+pre a::before,
+summary::marker,
+summary::-webkit-details-marker {
   display: none;
 }
 
@@ -380,11 +382,6 @@ summary {
   outline: none;
   cursor: pointer;
   position: relative;
-}
-
-summary::marker,
-summary::-webkit-details-marker {
-  display: none;
 }
 
 summary::after {
@@ -643,12 +640,12 @@ pre:hover > .menu-right {
 
 .prefix.deleted::after {
   color: #e5c07b;
-  content: "+";
+  content: "-";
 }
 
 .prefix.inserted::after {
   color: #aff5b4;
-  content: "-";
+  content: "+";
 }
 
 .deleted:not(.prefix),
@@ -761,6 +758,17 @@ pre:hover > .menu-right {
   justify-content: center;
   background-color: transparent;
   cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
 }
 
 @media print {

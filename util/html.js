@@ -12,16 +12,6 @@ const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
 };
 
-const diffPrefix = new Set(['token prefix inserted', 'token prefix deleted']);
-
-const isPrismeDiff = (node) => {
-  return !debug && diffPrefix.has(node.attrs?.class);
-};
-
-const isPrismeComment = (node) => {
-  return node.attrs?.class === 'token comment';
-};
-
 const isPrismeJsToken = (node) => {
   return !debug && node.tag === 'span' && node.attrs.class?.startsWith('token ');
 };
@@ -85,11 +75,27 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'span': {
-        if (isPrismeComment(node)) {
-          node.content = node.content?.map((i) => parseComment(i));
-        }
-        else if (isPrismeDiff(node)) {
-          node.content = [];
+        switch (node.attrs?.class) {
+          case 'token comment': {
+            node.content = node.content?.map((i) => parseComment(i));
+            break;
+          }
+          case 'token prefix inserted': {
+            node.content = [];
+            break;
+          }
+          case 'token prefix deleted': {
+            node.content = [
+              {
+                tag: 'span',
+                attrs: {
+                  class: 'sr-only',
+                },
+                content: ['// '],
+              },
+            ];
+            break;
+          }
         }
 
         return node;
