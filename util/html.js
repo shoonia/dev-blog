@@ -5,7 +5,7 @@ const miniCssClassName = require('mini-css-class-name');
 
 const { rootResolve, isString, isAbsoluteUrl, fileHash } = require('./halpers');
 const { isProd, debug } = require('./env');
-const { a11yEmoji, autoLink } = require('./stringParse');
+const { a11yEmoji, parseComment } = require('./stringParse');
 const { minifyJs } = require('./configs');
 
 const isAnonymous = (url) => {
@@ -86,7 +86,7 @@ const transformer = (classCache) => posthtml([
 
       case 'span': {
         if (isPrismeComment(node)) {
-          node.content = node.content?.map((i) => autoLink(i));
+          node.content = node.content?.map((i) => parseComment(i));
         }
         else if (isPrismeDiff(node)) {
           node.content = [];
