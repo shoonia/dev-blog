@@ -4,7 +4,7 @@ const { isString } = require('./halpers');
 
 const emojiRx = emojiRegex();
 const linkRx = /https:\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])/;
-const jsdocTag = /@[a-z]+/gi;
+const jsdocTag = /@[a-z-]+/gi;
 
 const map = new Map(gemoji.map((i) => [i.emoji, i.description]));
 
@@ -30,6 +30,10 @@ exports.a11yEmoji = (val) => {
 
 exports.parseComment = (val) => {
   if (val.startsWith('/**') && val.indexOf('@') > -1) {
+    val = val.replace(jsdocTag, (i) => `<b>${i}</b>`);
+  }
+
+  if (val.startsWith('// @ts-')) {
     val = val.replace(jsdocTag, (i) => `<b>${i}</b>`);
   }
 
