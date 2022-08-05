@@ -629,19 +629,26 @@ pre:hover > .menu-right {
 
 .prefix.deleted,
 .prefix.inserted {
-  user-select: none;
   padding: 0 3px;
   margin-right: 5px;
 }
 
 .prefix.deleted {
-  color: #e5c07b;
   background-color: hsl(350deg 100% 88% / 20%);
 }
 
 .prefix.inserted {
-  color: #aff5b4;
   background-color: hsl(120deg 73% 75% / 20%);
+}
+
+.prefix.deleted::after {
+  color: #e5c07b;
+  content: "+";
+}
+
+.prefix.inserted::after {
+  color: #aff5b4;
+  content: "-";
 }
 
 .deleted:not(.prefix),

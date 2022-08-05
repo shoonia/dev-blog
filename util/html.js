@@ -5,19 +5,25 @@ const miniCssClassName = require('mini-css-class-name');
 
 const { rootResolve, isString, isAbsoluteUrl, fileHash } = require('./halpers');
 const { isProd, debug } = require('./env');
-const { a11yEmoji, autoLink } = require('./stringParse');
+const { a11yEmoji, parseComment } = require('./stringParse');
 const { minifyJs } = require('./configs');
 
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
 };
 
-const isPrismeJsToken = (node) => {
-  return !debug && node.tag === 'span' && node.attrs?.class?.startsWith('token ');
+const diffPrefix = new Set(['token prefix inserted', 'token prefix deleted']);
+
+const isPrismeDiff = (node) => {
+  return !debug && diffPrefix.has(node.attrs?.class);
 };
 
 const isPrismeComment = (node) => {
-  return node.tag === 'span' && node.attrs?.class === 'token comment';
+  return node.attrs?.class === 'token comment';
+};
+
+const isPrismeJsToken = (node) => {
+  return !debug && node.tag === 'span' && node.attrs.class?.startsWith('token ');
 };
 
 const createId = (content) => {
@@ -68,15 +74,22 @@ const transformer = (classCache) => posthtml([
       return a11yEmoji(node);
     }
 
-    if (isPrismeComment(node)) {
-      node.content = node.content?.map((i) => autoLink(i));
-    }
-
     switch (node.tag) {
       case 'a': {
         if (isAbsoluteUrl(node.attrs?.href) && !isString(node.attrs.rel)) {
           node.attrs.target = '_blank';
           node.attrs.rel = 'noopener noreferrer';
+        }
+
+        return node;
+      }
+
+      case 'span': {
+        if (isPrismeComment(node)) {
+          node.content = node.content?.map((i) => parseComment(i));
+        }
+        else if (isPrismeDiff(node)) {
+          node.content = [];
         }
 
         return node;
@@ -235,7 +248,7 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'script': {
-        if (isString(node.attrs?.src) && node.attrs.src.startsWith('/')) {
+        if (node.attrs?.src?.startsWith('/')) {
           node.attrs.src = withHashVersion(node.attrs.src);
         }
 
@@ -243,7 +256,7 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'link': {
-        if (node.attrs?.rel === 'stylesheet') {
+        if (node.attrs?.rel === 'stylesheet' && node.attrs.href.startsWith('/')) {
           node.attrs.href = withHashVersion(node.attrs.href);
         }
 
