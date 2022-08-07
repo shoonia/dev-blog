@@ -29,11 +29,9 @@ exports.a11yEmoji = (val) => {
 };
 
 exports.parseComment = (val) => {
-  if (val.startsWith('/**') && val.indexOf('@') > -1) {
-    val = val.replace(jsdocTag, (i) => `<b>${i}</b>`);
-  }
+  const isJsDoc = val.startsWith('/**') && val.indexOf('@') > -1;
 
-  if (val.startsWith('// @ts-')) {
+  if (isJsDoc || val.startsWith('// @ts-')) {
     val = val.replace(jsdocTag, (i) => `<b>${i}</b>`);
   }
 
