@@ -1,8 +1,4 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+$content-max-width: 765px;
 
 :root {
   --c-link: #0069c2;
@@ -15,6 +11,12 @@
   --font-mono: "fira code", consolas, monaco, "andale mono", "ubuntu mono", monospace;
   --font-serif: georgia, "times new roman", times, serif;
   --code-bg: #282c34;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
 ::selection {
@@ -199,9 +201,9 @@ h3 {
 }
 
 .content {
-  max-width: 765px;
+  max-width: $content-max-width;
   width: 100%;
-  padding: 0 1.2em;
+  padding: 0 1em;
   margin-left: auto;
   margin-right: auto;
 }
@@ -354,11 +356,11 @@ img[decoding="async"] {
 
 p > img,
 figure > img {
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   display: block;
 }
 
+b,
 cite,
 strong {
   font-weight: bold;
@@ -393,7 +395,7 @@ summary::after {
 }
 
 details {
-  padding: 0.9em;
+  padding: 1em;
   margin: 1em 0;
 }
 
@@ -469,6 +471,10 @@ time {
   font-family: Courier, monospace;
 }
 
+dd {
+  margin: 0 1em;
+}
+
 pre {
   color: #f8f8f2;
   background-color: var(--code-bg);
@@ -489,10 +495,6 @@ pre {
 pre ::selection {
   text-shadow: none;
   background-color: rgb(154 162 177 / 20%);
-}
-
-dd {
-  margin: 0 1em;
 }
 
 .menu {
@@ -767,7 +769,7 @@ pre:hover > .menu-right {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
@@ -787,7 +789,7 @@ pre:hover > .menu-right {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: $content-max-width) {
   h1 {
     font-size: 1.8em;
     line-height: 1.2;
