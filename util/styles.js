@@ -2,6 +2,7 @@ const { readFile, writeFile } = require('node:fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
 const autoprefixer = require('autoprefixer');
+const simpleVars = require('postcss-simple-vars');
 const cssnano = require('cssnano');
 const miniCssClassName = require('mini-css-class-name/postcss-modules');
 
@@ -15,8 +16,12 @@ exports.compileCss = async () => {
   const source = await readFile(cssFrom, 'utf8');
 
   if (debug) {
+    const { css } = await postcss([
+      simpleVars(),
+    ]).process(source, { from: cssFrom });
+
     return [
-      source,
+      css,
       { get: x => x, has: () => true },
     ];
   }
@@ -32,6 +37,7 @@ exports.compileCss = async () => {
     }),
     isProd && cssnano(),
     isProd && autoprefixer(),
+    simpleVars(),
   ].filter(Boolean),
   ).process(source, { map: false, from: cssFrom });
 
