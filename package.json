@@ -36,7 +36,7 @@
   "devDependencies": {
     "eslint": "^8.21.0",
     "stylelint": "^14.9.1",
-    "stylelint-config-standard": "^26.0.0",
+    "stylelint-config-standard": "^27.0.0",
     "uvu": "^0.5.6"
   },
   "repository": {
