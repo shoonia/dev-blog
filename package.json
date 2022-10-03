@@ -18,7 +18,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
     "autoprefixer": "^10.4.12",
     "cssnano": "^5.1.13",
-    "emoji-regex": "^10.1.0",
+    "emoji-regex": "^10.2.1",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
     "htmlnano": "^2.0.2",
