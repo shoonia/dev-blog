@@ -33,7 +33,7 @@ Also, repeater items don't have property [`style.backgroundColor`](https://www.w
   <img
     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjOPPk+38ACM4Dp1/0SeUAAAAASUVORK5CYII="
     alt="light blue pixel image"
-    onload="_this.parentElement.href = this.src_"
+    onload="_this.closest('a').href = this.src_"
     width="12"
     height="12"
   />
