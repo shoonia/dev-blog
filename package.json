@@ -24,7 +24,7 @@
     "htmlnano": "^2.0.2",
     "mini-css-class-name": "^0.13.1",
     "minify-xml": "^3.4.0",
-    "postcss": "^8.4.17",
+    "postcss": "^8.4.18",
     "postcss-modules": "^5.0.0",
     "postcss-simple-vars": "^7.0.0",
     "posthtml": "^0.16.6",
