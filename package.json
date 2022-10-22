@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
-    "eslint": "^8.25.0",
-    "stylelint": "^14.13.0",
+    "eslint": "^8.26.0",
+    "stylelint": "^14.14.0",
     "stylelint-config-standard": "^29.0.0",
     "uvu": "^0.5.6"
   },
