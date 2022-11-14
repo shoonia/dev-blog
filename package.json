@@ -26,7 +26,7 @@
     "minify-xml": "^3.4.0",
     "postcss": "^8.4.18",
     "postcss-modules": "^6.0.0",
-    "postcss-simple-vars": "^7.0.0",
+    "postcss-simple-vars": "^7.0.1",
     "posthtml": "^0.16.6",
     "posthtml-img-autosize": "^0.1.6",
     "sitemap": "^7.1.1",
