@@ -70,7 +70,7 @@ Now, when we reload the page we can see that HTML content has <mark>backend</mar
     preload="metadata"
     width="1728"
     height="1080"
-    oncanplay="_this.playbackRate = 0.5; this.oncanplay = null_"
+    oncanplay="this.playbackRate = 0.5; this.oncanplay = null"
     controls
     loop
   />

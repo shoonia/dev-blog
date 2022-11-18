@@ -114,7 +114,7 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   </figcaption>
   <video
     preload="metadata"
-    oncanplay="_this.currentTime=1.2; this.oncanplay=null_"
+    oncanplay="this.currentTime = 1.2; this.oncanplay = null"
     controls
   >
     <source
