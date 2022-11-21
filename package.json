@@ -20,7 +20,7 @@
     "cssnano": "^5.1.14",
     "emoji-regex": "^10.2.1",
     "feed": "^4.2.2",
-    "gemoji": "^6.1.0",
+    "gemoji": "^8.0.0",
     "htmlnano": "^2.0.3",
     "mini-css-class-name": "^0.13.1",
     "minify-xml": "^3.4.0",
