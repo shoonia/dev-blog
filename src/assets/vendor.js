@@ -84,13 +84,12 @@
 
     let prefetch = (url) => {
       if (!prefetched.has(url) && prefetched.size < 25) {
-        prefetched.add(url);
-
         let link = document.createElement('link');
 
         link.rel = 'prefetch';
-        link.href = new URL(url, location.href).href;
+        link.href = new URL(url, location).href;
 
+        prefetched.add(url);
         document.head.append(link);
       }
     };
@@ -107,7 +106,7 @@
     });
 
     $$('a').forEach((a) => {
-      if (a.hostname === location.hostname && !~a.href.indexOf('#')) {
+      if (a.origin === location.origin && a.pathname !== location.pathname) {
         observer.observe(a);
       }
     });
