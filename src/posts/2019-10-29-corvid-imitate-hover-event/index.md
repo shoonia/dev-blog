@@ -71,7 +71,7 @@ $w.onReady(function () {
   ```
   We set globally our handler on all `#container1` with `$w()` selector. And it works well!
 
-  More: [Event handling of Repeater Item](/event-handling-of-repeater-item)
+  More: [Event handling of Repeater Item](/event-handling-of-repeater-item/)
 </aside>
 
 
