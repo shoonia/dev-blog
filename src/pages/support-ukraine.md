@@ -55,6 +55,7 @@ document.getElementById("_widgets").addEventListener("load", async () => {
     "1539534316186783744",
     "1544304847494815746",
     "1522143035781525511",
+    "1622315647060566016",
     "1499068631795347462",
   ];
 
@@ -91,8 +92,8 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   </figcaption>
   <video
     preload="metadata"
-    width="720"
-    height="406"
+    width="729"
+    height="411"
     controls
   >
     <source
@@ -114,9 +115,15 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   </figcaption>
   <video
     preload="metadata"
-    oncanplay="this.currentTime = 1.2; this.oncanplay = null"
+    width="720"
+    height="406"
+    poster="https://files.u24.gov.ua/about/President.png"
     controls
   >
+    <source
+      src="https://files.u24.gov.ua/Mr%20President/20220913_U24_4K_ENG_SUB_NEW.mp4"
+      type="video/mp4"
+    />
     <source
       src="https://video.wixstatic.com/video/fd206f_2875d683cd534cc69b89f50ad83bfeb2/1080p/mp4/file.mp4"
       type="video/mp4"
@@ -133,7 +140,12 @@ The Foundation purchases equipment that helps saving the lives of the military, 
   <figcaption>
     The UNITED24 fundraising platform, together with the General Staff of the Armed Forces of Ukraine and the Ministry of Digital Information, has announced the launch of the "Army of Drones" project. This is a program that includes the systematic purchase of drones, their repair and prompt replacement, as well as a pilot training course.
   </figcaption>
-  <video preload="metadata" controls>
+  <video
+    preload="metadata"
+    width="720"
+    height="406"
+    controls
+  >
     <source
       src="https://video.wixstatic.com/video/fd206f_5900bc6dd401430780350a8490327d94/1080p/mp4/file.mp4"
       type="video/mp4"
