@@ -56,7 +56,6 @@ document.getElementById("_widgets").addEventListener("load", async () => {
     "1544304847494815746",
     "1522143035781525511",
     "1622315647060566016",
-    "1499068631795347462",
   ];
 
   for (let id of list) {
