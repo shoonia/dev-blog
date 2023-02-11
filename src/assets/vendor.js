@@ -1,14 +1,14 @@
 {
   let $$ = (selector) => document.querySelectorAll(selector);
 
-  let serialize = (ops) => {
-    let data = [], key;
+  let analytics = (ops) => {
+    let url = new URL('https://www.google-analytics.com/collect');
 
-    for (key in ops) {
-      data.push(key + '=' + encodeURIComponent(ops[key]));
+    for (let key in ops) {
+      url.searchParams.set(key, ops[key]);
     }
 
-    return data.join('&');
+    return url.href;
   };
 
   let dataPopup = (el) => {
@@ -33,7 +33,7 @@
   };
 
   let clipboard = (event) => {
-    const el = event.target?.closest('[data-clipboard]');
+    let el = event.target?.closest('[data-clipboard]');
 
     if (el) {
       navigator.clipboard.writeText(el.dataset.clipboard);
@@ -112,19 +112,17 @@
     });
   }, { timeout: 2000 });
 
-  navigator.sendBeacon('https://www.google-analytics.com/collect',
-    serialize({
-      v: '1',
-      ds: 'web',
-      tid: 'UA-137813864-1',
-      cid: localStorage.cid || (localStorage.cid = Math.random().toString(36)),
-      t: 'pageview',
-      dr: document.referrer,
-      dt: document.title,
-      dl: location.origin + location.pathname,
-      ul: navigator.language.toLowerCase(),
-      sr: screen.width + 'x' + screen.height,
-      vp: visualViewport.width + 'x' + visualViewport.height,
-    }),
-  );
+  navigator.sendBeacon(analytics({
+    v: '1',
+    ds: 'web',
+    tid: 'UA-137813864-1',
+    cid: localStorage.cid || (localStorage.cid = Math.random().toString(36)),
+    t: 'pageview',
+    dr: document.referrer,
+    dt: document.title,
+    dl: location.origin + location.pathname,
+    ul: navigator.language.toLowerCase(),
+    sr: screen.width + 'x' + screen.height,
+    vp: visualViewport.width + 'x' + visualViewport.height,
+  }));
 }
