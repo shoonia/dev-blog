@@ -23,7 +23,7 @@ const createId = (content) => {
       .join('')
       .trim();
 
-    if (title !== '') {
+    if (title) {
       return title.toLowerCase().replace(/[^\wа-яїієґ]+/ig, '-');
     }
   }
@@ -209,8 +209,8 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'time': {
-        const t = new Date(node.attrs?.datetime);
-        const lang = node.attrs.lang ?? 'en';
+        const t = new Date(node.attrs.datetime);
+        const lang = node.attrs.lang || 'en';
 
         if (t.toString() === 'Invalid Date') {
           throw new Error('\n\n<time /> have invalid "datetime" attribute\n\n' + JSON.stringify(node, null, 2));
@@ -242,7 +242,7 @@ const transformer = (classCache) => posthtml([
         const height = ~~node.attrs.height;
 
         if (width && height) {
-          const style = node.attrs.style ?? '';
+          const style = node.attrs.style ? node.attrs.style + ';' : '';
 
           node.attrs.style = style + aspectRatio(width, height);
 
@@ -285,7 +285,7 @@ const transformer = (classCache) => posthtml([
           acc.push(classCache.get(i));
         }
 
-        else if (i[0] === '_') {
+        else if (i.startsWith('_')) {
           acc.push(i);
         }
 

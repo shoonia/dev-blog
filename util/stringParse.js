@@ -29,13 +29,14 @@ exports.a11yEmoji = (val) => {
 };
 
 exports.parseComment = (val) => {
-  const isJsDoc = val.startsWith('/**') && val.indexOf('@') > -1;
-
-  if (isJsDoc || val.startsWith('// @ts-')) {
+  if (
+    val.startsWith('/**') && val.includes('@') ||
+    val.startsWith('// @ts-')
+  ) {
     val = val.replace(jsdocTag, (i) => `<b>${i}</b>`);
   }
 
-  if (val.indexOf('https://') > -1) {
+  if (val.includes('https://')) {
     val = val.replace(linkRx, (i) => {
       return `<a href="${i}" target="_blank" rel="noopener noreferrer">${i}</a>`;
     });

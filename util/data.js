@@ -1,7 +1,7 @@
 const { siteUrl, isAbsoluteUrl } = require('./halpers');
 
 const getAuthorName = (data) => {
-  return data.author?.name ?? data.pkg.author.name;
+  return data.author?.name || data.pkg.author.name;
 };
 
 const getImageUrl = (data) => {
@@ -27,7 +27,7 @@ exports.jsonLd = (data) => {
     author: {
       '@type': 'Person',
       name: getAuthorName(data),
-      url: data.author?.url ?? data.pkg.author.url,
+      url: data.author?.url || data.pkg.author.url,
     },
     publisher: {
       '@type': 'Organization',
