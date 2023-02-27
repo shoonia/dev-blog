@@ -50,7 +50,7 @@ document.getElementById("_widgets").addEventListener("load", async () => {
   let list = [
     "1496834115831742472",
     "1536403861224792065",
-    "1547321021610573825",
+    "1629246781639753728",
     "1542814528060235778",
     "1539534316186783744",
     "1544304847494815746",
@@ -80,8 +80,8 @@ document.getElementById("_widgets").addEventListener("load", async () => {
 
 The Foundation purchases equipment that helps saving the lives of the military, including thermal imaging optics, quadcopters, cars, security, and intelligence systems. Our instructors train sappers, drone operators, artillerymen, and snipers, as well as teach pre-medical aid and facilitate secret missions, which we will be sure to talk about after the victory.
 
-👉 [Donate](https://www.comebackalive.in.ua/donate)\
-🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1547321021610573825)
+👉 [Donate](https://savelife.in.ua/en/donate-en/#donate-army-card-monthly)\
+🐦 [@BackAndAlive](https://twitter.com/BackAndAlive/status/1629566914681765890)
 
 ## Serhiy Prytula Foundation
 
