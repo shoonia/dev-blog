@@ -1,10 +1,10 @@
 ---
-permalink: '/create-accordion-in-velo/'
+permalink: '/jsdoc-generic-types-in-velo/'
 date: '2023-03-01T12:00:00.000Z'
 modified: '2023-03-01T12:00:00.000Z'
 lang: 'en'
-title: 'Create accordion in Velo'
-description: 'toggle'
+title: 'Velo by Wix: JSDoc generic types in Velo'
+description: 'In this article, we look at how to use JSDoc generic types in Velo code'
 image: '/assets/images/velo.png'
 head: '
 <style>
@@ -18,13 +18,17 @@ head: '
     box-shadow: 0 0 3px #8f8f8f;
     max-width: 500px;
   }
+
+  ._nowrap {
+    white-space: nowrap;
+  }
 </style>
 '
 ---
 
-# Create accordion in Velo
+# Velo by Wix: JSDoc generic types in Velo
 
-In this article, we will look at how to use JSDoc generic type in Velo.
+*In this article, we look at how to use JSDoc generic types in Velo code.*
 
 This article continuous learning [JSDoc](https://jsdoc.app/) types in Velo. Welcome to reading the previous article about the type system in Velo.
 
@@ -49,7 +53,7 @@ const noop = (e) => e
 
 In the code above, we declare type parameters with the [`@template`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#template) tag. Then we describe that the function will return the same type that will be accepted in the argument.
 
-We don't declare any strict type. A type will infer in runtime it depends on the passing param.
+We don't declare any strict type. A type will infer in runtime it depends on the passing argument.
 
 Another one example. We have a function that accepts a list of the arguments and returns randomly one of theirs.
 
@@ -72,7 +76,7 @@ Using this function we can see the next types inference.
   loading="lazy"
 />
 
-It gives more information about the type, and Velo <abbr title=" Integrated Development Environment">IDE</abbr> helps us avoid some type errors.
+JSDoc gives more information about the type, and Velo <abbr title=" Integrated Development Environment">IDE</abbr> helps us avoid some type errors. The following condition is never executed:
 
 <img
   src="/assets/images/types-error.jpg"
@@ -80,9 +84,13 @@ It gives more information about the type, and Velo <abbr title=" Integrated Deve
   loading="lazy"
 />
 
+The generic type provides that the return type equals one of the passed arguments.
+
 ## Use case in Velo
 
-Let's try to solve a small developing task. We create an accordion component using Velo. The accordion <abbr title="User Interface">UI</abbr> is a vertically stacked list of options, it allows the user to show and hide sections.
+Move on to an example of the Velo code to understand where we may use it.
+
+Let's try to solve a small developing task. We create an accordion component using Velo. The accordion <abbr title="User Interface">UI</abbr> is a vertically stacked list of options, it allows the user to show and hide sections. Like this one:
 
 <figure>
   <video
@@ -101,6 +109,8 @@ Let's try to solve a small developing task. We create an accordion component usi
 
 There we have three collapsed boxes with three buttons over each box. If we click on any button, it expands the box under the target button. If we click on another button, it collapses the expanded box and expands a box under this button.
 
+Three buttons and three collapsed boxes:
+
 <figure>
   <img
     src="/assets/images/accordion-in-velo.jpg"
@@ -116,7 +126,7 @@ There we have three collapsed boxes with three buttons over each box. If we clic
 
 We create a function that will accept the selectors of elements that we want to [collapse](https://www.wix.com/velo/reference/$w/collapsedmixin/collapse)/[expand](https://www.wix.com/velo/reference/$w/collapsedmixin/expand).
 
-The function returns a toggle function that will accept one selector. Gets one of the selectors the toggle function expands this <mark>box</mark> and collapses all other boxes.
+The function returns a toggle function that will accept one of the passed selectors. Gets one of the selectors the toggle function expands this <mark>box</mark> and collapses all other boxes.
 
 **Example of using a toggle API**
 
@@ -174,17 +184,43 @@ const createToggle = (...selectors) => {
 };
 ```
 
-unknown selector
+Pay attention to a template parameter. Here we are narrowing the type of template parameter using <code><span class="_nowrap">@template {<b>keyof PageElementsMap}</b> T</span></code>. It means that our template `T` must be one of the keys from `PageElementsMap`.
+
+`PageElementsMap` is auto generated type that contain all element on the page. If we try to pass an unknown selector to the `createToggle('#unknownElement')` function, then we see the following error in the editor.
 
 <div class="_error">
-  Argument of type '"#box"' is not assignable to parameter of type 'keyof PageElementsMap'.
+  Argument of type '"#unknownElement"' is not assignable to parameter of type 'keyof PageElementsMap'.
 </div>
 
-unused selector
+We narrow the template type to accept only existing elements selectors on the page.
+
+We use the spread syntax (`...`) arguments and for type parameters also <span class="_nowrap"><code>@param {<b>...T</b>} selectors</code></span>. Each argument must be one of the keys from `PageElementsMap`.
+
+The last one, the `createToggle()` returns a function that also accepts our template parameter <span class="_nowrap"><code>@returns {(<b>targetId: T</b>) => void}</code></span>
+
+It means the `targetId: T` argument must satisfy two requirements
+
+1. `targetId: T` must be one of the keys from the page elements `{keyof PageElementsMap} T`
+1. And `targetId: T` must be one of the arguments that passed to the `createToggle()` function `{...T} selectors`
+
+If we try to write the following code:
+
+```js
+const toggle = createToggle('#box1', '#box2', '#box3');
+
+toggle('#box4');
+```
+then we see an error:
 
 <div class="_error">
-  Argument of type '"#box"' is not assignable to parameter of type '"#box1" | "#box2" | "#box3"'.
+  Argument of type '"#box4"' is not assignable to parameter of type '"#box1" | "#box2" | "#box3"'.
 </div>
+
+Because `"#box4"` isn't passed to the `createToggle()` function.
+
+✨ _magic_ ✨
+
+Let's end the logic of the toggle function.
 
 ```diff-js
 /**
@@ -199,16 +235,18 @@ const createToggle = (...selectors) => {
   return (targetId) => {
 +    const id = targetId.replace(/^#/, '');
 +
-+    elements.forEach((e) => {
-+      if (e.id === id && !e.isVisible) {
-+        e.expand();
++    elements.forEach((el) => {
++      if (el.id === id && !el.isVisible) {
++        el.expand();
 +      } else {
-+        e.collapse();
++        el.collapse();
 +      }
 +    });
   };
 };
 ```
+
+In the loop, we check each element if an element ID is equal to the target selector, and not visible then we expand it, else we collapse it.
 
 <figure>
  <figcaption>
@@ -221,7 +259,9 @@ const createToggle = (...selectors) => {
   ></iframe>
 </figure>
 
-## Code Snippet
+The generic type provides a way to declare the relationship between types in function without hardcoding and doing our code more type safety.
+
+## Full code snippet
 
 <details>
   <summary>
@@ -241,11 +281,11 @@ const createToggle = (...selectors) => {
   return (targetId) => {
     const id = targetId.replace(/^#/, '');
 
-    elements.forEach((e) => {
-      if (e.id === id && !e.isVisible) {
-        e.expand();
+    elements.forEach((el) => {
+      if (el.id === id && !el.isVisible) {
+        el.expand();
       } else {
-        e.collapse();
+        el.collapse();
       }
     });
   };
