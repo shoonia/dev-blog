@@ -24,9 +24,9 @@ head: '
 
 # Create accordion in Velo
 
-In this article, we will look at how to use [JSDoc](https://jsdoc.app/) generic type in Velo.
+In this article, we will look at how to use JSDoc generic type in Velo.
 
-This article continuous learning JSDoc types in Velo. Welcome to reading the previous article about the type system in Velo
+This article continuous learning [JSDoc](https://jsdoc.app/) types in Velo. Welcome to reading the previous article about the type system in Velo.
 
 - [Type safety your code with JSDoc](/type-safety-your-code-with-jsdoc/)
 - [Global type definitions](/global-type-definitions-in-velo/)
@@ -36,7 +36,7 @@ This article continuous learning JSDoc types in Velo. Welcome to reading the pre
 
 The generic types allow us to create a type parameter for more reusable code.
 
-The simplest example is a useless function that does nothing. It gets an argument and returns it.
+The simplest example is a useless function that gets an argument and returns it.
 
 ```js
 /**
@@ -48,6 +48,8 @@ const noop = (e) => e
 ```
 
 In the code above, we declare type parameters with the [`@template`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#template) tag. Then we describe that the function will return the same type that will be accepted in the argument.
+
+We don't declare any strict type. A type will infer in runtime it depends on the passing param.
 
 Another one example. We have a function that accepts a list of the arguments and returns randomly one of theirs.
 
@@ -62,13 +64,15 @@ const getRandomItem = (...list) => {
 }
 ```
 
-Using this function we can see the next inference of the types.
+Using this function we can see the next types inference.
 
 <img
   src="/assets/images/type-inference.jpg"
   alt="types inference in velo"
   loading="lazy"
 />
+
+It gives more information about the type, and Velo <abbr title=" Integrated Development Environment">IDE</abbr> helps us avoid some type errors.
 
 <img
   src="/assets/images/types-error.jpg"
@@ -78,29 +82,70 @@ Using this function we can see the next inference of the types.
 
 ## Use case in Velo
 
-Let's try to solve a small developing task. We need to create an accordion component using Velo. The accordion <abbr title="User Interface">UI</abbr> is a vertically stacked list of options, it allows the user to show and hide sections.
-
-We have three collapsed boxes with three buttons over each box. If we click on any button, it expands the box under the target button. If we click on another button, it collapses the expanded box and expands a box under this button.
+Let's try to solve a small developing task. We create an accordion component using Velo. The accordion <abbr title="User Interface">UI</abbr> is a vertically stacked list of options, it allows the user to show and hide sections.
 
 <figure>
+  <video
+    src="/assets/videos/accordion-in-velo.mp4"
+    type="video/mp4"
+    preload="metadata"
+    width="1152"
+    height="720"
+    controls
+    loop
+  ></video>
   <figcaption>
-    <strong>Wix Editor: Accordion Component</strong>
+    <em>A simple example of accordion UI</em>
   </figcaption>
+</figure>
+
+There we have three collapsed boxes with three buttons over each box. If we click on any button, it expands the box under the target button. If we click on another button, it collapses the expanded box and expands a box under this button.
+
+<figure>
   <img
     src="/assets/images/accordion-in-velo.jpg"
     alt="wix editor"
     loading="lazy"
   />
+  <figcaption>
+    <em>Wix Editor: Accordion Component layout</em>
+  </figcaption>
 </figure>
 
-Let's start to coding.
+### Let's start to coding.
 
-We create a function that will accept the selectors of elements that we want to [collapse](https://www.wix.com/velo/reference/$w/collapsedmixin/collapse) / [expand](https://www.wix.com/velo/reference/$w/collapsedmixin/expand).
+We create a function that will accept the selectors of elements that we want to [collapse](https://www.wix.com/velo/reference/$w/collapsedmixin/collapse)/[expand](https://www.wix.com/velo/reference/$w/collapsedmixin/expand).
 
-The function returns a toggle function that will accept a target selector.
+The function returns a toggle function that will accept one selector. Gets one of the selectors the toggle function expands this <mark>box</mark> and collapses all other boxes.
+
+**Example of using a toggle API**
+
+```js
+$w.onReady(() => {
+  // Create a toggle function with a list of element selectors
+  const toggle = createToggle('#box1', '#box2', '#box3');
+
+  // Using the toggle function, for example:
+  // if we click on `#button1` it expand the `#box1`
+  // and collapsing `#box2`, `#box3`. etc..
+
+  $w('#button1').onClick(() => {
+    toggle('#box1');
+  });
+
+  $w('#button2').onClick(() => {
+    toggle('#box2');
+  });
+
+  $w('#button3').onClick(() => {
+    toggle('#box3');
+  });
+});
+```
 
 ```js
 const createToggle = (...selectors) => {
+  /** @type {$w.HiddenCollapsedElement[]} */
   const elements = $w(selectors.join());
 
   return (targetId) => {
@@ -110,11 +155,6 @@ const createToggle = (...selectors) => {
 ```
 
 [`$w.HiddenCollapsedElement`](https://www.wix.com/velo/reference/$w/hiddencollapsedelement)
-
-```js
-/** @type {$w.HiddenCollapsedElement[]} */
-const elements = $w(selectors.join());
-```
 
 [`@template`](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#template)
 
@@ -134,45 +174,17 @@ const createToggle = (...selectors) => {
 };
 ```
 
-**Example of using a toggle API**
-
-```js
-$w.onReady(() => {
-  const toggle = createToggle('#box1', '#box2', '#box3');
-
-  $w('#button1').onClick(() => {
-    toggle('#box1');
-  });
-
-  $w('#button2').onClick(() => {
-    toggle('#box2');
-  });
-
-  $w('#button3').onClick(() => {
-    toggle('#box3');
-  });
-});
-```
+unknown selector
 
 <div class="_error">
   Argument of type '"#box"' is not assignable to parameter of type 'keyof PageElementsMap'.
 </div>
 
-**Type inference for `createToggle` function**
-
-```ts
-const createToggle: <"#box1" | "#box2" | "#box3">(...selectors: ("#box1" | "#box2" | "#box3")[]) => (targetId: "#box1" | "#box2" | "#box3") => void
-```
+unused selector
 
 <div class="_error">
   Argument of type '"#box"' is not assignable to parameter of type '"#box1" | "#box2" | "#box3"'.
 </div>
-
-**Type inference for returned `toggle(targetId)` function**
-
-```ts
-const toggle: (targetId: "#box1" | "#box2" | "#box3") => void
-```
 
 ```diff-js
 /**
