@@ -25,9 +25,7 @@
   <p><small>© {{ pkg.author.name }}, 2019—{{ enviroment.dateNow.getFullYear() }}</small></p>
 </footer>
 
-{% if enviroment.nodeEnv != 'development' %}
-  <script async type="module" src="/assets/vendor.js"></script>
-{% endif %}
+<script async type="module" src="/assets/vendor.js"></script>
 {{ postBody | safe }}
 </body>
 </html>
