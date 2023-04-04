@@ -70,19 +70,29 @@ const getRandomItem = (...list) => {
 
 Using this function we can see the next types inference.
 
-<img
-  src="/assets/images/type-inference.jpg"
-  alt="types inference in velo"
-  loading="lazy"
-/>
+<figure>
+  <img
+    src="/assets/images/type-inference.jpg"
+    alt="velo editor with types inference popups"
+    loading="lazy"
+  />
+  <figcaption>
+    <em>Types inference in Velo IDE</em>
+  </figcaption>
+</figure>
 
 JSDoc gives more information about the type, and Velo <abbr title=" Integrated Development Environment">IDE</abbr> helps us avoid some type errors. The following condition is never executed:
 
-<img
-  src="/assets/images/types-error.jpg"
-  alt="types inference in velo"
-  loading="lazy"
-/>
+<figure>
+  <img
+    src="/assets/images/types-error.jpg"
+    alt="velo editor with types error popup"
+    loading="lazy"
+  />
+  <figcaption>
+    <em>Type error popup in Velo IDE</em>
+  </figcaption>
+</figure>
 
 The generic type provides that the return type equals one of the passed arguments.
 
