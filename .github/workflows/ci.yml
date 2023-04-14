@@ -1,10 +1,10 @@
-name: The W3C Markup Validation
+name: CI
 
 on:
   pull_request:
 
 jobs:
-  validation:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -24,6 +24,8 @@ jobs:
           distribution: 'temurin'
 
       - run: npm ci
-      - run: npm i node-w3c-validator --no-save
+      - run: npm run lint
+      - run: npm test
       - run: npm run build
+      - run: npm i node-w3c-validator --no-save
       - run: npx node-w3c-validator -i ./public/**/*.html --exclude ./public/google*.html -f lint -evH
