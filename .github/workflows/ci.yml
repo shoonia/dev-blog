@@ -21,10 +21,11 @@ jobs:
         with:
           java-version: 17
           architecture: x64
-          distribution: temurin
+          distribution: 'temurin'
 
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      - run: npm run build
       - run: npm i node-w3c-validator --no-save
       - run: npx node-w3c-validator -i ./public/**/*.html --exclude ./public/google*.html -f lint -evH
