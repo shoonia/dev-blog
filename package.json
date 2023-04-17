@@ -21,7 +21,7 @@
     "emoji-regex": "^10.2.1",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
-    "htmlnano": "^2.0.3",
+    "htmlnano": "^2.0.4",
     "mini-css-class-name": "^0.13.2",
     "minify-xml": "^3.4.0",
     "postcss": "^8.4.21",
