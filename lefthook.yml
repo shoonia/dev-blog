@@ -1,8 +1,13 @@
 pre-commit:
   parallel: true
   commands:
-    lint:
-      run: npm run lint
+    js:
+      run: eslint '**/*.js'
+      skip:
+        - merge
+        - rebase
+    css:
+      run: stylelint 'src/**/*.css'
       skip:
         - merge
         - rebase

@@ -1,5 +1,11 @@
 {
+  window.dataLayer ??= [];
+
   let $$ = (selector) => document.querySelectorAll(selector);
+
+  let gtag = function () {
+    window.dataLayer.push(arguments);
+  };
 
   let dataPopup = (el) => {
     el.setAttribute('data-popup', 'Copied!');
@@ -52,6 +58,9 @@
       document.body.removeAttribute('data-noscroll');
     }
   });
+
+  gtag('js', new Date());
+  gtag('config', 'G-1T48Q3V3RW');
 
   $$('[data-copy]').forEach((button) =>
     button.addEventListener('click', copyCodeHandler),
