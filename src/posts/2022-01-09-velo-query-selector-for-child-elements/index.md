@@ -377,7 +377,6 @@ Below is a video demonstrating the benefits of using JSDoc annotations.
   </figcaption>
   <video
     src="/assets/videos/jsdoc-autocomplete.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1920"
     height="790"
