@@ -62,7 +62,6 @@ With this directive, TypeScript starts to use DOM types. 🙌
   </figcaption>
   <video
     src="/assets/videos/triple-slash-directives.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1728"
     height="1080"

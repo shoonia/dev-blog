@@ -52,7 +52,6 @@ After installing, you should open the Wix editor and turn on dev mode. The exten
   </figcaption>
   <video
     src="/assets/videos/chrome-extension-example.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1728"
     height="1080"

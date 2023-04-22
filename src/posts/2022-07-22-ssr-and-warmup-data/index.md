@@ -66,7 +66,6 @@ Now, when we reload the page we can see that HTML content has <mark>backend</mar
   </figcaption>
   <video
     src="/assets/videos/ssr.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1728"
     height="1080"
@@ -105,7 +104,6 @@ As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work w
 <figure>
   <video
     src="/assets/videos/no-ssr.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1728"
     height="1080"
@@ -141,7 +139,6 @@ Now, we can see the <abbr title="Server-side rendering">SSR</abbr> starts to wor
   </figcaption>
   <video
     src="/assets/videos/with-ssr.mp4"
-    type="video/mp4"
     preload="metadata"
     width="1728"
     height="1080"
