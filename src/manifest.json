@@ -3,8 +3,10 @@
   "short_name": "Web Development Blog",
   "start_url": "/",
   "background_color": "#fff",
-  "theme_color": "#fff",
-  "display": "minimal-ui",
+  "theme_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "en",
   "icons": [
     {
       "src": "/assets/icons/icon-48x48.png",
