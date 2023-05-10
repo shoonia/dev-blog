@@ -41,6 +41,10 @@ $content-max-width: 765px;
   }
 }
 
+:global(.giscus) {
+  margin-top: 2em;
+}
+
 [data-noscroll] {
   overflow: hidden;
 }

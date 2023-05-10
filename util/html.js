@@ -285,7 +285,7 @@ const transformer = (classCache) => posthtml([
           acc.push(classCache.get(i));
         }
 
-        else if (i.startsWith('_')) {
+        else if (i === 'giscus' || i.startsWith('_')) {
           acc.push(i);
         }
 
