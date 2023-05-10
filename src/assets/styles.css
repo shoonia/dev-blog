@@ -41,8 +41,10 @@ $content-max-width: 765px;
   }
 }
 
-:global(.giscus) {
+:global(.giscus),
+:global(.giscus-frame) {
   margin-top: 2em;
+  min-height: auto;
 }
 
 [data-noscroll] {

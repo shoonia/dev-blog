@@ -8,6 +8,11 @@ const { isProd, debug } = require('./env');
 const { a11yEmoji, parseComment } = require('./stringParse');
 const { minifyJs } = require('./configs');
 
+const giscusClass = new Set([
+  'giscus',
+  'giscus-frame',
+]);
+
 const isAnonymous = (url) => {
   return isAbsoluteUrl(url) && new URL(url).origin !== 'https://shoonia.wixsite.com';
 };
@@ -285,7 +290,7 @@ const transformer = (classCache) => posthtml([
           acc.push(classCache.get(i));
         }
 
-        else if (i === 'giscus' || i.startsWith('_')) {
+        else if (giscusClass.has(i) || i.startsWith('_')) {
           acc.push(i);
         }
 
