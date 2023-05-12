@@ -1,5 +1,9 @@
-{% include 'header.njk' %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+{% include 'head.njk' %}
+<body>
 {% include 'support.njk' %}
+{% include 'header.njk' %}
 
 {% set link = permalink | siteUrl %}
 
@@ -51,3 +55,6 @@
   data-lang="{{ lang }}"
   crossorigin="anonymous">
 </script>
+
+</body>
+</html>

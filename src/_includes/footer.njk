@@ -26,9 +26,9 @@
 </footer>
 
 <script async type="module" src="/assets/vendor.js"></script>
+
 {{ postBody | safe }}
+
 {% if enviroment.nodeEnv == 'production' %}
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T48Q3V3RW"></script>
 {% endif %}
-</body>
-</html>
