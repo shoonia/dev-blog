@@ -701,7 +701,7 @@ pre:hover > .menu-right {
   align-items: center;
   gap: 1em;
   padding: 1em;
-  background-color: var(--c-light-link);
+  background-color: rgb(243 244 246 / 100%);
 }
 
 /**
