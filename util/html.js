@@ -59,7 +59,7 @@ const withHashVersion = (path) => {
 const transformer = (classCache) => posthtml([
   imgAutosize({
     root: rootResolve('src'),
-    processEmptySize: false,
+    processEmptySize: true,
   }),
 ]).use((tree) => {
   const generate = miniCssClassName();
