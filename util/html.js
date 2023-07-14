@@ -36,7 +36,7 @@ const createId = (content) => {
 
 const gcd = (a, b) => b ? gcd(b, a % b) : a;
 
-const aspectRatio = (width, height)  => {
+const aspectRatio = (width, height) => {
   const divisor = gcd(width, height);
 
   return `aspect-ratio:${width / divisor}/${height / divisor}`;
@@ -59,7 +59,7 @@ const withHashVersion = (path) => {
 const transformer = (classCache) => posthtml([
   imgAutosize({
     root: rootResolve('src'),
-    processEmptySize: true,
+    processEmptySize: false,
   }),
 ]).use((tree) => {
   const generate = miniCssClassName();
@@ -333,7 +333,13 @@ const transformer = (classCache) => posthtml([
 });
 
 exports.transformHtml = async (source, classCache) => {
-  const { html } = await transformer(classCache).process(source);
+  try {
+    const { html } = await transformer(classCache).process(source);
 
-  return html;
+    return html;
+  } catch (error) {
+    console.error({ error });
+
+    throw error;
+  }
 };
