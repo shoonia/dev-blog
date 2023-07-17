@@ -11,10 +11,8 @@ image: 'https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f
 # Подсветка кастомных файлов/расширений в редакторе VS Code
 
 <img
-  src="https://static.wixstatic.com/media/e3b156_19f2ed5a0e214c329ae99a998e5e4f6e~mv2.png"
+  src="/assets/images/code.svg"
   alt="фрагмент кода с яркой подсветкой синтаксиса"
-  width="764"
-  height="352"
 />
 
 Часто в проектах встречаются файлы конфигураций без расширения такие как `.postcssrc` или `.parcelrc`. Если ваш редактор кода не знаком с данным типом файла он применит к нему дефолтные стили подсветке синтаксиса, в VS Code это `html`.
