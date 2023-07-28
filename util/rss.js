@@ -1,12 +1,13 @@
 const { writeFile } = require('node:fs/promises');
 const { Feed } = require('feed');
-const { minify } = require('minify-xml');
 
 const { rootResolve, siteUrl } = require('./halpers');
 const { dateNow } = require('./env');
 const pkg = require('../package.json');
 
 exports.createRss = async (nodes) => {
+  const { minify } = await import('minify-xml');
+
   const author = {
     name: pkg.author.name,
     email: pkg.author.email,
