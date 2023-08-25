@@ -196,6 +196,7 @@ h4 {
 h1 {
   font-size: 2.2em;
   font-family: var(--font-serif);
+  text-wrap: balance;
 }
 
 h2 {
