@@ -2,6 +2,9 @@
   publish = "public"
   command = "DEBUG=* eleventy"
 
+[build.processing]
+  skip_processing = true
+
 [[redirects]]
   from = "/*"
   to = "/404"
