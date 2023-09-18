@@ -34,7 +34,7 @@
     "terser": "^5.19.4"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.4.10",
+    "@evilmartians/lefthook": "^1.4.11",
     "eslint": "^8.49.0",
     "stylelint": "^15.10.3",
     "stylelint-config-css-modules": "^4.3.0",
