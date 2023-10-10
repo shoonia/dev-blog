@@ -5,7 +5,7 @@ const { rootResolve, siteUrl } = require('./halpers');
 const { dateNow } = require('./env');
 const pkg = require('../package.json');
 
-exports.creaeSitemap = async (nodes) => {
+exports.createSitemap = async (nodes) => {
   const sitemapStream = new SitemapStream();
 
   sitemapStream.write({
