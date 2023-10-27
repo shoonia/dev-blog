@@ -7,7 +7,7 @@ title: 'Створюємо API для генерації QR Code зображе�
 description: 'В цій статі ми розглянемо, як за допомогою JavaScript та Node.js за 15 хвилин створити власний HTTP API, що повертатиме згенерований QR-код.'
 author:
   name: 'Олександр Зайцев'
-  url: https://twitter.com/_shoonia
+  url: https://x.com/_shoonia
 image: 'https://static.wixstatic.com/media/e3b156_8034ddbc3692458398681c1228b98484~mv2.jpg/v2/fill/w_300,h_300/q.jpg'
 ---
 

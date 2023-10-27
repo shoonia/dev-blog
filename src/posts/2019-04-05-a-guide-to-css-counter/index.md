@@ -7,7 +7,7 @@ title: 'Руководство по CSS-счетчикам'
 description: 'Перевод статьи, Samantha Ming: "A Guide to CSS counter"'
 author:
   name: 'Samantha Ming'
-  url: https://twitter.com/samantha_ming
+  url: https://x.com/samantha_ming
 image: 'https://static.wixstatic.com/media/fd206f_b44adcfd6a6b42dd99de3e9ff80377d6~mv2.png'
 head: '<link rel="alternate" hreflang="en" href="https://www.samanthaming.com/tidbits/53-css-counter/">'
 ---
@@ -415,7 +415,7 @@ Vue — это прогрессивный фреймворк для создан
 
 ## Поставте лайк ❤️
 
-- [Like this on Twitter](https://twitter.com/samantha_ming/status/1109523673470259200)
+- [Like this on Twitter](https://x.com/samantha_ming/status/1109523673470259200)
 - [Like this on Instagram](https://www.instagram.com/p/BvXHR0phDFW/)
 
 **Спасибо за прочтение ❤️**

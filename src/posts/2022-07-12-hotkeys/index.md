@@ -297,7 +297,7 @@ $w.onReady(function () {
 ```
 </details>
 
-Do you have any questions? 🐦 [I'm on Twitter](https://twitter.com/_shoonia) ✍️
+Do you have any questions? 🐦 [I'm on Twitter](https://x.com/_shoonia) ✍️
 
 ## Resources
 
