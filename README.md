@@ -17,7 +17,7 @@ title: 'title'
 description: 'description'
 author:
   name: 'name'
-  url: https://twitter.com/
+  url: https://x.com/
 image: '/assets/images/velo.png'
 linkPreload: ''
 head: ''

@@ -459,7 +459,7 @@ $w.onReady(() => {
 ```
 </details>
 
-If you have any questions, feel free to ask me on my <a href="https://twitter.com/_shoonia" rel="me">Twitter</a>. Cheers! 👨‍💻 👩‍💻
+If you have any questions, feel free to ask me on my <a href="https://x.com/_shoonia" rel="me">Twitter</a>. Cheers! 👨‍💻 👩‍💻
 
 ## Posts
 

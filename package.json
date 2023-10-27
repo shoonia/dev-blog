@@ -21,9 +21,9 @@
     "emoji-regex": "^10.3.0",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
-    "htmlnano": "^2.0.4",
-    "mini-css-class-name": "^0.13.2",
-    "minify-xml": "^4.0.0",
+    "htmlnano": "^2.1.0",
+    "mini-css-class-name": "^0.14.1",
+    "minify-xml": "^4.1.0",
     "postcss": "^8.4.31",
     "postcss-modules": "^6.0.0",
     "postcss-simple-vars": "^7.0.1",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.5.2",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "stylelint": "^15.11.0",
     "stylelint-config-css-modules": "^4.3.0",
     "stylelint-config-standard": "^34.0.0",
@@ -51,7 +51,7 @@
   "author": {
     "name": "Alexander Zaytsev",
     "email": "zaytsev126@gmail.com",
-    "url": "https://twitter.com/_shoonia"
+    "url": "https://x.com/_shoonia"
   },
   "keywords": [],
   "license": "MIT"
