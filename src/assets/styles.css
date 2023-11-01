@@ -130,9 +130,14 @@ footer {
 
 a {
   color: var(--c-link);
-  text-decoration: none;
   position: relative;
   outline: none;
+}
+
+a,
+ins,
+del {
+  text-decoration: none;
 }
 
 pre a {
@@ -161,10 +166,6 @@ a::before {
   transform-origin: bottom right;
 }
 
-a:hover {
-  text-decoration: none;
-}
-
 .no-animation::before,
 pre a::before,
 summary::marker,
@@ -178,7 +179,7 @@ a:focus::before {
   transform-origin: bottom left;
 }
 
-abbr:hover {
+abbr {
   cursor: help;
 }
 
@@ -657,8 +658,8 @@ pre:hover > .menu-right {
   content: "+";
 }
 
-.deleted:not(.prefix),
-.inserted:not(.prefix) {
+del.deleted,
+ins.inserted {
   display: block;
 }
 

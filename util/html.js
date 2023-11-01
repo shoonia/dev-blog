@@ -80,7 +80,23 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'span': {
-        switch (node.attrs?.class) {
+        const className = node.attrs?.class;
+
+        if (className == null) {
+          return node;
+        }
+
+        if (className.startsWith('token deleted-sign deleted')) {
+          node.tag = 'del';
+          return node;
+        }
+
+        if (className.startsWith('token inserted-sign inserted')) {
+          node.tag = 'ins';
+          return node;
+        }
+
+        switch (className) {
           case 'token comment': {
             node.content = node.content?.map((i) => parseComment(i));
             break;
