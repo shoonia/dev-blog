@@ -1,13 +1,12 @@
 ---
 permalink: '/wix-velo-editorx-short-links/'
 date: '2021-09-23T12:00:00.000Z'
-modified: '2021-09-23T12:00:00.000Z'
+modified: '2023-11-01T12:20:00.800Z'
 lang: 'en'
 title: 'Short links to create a new Wix / Editor X site editor'
-description: 'A set of short links for creating a new site on Wix, Velo, and Editor X'
+description: 'A set of short links for creating a new site on Wix, Velo, Editor X and Wix Studio'
 image: '/assets/images/load-editor.jpeg'
----
-
+head: '
 <style>
   h1 {
     margin-bottom: 0;
@@ -21,6 +20,9 @@ image: '/assets/images/load-editor.jpeg'
     justify-content: center;
   }
 </style>
+'
+---
+
 <h1>
   Short links to create a new Wix / <span class="_nowrap">Editor X</span> site editor
 </h1>
@@ -33,6 +35,7 @@ A set of short links for creating a new site on Wix, Velo, and <span class="_now
 - **[wix.new](https://wix.new)** - Creates a new Wix site editor from a blank template
 - **[velo.new](https://velo.new)** - Creates a new Wix site editor with enabled Velo from a blank template
 - **[editorx.new](https://editorx.new)** - Creates a new <span class="_nowrap">Editor X</span> site editor from blank template
+- **[wixstudio.new](https://wixstudio.new/)** - Create a new <span class="_nowrap">Wix Studio</span> Editor from a blank template
 
 ## Posts
 
