@@ -171,7 +171,6 @@ The `data:URL` image is a little longer than the direct link for this image. And
     src="https://shoonia.wixsite.com/blog/imitate-hover-event-on-corvid"
     title="Velo by Wix: Imitating hover event on repeater container"
     height="510"
-    scrolling="no"
   ></iframe>
 </figure>
 

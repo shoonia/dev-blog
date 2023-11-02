@@ -78,6 +78,10 @@
     i.addEventListener('click', clipboard);
   });
 
+  $$('iframe').forEach((iframe) => {
+    iframe.scrolling = 'off';
+  });
+
   requestIdleCallback(() => {
     let prefetched = new Set();
 

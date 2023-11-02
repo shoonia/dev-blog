@@ -219,11 +219,7 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'iframe': {
-        Object.assign(node.attrs, {
-          loading: 'lazy',
-          scrolling: 'no',
-        });
-
+        node.attrs.loading = 'lazy';
         return node;
       }
 
