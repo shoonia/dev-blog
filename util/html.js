@@ -221,7 +221,6 @@ const transformer = (classCache) => posthtml([
       case 'iframe': {
         Object.assign(node.attrs, {
           loading: 'lazy',
-          crossorigin: 'anonymous',
           scrolling: 'no',
         });
 
