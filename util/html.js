@@ -340,6 +340,11 @@ const transformer = (classCache) => posthtml([
       plugins: [
         {
           name: 'preset-default',
+          params: {
+            overrides: {
+              cleanupIds: false,
+            },
+          },
         },
       ],
     },
