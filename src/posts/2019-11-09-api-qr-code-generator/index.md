@@ -125,7 +125,7 @@ export function get_qrcode(request) {
 ```
 
 ```text
-https://<USER_NAME>.wixsite.com/<SITE_NAME>/_functions/qrcode?text=Hello
+https://{USER_NAME}.wixsite.com/{SITE_NAME}/_functions/qrcode?text=Hello
 ```
 
 ## QR Code
