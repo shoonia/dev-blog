@@ -220,7 +220,6 @@ const transformer = (classCache) => posthtml([
 
       case 'iframe': {
         Object.assign(node.attrs, {
-          width: '100%',
           loading: 'lazy',
           crossorigin: 'anonymous',
           scrolling: 'no',

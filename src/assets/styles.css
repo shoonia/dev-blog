@@ -425,6 +425,7 @@ details[open] summary::after {
 }
 
 iframe {
+  width: 100%;
   overflow: hidden;
 }
 
