@@ -75,7 +75,7 @@ In most cases, it's enough. But, if we need to receive an item data object or in
     });
   });
   ```
-<figure>
+</figure>
 
 It does not look bad. But we want to have a better 😊
 
