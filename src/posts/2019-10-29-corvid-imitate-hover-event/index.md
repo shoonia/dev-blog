@@ -25,7 +25,7 @@ For this, we're going to use two other events that provide repeater API:
 
 Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/velo/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/velo/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
-<a download="1x1_#cce4f7ff.png">
+<a href="#" download="1x1_#cce4f7ff.png">
   Download: Here is one-pixel image
   <img
     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjOPPk+38ACM4Dp1/0SeUAAAAASUVORK5CYII="
