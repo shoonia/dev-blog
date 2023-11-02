@@ -27,7 +27,7 @@ Velo editor has the built-in [TypeScript](https://www.typescriptlang.org/) compi
   />
   <figcaption>
     <em>Example of code autocomplete</em>
-  <figcaption>
+  </figcaption>
 </figure>
 
 In this post, we look at how to add type support for [Custom Components](https://support.wix.com/en/article/velo-about-custom-elements) development when we use Browser APIs like the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window), [document](https://developer.mozilla.org/en-US/docs/Web/API/Document), [customElements](https://developer.mozilla.org/en-US/docs/Web/API/Window/customElements), etc.

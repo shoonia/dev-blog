@@ -100,7 +100,7 @@ Am I need this package? The Velo supports JavaScript until [ES2020](https://tc39
 
   _**Example:** Using [the optional chaining operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) and [the nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) instead [lodash get](https://lodash.com/docs/4.17.15#get)_
   </figcaption>
-<figure>
+</figure>
 
 ## Resources
 

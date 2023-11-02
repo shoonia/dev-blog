@@ -39,7 +39,7 @@ We will create a traditional study app with counters. I will use two counters to
   <figcaption>
 
   At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
-  <figcaption>
+  </figcaption>
   <div class="filetree" role="img" aria-label="Package Manager panel in Wix editor, installing storeon-velo">
     <div class="filetree_tab filetree_row">
       <strong>Code Packages</strong>
