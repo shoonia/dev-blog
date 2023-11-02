@@ -6,6 +6,20 @@ lang: 'en'
 title: 'Velo by Wix: Query selector for child elements'
 description: 'Get the child elements inside a parent node. In this post, we take a look deeper at $w() selector and try to filter children elements by the specific parent node'
 image: '/assets/images/load-editor.jpeg'
+head: '
+<style>
+._box {
+  border: 1px solid rgb(112 128 144 / 40%);
+  border-left: 6px solid rgb(112 128 144 / 40%);
+  padding: 0 1em;
+}
+
+._content span {
+  font-weight: bold;
+  color: #2e7e8b;
+}
+</style>
+'
 ---
 
 # Velo by Wix: Query selector for child elements
@@ -38,12 +52,12 @@ In general, we need to find a way to query select all child elements into a spec
 
 Take a look at the CSS works in this case. If you are familiar with CSS selectors, you can see that they work from right to left.
 
-For example, we want to apply styles for all `<span>` child elements into parent nodes that have `.content-box` class name:
+For example, we want to apply styles for all `<span>` child elements into parent nodes that have `.content` class name:
 
 ```html
 <style>
-/* Find all <span> element in ".content-box" elements */
-.content-box span {
+/* Find all <span> element in ".content" elements */
+.content span {
   font-weight: bold;
   color: #2e7e8b;
 }
@@ -52,28 +66,22 @@ For example, we want to apply styles for all `<span>` child elements into parent
   Browser matches the selectors from right to left.
   The first, browser find all <span> element on the page
   then browser filter only <span> elements
-  that have a parent element with the class="content-box"
+  that have a parent element with the class="content"
 -->
-<p class="content-box">
+<p class="content">
   CSS selector work from <span>right</span> to <span>left</span>
 </p>
 ```
 
 **Reslut:**
 
-<div style="border:1px solid rgb(112 128 144/40%);border-left:6px solid rgb(112 128 144/40%);padding:0 1em">
-  <style>
-  ._box span {
-    font-weight: bold;
-    color: #2e7e8b;
-  }
-  </style>
-  <p class="_box">
+<div class="_box">
+  <p class="_content">
     CSS selector work from <span>right</span> to <span>left</span>
   </p>
 </div>
 
-Under the hood, a browser uses the *"from right to left"* algorithm to select child elements. The browser literally starts to find all `<span>` elements on the page and then the browser filters only the `<span>` that have a parent node with `class="content-box"`.
+Under the hood, a browser uses the *"from right to left"* algorithm to select child elements. The browser literally starts to find all `<span>` elements on the page and then the browser filters only the `<span>` that have a parent node with `class="content"`.
 
 <aside>
 

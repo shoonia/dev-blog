@@ -52,9 +52,9 @@
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      $$('[data-fullscreen]').forEach((el) => {
-        el.removeAttribute('data-fullscreen');
-      });
+      $$('[data-fullscreen]').forEach((el) =>
+        el.removeAttribute('data-fullscreen'),
+      );
       document.body.removeAttribute('data-noscroll');
     }
   });
@@ -66,17 +66,21 @@
     button.addEventListener('click', copyCodeHandler),
   );
 
-  $$('abbr[title]').forEach((abbr) => {
-    abbr.addEventListener('click', showHint);
-  });
+  $$('abbr[title]').forEach((abbr) =>
+    abbr.addEventListener('click', showHint),
+  );
 
-  $$('[data-expand]').forEach((button) => {
-    button.addEventListener('click', fullscreenHandler);
-  });
+  $$('[data-expand]').forEach((button) =>
+    button.addEventListener('click', fullscreenHandler),
+  );
 
-  $$('[data-clipboard]').forEach((i) => {
-    i.addEventListener('click', clipboard);
-  });
+  $$('[data-clipboard]').forEach((i) =>
+    i.addEventListener('click', clipboard),
+  );
+
+  $$('iframe').forEach((iframe) =>
+    iframe.scrolling = 'off',
+  );
 
   requestIdleCallback(() => {
     let prefetched = new Set();

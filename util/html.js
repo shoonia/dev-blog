@@ -219,13 +219,7 @@ const transformer = (classCache) => posthtml([
       }
 
       case 'iframe': {
-        Object.assign(node.attrs, {
-          width: '100%',
-          loading: 'lazy',
-          crossorigin: 'anonymous',
-          scrolling: 'no',
-        });
-
+        node.attrs.loading = 'lazy';
         return node;
       }
 
@@ -342,6 +336,11 @@ const transformer = (classCache) => posthtml([
       plugins: [
         {
           name: 'preset-default',
+          params: {
+            overrides: {
+              cleanupIds: false,
+            },
+          },
         },
       ],
     },

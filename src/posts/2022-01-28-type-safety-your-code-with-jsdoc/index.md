@@ -6,6 +6,22 @@ lang: 'en'
 title: 'Velo by Wix: Type safety your code with JSDoc'
 description: 'Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo'
 image: '/assets/images/ins.jpg'
+head: '
+<style>
+#_dance {
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  #_dance {
+    display: none;
+  }
+}
+</style>
+'
 ---
 
 # Velo by Wix: Type safety your code with JSDoc
@@ -400,49 +416,33 @@ We have the autocomplete for the object keys and values. Very useful.
 - [Query selector for child elements](/velo-query-selector-for-child-elements/)
 - [Promise Queue](/promise-queue/)
 
-<!-- secret joke -->
+<button type="button" id="_dance" aria-label="let's dance"></button>
 
-<style>
-#_dance {
-  position: fixed;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-}
-
-@media (max-width: 1000px) {
-  #_dance {
-    display: none;
-  }
-}
-</style><button type="button" id="_dance" aria-label="let's dance"></button>
 <script>
-{
-  let btn = document.querySelector('#_dance');
+let btn = document.querySelector('#_dance');
 
-  if (/Version\/[\d.]+.*Safari/.test(navigator.userAgent)) {
-    btn.remove();
-  } else {
-    let f = [`(>'-')>`, `^('-')^`, `<('-'<)`, `^('-')^`];
-    let x = 0;
+if (/Version\/[\d.]+.*Safari/.test(navigator.userAgent)) {
+  btn.remove();
+} else {
+  let f = [`(>'-')>`, `^('-')^`, `<('-'<)`, `^('-')^`];
+  let x = 0;
 
-    btn.addEventListener('click', (event) => {
-      if (x === 0) {
-        let r = f.length * 3;
-        let i = 0;
+  btn.addEventListener('click', (event) => {
+    if (x === 0) {
+      let r = f.length * 3;
+      let i = 0;
 
-        let t = setInterval(() => {
-          if (x === r) {
-            clearInterval(t);
-            history.pushState('', '', location.pathname);
-            x = 0;
-          } else {
-            x++;
-            location.hash = `---${i < f.length - 1 ? f[i++] : f[i = 0]}`.repeat(7);
-          }
-        }, 300);
-      }
-    });
-  }
+      let t = setInterval(() => {
+        if (x === r) {
+          clearInterval(t);
+          history.pushState('', '', location.pathname);
+          x = 0;
+        } else {
+          x++;
+          location.hash = `---${i < f.length - 1 ? f[i++] : f[i = 0]}`.repeat(7);
+        }
+      }, 300);
+    }
+  });
 }
 </script>
