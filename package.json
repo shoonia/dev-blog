@@ -36,9 +36,9 @@
   "devDependencies": {
     "@evilmartians/lefthook": "^1.5.5",
     "eslint": "^8.54.0",
-    "stylelint": "^15.11.0",
+    "stylelint": "^16.0.2",
     "stylelint-config-css-modules": "^4.3.0",
-    "stylelint-config-standard": "^34.0.0",
+    "stylelint-config-standard": "^35.0.0",
     "uvu": "^0.5.6"
   },
   "repository": {
