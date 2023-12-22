@@ -192,7 +192,7 @@ export const createScope = (getData) => (event) => {
 
 If you don't work with getter/setter for property accessors you can look [here](https://javascript.info/property-accessors) how it works.
 
-Let's see how we can use the hook on the page with [static](https://support.wix.com/en/article/velo-reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
+Let's see how we can use the hook on the page with [static](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/frontend-code/reacting-to-user-actions-using-events#adding-an-event-handler-to-an-element) or dynamic event handlers.
 
 **HOME Page Code**
 

@@ -19,7 +19,7 @@ The Wix Blog App has built-in pagination with links. Each button on the paginati
 
 I have reproduced the pagination element that uses unique URLs and creates my own implementation. (Lots of code 😳)
 
-For that, I use a [wix-router](https://support.wix.com/en/article/velo-about-routers) on the server part and I generating custom pagination by [Repeater](https://www.wix.com/velo/reference/$w/repeater) on the front-end part.
+For that, I use a [wix-router](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/routers/about-routers) on the server part and I generating custom pagination by [Repeater](https://www.wix.com/velo/reference/$w/repeater) on the front-end part.
 
 So pagination is a difficult component. I share my solution I hope it will be helpful (interesting) to take a look at how it works.
 
@@ -54,7 +54,7 @@ import wixData from 'wix-data';
 import { ok, redirect, WixRouterSitemapEntry } from 'wix-router';
 // The 'url-join' external npm library.
 // It has to be installed with npm Package Manager before writing a code.
-// More: https://support.wix.com/en/article/velo-working-with-npm-packages
+// More: https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages
 import urlJoin from 'url-join';
 
 const hasContent = (val) => typeof val === 'string' && val.trim() !== '';
@@ -63,7 +63,7 @@ const parseNumber = (val) => ~~Math.abs(+val);
 
 // I use regular Wix Blog databases.
 // These collections are created when you add a Wix Blog app in your site.
-// More: https://support.wix.com/en/article/wix-blog-creating-your-blog
+// More: https://support.wix.com/en/article/wix-blog-adding-and-setting-up-your-blog
 const getCategories = () => {
   return wixData
     .query('Blog/Categories')
@@ -374,7 +374,7 @@ If you have a question then welcome to [discussion on Velo forum](https://www.wi
 ## Resources
 
 - [Live Demo](https://alexanderz5.wixsite.com/pagination/custom-blog)
-- [Wix Blog: Creating Your Blog](https://support.wix.com/en/article/wix-blog-creating-your-blog)
+- [Wix Blog: Creating Your Blog](https://support.wix.com/en/article/wix-blog-adding-and-setting-up-your-blog)
 - [wix-router](https://www.wix.com/velo/reference/wix-router)
 
 ## Posts

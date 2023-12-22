@@ -78,7 +78,7 @@ export const initPage = () => {
 }
 ```
 
-For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. We could get a runtime error and, we should debug it with console or [site logs](https://support.wix.com/en/article/velo-about-site-monitoring).
+For me, it's the main reason for don't use this pattern. The element could be removed or renamed at any time, and we don't have any editor hints, errors, or warnings to catch it. We could get a runtime error and, we should debug it with console or [site logs](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/logs/about-logs-formerly-site-monitoring).
 
 However, this pattern is very commonly used. So, let's do it a little bit safer.
 

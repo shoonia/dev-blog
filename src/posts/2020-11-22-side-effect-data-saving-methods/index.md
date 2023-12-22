@@ -17,7 +17,7 @@ image: '/images/side-effect500x500.jpeg'
   alt="a picture by motive to serials 'Tales From The Loop'"
 />
 
-We have three methods for manipulation of the database collection that has the same side effect. I found this behavior when it broke my logic in the [data hook](https://support.wix.com/en/article/velo-using-data-hooks).
+We have three methods for manipulation of the database collection that has the same side effect. I found this behavior when it broke my logic in the [data hook](https://dev.wix.com/docs/develop-websites/articles/databases/wix-data/hooks/using-data-hooks).
 
 The pasted `item` is mutating after any of these methods is done:
 
@@ -61,7 +61,7 @@ We can see above what, after inserting a new item, it is mutated and item has ne
 
 I have a two collection on the site, a Private (only for admins) and Public (for any one).
 
-In my case, I used a [data hook](https://support.wix.com/en/article/velo-about-data-hooks) that saves a new item to Private collection, and inside <mark>data hook</mark> for Private collection I create a new row for Public collection with part of initial data.
+In my case, I used a [data hook](https://dev.wix.com/docs/develop-websites/articles/databases/wix-data/hooks/about-data-hooks) that saves a new item to Private collection, and inside <mark>data hook</mark> for Private collection I create a new row for Public collection with part of initial data.
 
 **backend/data.js**
 

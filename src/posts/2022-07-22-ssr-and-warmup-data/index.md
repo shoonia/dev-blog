@@ -392,7 +392,7 @@ $w.onReady(async function () {
 
 - [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
 - [Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
-- [Velo: About the Page Rendering Process](https://support.wix.com/en/article/velo-about-the-page-rendering-process)
+- [Velo: About the Page Rendering Process](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/frontend-code/page-rendering/about-the-page-rendering-process)
 
 ## Posts
 

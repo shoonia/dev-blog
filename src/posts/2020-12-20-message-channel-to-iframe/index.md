@@ -644,7 +644,7 @@ on(type, cb) {
 
 - [Demo](https://shoonia.wixsite.com/blog/channel)
 - [Wix Editor Elements - `HtmlComponent`](https://www.wix.com/velo/reference/$w/htmlcomponent)
-- [Velo: Working with the HTML iframe Element](https://support.wix.com/en/article/velo-working-with-the-html-iframe-element)
+- [Velo: Working with the HTML iframe Element](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/other-elements/html-i-frame-element/working-with-the-html-iframe-element)
 
 ## Posts
 
