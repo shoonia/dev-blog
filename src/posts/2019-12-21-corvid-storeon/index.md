@@ -1,21 +1,12 @@
 ---
 permalink: '/corvid-storeon/'
 date: '2019-12-21T12:00:00.000Z'
-modified: '2021-04-25T12:00:01.000Z'
+modified: '2023-12-23T12:00:01.000Z'
 lang: 'en'
 title: 'A tiny event-based state manager Storeon for Velo'
 description: 'In this article, we explain how to manage an state in Velo with a light-weight and robust solution: Storeon, an event-based state manager'
 image: 'https://static.wixstatic.com/media/e3b156_d4b49b51e9cd40a5ac38f7a4cfa23d39~mv2.png/v2/fill/w_300,h_300/cs.png'
 ---
-
-<p>
-  <small>
-    <time datetime="2021-01-06T12:00:00.000Z">Update: Jan 6, 2021</time>
-    <a href="https://www.youtube.com/watch?v=iAWEOpkUz-U">
-      Corvid changed name to Velo.
-    </a>
-  </small>
-</p>
 
 # A tiny event-based state manager Storeon for Velo
 
@@ -38,7 +29,7 @@ We will create a traditional study app with counters. I will use two counters to
 <figure>
   <figcaption>
 
-  At first, we need to install the library from [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+  At first, we need to install the library from [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
   </figcaption>
   <div class="filetree" role="img" aria-label="Package Manager panel in Wix editor, installing storeon-velo">
     <div class="filetree_tab filetree_row">
@@ -50,7 +41,7 @@ We will create a traditional study app with counters. I will use two counters to
     </div>
     <div class="filetree_tab filetree_row">
       <img src="/assets/images/i/npm.svg" alt=""/>
-      storeon-velo (v.2.1.0)
+      storeon-velo (v.4.0.0)
     </div>
   </div>
 </figure>
@@ -102,9 +93,10 @@ const counterModule = (store) => {
 // createStoreon() returns 4 methods to work with store
 export const {
   getState, // <- will return current state.
+  setState, // <- set partial state.
   dispatch, // <- will emit an event with optional data.
   connect, // <- connect to state by property key.
-  connectPage, // <- wrapper around $w.onReady()
+  readyStore, // <- start to observe the state changes
 } = createStoreon([counterModule]);
 ```
 
@@ -123,17 +115,15 @@ Letʼs add two text elements to display our counter value, and four buttons for 
 Of course, we have to import the store methods from the public file to the page's code.
 
 ```js
-import { getState, dispatch, connect, connectPage } from 'public/store';
+import { getState, dispatch, connect, readyStore } from 'public/store';
 ```
 
 With `connect("key", callback)`, we can subscribe to any store properties, and the callback function will be run when the page is loaded and each time when the listed property changes.
 
-The `connectPage(callback)` is a wrapper around the `$w.onReady(callback)`. With `dispatch(event, [data])`, we will emit events.
-
 **Page Code**
 
 ```js
-import { getState, dispatch, connect, connectPage } from 'public/store';
+import { getState, dispatch, connect, readyStore } from 'public/store';
 
 // Connect to property "x".
 // The callback function will be run when the page loads ($w.onReady())
@@ -151,12 +141,8 @@ connect('y', (state) => {
   $w('#textY').text = String(state.y);
 });
 
-// Wrapper around $w.onReady()
-// The callback function will be run once.
-connectPage((state) => {
-  // Here we also have an object with initial state
-  console.log('onReady runs', state);
 
+$w.onReady(() => {
   // X counter events
   $w('#buttonIncX').onClick(() => {
     dispatch('INCREMENT_X');
@@ -174,6 +160,9 @@ connectPage((state) => {
   $w('#buttonDecY').onClick(() => {
     dispatch('DECREMENT_Y');
   });
+
+  // initialize observe of the state changes
+  return readyStore();
 });
 ```
 
