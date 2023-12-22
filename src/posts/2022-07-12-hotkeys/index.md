@@ -18,7 +18,7 @@ We have a task to add some hotkey combinations to the Wix site. The Velo doesn't
 
 ## Custom Element
 
-The custom element is a build-in browser set of JavaScript APIs that allow you to define your own custom elements and their behavior, which can then be used in your user interface. Velo has integration with Custom Elements APIs. We can use this technology on Wix Site. [About Custom Elements](https://support.wix.com/en/article/velo-about-custom-elements)
+The custom element is a build-in browser set of JavaScript APIs that allow you to define your own custom elements and their behavior, which can then be used in your user interface. Velo has integration with Custom Elements APIs. We can use this technology on Wix Site. [About Custom Elements](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/custom-elements/about-custom-elements)
 
 The Custom Element is available only on the Wix Site with its own domain (*not a free Wix domain like [user.wixsite.com/sitename](https://shoonia.wixsite.com/blog)*) it's a security reason.
 
@@ -103,7 +103,7 @@ In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/t
 <figure>
   <figcaption>
 
-  [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+  [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
   </figcaption>
   <div class="filetree" role="img" aria-label="package manager sidebar">
     <div class="filetree_tab filetree_row">
@@ -302,7 +302,7 @@ Do you have any questions? 🐦 [I'm on Twitter](https://x.com/_shoonia) ✍️
 ## Resources
 
 - [Wix Editor: Adding a Custom Element to Your Site](https://support.wix.com/en/article/wix-editor-adding-a-custom-element-to-your-site#adding-the-custom-element)
-- [Velo: About Custom Elements](https://support.wix.com/en/article/velo-about-custom-elements)
+- [Velo: About Custom Elements](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/custom-elements/about-custom-elements)
 - [Velo APIs: CustomElement](https://www.wix.com/velo/reference/$w/customelement)
 
 ### Web components

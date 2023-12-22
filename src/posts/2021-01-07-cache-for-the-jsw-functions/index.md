@@ -21,7 +21,7 @@ image: 'https://static.wixstatic.com/media/e3b156_8466d2a5924640ecb8e6cf41e1151d
 
 ## Motivation
 
-One of my lovely feature in the Velo sites it's the [Web Modules](https://support.wix.com/en/article/velo-web-modules-calling-backend-code-from-the-frontend). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
+One of my lovely feature in the Velo sites it's the [Web Modules](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/backend-code/web-modules/calling-backend-code-from-the-frontend). It's the powerful API that provides calling server-side code from the client. Under the hood, this API using [Ajax](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) requests to the backend. For us, it looks like just a regular export of function, but the reality, each call of the **Web Modules** function will execute the new HTTP request to the backend.
 
 In this article, we create a caching mechanism for backend functions. If your `jsw` function always returns the same response then we don't need to execute extra HTTP requests for each call. We can cache the first response and reuse it for the next calls.
 
@@ -455,7 +455,7 @@ export const memo = (func, maxAge = Infinity) => {
 - [MDN: Standard built-in objects - Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 - [Learn: Map and Set](https://javascript.info/map-set)
 - [MDN: `Promise.resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
-- [Velo Web Modules: Calling Server-Side Code from the Front-End](https://support.wix.com/en/article/velo-web-modules-calling-backend-code-from-the-frontend)
+- [Velo Web Modules: Calling Server-Side Code from the Front-End](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/backend-code/web-modules/calling-backend-code-from-the-frontend)
 - [Live Demo](https://shoonia.wixsite.com/blog/cache)
 
 ## Posts

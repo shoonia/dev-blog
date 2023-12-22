@@ -38,7 +38,7 @@ Online checker of current Node.js version on Velo backend.
 ## Resources
 
 - [Velo: Node.js Server](https://www.wix.com/velo/feature/node.js-server)
-- [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
 - [Velo: Available list of npm packages](https://www.wix.com/velo/npm-modules)
 
 ## Tools

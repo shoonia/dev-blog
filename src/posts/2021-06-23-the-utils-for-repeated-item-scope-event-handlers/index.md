@@ -14,7 +14,7 @@ image: '/assets/images/velo.png'
 
 In the article ["Event handling of Repeater Item"](/event-handling-of-repeater-item/), we considered how to handle events in the repeater items and why we shouldn't nest event handler inside the Repeater loop. There we created a code snippet that encapsulates the logic for receiving item selector and item data.
 
-Copying and pasting the snippet of code isn't comfortable. Therefore I moved these little helpers to npm package [repeater-scope](https://github.com/shoonia/repeater-scope). You can install this package using [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+Copying and pasting the snippet of code isn't comfortable. Therefore I moved these little helpers to npm package [repeater-scope](https://github.com/shoonia/repeater-scope). You can install this package using [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
 
 <figure>
   <figcaption>
@@ -115,8 +115,8 @@ I hope this small library will helpful in your projects too.
 ## Resources
 
 - [GitHub: `repeater-scope`](https://github.com/shoonia/repeater-scope)
-- [Velo: About Packages](https://support.wix.com/en/article/velo-about-packages)
-- [Velo: Understanding the Scope of Selector Functions](https://support.wix.com/en/article/velo-understanding-the-scope-of-selector-functions)
+- [Velo: About Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
+- [Velo: Understanding the Scope of Selector Functions](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/repeaters/understanding-the-scope-of-selector-functions)
 
 ## Posts
 

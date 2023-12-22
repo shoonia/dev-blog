@@ -34,11 +34,11 @@ $w("#repeater1").onItemReady( ($item, itemData, index) => {
 });
 ```
 
-We need to control the number of elements and try to use fewer elements than we can. For this, we consider using templates. But this approach has a restriction. We can't use it with the [database collections UI](https://support.wix.com/en/article/velo-working-with-wix-data). We can use it only with code.
+We need to control the number of elements and try to use fewer elements than we can. For this, we consider using templates. But this approach has a restriction. We can't use it with the [database collections UI](https://dev.wix.com/docs/develop-websites/articles/databases/wix-data/data-api/working-with-wix-data). We can use it only with code.
 
 ## Install Lodash
 
-We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with the [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages).
+We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages).
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
@@ -98,7 +98,7 @@ $w.onReady(function () {
 
 **How it works:**
 
-1. Import Lodash library. The first you have to install the library from the [Package Manager](https://support.wix.com/en/article/velo-working-with-npm-packages)
+1. Import Lodash library. The first you have to install the library from the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
 2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default. [more](https://lodash.com/docs/4.17.15#template)
 3. Pattern string with two keys `{{firstName}}` and `{{lastName}}`.
 4. Creating a compiled template, that returns a function `compiled()` that will accept an object with properties. `{ firstName: "John", lastName: "Doe" }`.
@@ -160,7 +160,7 @@ It works faster now because we have only two elements in the repeater one image 
 
 ## Resources
 
-- [Velo: Working with npm Packages](https://support.wix.com/en/article/velo-working-with-npm-packages)
+- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
 - [Lodash: _.tempalate();](https://lodash.com/docs/4.17.15#template)
 - [Velo: get a text element's HTML content](https://www.wix.com/velo/reference/$w/text/html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)

@@ -39,7 +39,7 @@ The Velo documentation is supposed to use the next way for handling events using
 <figure>
   <figcaption>
 
-  **Velo:** [Understanding the Scope of Selector Functions](https://support.wix.com/en/article/velo-understanding-the-scope-of-selector-functions#repeated-item-scope)
+  **Velo:** [Understanding the Scope of Selector Functions](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/repeaters/understanding-the-scope-of-selector-functions#repeated-item-scope)
   </figcaption>
 
   ```js
@@ -135,7 +135,7 @@ Magic. For me, it's a very expressive code. And it's a good alternative to all k
 
 ## Resources
 
-- [Velo: Understanding the Scope of Selector Functions](https://support.wix.com/en/article/velo-understanding-the-scope-of-selector-functions)
+- [Velo: Understanding the Scope of Selector Functions](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/repeaters/understanding-the-scope-of-selector-functions)
 - [Retrieve Repeater Item Data When Clicked](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
 - [Get the element context in which an event was fired](https://www.wix.com/velo/reference/$w/event/context)
 

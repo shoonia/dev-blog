@@ -110,7 +110,7 @@ postBody: '
 
 # Velo: Secret Manager Benchmark
 
-Online checker of performance benchmark for Velo [Secrets Manager](https://support.wix.com/en/article/velo-about-the-secrets-manager).
+Online checker of performance benchmark for Velo [Secrets Manager](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/secrets-manager/about-the-secrets-manager).
 
 <textarea
   id="output-area"
@@ -150,7 +150,7 @@ export async function getBenchmark() {
 
 ## Resources
 
-- [About the Secrets Manager](https://support.wix.com/en/article/velo-about-the-secrets-manager)
+- [About the Secrets Manager](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/secrets-manager/about-the-secrets-manager)
 - [Secrets Manager API](https://www.wix.com/velo/reference/wix-secrets-backend/introduction)
 
 ## Tools
