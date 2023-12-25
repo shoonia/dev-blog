@@ -38,7 +38,7 @@
     "eslint": "^8.56.0",
     "stylelint": "^16.0.2",
     "stylelint-config-css-modules": "^4.4.0",
-    "stylelint-config-standard": "^35.0.0",
+    "stylelint-config-standard": "^36.0.0",
     "uvu": "^0.5.6"
   },
   "repository": {
