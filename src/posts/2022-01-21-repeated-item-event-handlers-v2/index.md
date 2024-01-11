@@ -1,10 +1,10 @@
 ---
 permalink: '/repeated-item-event-handlers-v2/'
 date: '2022-01-21T12:00:00.000Z'
-modified: '2022-01-21T12:00:00.000Z'
+modified: '2024-01-11T12:00:00.000Z'
 lang: 'en'
 title: 'Velo by Wix: Repeated item event handlers v2.0'
-description: "It's my third post about event handling in repeated items. I show you a way that always has been in the documentation. I'm surprised why I hadn't noticed that before?"
+description: "Here's my third post about event handling in repeated items. I'll show you a method that has always been mentioned in the documentation. I'm surprised that I hadn't noticed it earlier."
 image: '/assets/images/i300x300.jpg'
 ---
 
@@ -21,20 +21,20 @@ image: '/assets/images/i300x300.jpg'
 
 # Velo by Wix: Repeated item event handlers v2.0
 
-*It's my third post about event handling in repeated items. I show you a way that always has been in the documentation. I'm surprised why I hadn't noticed that before?*
+*Here's my third post about event handling in repeated items. I'll show you a method that has always been mentioned in the documentation. I'm surprised that I hadn't noticed it earlier.*
 
 ![concept art by television serial - tales from the loop](/assets/images/a.jpg)
 
-Yes, and again the event handling in Repeater. For me, the event handling of the repeated items was maybe the first confusion in my Velo projects.
+Yes, and the event handling in Repeater is something that I found to be confusing in my Velo projects initially.
 
-I wrote two articles about it, you can find them in this blog:
+I have written two articles on this topic, which you can find on this blog.
 
-1. [Event handling of Repeater Item](/event-handling-of-repeater-item/) - here we considered how to handle events in the repeated items and we created a primitive helper function.
-2. [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/) - here we created a more smart code snippet that can automatically receive parent Repeater item data from the event.
+1. [Event handling of Repeater Item](/event-handling-of-repeater-item/) - in this section, we will explore how to efficiently manage events for repeated items. To simplify the process, we have developed a practical helper function.
+2. [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/) - Here, we have developed an improved code snippet that intelligently retrieves parent Repeater item data from the event automatically.
 
-The main idea of these two articles, we shouldn't nest an event handler in any Repeater loop. It could be a reason when a callback function runs a few times by one event.
+The main idea of these two articles is that it is generally not recommended to nest an event handler inside any Repeater loop. Doing so can cause issues where the callback function is triggered multiple times by a single event.
 
-The Velo documentation is supposed to use the next way for handling events using [event context](https://www.wix.com/velo/reference/$w/event/context).
+The Velo documentation uses the following method to handle events using [event context](https://www.wix.com/velo/reference/$w/event/context).
 
 <figure>
   <figcaption>
@@ -53,7 +53,7 @@ The Velo documentation is supposed to use the next way for handling events using
   ```
 </figure>
 
-In most cases, it's enough. But, if we need to receive an item data object or index of the fired item, the documentation provides something like this:
+In most cases, the existing information is sufficient. However, if we require more specific details such as the item's data object or the index of the item that was triggered, the documentation offers the following way:
 
 <figure>
   <figcaption>
@@ -88,11 +88,11 @@ The Repeater has the [`forItems()`](https://www.wix.com/velo/reference/$w/repeat
     <cite>Velo API Reference:</cite>
   </figcaption>
   <blockquote cite="https://www.wix.com/velo/reference/$w/repeater/foritems">
-    Use the <code>forItems()</code> function to run a function on a specified list of repeated items. You can use the callback function to update or pull information from the specified repeated items
+    Use the <code>forItems()</code> function to run a function on a specified list of repeated items. You can use the callback function to update or retrieve information from the specified repeated items.
   </blockquote>
 </figure>
 
-In the documentation, we can see the next example, which runs changes for two items by IDs.
+In the documentation, there is an example code that updates the data of two items based on their IDs.
 
 <figure>
   <figcaption>
@@ -107,13 +107,13 @@ In the documentation, we can see the next example, which runs changes for two it
   ```
 </figure>
 
-Really, it's a very cool opportunity. It's always has been in the documentation. Why I hadn't noticed that before?
+Wow, this is a fantastic opportunity! It's always been right there in the documentation. I can't believe I didn't notice it earlier.
 
 For example, we can solve our current issue with receiving item data.
 
 <figure>
   <figcaption>
-    <strong>Velo: Retrieve items scope selector function, item data, and index</strong>
+    <strong>Velo: Retrieve item scope selector function, item data, and index</strong>
   </figcaption>
 
   ```js
@@ -131,7 +131,7 @@ For example, we can solve our current issue with receiving item data.
   ```
 </figure>
 
-Magic. For me, it's a very expressive code. And it's a good alternative to all known methods that I use before, like: [repeater-scope npm package](https://github.com/shoonia/repeater-scope).
+Magic. For me, it's a very expressive code. And it's a good alternative to all known methods that I used before, like:[repeater-scope npm package](https://github.com/shoonia/repeater-scope).
 
 ## Resources
 
