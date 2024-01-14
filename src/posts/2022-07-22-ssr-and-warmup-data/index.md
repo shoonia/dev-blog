@@ -191,7 +191,7 @@ Using the Warmup Data API, we are able to transfer data with a page code from th
   <figcaption>
     <cite>Velo API Reference:</cite>
   </figcaption>
-  <blockquote cite="https://www.wix.com/velo/reference/wix-window/warmupdata-obj">
+  <blockquote cite="https://www.wix.com/velo/reference/wix-window-frontend/warmupdata">
     The Warmup Data API is used to optimize data loading for sites that render both on the server and in the browser, allowing costly data fetching operations to be done only once.
   </blockquote>
 </figure>
@@ -199,7 +199,7 @@ Using the Warmup Data API, we are able to transfer data with a page code from th
 <figure>
   <figcaption>
 
-  Velo: [The Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj) example
+  Velo: [The Warmup Data API](https://www.wix.com/velo/reference/wix-window-frontend/warmupdata) example
   </figcaption>
 
   ```js
@@ -391,7 +391,7 @@ $w.onReady(async function () {
 ## Resources
 
 - [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
-- [Warmup Data API](https://www.wix.com/velo/reference/wix-window/warmupdata-obj)
+- [Warmup Data API](https://www.wix.com/velo/reference/wix-window-frontend/warmupdata)
 - [Velo: About the Page Rendering Process](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/frontend-code/page-rendering/about-the-page-rendering-process)
 
 ## Posts
