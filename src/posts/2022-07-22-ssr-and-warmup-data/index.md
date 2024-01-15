@@ -1,31 +1,31 @@
 ---
 permalink: '/ssr-and-warmup-data/'
 date: '2022-07-22T12:00:00.000Z'
-modified: '2022-07-22T12:00:00.000Z'
+modified: '2024-01-15T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Server Side Rendering and Warmup Data APIs'
-description: 'Learn how to optimize data receiving and reduce the Wix site load time'
+description: 'Learn how to optimize data retrieval and reduce the Wix site load time'
 image: '/assets/images/tftl.jpg'
 ---
 
 # Velo: Server Side Rendering and Warmup Data APIs
 
-*Learn how to optimize data receiving and reduce the Wix site load time*
+*Learn how to optimize data retrieval and reduce the Wix site load time*
 
-![poster from the serial - tales from the loop](/assets/images/tftl.jpg)
+![a poster for the TV show "Tales from the Loop"](/assets/images/tftl.jpg)
 
-In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a start point for interacting with the page. This method ensures that all the page elements have finished loading and we can interact with them. The life cycle of the Velo site includes two runs of the `$w.onReady()` method.
+In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a starting point for interacting with the page. This method ensures that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
 
-The first run of the `$w.onReady()` callback happens on the server-side when the server builds the HTML page. The server executes a Velo code and puts a result into HTML (if it's possible).
+The first run of the `$w.onReady()` callback happens on the server-side when the server builds the HTML page. The server executes Velo code and puts a result into HTML (if it's possible).
 
-The second run goes on the client-side in the browser when a site page has loaded.
+The second run occurs on the client-side in the browser after a site page has loaded.
 
 <figure>
   <figcaption>
     <cite>Velo API Reference:</cite>
-    <a href="https://www.wix.com/velo/reference/wix-window/rendering-obj/introduction">Rendering</a>
+    <a href="https://www.wix.com/velo/reference/wix-window-frontend/rendering/introduction">Rendering</a>
   </figcaption>
-  <blockquote cite="https://www.wix.com/velo/reference/wix-window/rendering-obj/introduction">
+  <blockquote cite="https://www.wix.com/velo/reference/wix-window-frontend/rendering/introduction">
     When possible, the rendering process is split in two in order to improve performance. The first cycle in the process happens in the server-side code and the second cycle happens in the client-side code. If not possible on the server-side, all rendering happens client-side.
   </blockquote>
 </figure>
@@ -40,25 +40,25 @@ $w.onReady(function () {
 });
 ```
 
-Code will be executed on the server-side then a result will be added to the HTML page. And the page will send to the client-side with inserted data.
+Code will be executed on the server-side, then a result will be added to the HTML page. The page will then be sent to the client-side with the inserted data.
 
 ## Rendering API
 
-We can control the step of the render cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env).
+We can control the step of the render cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window-frontend/rendering/env).
 
 `env` property returns <mark>backend</mark> when rendering on the server-side and <mark>browser</mark> when rendering on the client-side.
 
 Let's update the code to see it. It's a string with env value and timestamp.
 
 ```js
-import { rendering } from 'wix-window';
+import { rendering } from 'wix-window-frontend';
 
 $w.onReady(function () {
   $w('#text1').text = `${rendering.env}: ${Date.now()}`;
 });
 ```
 
-Now, when we reload the page we can see that HTML content has <mark>backend</mark> value. When the page finished loading then we see the <mark>browser</mark> value, it's the second run of `$w.onReady()` on the client-side updates a value of text.
+Now, when we reload the page we can see that HTML content has <mark>backend</mark> value. When the page finished loading, then we see the <mark>browser</mark> value, it's the second run of `$w.onReady()` on the client-side that updates the value of text.
 
 <figure>
   <figcaption>
@@ -83,7 +83,7 @@ What about async operations?
 
 If we want to add <abbr title="Server-side rendering">SSR</abbr> with some async operation, we should wait for the promise to be [fulfilled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#:~:text=A%20Promise%20is%20in,that%20the%20operation%20failed.).
 
-Let's have a look at an example. Creates a query for retrieving items from a database and prints them as a string.
+Let's have a look at an example. Create a query for retrieving items from a database and print them as a string.
 
 ```js
 import wixData from 'wix-data';
@@ -112,14 +112,14 @@ As we can see, the <abbr title="Server-side rendering">SSR</abbr> doesn't work w
   ></video>
   <figcaption>
     <em>
-      I'm using the throttling of the network in Chrome DevTools to reduce Internet speed. It may be helpful for debugging.
+      I'm using the network throttling feature in Chrome DevTools to reduce internet speed. It may be helpful for debugging.
     </em>
   </figcaption>
 </figure>
 
-It happened because `$w.onReady()` doesn't wait for a promise fulfilled on the server-side. The server doesn't wait for a query result and sends the HTML page with default content.
+It happened because `$w.onReady()` doesn't wait for a promise to be fulfilled on the server-side. The server doesn't wait for a query result and sends the HTML page with default content.
 
-To fix is very simple, we should wait for a promise result. The `$w.onReady()` supports the async callback functions. Let's update the code with [`async/await`](https://javascript.info/async-await) operators.
+To fix it is very simple, we should wait for a promise result. The `$w.onReady()` supports the async callback functions. Let's update the code with [`async/await`](https://javascript.info/async-await) operators.
 
 ```js
 import wixData from 'wix-data';
@@ -148,14 +148,14 @@ Now, we can see the <abbr title="Server-side rendering">SSR</abbr> starts to wor
 </figure>
 
 <aside>
-❗ don't forget to turn off the throttling of the network after testing 😉
+❗ Don't forget to turn off the network throttling after testing 😉
 </aside>
 
 ### Long async calls slow down site performance
 
 We should be careful using `$w.onReady()` with an async callback. Long async tasks slow down the render of the page.
 
-For example, we add a promise with a delay of 5 seconds into the callback.
+For example, we add a timeout promise with a delay of 5 seconds into the callback.
 
 ```js
 $w.onReady(async function () {
@@ -166,9 +166,9 @@ $w.onReady(async function () {
 });
 ```
 
-If we run this code, we will see that the server will wait for 5 seconds to complete. And after the HTML page has loaded on the client, we again wait for 5 seconds before seeing the result.
+If we run this code, we will see that the server will wait for 5 seconds to complete. And after the HTML page has loaded on the client, we will again wait for 5 seconds before seeing the result.
 
-We wait twice for the promise to be fulfilled on the server and on the client.
+We wait twice for the promise to be fulfilled on the server and the client.
 
 <figure>
   <img
@@ -178,14 +178,14 @@ We wait twice for the promise to be fulfilled on the server and on the client.
   />
   <figcaption>
     <em>
-      Network inspector, time to load the HTML page from the server with a delay of 5 seconds
+      Network inspector, timing to load the HTML page from the server with a delay of 5 seconds
     </em>
   </figcaption>
 </figure>
 
 ## The Warmup Data API
 
-Using the Warmup Data API, we are able to transfer data with a page code from the server and read this data on the client.
+Using the Warmup Data API, we are able to transfer data with a page code from the server and read this data on the client side.
 
 <figure>
   <figcaption>
@@ -203,7 +203,7 @@ Using the Warmup Data API, we are able to transfer data with a page code from th
   </figcaption>
 
   ```js
-  import { warmupData, rendering } from 'wix-window';
+  import { warmupData, rendering } from 'wix-window-frontend';
 
   // Set data on the server-side
   if (rendering.env === 'backend') {
@@ -219,11 +219,11 @@ Using the Warmup Data API, we are able to transfer data with a page code from th
   ```
 </figure>
 
-We can use the Warmup Data to reduce requests to a database. There we save the query response to `warmupData` on the server and read it on the client without additional database request.
+We can use the Warmup Data to reduce requests to a database. We save the query response to `warmupData` on the server and read it on the client without additional database requests.
 
 ### Implement Warmup Data util function
 
-We'll implement a feature that will enable server-side rendering and use the Warmup Data to prevent second data request on the client-side, it reduces a time of waiting.
+We'll implement a feature that will enable server-side rendering and use the Warmup Data to prevent a second data request on the client-side, reducing the waiting time.
 
 Create a file for util function.
 
@@ -249,17 +249,17 @@ It is a wrapper function. It has two arguments:
   <dt>
     First argument - <em>key</em>
   </dt>
-  <dd>It's a unique key corresponding to data for the Warmup Data</dd>
+  <dd>It's a unique key corresponding to the data for the Warmup Data.</dd>
   <dt>
     Second argument - <em>func</em>
  </dt>
-  <dd>It's an async function which result we want to use with the Warmup Data.</dd>
+  <dd>It's an async function whose result we want to use with the the Warmup Data.</dd>
 </dl>
 
 **public/warmupUtil.js**
 
 ```js
-import { warmupData, rendering } from 'wix-window';
+import { warmupData, rendering } from 'wix-window-frontend';
 
 export const warmupUtil = async (key, func) => {
   // On the server-side
@@ -283,21 +283,21 @@ export const warmupUtil = async (key, func) => {
     return data;
   }
 
-  // If we don't have cache data from the server,
+  // If we don't have cached data from the server,
   // then we do a backup call on the client
   return func();
 };
 ```
 
-On the server, it waits for the async function result and sets it to the Warmup Data.
+On the server, it waits for the asynchronous function result and sets it to the Warmup Data.
 
-On the client, it uses data from the Warmup Data. If it has no data (some glitch on the server), it will call *func* on the client.
+On the client, it uses data from the Warmup Data. If it has no data (due to some glitch on the server), it will call *func* on the client.
 
 ## Parallel execution for a few async tasks
 
-We should remember the `$w.onReady()` effect of page loading. If we want to use a few async functions in `$w.onReady()` callback then we should avoid using them in queue one by one.
+We should remember the `$w.onReady()` effect of page loading. If we want to use a few async functions in `$w.onReady()` callback, we should avoid using them in a queue one by one.
 
-For example, if each of these async functions executes at 100 milliseconds, the `$w.onReady()` will need to wait for 300 milliseconds for complete execution all of them.
+For example, if each of these async functions executes in 100 milliseconds, the `$w.onReady()` will need to wait for 300 milliseconds for the complete execution of all of them.
 
 ```js
 // ❌ wrong approach!!
@@ -331,7 +331,7 @@ $w.onReady(async function () {
 
 ## Code Snippets
 
-Here is a code snippet with JSDoc annotation. And an example of use.
+Here is a code snippet with JSDoc annotations, and an example of its use.
 
 <details>
   <summary>
@@ -339,7 +339,7 @@ Here is a code snippet with JSDoc annotation. And an example of use.
   </summary>
 
 ```js
-import { warmupData, rendering } from 'wix-window';
+import { warmupData, rendering } from 'wix-window-frontend';
 
 /**
  * @template T
@@ -390,7 +390,7 @@ $w.onReady(async function () {
 
 ## Resources
 
-- [Rendering `env` API](https://www.wix.com/velo/reference/wix-window/rendering-obj/env)
+- [Rendering `env` API](https://www.wix.com/velo/reference/wix-window-frontend/rendering/env)
 - [Warmup Data API](https://www.wix.com/velo/reference/wix-window-frontend/warmupdata)
 - [Velo: About the Page Rendering Process](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/frontend-code/page-rendering/about-the-page-rendering-process)
 
