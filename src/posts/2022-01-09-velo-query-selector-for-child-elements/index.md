@@ -474,4 +474,4 @@ If you have any questions, feel free to ask me on my <a href="https://x.com/_sho
 - [Promise Queue](/promise-queue/)
 - [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)
 - [Imitating hover event on repeater container](/corvid-imitate-hover-event/)
-- [Short links to create a new Wix / Editor X site editor](/wix-velo-editorx-short-links/)
+- [Short links for Creating a New Wix / Editor X Site Editor](/wix-velo-editorx-short-links/)

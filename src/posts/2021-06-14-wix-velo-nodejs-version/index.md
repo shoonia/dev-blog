@@ -1,19 +1,19 @@
 ---
 permalink: '/wix-velo-nodejs-version/'
 date: '2021-06-14T12:00:00.000Z'
-modified: '2021-06-25T12:00:00.000Z'
+modified: '2024-01-16T12:00:00.000Z'
 lang: 'en'
-title: 'Current Node.js version on Velo by Wix'
-description: 'Online checker of current Node.js version on Velo backend'
+title: 'Check the Current Node.js Version on Velo by Wix'
+description: 'Online checker for the current Node.js version on the Velo backend'
 image: '/assets/images/velo.png'
 linkPreload: '
 <link href="https://shoonia.wixsite.com/blog/_functions/nodejs_version" rel="preload" as="fetch" crossorigin="anonymous">
 '
 ---
 
-# Current Node.js version on Velo by Wix
+# Check the Current Node.js Version on Velo by Wix
 
-Online checker of current Node.js version on Velo backend.
+Online checker for the current Node.js version on the Velo backend.
 
 <mark>Checked now: <span id="ts">Loading...</span></mark>
 <output id="error" style="color:red">&nbsp;</output>
@@ -44,7 +44,7 @@ Online checker of current Node.js version on Velo backend.
 ## Tools
 
 - [Secret Manager Benchmark](/secret-manager-benchmark/)
-- [Online generator and validator for Velo `jobs.config` scheduling file](https://shoonia.github.io/jobs.config/)
+- [Online Generator and Validator for Velo `jobs.config` Scheduling Files](https://shoonia.github.io/jobs.config/)
 
 <script>
 {
