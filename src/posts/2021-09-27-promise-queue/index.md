@@ -416,6 +416,6 @@ $w.onReady(() => {
 
 ## Posts
 
-- [Short links to create a new Wix / Editor X site editor](/wix-velo-editorx-short-links/)
+- [Short links for Creating a New Wix / Editor X Site Editor](/wix-velo-editorx-short-links/)
 - [Custom pagination with unique URLs](/custom-pagination-with-unique-urls/)
 - [The utils for repeated item scope event handlers](/the-utils-for-repeated-item-scope-event-handlers/)

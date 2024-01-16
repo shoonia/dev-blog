@@ -1,10 +1,10 @@
 ---
 permalink: '/secret-manager-benchmark/'
 date: '2021-07-05T12:00:00.000Z'
-modified: '2021-07-05T12:00:00.000Z'
+modified: '2024-01-16T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Secrets Manager Benchmark'
-description: 'Online checker of performance benchmark for Velo Secrets Manager'
+description: 'Online checker of performance benchmarks for Velo Secrets Manager'
 image: '/assets/images/velo.png'
 linkPreload: '
 <link href="https://shoonia.wixsite.com/sm-benchmark/_functions/benchmark" rel="preload" as="fetch" crossorigin="anonymous">
@@ -80,8 +80,7 @@ head: '
 </style>
 '
 postBody: '
-<script>
-{
+<script type="module">
   let $ = (selector) => document.querySelector(selector);
 
   let all = [];
@@ -103,20 +102,18 @@ postBody: '
   $("#run").addEventListener("click", run);
 
   run();
-}
 </script>
 '
 ---
 
 # Velo: Secret Manager Benchmark
 
-Online checker of performance benchmark for Velo [Secrets Manager](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/secrets-manager/about-the-secrets-manager).
+Online checker of performance benchmarks for Velo [Secrets Manager](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/secrets-manager/about-the-secrets-manager).
 
 <textarea
   id="output-area"
   spellcheck="false"
   placeholder="0"
-  autocomplete="off"
   readonly
 ></textarea>
 <div class="_tool">
@@ -130,7 +127,7 @@ Online checker of performance benchmark for Velo [Secrets Manager](https://dev.w
 
 ## How it works
 
-There is a simple checking. It's calculating milliseconds between the start and the end of the [`getSecret(name: string)`](https://www.wix.com/velo/reference/wix-secrets-backend/getsecret) API call.
+The process involves a straightforward check. It calculates the number of milliseconds that elapse between the start and end of the [`getSecret(name: string)`](https://www.wix.com/velo/reference/wix-secrets-backend/getsecret) API call.
 
 **backand/benchmark.js**
 
@@ -155,5 +152,5 @@ export async function getBenchmark() {
 
 ## Tools
 
-- [Current Node.js version on Velo by Wix](/wix-velo-nodejs-version/)
-- [Online generator and validator for Velo `jobs.config` scheduling file](https://shoonia.github.io/jobs.config/)
+- [Check the Current Node.js Version on Velo by Wix](/wix-velo-nodejs-version/)
+- [Online Generator and Validator for Velo `jobs.config` Scheduling Files](https://shoonia.github.io/jobs.config/)
