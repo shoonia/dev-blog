@@ -1,7 +1,7 @@
 ---
 permalink: '/secret-manager-benchmark/'
 date: '2021-07-05T12:00:00.000Z'
-modified: '2024-01-016T12:00:00.000Z'
+modified: '2024-01-16T12:00:00.000Z'
 lang: 'en'
 title: 'Velo: Secrets Manager Benchmark'
 description: 'Online checker of performance benchmarks for Velo Secrets Manager'
