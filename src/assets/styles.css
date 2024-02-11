@@ -699,13 +699,16 @@ ins.inserted {
  * Banners
  */
 
-.stand-with-ukraine {
+.swu {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 1em;
   padding: 1em;
   background-color: rgb(243 244 246 / 100%);
+}
+
+.swu-link {
+  display: inline-flex;
+  gap: 1em;
 }
 
 /**
