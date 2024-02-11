@@ -1,9 +1,9 @@
 ---
 permalink: '/type-safety-your-code-with-jsdoc/'
 date: '2022-01-28T12:00:00.000Z'
-modified: '2022-01-30T12:00:00.000Z'
+modified: '2024-02-11T12:00:00.000Z'
 lang: 'en'
-title: 'Velo by Wix: Type safety your code with JSDoc'
+title: 'Velo by Wix: Type safety in your code with JSDoc'
 description: 'Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo'
 image: '/assets/images/ins.jpg'
 head: '
@@ -24,13 +24,13 @@ head: '
 '
 ---
 
-# Velo by Wix: Type safety your code with JSDoc
+# Velo by Wix: Type safety in your code with JSDoc
 
 *Built-in code checker, JSDoc annotations, and TypeScript compiler in Velo*
 
 ![concept art by movie - interstellar](/assets/images/ins.jpg)
 
-From time to time, I can see in the big Velo projects how a part of the page code moves to the public files. In most, it's the projects with a few hundred/thousand lines of code per page. I understand why developers do it. Also, sometimes we want to reuse some part of the code for a few site pages. It looks like a good idea to move repeated code to a public file, and reuse it.
+From time to time, I see in large Velo projects how a portion of the page code migrates to the public files. This is mostly observed in projects containing several hundred to thousand lines of code per page. I understand the rationale behind developers' choice to do so. Additionally, there may be instances when we wish to reuse certain parts of the code across multiple site pages. In such cases, it seems beneficial to shift the repetitious code to a public file for easy reuse.
 
 The main problem with this pattern is that doesn't work autocomplete and ID validation of `$w()` selectors in the public files. For example, we want to move a button handler to the public file. And init it on the page code.
 
