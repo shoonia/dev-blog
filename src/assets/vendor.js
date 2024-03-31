@@ -36,9 +36,8 @@ let clipboard = (event) => {
   }
 };
 
-let showHint = (event) => {
+let showHint = (event) =>
   event.target.toggleAttribute('data-open');
-};
 
 let fullscreenHandler = (event) => {
   let pre = event.target?.closest('pre');
