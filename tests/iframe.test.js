@@ -1,5 +1,5 @@
-const { test } = require('uvu');
-const { is } = require('uvu/assert');
+const { test } = require('node:test');
+const { strictEqual } = require('node:assert/strict');
 
 const urls = [
   ['Query selector for child elements', 'https://shoonia.wixsite.com/blog/child-selector'],
@@ -14,8 +14,6 @@ urls.forEach(([title, url]) => {
   test(title, async () => {
     const { status } = await fetch(url);
 
-    is(status, 200);
+    strictEqual(status, 200);
   });
 });
-
-test.run();

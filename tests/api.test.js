@@ -1,6 +1,6 @@
-const { join } = require('path');
-const { test } = require('uvu');
-const { ok, type } = require('uvu/assert');
+const { join } = require('node:path');
+const { test } = require('node:test');
+const { ok, strictEqual } = require('node:assert/strict');
 
 const baseUrl = (path) => join('https://shoonia.wixsite.com', path);
 const getJson = (path) => fetch(baseUrl(path)).then((i) => i.json());
@@ -15,16 +15,14 @@ test('qrcode API', async () => {
 test('benchmark API', async () => {
   const data = await getJson('/sm-benchmark/_functions/benchmark');
 
-  type(data.ts, 'number');
+  strictEqual(typeof data.ts, 'number');
 });
 
 test('nodejs_version API', async () => {
   const data = await getJson('/blog/_functions/nodejs_version');
 
-  type(data.arch, 'string');
-  type(data.platform, 'string');
-  type(data.ts, 'number');
-  type(data.version, 'string');
+  strictEqual(typeof data.arch, 'string');
+  strictEqual(typeof data.platform, 'string');
+  strictEqual(typeof data.ts, 'number');
+  strictEqual(typeof data.version, 'string');
 });
-
-test.run();
