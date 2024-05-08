@@ -8,7 +8,7 @@
   "scripts": {
     "build": "NODE_ENV=production eleventy",
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
-    "lint": "eslint '**/*.js' && stylelint 'src/**/*.css'",
+    "lint": "eslint src/**/*.js tests/**/*.js util/**/*.js && stylelint 'src/**/*.css'",
     "clean": "rm -rf public",
     "serve": "python3 -m http.server -d public",
     "test": "node --test tests/*.test.js"
@@ -17,11 +17,11 @@
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "autoprefixer": "^10.4.19",
-    "cssnano": "^6.1.2",
+    "cssnano": "^7.0.1",
     "emoji-regex": "^10.3.0",
     "feed": "^4.2.2",
     "gemoji": "^6.1.0",
-    "htmlnano": "^2.1.0",
+    "htmlnano": "^2.1.1",
     "mini-css-class-name": "^0.15.1",
     "minify-xml": "^4.4.1",
     "postcss": "^8.4.38",
@@ -31,12 +31,12 @@
     "posthtml-img-autosize": "^0.1.6",
     "sitemap": "^7.1.1",
     "string-hash": "^1.1.3",
-    "terser": "^5.30.0"
+    "terser": "^5.31.0"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.6.7",
-    "eslint": "^8.57.0",
-    "stylelint": "^16.3.1",
+    "@evilmartians/lefthook": "^1.6.10",
+    "eslint": "^9.2.0",
+    "stylelint": "^16.5.0",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-standard": "^36.0.0"
   },
