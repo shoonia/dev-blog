@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     js:
-      run: eslint '**/*.js'
+      run: eslint src/**/*.js tests/**/*.js util/**/*.js
       skip:
         - merge
         - rebase
