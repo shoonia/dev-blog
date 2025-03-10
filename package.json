@@ -4,7 +4,8 @@
   "description": "Web Development Blog",
   "version": "0.1.0",
   "homepage": "https://shoonia.site/",
-  "packageManager": "^npm@10.2.3",
+  "packageManager": "^npm@10.9.0",
+  "type": "module",
   "scripts": {
     "build": "NODE_ENV=production eleventy",
     "start": "NODE_ENV=development eleventy --serve --quiet --port=8000",
@@ -16,11 +17,12 @@
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@eslint/js": "^9.22.0",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.6",
     "emoji-regex": "^10.4.0",
     "feed": "^4.2.2",
-    "gemoji": "^6.1.0",
+    "gemoji": "^8.1.0",
     "htmlnano": "^2.1.1",
     "mini-css-class-name": "^0.15.1",
     "minify-xml": "^4.5.2",

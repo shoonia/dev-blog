@@ -1,18 +1,18 @@
-const { readFile, writeFile } = require('node:fs/promises');
-const postcss = require('postcss');
-const postcssModules = require('postcss-modules');
-const autoprefixer = require('autoprefixer');
-const simpleVars = require('postcss-simple-vars');
-const cssnano = require('cssnano');
-const miniCssClassName = require('mini-css-class-name/postcss-modules');
+import { readFile, writeFile } from 'node:fs/promises';
+import postcss from 'postcss';
+import postcssModules from 'postcss-modules';
+import autoprefixer from 'autoprefixer';
+import simpleVars from 'postcss-simple-vars';
+import cssnano from 'cssnano';
+import miniCssClassName from 'mini-css-class-name/postcss-modules';
 
-const { rootResolve } = require('./halpers');
-const { isProd, debug } = require('./env');
+import { rootResolve } from './halpers.js';
+import { isProd, debug } from './env.js';
 
 const cssFrom = rootResolve('src/assets/styles.css');
 const cssTo = rootResolve('public/assets/styles.css');
 
-exports.compileCss = async () => {
+export const compileCss = async () => {
   const source = await readFile(cssFrom, 'utf8');
 
   if (debug) {
@@ -47,6 +47,6 @@ exports.compileCss = async () => {
   ];
 };
 
-exports.writeCss = async (css) => {
+export const writeCss = async (css) => {
   await writeFile(cssTo, css);
 };

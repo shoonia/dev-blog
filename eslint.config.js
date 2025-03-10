@@ -1,11 +1,11 @@
-const globals = require('globals');
-const recommended = require('@eslint/js/src/configs/eslint-recommended.js');
+import globals from 'globals';
+import js from '@eslint/js';
 
-module.exports = [
-  recommended,
+export default [
+  js.configs.recommended,
   {
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 2023,
       sourceType: 'module',
       globals: {
         ...globals.browser,

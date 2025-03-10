@@ -1,1 +1,1 @@
-module.exports = require('../../util/env');
+export * from '../../util/env.js';

@@ -1,6 +1,7 @@
-const gemoji = require('gemoji');
-const emojiRegex = require('emoji-regex');
-const { isString } = require('./halpers');
+import { gemoji } from 'gemoji';
+import emojiRegex from 'emoji-regex';
+
+import { isString } from './halpers.js';
 
 const emojiRx = emojiRegex();
 const linkRx = /https:\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])/;
@@ -8,7 +9,7 @@ const jsdocTag = /@[a-z-]+/gi;
 
 const map = new Map(gemoji.map((i) => [i.emoji, i.description]));
 
-exports.a11yEmoji = (val) => {
+export const a11yEmoji = (val) => {
   if (emojiRx.test(val)) {
     return val.replace(emojiRx, (i) => {
       if (i === '©') {
@@ -28,7 +29,7 @@ exports.a11yEmoji = (val) => {
   return val;
 };
 
-exports.parseComment = (val) => {
+export const parseComment = (val) => {
   if (
     val.startsWith('/**') && val.includes('@') ||
     val.startsWith('// @ts-')

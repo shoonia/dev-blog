@@ -1,12 +1,12 @@
-const htmlnano = require('htmlnano');
-const posthtml = require('posthtml');
-const imgAutosize = require('posthtml-img-autosize');
-const miniCssClassName = require('mini-css-class-name');
+import htmlnano from 'htmlnano';
+import posthtml from 'posthtml';
+import imgAutosize from 'posthtml-img-autosize';
+import miniCssClassName from 'mini-css-class-name';
 
-const { rootResolve, isString, isAbsoluteUrl, fileHash } = require('./halpers');
-const { isProd, debug } = require('./env');
-const { a11yEmoji, parseComment } = require('./stringParse');
-const { minifyJs } = require('./configs');
+import { rootResolve, isString, isAbsoluteUrl, fileHash } from './halpers.js';
+import { isProd, debug } from './env.js';
+import { a11yEmoji, parseComment } from './stringParse.js';
+import { minifyJs } from './configs.js';
 
 const giscusClass = new Set([
   'giscus',
@@ -347,7 +347,7 @@ const transformer = (classCache) => posthtml([
   })(tree);
 });
 
-exports.transformHtml = async (source, classCache) => {
+export const transformHtml = async (source, classCache) => {
   try {
     const { html } = await transformer(classCache).process(source);
 

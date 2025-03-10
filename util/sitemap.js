@@ -1,11 +1,10 @@
-const { writeFile } = require('node:fs/promises');
-const { SitemapStream, streamToPromise } = require('sitemap');
+import { writeFile } from 'node:fs/promises';
+import { SitemapStream, streamToPromise } from 'sitemap';
 
-const { rootResolve, siteUrl } = require('./halpers');
-const { dateNow } = require('./env');
-const pkg = require('../package.json');
+import { rootResolve, siteUrl } from './halpers.js';
+import { dateNow, pkg } from './env.js';
 
-exports.createSitemap = async (nodes) => {
+export const createSitemap = async (nodes) => {
   const sitemapStream = new SitemapStream();
 
   sitemapStream.write({

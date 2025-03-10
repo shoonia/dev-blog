@@ -1,28 +1,21 @@
-const { join } = require('node:path');
-const { readFileSync } = require('node:fs');
-const stringHash = require('string-hash');
-const { homepage } = require('../package.json');
+import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
+import stringHash from 'string-hash';
+
+import { pkg } from './env.js';
 
 const root = process.cwd();
 
-const rootResolve = (...path) => join(root, ...path);
-const siteUrl = (path) => new URL(path, homepage).href;
+export const rootResolve = (...path) => join(root, ...path);
+export const siteUrl = (path) => new URL(path, pkg.homepage).href;
 
-const fileHash = (...path) => {
+export const fileHash = (...path) => {
   const content = readFileSync(join(root, ...path), 'utf8');
   return stringHash(content).toString(36).slice(0, 5);
 };
 
-const isString = (val) => typeof val === 'string';
+export const isString = (val) => typeof val === 'string';
 
-const isAbsoluteUrl = (url) => {
+export const isAbsoluteUrl = (url) => {
   return isString(url) && url.startsWith('https://');
-};
-
-module.exports = {
-  rootResolve,
-  siteUrl,
-  fileHash,
-  isString,
-  isAbsoluteUrl,
 };

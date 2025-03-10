@@ -1,15 +1,15 @@
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 
-const { transformHtml } = require('./util/html');
-const { createSitemap } = require('./util/sitemap');
-const { createRss } = require('./util/rss');
-const { getPosts, getSnippets } = require('./util/filters');
-const { compileCss, writeCss } = require('./util/styles');
-const { compileJs } = require('./util/scripts');
-const { siteUrl } = require('./util/halpers');
-const { isProd } = require('./util/env');
+import  { transformHtml } from './util/html.js';
+import  { createSitemap } from './util/sitemap.js';
+import  { createRss } from './util/rss.js';
+import  { getPosts, getSnippets } from './util/filters.js';
+import  { compileCss, writeCss } from './util/styles.js';
+import  { compileJs } from './util/scripts.js';
+import  { siteUrl } from './util/halpers.js';
+import  { isProd } from './util/env.js';
 
-module.exports = (config) => {
+export default (config) => {
   let cssCache;
   let classMap;
 
@@ -78,7 +78,7 @@ module.exports = (config) => {
     passthroughFileCopy: true,
     templateFormats: [
       'md',
-      'njk'
+      'njk',
     ],
   };
 };

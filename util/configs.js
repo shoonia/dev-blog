@@ -1,5 +1,5 @@
 /** @type {import('terser').MinifyOptions} */
-exports.minifyJs = {
+export const minifyJs = {
   ecma: 2020,
   module: true,
   toplevel: true,

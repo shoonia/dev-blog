@@ -1,17 +1,14 @@
-const { siteUrl, isAbsoluteUrl } = require('./halpers');
+import { siteUrl, isAbsoluteUrl } from './halpers.js';
 
-const getAuthorName = (data) => {
+export const authorName = (data) => {
   return data.author?.name || data.pkg.author.name;
 };
 
-const getImageUrl = (data) => {
+export const image = (data) => {
   return isAbsoluteUrl(data.image) ? data.image : siteUrl(data.image);
 };
 
-exports.image = getImageUrl;
-exports.authorName = getAuthorName;
-
-exports.jsonLd = (data) => {
+export const jsonLd = (data) => {
   const url = siteUrl(data.permalink);
 
   return JSON.stringify({
@@ -26,7 +23,7 @@ exports.jsonLd = (data) => {
     dateModified: data.modified || undefined,
     author: {
       '@type': 'Person',
-      name: getAuthorName(data),
+      name: authorName(data),
       url: data.author?.url || data.pkg.author.url,
     },
     publisher: {
@@ -41,7 +38,7 @@ exports.jsonLd = (data) => {
     },
     image: {
       '@type': 'ImageObject',
-      url: getImageUrl(data),
+      url: image(data),
     },
     mainEntityOfPage: {
       '@type': 'itemPage',
