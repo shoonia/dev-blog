@@ -1,5 +1,5 @@
-const { test } = require('node:test');
-const { strictEqual } = require('node:assert/strict');
+import { test } from 'node:test';
+import { strictEqual } from 'node:assert/strict';
 
 const urls = [
   ['Query selector for child elements', 'https://shoonia.wixsite.com/blog/child-selector'],

@@ -1,6 +1,6 @@
-const { join } = require('node:path');
-const { test } = require('node:test');
-const { ok, strictEqual } = require('node:assert/strict');
+import { join } from 'node:path';
+import { test } from 'node:test';
+import { ok, strictEqual } from 'node:assert/strict';
 
 const baseUrl = (path) => join('https://shoonia.wixsite.com', path);
 const getJson = (path) => fetch(baseUrl(path)).then((i) => i.json());
