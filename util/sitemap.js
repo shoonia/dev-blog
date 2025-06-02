@@ -15,13 +15,6 @@ export const createSitemap = async (nodes) => {
   });
 
   sitemapStream.write({
-    url: siteUrl('/support-ukraine/'),
-    lastmod: dateNow,
-    changefreq: 'weekly',
-    priority: 0.8,
-  });
-
-  sitemapStream.write({
     url: siteUrl('/snippets/'),
     lastmod: dateNow,
     changefreq: 'weekly',

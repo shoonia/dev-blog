@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Host: shoonia.site
-Sitemap: https://shoonia.site/sitemap.xml
+Host: shoonia.netlify.app
+Sitemap: https://shoonia.netlify.app/sitemap.xml
