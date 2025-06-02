@@ -20,10 +20,10 @@ We have a `$w.Repeater` component with items of users' cards. When we point with
 
 For this, we're going to use two other events that provide repeater API:
 
-- [`onMouseIn()`](https://www.wix.com/velo/reference/$w/element/onmousein) runs when the mouse pointer is moved onto the element.
-- [`onMouseOut()`](https://www.wix.com/velo/reference/$w/element/onmouseout) runs when the mouse pointer is moved off of the element
+- [`onMouseIn()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/on-mouse-in) runs when the mouse pointer is moved onto the element.
+- [`onMouseOut()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/on-mouse-out) runs when the mouse pointer is moved off of the element
 
-Also, repeater items don't have property [`style.backgroundColor`](https://www.wix.com/velo/reference/$w/style/backgroundcolor) for changing the background color of an element. But we can use [`background.src`](https://www.wix.com/velo/reference/$w/background/background) property for changing the background image. So in this way, we're going to use a one-pixel image.
+Also, repeater items don't have property [`style.backgroundColor`](https://dev.wix.com/docs/velo/velo-only-apis/$w/style/background-color) for changing the background color of an element. But we can use [`background.src`](https://dev.wix.com/docs/velo/velo-only-apis/$w/background/introduction) property for changing the background image. So in this way, we're going to use a one-pixel image.
 
 <a href="#" download="1x1_#cce4f7ff.png">
   Download: Here is one-pixel image
@@ -176,7 +176,7 @@ The `data:URL` image is a little longer than the direct link for this image. And
 
 ## Resources
 
-- [Velo APIs](https://www.wix.com/velo/reference/api-overview/introduction)
+- [Velo APIs](https://dev.wix.com/docs/velo)
 - [Data URLs MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - [1x1 PNG generator](https://shoonia.github.io/1x1/)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-imitating-hover-event-on-repeater-container-a65f4b6e0301)

@@ -106,7 +106,7 @@ Am I need this package? The Velo supports JavaScript until [ES2020](https://tc39
 
 - [bundlephobia.com](https://bundlephobia.com/) - the great service to query package sizes.
 - [RunKit](https://npm.runkit.com/) - playground to test code.
-- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
+- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor)
 
 ## Posts
 

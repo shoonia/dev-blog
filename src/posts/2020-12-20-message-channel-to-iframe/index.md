@@ -269,7 +269,7 @@ export const createChannel = (id) => {
 
 Greate, we save the callback to the array, and in the next step, we add the handler for post message.
 
-On the Main page, we must wait until the page is ready for interaction. I guess you know this feature of the Velo, it's a method [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready).
+On the Main page, we must wait until the page is ready for interaction. I guess you know this feature of the Velo, it's a method [`$w.onReady()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/on-ready).
 
 **Example of a dynamic event handler**
 

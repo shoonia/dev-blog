@@ -49,8 +49,8 @@ But if you would like to do dynamic fill up your Repeater or change its items, y
 
 In the Velo, we have two types of selector functions.
 
-- [Global Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_global-scope)
-- [Repeated Item Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_repeated-item-scope)
+- [Global Scope Selectors](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/$w-repeater-introduction-global-scope)
+- [Repeated Item Scope Selectors](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/introduction#velo-only-apis_$w_repeater_repeated-item-scope)
 
 The Global Scope Selectors it's `$w()`. We can use it anywhere in the frontend part of Wix site.
 If we use `$w()` with Repeater Items, then it changes all items
@@ -283,7 +283,7 @@ export const createScope = (getData) => (event) => {
 - [Code on GitHub](https://github.com/shoonia/repeater-scope)
 - [Scope selector `$w.at(context)`](https://www.wix.com/velo/reference/$w/at)
 - [Global Scope & Repeated Item Scope Selectors](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_selector-scope)
-- [Event Context](https://www.wix.com/velo/reference/$w/event/context)
+- [Event Context](https://dev.wix.com/docs/velo/velo-only-apis/$w/event/context)
 - [Property getters and setters](https://javascript.info/property-accessors)
 
 ## Posts

@@ -103,7 +103,7 @@ In this step, we install npm library [tinykeys](https://github.com/jamiebuilds/t
 <figure>
   <figcaption>
 
-  [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
+  [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor)
   </figcaption>
   <div class="filetree" role="img" aria-label="package manager sidebar">
     <div class="filetree_tab filetree_row">

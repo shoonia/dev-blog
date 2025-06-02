@@ -34,7 +34,7 @@ I have written two articles on this topic, which you can find on this blog.
 
 The main idea of these two articles is that it is generally not recommended to nest an event handler inside any Repeater loop. Doing so can cause issues where the callback function is triggered multiple times by a single event.
 
-The Velo documentation uses the following method to handle events using [event context](https://www.wix.com/velo/reference/$w/event/context).
+The Velo documentation uses the following method to handle events using [event context](https://dev.wix.com/docs/velo/velo-only-apis/$w/event/context).
 
 <figure>
   <figcaption>
@@ -58,7 +58,7 @@ In most cases, the existing information is sufficient. However, if we require mo
 <figure>
   <figcaption>
 
-  **Velo API Reference:** [Retrieve Repeater item data when clicked](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
+  **Velo API Reference:** [Retrieve Repeater item data when clicked](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
   </figcaption>
 
   ```js
@@ -81,7 +81,7 @@ It does not look bad. But we want to have a better 😊
 
 ## Method forItems()
 
-The Repeater has the [`forItems()`](https://www.wix.com/velo/reference/$w/repeater/foritems) method that allows us to run specific repeated items with the given list of IDs. I have never used it before. Previously, if I wanted to rerender some Repeater items then I just used the [`forEachItem()`](https://www.wix.com/velo/reference/$w/repeater/foreachitem) method. `forItems()` allows us to run the callback function for specific items, not all.
+The Repeater has the [`forItems()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/for-items) method that allows us to run specific repeated items with the given list of IDs. I have never used it before. Previously, if I wanted to rerender some Repeater items then I just used the [`forEachItem()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/for-each-item) method. `forItems()` allows us to run the callback function for specific items, not all.
 
 <figure>
   <figcaption>
@@ -136,8 +136,8 @@ Magic. For me, it's a very expressive code. And it's a good alternative to all k
 ## Resources
 
 - [Velo: Understanding the Scope of Selector Functions](https://dev.wix.com/docs/develop-websites/articles/wix-editor-elements/repeaters/understanding-the-scope-of-selector-functions)
-- [Retrieve Repeater Item Data When Clicked](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
-- [Get the element context in which an event was fired](https://www.wix.com/velo/reference/$w/event/context)
+- [Retrieve Repeater Item Data When Clicked](https://dev.wix.com/docs/velo/velo-only-apis/$w/repeater/introduction#$w_repeater_introduction_retrieve-repeater-item-data-when-clicked)
+- [Get the element context in which an event was fired](https://dev.wix.com/docs/velo/velo-only-apis/$w/event/context)
 
 ## Posts
 

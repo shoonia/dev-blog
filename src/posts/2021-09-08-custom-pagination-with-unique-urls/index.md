@@ -54,7 +54,7 @@ import wixData from 'wix-data';
 import { ok, redirect, WixRouterSitemapEntry } from 'wix-router';
 // The 'url-join' external npm library.
 // It has to be installed with npm Package Manager before writing a code.
-// More: https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages
+// More: https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor
 import urlJoin from 'url-join';
 
 const hasContent = (val) => typeof val === 'string' && val.trim() !== '';

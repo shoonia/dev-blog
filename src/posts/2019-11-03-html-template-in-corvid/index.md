@@ -38,7 +38,7 @@ We need to control the number of elements and try to use fewer elements than we 
 
 ## Install Lodash
 
-We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages).
+We would be using the `_.template()` function from library [Lodash](https://lodash.com/docs/4.17.15#template). First, we need to install Lodash with the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor).
 
 <img
   src="https://static.wixstatic.com/media/e3b156_fbb231d5ad4c4ed7a2abcd8c9e815e72~mv2.png"
@@ -98,7 +98,7 @@ $w.onReady(function () {
 
 **How it works:**
 
-1. Import Lodash library. The first you have to install the library from the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
+1. Import Lodash library. The first you have to install the library from the [Package Manager](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor)
 2. Setting the custom template delimiters as `{{key}}` . Lodash uses delimiters `<%=key%>` by default. [more](https://lodash.com/docs/4.17.15#template)
 3. Pattern string with two keys `{{firstName}}` and `{{lastName}}`.
 4. Creating a compiled template, that returns a function `compiled()` that will accept an object with properties. `{ firstName: "John", lastName: "Doe" }`.
@@ -106,7 +106,7 @@ $w.onReady(function () {
 
 ## HTML templates
 
-We can get a text element's HTML content by `.html` property. [$w.Text](https://www.wix.com/velo/reference/$w/text/html)
+We can get a text element's HTML content by `.html` property. [$w.Text](https://dev.wix.com/docs/velo/velo-only-apis/$w/text/html)
 
 ```js
 const value = $w("#textTemplate").html; // "<b>Bold Text</b>"
@@ -160,9 +160,9 @@ It works faster now because we have only two elements in the repeater one image 
 
 ## Resources
 
-- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/working-with-npm-packages)
+- [Velo: Working with npm Packages](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/packages/work-with-npm-packages-in-the-editor)
 - [Lodash: _.tempalate();](https://lodash.com/docs/4.17.15#template)
-- [Velo: get a text element's HTML content](https://www.wix.com/velo/reference/$w/text/html)
+- [Velo: get a text element's HTML content](https://dev.wix.com/docs/velo/velo-only-apis/$w/text/html)
 - [DEMO](https://shoonia.wixsite.com/blog/html-template-in-corvid)
 - [This article on medium.com](https://medium.com/@shoonia/corvid-by-wix-using-html-template-to-the-better-performance-27ec5a18042e)
 

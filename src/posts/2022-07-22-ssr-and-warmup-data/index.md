@@ -14,7 +14,7 @@ image: '/assets/images/tftl.jpg'
 
 ![a poster for the TV show "Tales from the Loop"](/assets/images/tftl.jpg)
 
-In Velo, we use the [`$w.onReady()`](https://www.wix.com/velo/reference/$w/onready) method as a starting point for interacting with the page. This method ensures that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
+In Velo, we use the [`$w.onReady()`](https://dev.wix.com/docs/velo/velo-only-apis/$w/on-ready) method as a starting point for interacting with the page. This method ensures that all the page elements have finished loading and we can interact with them. The lifecycle of the Velo site includes two runs of the `$w.onReady()` method.
 
 The first run of the `$w.onReady()` callback happens on the server-side when the server builds the HTML page. The server executes Velo code and puts a result into HTML (if it's possible).
 
@@ -44,7 +44,7 @@ Code will be executed on the server-side, then a result will be added to the HTM
 
 ## Rendering API
 
-We can control the step of the render cycle with [`wixWindow.rendering.env` API](https://www.wix.com/velo/reference/wix-window-frontend/rendering/env).
+We can control the step of the render cycle with [`wixWindow.rendering.env` API](https://dev.wix.com/docs/velo/apis/wix-window-frontend/rendering/introduction).
 
 `env` property returns <mark>backend</mark> when rendering on the server-side and <mark>browser</mark> when rendering on the client-side.
 
@@ -390,8 +390,8 @@ $w.onReady(async function () {
 
 ## Resources
 
-- [Rendering `env` API](https://www.wix.com/velo/reference/wix-window-frontend/rendering/env)
-- [Warmup Data API](https://www.wix.com/velo/reference/wix-window-frontend/warmupdata)
+- [Rendering `env` API](https://dev.wix.com/docs/velo/apis/wix-window-frontend/rendering/introduction)
+- [Warmup Data API](https://dev.wix.com/docs/velo/apis/wix-window-frontend/warmup-data/introduction)
 - [Velo: About the Page Rendering Process](https://dev.wix.com/docs/develop-websites/articles/coding-with-velo/frontend-code/page-rendering/about-the-page-rendering-process)
 
 ## Posts
