@@ -1,11 +1,12 @@
 import globals from 'globals';
 import js from '@eslint/js';
+import { defineConfig } from '@eslint/config-helpers';
 
-export default [
+export default defineConfig(
   js.configs.recommended,
   {
     languageOptions: {
-      ecmaVersion: 2023,
+      ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
         ...globals.browser,
@@ -43,4 +44,4 @@ export default [
       ],
     },
   },
-];
+);
