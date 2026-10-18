@@ -46,7 +46,7 @@ $w.onReady(() => {
 ```
 </figure>
 
-### Returns parameters
+## Returns parameters
 
 - **$item** - A selector function with [repeated item scope](https://www.wix.com/velo/reference/$w/repeater/introduction#$w_repeater_introduction_repeated-item-scope).
 - **itemData** - The object from the repeater's `data` array that corresponds to the repeated item being created.
